@@ -1,42 +1,29 @@
-                        <li><strong>Create authentic content:</strong> Genuine reviews perform better</li>
-                            <li><strong>Track conversions:</strong> Use affiliate dashboards</li>
+strong> Stats, demographics, rates</li>
+                            <li><strong>Reach out to brands:</strong> Those aligned with your content</li>
+                            <li><strong>Offer value packages:</strong> Stream integration, social promotion</li>
+                            <li><strong>Track performance:</strong> Provide brands with metrics</li>
+                            <li><strong>Build relationships:</strong> Repeat sponsors are more valuable</li>
                         </ul>
-                        <p><em>Tip: Focus on 2-3 affiliate products that perfectly match your niche and audience.</em></p>
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Scale Your Earnings</h3>
-                        <p>Grow from side income to full-time creator:</p>
-                        <ul>
-                            <li><strong>Diversify income streams:</strong> Brand deals + affiliates + badges</li>
-                            <li><strong>Build email list:</strong> Convert followers to subscribers</li>
-                            <li><strong>Create digital products:</strong> Presets, guides, courses</li>
-                            <li><strong>Offer services:</strong> Consulting, coaching, content creation</li>
-                            <li><strong>Invest in growth:</strong> Ads, collaborations, cross-promotion</li>
-                        </ul>
-                        <p><em>Tip: The most successful creators treat Instagram like a business, not just a hobby.</em></p>
+                        <p><em>Tip: Start with smaller brands in your niche before approaching larger companies.</em></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Instagram Creator Gear Section -->
+    <!-- Streamer Gear Section -->
     <section id="resources" class="resources-section">
         <div class="container">
             <div class="section-header">
-                <h2><i class="fas fa-shopping-cart"></i> Essential Instagram Creator Gear 2026</h2>
-                <p class="subtitle">Recommended equipment to improve your content quality and production value</p>
+                <h2><i class="fas fa-shopping-cart"></i> Essential Twitch Streamer Gear 2026</h2>
+                <p class="subtitle">Recommended equipment to improve your stream quality and production value</p>
             </div>
             
             <div class="gear-grid">
                 <div class="gear-card">
                     <div class="gear-category">🎤 Audio</div>
                     <h3>Blue Yeti USB Microphone</h3>
-                    <p class="gear-description">Professional USB condenser microphone for crystal clear audio in reels, stories, and IGTV videos.</p>
+                    <p class="gear-description">Professional USB condenser microphone with multiple pattern selection for crystal clear stream audio.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-microphone"></i> Cardioid</span>
                         <span class="spec"><i class="fas fa-sliders-h"></i> Gain Control</span>
@@ -49,7 +36,7 @@
                 <div class="gear-card">
                     <div class="gear-category">📹 Camera</div>
                     <h3>Logitech C920x HD Pro Webcam</h3>
-                    <p class="gear-description">Full HD 1080p webcam with autofocus for professional-looking Instagram Live sessions and video content.</p>
+                    <p class="gear-description">Full HD 1080p webcam with autofocus and stereo audio for professional-looking face cam.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-video"></i> 1080p</span>
                         <span class="spec"><i class="fas fa-lightbulb"></i> Auto Light</span>
@@ -62,7 +49,7 @@
                 <div class="gear-card">
                     <div class="gear-category">💡 Lighting</div>
                     <h3>Neewer Ring Light Kit</h3>
-                    <p class="gear-description">18-inch ring light with stand for professional studio lighting in photos, reels, and stories.</p>
+                    <p class="gear-description">18-inch ring light with stand and phone holder for professional studio lighting setup.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-lightbulb"></i> 5500K</span>
                         <span class="spec"><i class="fas fa-sliders-h"></i> Dimmable</span>
@@ -75,7 +62,7 @@
                 <div class="gear-card">
                     <div class="gear-category">💾 Storage</div>
                     <h3>SanDisk 128GB SD Card</h3>
-                    <p class="gear-description">High-speed SD card for storing photos, videos, and content for Instagram posts and reels.</p>
+                    <p class="gear-description">High-speed SD card for storing stream recordings, clips, and gaming footage.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-hdd"></i> 128GB</span>
                         <span class="spec"><i class="fas fa-tachometer-alt"></i> 170MB/s</span>
@@ -88,7 +75,7 @@
                 <div class="gear-card">
                     <div class="gear-category">🎧 Monitoring</div>
                     <h3>Sony MDR-7506 Headphones</h3>
-                    <p class="gear-description">Professional studio headphones for accurate audio monitoring during video editing and content creation.</p>
+                    <p class="gear-description">Professional studio headphones for accurate audio monitoring during streaming and editing.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-headphones"></i> Closed-back</span>
                         <span class="spec"><i class="fas fa-volume-up"></i> 40mm Drivers</span>
@@ -109,13 +96,13 @@
     <div class="container">
         <div class="adsense-container">
             <div class="ad-placeholder">
-                <p>📈 Grow Your Instagram</p>
+                <p>🚀 Grow Your Twitch Channel</p>
                 <small>AdSense ad slot - 728x90</small>
                 <div class="ad-code">
                     <!-- Google AdSense Code Here -->
                     <ins class="adsbygoogle"
                         style="display:block"
-                        data-ad-client="ca-pub-7171402107622932"
+                        data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
                         data-ad-slot="XXXXXXXXXX"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
@@ -129,7 +116,7 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-database"></i> Data Sources & Methodology</h2>
-                <p class="subtitle">Transparent information about where our 2026 Instagram earnings data comes from</p>
+                <p class="subtitle">Transparent information about where our 2026 Twitch earnings data comes from</p>
             </div>
             
             <div class="data-sources-content">
@@ -139,9 +126,9 @@
                     </div>
                     <div class="source-content">
                         <h3>Platform Terms & Requirements</h3>
-                        <p><strong>Reels Bonus:</strong> $0.01-$0.05 per view, invite-only program</p>
-                         <p><strong>LIVE Badges:</strong> 100% of badge purchases to creator (no platform fee)</p>
-                         <p><strong>Badge Pricing:</strong> $0.99 (1 Heart), $1.99 (2 Hearts), $4.99 (3 Hearts)</p>
+                        <p><strong>Subscription Split:</strong> 50/50 for Affiliates & standard Partners (50% to streamer)</p>
+                         <p><strong>Bits Value:</strong> 1 bit = $0.01 gross, ~$0.80 per 100 bits to streamer</p>
+                         <p><strong>Partner Requirements:</strong> 75+ average concurrent viewers over 30 days</p>
                     </div>
                 </div>
                 
@@ -151,9 +138,9 @@
                     </div>
                     <div class="source-content">
                         <h3>Revenue Rate Data</h3>
-                        <p><strong>Brand Deal Rates:</strong> $10-$50,000+ per post based on follower count</p>
-                     <p><strong>Affiliate Commissions:</strong> 5-50% depending on product category</p>
-                     <p><strong>Primary Sources:</strong> Influencer Marketing Hub 2026 Report, Instagram platform data</p>
+                        <p><strong>Ad Revenue Split:</strong> 55/45 (55% to streamer, 45% to Twitch)</p>
+                     <p><strong>CPM Ranges:</strong> $3-$12 depending on game category</p>
+                     <p><strong>Primary Sources:</strong> Twitch Partner & Affiliate Agreement 2026, streaming analytics data</p>
                     </div>
                 </div>
                 
@@ -163,9 +150,9 @@
                     </div>
                     <div class="source-content">
                         <h3>Industry Benchmarks</h3>
-                        <p><strong>Follower Tiers:</strong> 6 tiers from 1K to 1M+ followers</p>
-                      <p><strong>Engagement Multipliers:</strong> Each 1% above 3% adds 10-20% to rates</p>
-                      <p><strong>US Audience Premium:</strong> 2-3x higher rates than international followers</p>
+                        <p><strong>Game Categories:</strong> 10 major categories with 2026 CPM ranges</p>
+                      <p><strong>Sponsorship Rates:</strong> $50-$100,000+ based on viewer count</p>
+                      <p><strong>Geographic Impact:</strong> US/Canada audiences earn 2-3x more than other regions</p>
                     </div>
                 </div>
                 
@@ -214,10 +201,10 @@
                 
                 <div class="footer-section">
                     <h3 class="footer-title">Resources</h3>
-                    <a href="#faq" class="footer-link">Instagram FAQ</a>
+                    <a href="#faq" class="footer-link">Twitch FAQ</a>
                     <a href="#cpm-data" class="footer-link">CPM Rates</a>
-                    <a href="#instagram-earnings-guide" class="footer-link">Monetization Guide</a>
-                    <a href="#resources" class="footer-link">Creator Gear</a>
+                    <a href="#twitch-earnings-guide" class="footer-link">Monetization Guide</a>
+                    <a href="#resources" class="footer-link">Streamer Gear</a>
                 </div>
                 
                 <div class="footer-section">
@@ -241,7 +228,7 @@
     <!-- JavaScript -->
     <!-- Main Site JS -->
     <script src="/assets/js/main.js"></script>
-    <!-- Instagram Calculator Specific JS -->
-    <script src="instagram-calculator.js"></script>
+    <!-- Twitch Calculator Specific JS -->
+    <script src="twitch-calculator.js"></script>
 </body>
 </html>
