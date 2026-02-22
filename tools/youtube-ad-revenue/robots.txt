@@ -1,0 +1,44 @@
+# robots.txt for YouTube Ad Revenue Calculator
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://raiderj77.github.io/youtube-ad-revenue-calculator/sitemap.xml
+
+# Crawl delay (requests per second)
+Crawl-delay: 2
+
+# Preferred host (canonical URL)
+Host: https://raiderj77.github.io/youtube-ad-revenue-calculator/
+
+# Common search engine bots
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Disallow: /admin/
+Crawl-delay: 5
+
+User-agent: YandexBot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 5

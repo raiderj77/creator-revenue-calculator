@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Main Pages -->
+  <url>
+    <loc>https://creatorrevenuecalculator.com/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Tools -->
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Tool Sections -->
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#calculator</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#cpm-data</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#faq</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#youtube-revenue-guide</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Coming Soon Tools -->
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/twitch-revenue/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/tiktok-revenue/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/instagram-revenue/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/affiliate-calculator/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

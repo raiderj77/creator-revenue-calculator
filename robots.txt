@@ -1,0 +1,13 @@
+# robots.txt for Creator Revenue Calculator
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://creatorrevenuecalculator.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 2
+
+# Preferred host
+Host: https://creatorrevenuecalculator.com/

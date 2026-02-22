@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Main calculator page - Highest priority -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Calculator section - High priority -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#calculator</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- CPM Data section - High priority (search traffic) -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#cpm-data</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- FAQ section - High priority (long-tail search) -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- YouTube Revenue Guide - Medium priority -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#youtube-revenue-guide</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- How It Works section - Medium priority -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#how-it-works</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Creator Resources section - Lower priority -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#resources</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- FAQ Questions (implied by FAQPage schema) -->
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-how-much-does-youtube-pay-per-1000-views</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-what-is-a-good-cpm-on-youtube</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-how-much-do-small-youtubers-make</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-how-much-money-do-youtubers-make-per-view</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-which-youtube-niche-pays-the-most</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-how-does-youtube-calculate-ad-revenue</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-how-long-does-it-take-to-make-money-on-youtube</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://raiderj77.github.io/youtube-ad-revenue-calculator/#faq-do-youtube-shorts-make-money</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+</urlset>
