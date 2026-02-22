@@ -1,0 +1,126 @@
+/* Data Sources Section Styles */
+
+.data-sources-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+}
+
+.data-sources-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.source-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid #dee2e6;
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+}
+
+.source-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.source-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.source-content h3 {
+    color: #495057;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+}
+
+.source-content p {
+    color: #6c757d;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.5;
+}
+
+.source-content strong {
+    color: #495057;
+}
+
+.data-disclaimer {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    border-left: 4px solid #ffc107;
+}
+
+.data-disclaimer p {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: #856404;
+    font-size: 0.95rem;
+}
+
+.data-disclaimer i {
+    color: #856404;
+    margin-top: 0.125rem;
+}
+
+/* Platform-specific color overrides */
+
+/* YouTube */
+.youtube-calc .source-icon {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+}
+
+/* TikTok */
+.tiktok-calc .source-icon {
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+}
+
+/* Twitch */
+.twitch-calc .source-icon {
+    background: linear-gradient(135deg, #9146FF 0%, #6441A5 100%);
+}
+
+/* Instagram */
+.instagram-calc .source-icon {
+    background: linear-gradient(45deg, #405DE6, #833AB4, #E1306C);
+}
+
+/* Podcast */
+.podcast-calc .source-icon {
+    background: linear-gradient(135deg, #FF6B35 0%, #1A73E8 100%);
+}
+
+/* Affiliate */
+.affiliate-calc .source-icon {
+    background: linear-gradient(135deg, #00C853 0%, #2962FF 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .source-card {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .source-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
