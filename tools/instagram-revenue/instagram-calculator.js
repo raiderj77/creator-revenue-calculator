@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const engagementMultiplierResult = document.getElementById('engagementMultiplier');
     
     // CPM rates by niche (2026 data)
+    // CPM rates by niche (2026 data)
     const nicheRates = {
         'fashion-beauty': { cpm: 35, brandDealMultiplier: 1.3 },
         'fitness-health': { cpm: 30, brandDealMultiplier: 1.2 },

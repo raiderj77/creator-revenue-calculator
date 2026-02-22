@@ -1,18 +1,26 @@
 // TikTok Creator Earnings Calculator - JavaScript
 
 // CPM rates by niche (per 1,000 views)
-const cpmRates = {
-    'business': { min: 0.08, max: 0.12, avg: 0.10 },
-    'education': { min: 0.06, max: 0.10, avg: 0.08 },
-    'fitness': { min: 0.05, max: 0.09, avg: 0.07 },
-    'food': { min: 0.04, max: 0.08, avg: 0.06 },
-    'beauty': { min: 0.04, max: 0.07, avg: 0.055 },
-    'gaming': { min: 0.03, max: 0.06, avg: 0.045 },
-    'travel': { min: 0.03, max: 0.06, avg: 0.045 },
-    'entertainment': { min: 0.02, max: 0.05, avg: 0.035 },
-    'dance': { min: 0.02, max: 0.04, avg: 0.03 },
-    'lifestyle': { min: 0.03, max: 0.05, avg: 0.04 }
-};
+    // TikTok earnings rates (2026 data)
+    const creatorFundRates = {
+        'base': 0.00002, // $0.02 per 1000 views
+        'max': 0.00004   // $0.04 per 1000 views for top performers
+    };
+    
+    // LIVE gift conversion (2026)
+    const giftRates = {
+        'diamondValue': 0.05, // $0.05 per diamond to creator
+        'platformCut': 0.50   // 50% platform fee on gifts
+    };
+    
+    // Brand deal rates by follower count (2026)
+    const brandDealRates = {
+        '10000': 100,    // 10K-50K followers
+        '50000': 500,    // 50K-100K followers
+        '100000': 1500,  // 100K-500K followers
+        '500000': 5000,  // 500K-1M followers
+        '1000000': 15000 // 1M+ followers
+    };
 
 // Brand deal rates per 1,000 followers
 const brandDealRates = {

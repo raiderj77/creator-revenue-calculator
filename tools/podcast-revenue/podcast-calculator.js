@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyDownloadsResult = document.getElementById('monthlyDownloads');
     
     // CPM rates by niche (2026 data)
+    // CPM rates by niche (2026 data - IAB standards)
     const nicheRates = {
         'business': { min: 35, max: 75, avg: 55 },
         'technology': { min: 30, max: 65, avg: 47.5 },
@@ -42,6 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
         'lifestyle': { min: 25, max: 50, avg: 37.5 },
         'gaming': { min: 15, max: 30, avg: 22.5 },
         'music': { min: 20, max: 40, avg: 30 }
+    };
+    
+    // Ad placement multipliers (2026 IAB standards)
+    const adMultipliers = {
+        'pre-roll': 0.8,  // 20% less than mid-roll
+        'mid-roll': 1.0,  // Base rate
+        'post-roll': 0.7  // 30% less than mid-roll
     };
     
     // Ad placement multipliers (2026 data)

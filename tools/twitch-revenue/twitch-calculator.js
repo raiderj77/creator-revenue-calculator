@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const twitchFeeResult = document.getElementById('twitchFee');
     
     // CPM rates by game category (2026 data)
+    // CPM rates by game category (2026 data)
     const cpmRates = {
         'just-chatting': { min: 3, max: 8, avg: 5.5 },
         'valorant': { min: 4, max: 10, avg: 7 },
@@ -41,6 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
         'creative': { min: 3, max: 7, avg: 5 },
         'music': { min: 2, max: 5, avg: 3.5 },
         'irl': { min: 3, max: 8, avg: 5.5 }
+    };
+    
+    // Sponsorship rates by average viewers (2026 data)
+    const sponsorshipRates = {
+        '50': 50,    // 50-100 viewers
+        '100': 200,  // 100-500 viewers
+        '500': 1000, // 500-1,000 viewers
+        '1000': 2500, // 1,000-5,000 viewers
+        '5000': 10000, // 5,000-10,000 viewers
+        '10000': 25000 // 10,000+ viewers
     };
     
     // Sponsorship rates by average viewers (2026 data)
