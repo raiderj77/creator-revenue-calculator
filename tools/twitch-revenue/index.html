@@ -1,3 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Revenue Calculator 2026 | How Much Do Twitch Streamers Make</title>
+    <meta name="description" content="Free Twitch revenue calculator. Estimate earnings from subscriptions, bits, ads, and donations based on 2026 Twitch payout rates.">
+    <meta property="og:title" content="Twitch Revenue Calculator">
+    <meta property="og:description" content="Free Twitch revenue calculator. Estimate earnings from subscriptions, bits, ads, and donations based on 2026 Twitch payout rates.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+        <link rel="stylesheet" href="tools-shared.css">
+    <link rel="stylesheet" href="twitch-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
+</head>
+<body class="twitch">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Twitch Revenue Calculator</a>
+            <div class="nav-links">
+                <a href="#calculator">Calculator</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#rates">Rates</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Twitch Revenue Calculator</h1>
+            <p class="subtitle">Calculate your Twitch earnings from subs, bits, ads, and donations — based on 2026 payout data.</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">$2.50</div><div class="stat-label">Per Sub (Affiliate)</div></div>
+                <div class="stat"><div class="stat-number">$0.01</div><div class="stat-label">Per Bit</div></div>
+                <div class="stat"><div class="stat-number">500</div><div class="stat-label">Avg Concurrent for Partner</div></div>
+            </div>
+            <div class="adsense-container">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> Calculate Your Earnings</h2>
+                <p class="subtitle">Enter your details to estimate your revenue</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="input-panel">
+                    <div class="input-group">
+                        <label for="avgViewers"><i class="fas fa-eye"></i> Avg Concurrent Viewers</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="avgViewers" min="10" max="100000" step="10" value="100">
+                            <input type="range" id="viewers-slider" min="10" max="100000" step="10" value="100">
+                        </div>
+                        <div class="input-hint">Your average live viewer count</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="subscribers"><i class="fas fa-star"></i> Active Subscribers</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="subscribers" min="0" max="50000" step="10" value="50">
+                            <input type="range" id="subs-slider" min="0" max="50000" step="10" value="50">
+                        </div>
+                        <div class="input-hint">Tier 1 subs = ~$2.50 to you</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="bitsPerMonth"><i class="fas fa-gem"></i> Bits Per Month</label>
+                        <input type="number" id="bitsPerMonth" min="0" max="10000000" step="100" value="5000">
+                        <div class="input-hint">100 bits = $1.00 to you</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="streamHours"><i class="fas fa-clock"></i> Stream Hours Per Month</label>
+                        <input type="number" id="streamHours" min="1" max="720" value="60">
+                    </div>
+                    <div class="input-group">
+                        <label for="gameCategory"><i class="fas fa-gamepad"></i> Game Category</label>
+                        <select id="gameCategory">
+                            <option value="justChatting">Just Chatting</option>
+                            <option value="fps" selected>FPS / Action</option>
+                            <option value="moba">MOBA / Strategy</option>
+                            <option value="rpg">RPG / Adventure</option>
+                            <option value="sports">Sports Games</option>
+                            <option value="casino">Casino / Slots</option>
+                        </select>
+                    </div>
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                        <i class="fas fa-calculator"></i> Calculate Earnings
+                    </button>
+                </div>
+                <div class="results-panel">
+                    <div class="results-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Estimated Monthly Earnings</h3>
+                        <div class="result-row">
+                            <div class="result-label">Subscriptions:</div>
+                            <div class="result-value" id="subscriptions">$0.00</div>
+                        </div>
+                        <div id="subscriptionsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Bits Revenue:</div>
+                            <div class="result-value" id="bits">$0.00</div>
+                        </div>
+                        <div id="bitsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Ad Revenue:</div>
+                            <div class="result-value" id="adRevenue">$0.00</div>
+                        </div>
+                        <div id="adRevenueDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Sponsorships:</div>
+                            <div class="result-value" id="sponsorships">$0.00</div>
+                        </div>
+                        <div id="sponsorshipsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row highlight">
+                            <div class="result-label">Total Monthly:</div>
+                            <div class="result-value" id="totalEarnings">$0.00</div>
+                        </div>
+                        <div id="totalDetail" class="input-hint"></div>
+                        <div class="breakdown">
+                            <h4>Per Metric</h4>
+                            <div class="breakdown-item"><div class="breakdown-label">Per subscriber:</div><div class="breakdown-value" id="perSubscriber">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per 100 bits:</div><div class="breakdown-value" id="per100Bits">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per stream hour:</div><div class="breakdown-value" id="perHour">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Twitch fee:</div><div class="breakdown-value" id="twitchFee">$0.00</div></div>
+                        </div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> Estimates based on 2026 Twitch payout data. Actual earnings vary.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="adsense-container" style="margin-top:2rem;">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
 strong> Stats, demographics, rates</li>
                             <li><strong>Reach out to brands:</strong> Those aligned with your content</li>
                             <li><strong>Offer value packages:</strong> Stream integration, social promotion</li>

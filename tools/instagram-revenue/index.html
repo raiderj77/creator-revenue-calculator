@@ -1,3 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Revenue Calculator 2026 | How Much Do Instagram Creators Make</title>
+    <meta name="description" content="Free Instagram revenue calculator. Estimate how much Instagram creators make from brand deals, Reels bonuses, badges, and affiliate marketing in 2026.">
+    <meta property="og:title" content="Instagram Revenue Calculator">
+    <meta property="og:description" content="Free Instagram revenue calculator. Estimate how much Instagram creators make from brand deals, Reels bonuses, badges, and affiliate marketing in 2026.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+        <link rel="stylesheet" href="tools-shared.css">
+    <link rel="stylesheet" href="instagram-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
+</head>
+<body class="instagram">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Instagram Revenue Calculator</a>
+            <div class="nav-links">
+                <a href="#calculator">Calculator</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#rates">Rates</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Instagram Revenue Calculator</h1>
+            <p class="subtitle">Estimate how much you can earn as an Instagram creator. Brand deals, Reels bonuses, and more — based on 2026 data.</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">$0.01–$0.05</div><div class="stat-label">Per Reel View</div></div>
+                <div class="stat"><div class="stat-number">$100–$10K</div><div class="stat-label">Brand Deal Range</div></div>
+                <div class="stat"><div class="stat-number">10K+</div><div class="stat-label">Followers to Monetize</div></div>
+            </div>
+            <div class="adsense-container">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> Calculate Your Earnings</h2>
+                <p class="subtitle">Enter your details to estimate your revenue</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="input-panel">
+                    <div class="input-group">
+                        <label for="followers"><i class="fas fa-users"></i> Followers</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="followers" min="1000" max="10000000" step="1000" value="10000">
+                            <input type="range" id="followers-slider" min="1000" max="10000000" step="1000" value="10000">
+                        </div>
+                        <div class="input-hint">1,000 – 10,000,000 followers</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="engagementRate"><i class="fas fa-chart-line"></i> Engagement Rate</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="engagementRate" min="0.1" max="20" step="0.1" value="3">
+                            <span class="percent">%</span>
+                            <input type="range" id="engagement-slider" min="0.1" max="20" step="0.1" value="3">
+                        </div>
+                        <div class="input-hint">Likes + comments ÷ followers × 100</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="postsPerWeek"><i class="fas fa-image"></i> Feed Posts Per Week</label>
+                        <input type="number" id="postsPerWeek" min="0" max="21" step="1" value="3">
+                    </div>
+                    <div class="input-group">
+                        <label for="reelsPerWeek"><i class="fas fa-film"></i> Reels Per Week</label>
+                        <input type="number" id="reelsPerWeek" min="0" max="21" step="1" value="3">
+                    </div>
+                    <div class="input-group">
+                        <label for="liveHours"><i class="fas fa-broadcast-tower"></i> Live Hours Per Month</label>
+                        <input type="number" id="liveHours" min="0" max="200" step="1" value="4">
+                    </div>
+                    <div class="input-group">
+                        <label for="niche"><i class="fas fa-tags"></i> Content Niche</label>
+                        <select id="niche">
+                            <option value="fashion">👗 Fashion & Beauty</option>
+                            <option value="fitness">💪 Fitness & Health</option>
+                            <option value="food">🍕 Food & Cooking</option>
+                            <option value="travel">✈️ Travel</option>
+                            <option value="lifestyle" selected>🏠 Lifestyle</option>
+                            <option value="tech">💻 Tech</option>
+                            <option value="comedy">😂 Comedy</option>
+                        </select>
+                    </div>
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                        <i class="fas fa-calculator"></i> Calculate Earnings
+                    </button>
+                </div>
+                <div class="results-panel">
+                    <div class="results-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Estimated Monthly Earnings</h3>
+                        <div class="result-row">
+                            <div class="result-label">Brand Deals:</div>
+                            <div class="result-value" id="brandDeals">$0.00</div>
+                        </div>
+                        <div id="brandDealsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Reels Bonus:</div>
+                            <div class="result-value" id="reelsBonus">$0.00</div>
+                        </div>
+                        <div id="reelsBonusDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Live Badges:</div>
+                            <div class="result-value" id="badgeIncome">$0.00</div>
+                        </div>
+                        <div id="badgeIncomeDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Affiliate Revenue:</div>
+                            <div class="result-value" id="affiliateRevenue">$0.00</div>
+                        </div>
+                        <div id="affiliateRevenueDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row highlight">
+                            <div class="result-label">Total Monthly:</div>
+                            <div class="result-value" id="totalEarnings">$0.00</div>
+                        </div>
+                        <div id="totalDetail" class="input-hint"></div>
+                        <div class="breakdown">
+                            <h4>Per Metric</h4>
+                            <div class="breakdown-item"><div class="breakdown-label">Per follower:</div><div class="breakdown-value" id="perFollower">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per post:</div><div class="breakdown-value" id="perPost">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per reel:</div><div class="breakdown-value" id="perReel">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Engagement multiplier:</div><div class="breakdown-value" id="engagementMultiplier">1x</div></div>
+                        </div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> Estimates based on 2026 industry averages. Actual earnings vary.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="adsense-container" style="margin-top:2rem;">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
                         <li><strong>Create authentic content:</strong> Genuine reviews perform better</li>
                             <li><strong>Track conversions:</strong> Use affiliate dashboards</li>
                         </ul>

@@ -1,3 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast Revenue Calculator 2026 | How Much Do Podcasters Make</title>
+    <meta name="description" content="Free podcast revenue calculator. Estimate earnings from host-read ads, sponsorships, Patreon, and affiliate marketing based on your download numbers.">
+    <meta property="og:title" content="Podcast Revenue Calculator">
+    <meta property="og:description" content="Free podcast revenue calculator. Estimate earnings from host-read ads, sponsorships, Patreon, and affiliate marketing based on your download numbers.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+        <link rel="stylesheet" href="tools-shared.css">
+    <link rel="stylesheet" href="podcast-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
+</head>
+<body class="podcast">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Podcast Revenue Calculator</a>
+            <div class="nav-links">
+                <a href="#calculator">Calculator</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#rates">Rates</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Podcast Revenue Calculator</h1>
+            <p class="subtitle">Find out how much your podcast can earn from ads, sponsorships, and listener support — based on 2026 CPM rates.</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">$18–$50</div><div class="stat-label">CPM Range</div></div>
+                <div class="stat"><div class="stat-number">5K+</div><div class="stat-label">Downloads for Sponsors</div></div>
+                <div class="stat"><div class="stat-number">70%</div><div class="stat-label">Host-Read Premium</div></div>
+            </div>
+            <div class="adsense-container">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> Calculate Your Earnings</h2>
+                <p class="subtitle">Enter your details to estimate your revenue</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="input-panel">
+                    <div class="input-group">
+                        <label for="downloadsPerEpisode"><i class="fas fa-download"></i> Downloads Per Episode</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="downloadsPerEpisode" min="100" max="1000000" step="100" value="5000">
+                            <input type="range" id="downloads-slider" min="100" max="1000000" step="100" value="5000">
+                        </div>
+                        <div class="input-hint">Average downloads in first 30 days</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="episodesPerMonth"><i class="fas fa-microphone"></i> Episodes Per Month</label>
+                        <input type="number" id="episodesPerMonth" min="1" max="30" value="4">
+                    </div>
+                    <div class="input-group">
+                        <label for="niche"><i class="fas fa-tags"></i> Podcast Niche</label>
+                        <select id="niche">
+                            <option value="business">💼 Business & Entrepreneurship</option>
+                            <option value="finance">💰 Finance & Investing</option>
+                            <option value="tech">💻 Technology</option>
+                            <option value="health">⚕️ Health & Wellness</option>
+                            <option value="education" selected>🎓 Education</option>
+                            <option value="trueCrime">🔍 True Crime</option>
+                            <option value="comedy">😂 Comedy</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="preRollAds"><i class="fas fa-ad"></i> Pre-Roll Ads Per Episode</label>
+                        <input type="number" id="preRollAds" min="0" max="5" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="midRollAds"><i class="fas fa-ad"></i> Mid-Roll Ads Per Episode</label>
+                        <input type="number" id="midRollAds" min="0" max="5" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="postRollAds"><i class="fas fa-ad"></i> Post-Roll Ads Per Episode</label>
+                        <input type="number" id="postRollAds" min="0" max="5" value="0">
+                    </div>
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                        <i class="fas fa-calculator"></i> Calculate Earnings
+                    </button>
+                </div>
+                <div class="results-panel">
+                    <div class="results-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Estimated Monthly Earnings</h3>
+                        <div class="result-row">
+                            <div class="result-label">Pre-Roll Revenue:</div>
+                            <div class="result-value" id="preRollRevenue">$0.00</div>
+                        </div>
+                        <div id="preRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Mid-Roll Revenue:</div>
+                            <div class="result-value" id="midRollRevenue">$0.00</div>
+                        </div>
+                        <div id="midRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Post-Roll Revenue:</div>
+                            <div class="result-value" id="postRollRevenue">$0.00</div>
+                        </div>
+                        <div id="postRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Sponsorships:</div>
+                            <div class="result-value" id="sponsorships">$0.00</div>
+                        </div>
+                        <div id="sponsorshipsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row highlight">
+                            <div class="result-label">Total Monthly:</div>
+                            <div class="result-value" id="totalEarnings">$0.00</div>
+                        </div>
+                        <div id="totalDetail" class="input-hint"></div>
+                        <div class="breakdown">
+                            <h4>Per Metric</h4>
+                            <div class="breakdown-item"><div class="breakdown-label">Per episode:</div><div class="breakdown-value" id="perEpisode">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per 1,000 downloads:</div><div class="breakdown-value" id="per1000Downloads">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per ad slot:</div><div class="breakdown-value" id="perAdSlot">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Monthly downloads:</div><div class="breakdown-value" id="monthlyDownloads">0</div></div>
+                        </div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> Estimates based on 2026 podcast CPM data. Actual earnings vary.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="adsense-container" style="margin-top:2rem;">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <em>Tip: Focus on growing to 5,000+ downloads per episode - this unlocks most premium opportunities.</em></p>
                     </div>
                 </div>

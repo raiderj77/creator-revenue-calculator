@@ -1,3 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Marketing Revenue Calculator 2026 | Estimate Your Earnings</title>
+    <meta name="description" content="Free affiliate marketing calculator. Estimate commission earnings based on traffic, conversion rates, and average order value. 2026 commission data included.">
+    <meta property="og:title" content="Affiliate Marketing Revenue Calculator">
+    <meta property="og:description" content="Free affiliate marketing calculator. Estimate commission earnings based on traffic, conversion rates, and average order value. 2026 commission data included.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+        <link rel="stylesheet" href="tools-shared.css">
+    <link rel="stylesheet" href="affiliate-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
+</head>
+<body class="affiliate">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Affiliate Revenue Calculator</a>
+            <div class="nav-links">
+                <a href="#calculator">Calculator</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#networks">Networks</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Affiliate Marketing Revenue Calculator</h1>
+            <p class="subtitle">Calculate how much you can earn from affiliate marketing. Enter your traffic, conversion rate, and commission to see your potential income.</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">1–50%</div><div class="stat-label">Commission Range</div></div>
+                <div class="stat"><div class="stat-number">1–5%</div><div class="stat-label">Avg Conversion Rate</div></div>
+                <div class="stat"><div class="stat-number">$50–$200</div><div class="stat-label">Avg Order Value</div></div>
+            </div>
+            <div class="adsense-container">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> Calculate Your Earnings</h2>
+                <p class="subtitle">Enter your details to estimate your revenue</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="input-panel">
+                    <div class="input-group">
+                        <label for="monthlyTraffic"><i class="fas fa-users"></i> Monthly Website Visitors</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="monthlyTraffic" min="100" max="10000000" step="100" value="10000">
+                            <input type="range" id="traffic-slider" min="100" max="10000000" step="100" value="10000">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="conversionRate"><i class="fas fa-chart-line"></i> Conversion Rate</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="conversionRate" min="0.1" max="20" step="0.1" value="2">
+                            <span class="percent">%</span>
+                            <input type="range" id="conv-slider" min="0.1" max="20" step="0.1" value="2">
+                        </div>
+                        <div class="input-hint">% of visitors who make a purchase</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="averageOrderValue"><i class="fas fa-dollar-sign"></i> Average Order Value ($)</label>
+                        <input type="number" id="averageOrderValue" min="5" max="10000" step="5" value="75">
+                    </div>
+                    <div class="input-group">
+                        <label for="commissionRate"><i class="fas fa-percent"></i> Commission Rate</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="commissionRate" min="1" max="80" step="0.5" value="8">
+                            <span class="percent">%</span>
+                            <input type="range" id="commission-slider" min="1" max="80" step="0.5" value="8">
+                        </div>
+                        <div class="input-hint">Amazon ~4%, SaaS 20–50%, digital up to 80%</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="affiliatePrograms"><i class="fas fa-network-wired"></i> Number of Affiliate Programs</label>
+                        <input type="number" id="affiliatePrograms" min="1" max="20" step="1" value="3">
+                    </div>
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                        <i class="fas fa-calculator"></i> Calculate Earnings
+                    </button>
+                </div>
+                <div class="results-panel">
+                    <div class="results-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Estimated Earnings</h3>
+                        <div class="result-row">
+                            <div class="result-label">Daily:</div>
+                            <div class="result-value" id="dailyEarnings">$0.00</div>
+                        </div>
+                        <div id="dailyDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row">
+                            <div class="result-label">Weekly:</div>
+                            <div class="result-value" id="weeklyEarnings">$0.00</div>
+                        </div>
+                        <div id="weeklyDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row highlight">
+                            <div class="result-label">Monthly:</div>
+                            <div class="result-value" id="monthlyEarnings">$0.00</div>
+                        </div>
+                        <div id="monthlyDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="result-row annual">
+                            <div class="result-label">Yearly:</div>
+                            <div class="result-value" id="yearlyEarnings">$0.00</div>
+                        </div>
+                        <div id="yearlyDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div class="breakdown">
+                            <h4>Per Metric</h4>
+                            <div class="breakdown-item"><div class="breakdown-label">Total commissions:</div><div class="breakdown-value" id="totalCommissions">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Monthly sales:</div><div class="breakdown-value" id="monthlySales">0</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per sale:</div><div class="breakdown-value" id="perSale">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Per visitor:</div><div class="breakdown-value" id="perVisitor">$0.00</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Commission rate shown:</div><div class="breakdown-value" id="commissionDisplay">0%</div></div>
+                        </div>
+                        <div id="totalDetail" class="input-hint"></div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> Estimates based on 2026 affiliate data. Actual earnings vary.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="adsense-container" style="margin-top:2rem;">
+                <div class="ad-placeholder">
+                    <p>Google AdSense Ad - 728x90 or Responsive</p>
+                    <small>Replace this placeholder with your AdSense code</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
                         </ul>
                         <p><em>Tip: Focus on one primary platform initially (blog or YouTube) before expanding.</em></p>
                     </div>
