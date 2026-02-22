@@ -1,0 +1,132 @@
+(--tiktok-teal);
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.gear-disclaimer i {
+    color: var(--tiktok-teal);
+    margin-right: var(--spacing-xs);
+}
+
+/* AdSense container styles */
+.adsense-container {
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+    border: 2px dashed var(--gray-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    background: var(--light);
+}
+
+.ad-placeholder {
+    color: var(--gray);
+    font-family: monospace;
+}
+
+.ad-placeholder p {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--tiktok-black);
+    font-weight: 600;
+}
+
+.ad-placeholder small {
+    font-size: 0.875rem;
+    color: var(--gray);
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.ad-code {
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    text-align: left;
+    overflow-x: auto;
+    border: 1px solid var(--gray-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .input-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gear-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: var(--spacing-md);
+    }
+    
+    .calculator-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .guide-step {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .gear-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .breakdown-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .input-section,
+    .results-section {
+        padding: var(--spacing-md);
+    }
+    
+    .result-value {
+        font-size: 1.5rem;
+    }
+    
+    .result-card.total .result-value {
+        font-size: 2rem;
+    }
+    
+    .faq-question {
+        padding: var(--spacing-md);
+        font-size: 1rem;
+    }
+    
+    .faq-answer.open {
+        padding: var(--spacing-md);
+    }
+    
+    .guide-step {
+        padding: var(--spacing-md);
+    }
+}
