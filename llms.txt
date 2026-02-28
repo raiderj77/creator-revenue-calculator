@@ -1,0 +1,35 @@
+# Creator Revenue Calculator
+> Free revenue calculators for content creators across YouTube, Twitch, TikTok, Instagram, podcasts, and affiliate marketing.
+
+## Tools
+
+### YouTube Ad Revenue Calculator
+- URL: https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/
+- Calculate YouTube earnings based on views, CPM rates, and niche. 2026 data for 15+ content categories.
+
+### Twitch Revenue Calculator
+- URL: https://creatorrevenuecalculator.com/tools/twitch-revenue/
+- Estimate Twitch earnings from subscriptions, bits, ads, and sponsorships for affiliate and partner channels.
+
+### TikTok Creator Fund Calculator
+- URL: https://creatorrevenuecalculator.com/tools/tiktok-revenue/
+- Calculate TikTok Creator Fund earnings based on views, engagement, and region. Estimate brand deal potential.
+
+### Instagram Monetization Calculator
+- URL: https://creatorrevenuecalculator.com/tools/instagram-revenue/
+- Estimate Instagram earnings from Reels bonuses, brand partnerships, affiliate marketing, and sponsored posts.
+
+### Podcast Revenue Calculator
+- URL: https://creatorrevenuecalculator.com/tools/podcast-revenue/
+- Calculate podcast earnings from sponsorships, ads, subscriptions, and listener support across platforms.
+
+### Affiliate Marketing Calculator
+- URL: https://creatorrevenuecalculator.com/tools/affiliate-calculator/
+- Estimate affiliate marketing earnings based on traffic, conversion rates, commission rates, and product prices.
+
+## About
+All tools are free to use with no account required. Revenue estimates are based on 2026 industry data.
+
+## Contact
+- General: hello@creatorrevenuecalculator.com
+- Website: https://creatorrevenuecalculator.com

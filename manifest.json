@@ -1,0 +1,17 @@
+{
+  "name": "Creator Revenue Calculator",
+  "short_name": "CRC",
+  "description": "Free revenue calculators for YouTube, Twitch, TikTok, Instagram, podcast, and affiliate creators",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#6366f1",
+  "categories": ["business", "utilities"],
+  "icons": [
+    {
+      "src": "/assets/images/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
