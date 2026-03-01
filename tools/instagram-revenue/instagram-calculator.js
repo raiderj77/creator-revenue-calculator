@@ -31,17 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // CPM rates by niche (2026 data)
     // CPM rates by niche (2026 data)
     const nicheRates = {
-        'fashion-beauty': { cpm: 35, brandDealMultiplier: 1.3 },
-        'fitness-health': { cpm: 30, brandDealMultiplier: 1.2 },
-        'travel-lifestyle': { cpm: 25, brandDealMultiplier: 1.4 },
-        'food-cooking': { cpm: 20, brandDealMultiplier: 1.1 },
-        'technology-gadgets': { cpm: 40, brandDealMultiplier: 1.5 },
-        'parenting-family': { cpm: 25, brandDealMultiplier: 1.0 },
-        'gaming-entertainment': { cpm: 15, brandDealMultiplier: 0.9 },
-        'education-learning': { cpm: 30, brandDealMultiplier: 1.2 },
-        'art-creativity': { cpm: 20, brandDealMultiplier: 1.1 },
-        'sports-athletics': { cpm: 25, brandDealMultiplier: 1.1 },
-        'pets-animals': { cpm: 15, brandDealMultiplier: 0.8 }
+        'fashion': { cpm: 35, brandDealMultiplier: 1.3 },
+        'fitness': { cpm: 30, brandDealMultiplier: 1.2 },
+        'travel': { cpm: 25, brandDealMultiplier: 1.4 },
+        'food': { cpm: 20, brandDealMultiplier: 1.1 },
+        'tech': { cpm: 40, brandDealMultiplier: 1.5 },
+        'lifestyle': { cpm: 25, brandDealMultiplier: 1.0 },
+        'comedy': { cpm: 15, brandDealMultiplier: 0.9 },
     };
     
     // Initialize FAQ functionality
@@ -178,17 +174,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function getAffiliateNicheMultiplier(niche) {
         // Affiliate conversion rates by niche
         const multipliers = {
-            'fashion-beauty': 1.5,
-            'fitness-health': 1.3,
-            'travel-lifestyle': 1.4,
-            'food-cooking': 1.2,
-            'technology-gadgets': 1.6,
-            'parenting-family': 1.1,
-            'gaming-entertainment': 0.9,
-            'education-learning': 1.3,
-            'art-creativity': 1.1,
-            'sports-athletics': 1.2,
-            'pets-animals': 0.8
+            'fashion': 1.5,
+            'fitness': 1.3,
+            'travel': 1.4,
+            'food': 1.2,
+            'tech': 1.6,
+            'lifestyle': 1.1,
+            'comedy': 0.9,
         };
         
         return multipliers[niche] || 1.0;
