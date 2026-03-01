@@ -30,18 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // CPM rates by game category (2026 data)
     // CPM rates by game category (2026 data)
     const cpmRates = {
-        'just-chatting': { min: 3, max: 8, avg: 5.5 },
-        'valorant': { min: 4, max: 10, avg: 7 },
-        'league': { min: 3, max: 9, avg: 6 },
-        'fortnite': { min: 2, max: 7, avg: 4.5 },
-        'minecraft': { min: 2, max: 6, avg: 4 },
-        'csgo': { min: 3, max: 8, avg: 5.5 },
-        'dota': { min: 4, max: 12, avg: 8 },
-        'among-us': { min: 2, max: 5, avg: 3.5 },
-        'variety': { min: 2, max: 6, avg: 4 },
-        'creative': { min: 3, max: 7, avg: 5 },
-        'music': { min: 2, max: 5, avg: 3.5 },
-        'irl': { min: 3, max: 8, avg: 5.5 }
+        'justChatting': { min: 3, max: 8, avg: 5.5 },
+        'fps': { min: 4, max: 10, avg: 7 },
+        'moba': { min: 3, max: 9, avg: 6 },
+        'rpg': 1.1,
+        'sports': 1.0,
+        'casino': 1.3
     };
     
     // Sponsorship rates by average viewers (2026 data)
@@ -209,18 +203,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function getCategoryMultiplier(category) {
         // Sponsorship multiplier based on game category
         const multipliers = {
-            'just-chatting': 1.2,  // High sponsorship potential
-            'valorant': 1.5,       // Very high
-            'league': 1.4,         // Very high
-            'fortnite': 1.1,       // High
-            'minecraft': 0.9,      // Medium
-            'csgo': 1.2,           // High
-            'dota': 1.3,           // High
-            'among-us': 0.8,       // Low-medium
-            'variety': 1.0,        // Medium
-            'creative': 1.1,       // Medium
-            'music': 0.9,          // Low-medium
-            'irl': 1.2             // Medium-high
+            'justChatting': 1.2,  // High sponsorship potential
+            'fps': 1.5,       // Very high
+            'moba': 1.4,         // Very high
+            'rpg': 1.1,
+            'sports': 1.0,
+            'casino': 1.3
         };
         
         return multipliers[category] || 1.0;
