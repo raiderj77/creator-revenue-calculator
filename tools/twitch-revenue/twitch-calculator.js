@@ -202,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (streamerBar) streamerBar.style.width = `${streamerShare}%`;
         if (streamerBar) streamerBar.querySelector('span').textContent = `Streamer: ${Math.round(streamerShare)}%`;
         
-        twitchBar.style.width = `${twitchShare}%`;
-        twitchBar.querySelector('span').textContent = `Twitch: ${Math.round(twitchShare)}%`;
+        if (twitchBar) twitchBar.style.width = `${twitchShare}%`;
+        if (twitchBar) twitchBar.querySelector('span').textContent = `Twitch: ${Math.round(twitchShare)}%`;
     }
     
     function getCategoryMultiplier(category) {
