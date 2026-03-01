@@ -53,13 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Ad placement multipliers (2026 data)
-    const adMultipliers = {
-        'pre-roll': 0.8,  // 20% less than mid-roll
-        'mid-roll': 1.0,  // Base rate
-        'post-roll': 0.7  // 30% less than mid-roll
-    };
-    
-    // Platform fee (standard for ad networks)
     const platformFee = 0.25; // 25% platform fee
     
     // Initialize FAQ functionality

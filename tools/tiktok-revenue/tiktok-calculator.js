@@ -21,11 +21,6 @@
         '500000': 5000,  // 500K-1M followers
         '1000000': 15000 // 1M+ followers
     };
-
-// Brand deal rates per 1,000 followers
-    'lifestyle': 30     // $30 per 1K followers
-};
-
 // LIVE gift earnings multiplier based on engagement
 const liveGiftMultipliers = {
     'low': 0.5,     // 0-5% engagement

@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const streamerBar = document.querySelector('.split-creator');
         const twitchBar = document.querySelector('.split-twitch');
         
-        streamerBar.style.width = `${streamerShare}%`;
-        streamerBar.querySelector('span').textContent = `Streamer: ${Math.round(streamerShare)}%`;
+        if (streamerBar) streamerBar.style.width = `${streamerShare}%`;
+        if (streamerBar) streamerBar.querySelector('span').textContent = `Streamer: ${Math.round(streamerShare)}%`;
         
         twitchBar.style.width = `${twitchShare}%`;
         twitchBar.querySelector('span').textContent = `Twitch: ${Math.round(twitchShare)}%`;
