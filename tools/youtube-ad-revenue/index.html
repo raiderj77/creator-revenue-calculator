@@ -91,16 +91,50 @@
     }
     </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
+
+    <style>
+    .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+    @media (max-width: 768px) {
+        .hamburger { display: block; }
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            flex-direction: column;
+            padding: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-links.active { display: flex; }
+        .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .navbar .container { position: relative; }
+    }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">YouTube Revenue Calculator</a>
-            <div class="nav-links">
-                <a href="#calculator">Calculator</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#cpm-data">CPM Data</a>
-                <a href="#resources">Resources</a>
+            <a href="/" class="logo"><i class="fas fa-calculator"></i> Creator Revenue Calculator</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="/tools/youtube-ad-revenue/">YouTube</a>
+                <a href="/tools/twitch-revenue/">Twitch</a>
+                <a href="/tools/tiktok-revenue/">TikTok</a>
+                <a href="/tools/instagram-revenue/">Instagram</a>
+                <a href="/tools/podcast-revenue/">Podcast</a>
+                <a href="/tools/affiliate-calculator/">Affiliate</a>
             </div>
         </div>
     </nav>
@@ -824,43 +858,72 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>YouTube Revenue Calculator</h3>
-                    <p>Free tool to estimate YouTube ad revenue earnings.</p>
-                    <p>Based on 2026 CPM data and creator reports.</p>
+                    <div class="footer-logo">
+                        <i class="fas fa-calculator"></i>
+                        <span>Creator Revenue Calculator</span>
+                    </div>
+                    <p class="footer-description">Free tools for content creators to estimate earnings across platforms.</p>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Legal</h3>
-                    <a href="/privacy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Service</a>
-                    <a href="/cookies.html">Cookie Policy</a>
-                    <a href="/contact.html">Contact</a>
+                    <h3 class="footer-title">Calculator Tools</h3>
+                    <a href="/tools/youtube-ad-revenue/" class="footer-link">YouTube Calculator</a>
+                    <a href="/tools/tiktok-revenue/" class="footer-link">TikTok Calculator</a>
+                    <a href="/tools/twitch-revenue/" class="footer-link">Twitch Calculator</a>
+                    <a href="/tools/instagram-revenue/" class="footer-link">Instagram Calculator</a>
+                    <a href="/tools/podcast-revenue/" class="footer-link">Podcast Calculator</a>
+                    <a href="/tools/affiliate-calculator/" class="footer-link">Affiliate Calculator</a>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Note</h3>
-                    <p>This is an estimation tool. Actual earnings vary based on many factors.</p>
-                    <p>Not affiliated with YouTube or Google.</p>
+                    <h3 class="footer-title">Resources</h3>
+                    <a href="#faq" class="footer-link">YouTube FAQ</a>
+                    <a href="#cpm-data" class="footer-link">CPM Data</a>
+                    <a href="#how-it-works" class="footer-link">How It Works</a>
+                    <a href="#resources" class="footer-link">Creator Gear</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Legal</h3>
+                    <a href="/privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="/terms.html" class="footer-link">Terms of Service</a>
+                    <a href="/cookies.html" class="footer-link">Cookie Policy</a>
+                    <a href="/contact.html" class="footer-link">Contact Us</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 YouTube Ad Revenue Calculator. All rights reserved.</p>
-            </div>
-        </div>
-            <div style="text-align:center; padding:0.75rem 0; border-top:1px solid rgba(255,255,255,0.1); margin-top:0.75rem;">
-                <p style="font-size:0.7rem; color:#999; margin:0;">
+                <p>&copy; 2026 Creator Revenue Calculator. All rights reserved.</p>
+                <p style="font-size:0.75rem; color:#999; margin-top:0.5rem;">
                     More Free Tools:
                     <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> &middot;
                     <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> &middot;
                     <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a>
                 </p>
             </div>
+        </div>
     </footer>
 
     <script src="slider-sync.js"></script>
     <script src="youtube-calculator.js"></script>
                 <p><strong>Last Updated: February 2026</strong> - This tool provides estimates based on 2026 industry averages. Actual earnings may vary.</p>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                var icon = hamburger.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+    });
+    </script>
 </body>
 </html>
