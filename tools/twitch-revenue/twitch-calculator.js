@@ -55,16 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Sponsorship rates by average viewers (2026 data)
-    const sponsorshipRates = {
-        '50': 50,    // 50-100 viewers
-        '100': 200,  // 100-500 viewers
-        '500': 1000, // 500-1,000 viewers
-        '1000': 2500, // 1,000-5,000 viewers
-        '5000': 10000, // 5,000-10,000 viewers
-        '10000': 25000 // 10,000+ viewers
-    };
-    
-    // Initialize FAQ functionality
     initFAQ();
     
     // Set up event listeners

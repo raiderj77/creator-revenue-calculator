@@ -171,11 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const affiliateBar = document.querySelector('.split-affiliate');
         const merchantBar = document.querySelector('.split-merchant');
         
-        affiliateBar.style.width = `${affiliateShare}%`;
-        affiliateBar.querySelector('span').textContent = `Affiliate: ${affiliateShare}%`;
+        if (affiliateBar) affiliateBar.style.width = `${affiliateShare}%`;
+        if (affiliateBar) affiliateBar.querySelector('span').textContent = `Affiliate: ${affiliateShare}%`;
         
-        merchantBar.style.width = `${merchantShare}%`;
-        merchantBar.querySelector('span').textContent = `Merchant: ${merchantShare}%`;
+        if (merchantBar) merchantBar.style.width = `${merchantShare}%`;
+        if (merchantBar) merchantBar.querySelector('span').textContent = `Merchant: ${merchantShare}%`;
     }
     
     function initFAQ() {

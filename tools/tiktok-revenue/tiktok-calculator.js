@@ -23,16 +23,6 @@
     };
 
 // Brand deal rates per 1,000 followers
-const brandDealRates = {
-    'business': 50,     // $50 per 1K followers
-    'education': 45,    // $45 per 1K followers
-    'fitness': 40,      // $40 per 1K followers
-    'food': 35,         // $35 per 1K followers
-    'beauty': 40,       // $40 per 1K followers
-    'gaming': 30,       // $30 per 1K followers
-    'travel': 35,       // $35 per 1K followers
-    'entertainment': 25, // $25 per 1K followers
-    'dance': 20,        // $20 per 1K followers
     'lifestyle': 30     // $30 per 1K followers
 };
 
