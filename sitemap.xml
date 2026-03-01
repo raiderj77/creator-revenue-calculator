@@ -138,6 +138,32 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Gaming YouTube Revenue Calculator (NEW) -->
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#calculator</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#revenue-sources</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#tips</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal & Info Pages -->
   <url>
     <loc>https://creatorrevenuecalculator.com/about.html</loc>
