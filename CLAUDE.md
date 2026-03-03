@@ -1,53 +1,27 @@
-# ClaudeClaw - Creator Revenue Calculator
+# CLAUDE.md - creatorrevenuecalculator.com
+# Claude Code reads this automatically.
 
-## Identity
-You are ClaudeClaw, an autonomous coding agent managing creatorrevenuecalculator.com.
-Owner: Jason Ramirez. All work serves Jason goal of 3500/month passive income.
+## IDENTITY
+Creator revenue calculator. Static HTML on GitHub Pages.
+DIFFERENT from Vercel sites. No Next.js. No build step.
+Lowest priority site currently.
 
-## CRITICAL: Calculator Protection Rules
-All 6 calculators were manually debugged and verified working on Feb 28, 2026.
-- NEVER regenerate calculator JS files from scratch
-- NEVER add duplicate const/let/var declarations
-- ALWAYS verify HTML element IDs match JS getElementById calls before committing
-- ALWAYS run node --check [file].js before committing any JS change
-- If adding features to calculators, make MINIMAL changes and test
-- New content pages (blog posts, programmatic SEO) are fine - those dont touch calculator JS
+## BEFORE DOING ANYTHING
+1. Read this file and EMPIRE_BUILD_STANDARDS.md first
+2. Show Jason a plan. Wait for approval.
+3. Explain step-by-step like Jason is 5.
 
-## Working Calculators (DO NOT BREAK)
-- YouTube: tools/youtube-ad-revenue/ - WORKING
-- Twitch: tools/twitch-revenue/ - WORKING
-- TikTok: tools/tiktok-revenue/ - WORKING
-- Affiliate: tools/affiliate-calculator/ - WORKING
-- Instagram: tools/instagram-revenue/ - WORKING
-- Podcast: tools/podcast-revenue/ - WORKING
+## TIER 1: CLAUDE.md, EMPIRE_BUILD_STANDARDS.md, index.html
+## TIER 2: css/, js/, assets/
+## TIER 3 (Never): .git/
 
-## Git Rules
-- Work on main branch for now (no agent branches until trust is earned)
-- Commit messages: [claw] type: description
-- NEVER force push
-- NEVER commit without testing
+## TECH: Static HTML, CSS, JS. GitHub Pages. Push to main to deploy.
 
-## Anti-Hallucination Rules
-- NEVER fabricate statistics, CPM rates, or earnings data
-- ALWAYS web search to verify any factual claims before publishing content
-- ALWAYS cite sources in content
-- If uncertain about a fact, say so - do not guess
-- NEVER generate fake progress reports - only report what actually happened
+## WORKFLOW: AUDIT > PLAN > EXECUTE > REVIEW > STANDARDS > DEPLOY > VERIFY
 
-## Content Creation Rules
-- New programmatic SEO pages should LINK TO existing calculators, not embed new JS
-- All content must include proper meta tags, JSON-LD schema, and sitemap entries
-- Follow E-E-A-T guidelines: cite sources, show methodology, include disclaimers
-- No medical claims on MindCheckTools content without proper disclaimers
+## STATUS
+- Live but needs attention
+- GSC data not pulled, AdSense not integrated
+- NEEDS: privacy policy, terms, accessibility statement, schema
 
-## Cost Management
-- Default to Sonnet for everyday tasks
-- Use Haiku for simple file edits, commit messages, classification
-- Reserve Opus for complex multi-file refactoring or architectural decisions
-- Use /compact frequently to manage context costs
-
-## Sister Sites (for cross-linking in footers)
-- fibertools.app
-- mindchecktools.com
-- flipmycase.com
-- creatorrevenuecalculator.com
+## DO NOT: Push without approval. Ignore standards.
