@@ -1,13 +1,58 @@
-# robots.txt for Creator Revenue Calculator
+# robots.txt for creatorrevenuecalculator.com
+
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
+
+# AI Search Bots — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: MicrosoftPreview
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
 
 Sitemap: https://creatorrevenuecalculator.com/sitemap.xml
-
-# Crawl delay
-Crawl-delay: 2
-
-# Preferred host
-Host: https://creatorrevenuecalculator.com/
