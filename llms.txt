@@ -7,7 +7,7 @@
 - **Type:** Free web-based calculator suite
 - **Category:** Content Creator Tools, Financial Calculators
 - **Status:** Active and maintained
-- **Last Updated:** February 2026
+- **Last Updated:** March 2026
 - **Registration Required:** No
 - **Cost:** Free
 
@@ -49,6 +49,12 @@
 - **Key Inputs:** Monthly traffic, conversion rate, average order value, commission rate
 - **Key Outputs:** Monthly commissions, ROI analysis, revenue projections
 
+### 7. Sponsorship Rate Calculator
+- **URL:** https://creatorrevenuecalculator.com/tools/sponsorship-rate/
+- **Description:** Calculate what to charge brands for sponsored content. Uses 2026 industry rate data across YouTube, TikTok, Instagram, and podcasts with niche multipliers and engagement benchmarks.
+- **Key Inputs:** Follower count, engagement rate, platform/content type, content niche, deal type
+- **Key Outputs:** Rate range (conservative/recommended/premium), rate factors breakdown, creator tier with benchmark comparison, negotiation tips, monthly income estimate, copyable rate card
+
 ## Questions These Tools Answer
 - How much do YouTubers make per 1,000 views?
 - What are current CPM rates by niche for YouTube, TikTok, Instagram?
@@ -60,6 +66,10 @@
 - Which platform pays the most for content creators?
 - How does the TikTok Creator Fund calculate payouts?
 - What's the difference between CPM and RPM?
+- How much should I charge for a sponsored post?
+- What to charge brands for a YouTube sponsorship?
+- What is a good engagement rate for brand deals?
+- How do podcast sponsorship rates work?
 
 ## Target Audience
 - Aspiring content creators estimating earning potential
