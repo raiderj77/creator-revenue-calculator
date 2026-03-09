@@ -67,6 +67,12 @@
 - **Key Inputs:** Platform, followers/subscribers, average likes, average comments, average shares, average views (TikTok/YouTube)
 - **Key Outputs:** Engagement rate %, engagement tier (Low/Average/Good/Excellent/Viral), platform benchmark comparison, sponsorship value impact, plain English explanation, copyable result
 
+### 10. Patreon Revenue Calculator
+- **URL:** https://creatorrevenuecalculator.com/tools/patreon-revenue/
+- **Description:** Estimate Patreon earnings after platform fees and payment processing. Set up to 4 membership tiers, see fee breakdowns by plan (Starter/Pro/Premium), churn impact, and net take-home pay.
+- **Key Inputs:** Patreon plan type, up to 4 membership tiers (name, price, patrons), monthly churn rate
+- **Key Outputs:** Gross monthly revenue, platform fee, processing fees, net monthly take-home, annual projection, revenue by tier breakdown, keep percentage, churn impact, copyable result
+
 ## Questions These Tools Answer
 - How much do YouTubers make per 1,000 views?
 - What are current CPM rates by niche for YouTube, TikTok, Instagram?
@@ -91,6 +97,10 @@
 - What is a good engagement rate on Instagram?
 - What is a good engagement rate on TikTok?
 - Does engagement rate affect sponsorship value?
+- How much does Patreon take from creators?
+- How much do Patreon creators earn?
+- What is a good Patreon tier pricing strategy?
+- Patreon vs Ko-fi vs Buy Me a Coffee fees?
 
 ## Target Audience
 - Aspiring content creators estimating earning potential
