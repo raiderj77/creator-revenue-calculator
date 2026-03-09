@@ -55,6 +55,12 @@
 - **Key Inputs:** Follower count, engagement rate, platform/content type, content niche, deal type
 - **Key Outputs:** Rate range (conservative/recommended/premium), rate factors breakdown, creator tier with benchmark comparison, negotiation tips, monthly income estimate, copyable rate card
 
+### 8. UGC Creator Rate Calculator
+- **URL:** https://creatorrevenuecalculator.com/tools/ugc-rate/
+- **Description:** Calculate what to charge brands for UGC (user-generated content). 2026 rate data for videos, photos, and bundles by experience level, usage rights, and deliverables. No follower count needed.
+- **Key Inputs:** Content type (video/photo/bundle), video length, number of deliverables, usage rights, revision rounds, experience level, rush delivery
+- **Key Outputs:** Rate range (low/recommended/premium), rate factors breakdown, per-deliverable breakdown, portfolio tips, monthly income estimate, copyable rate card
+
 ## Questions These Tools Answer
 - How much do YouTubers make per 1,000 views?
 - What are current CPM rates by niche for YouTube, TikTok, Instagram?
@@ -70,6 +76,10 @@
 - What to charge brands for a YouTube sponsorship?
 - What is a good engagement rate for brand deals?
 - How do podcast sponsorship rates work?
+- How much should I charge for UGC content?
+- What are UGC rates in 2026?
+- How do usage rights affect UGC pricing?
+- What's the difference between UGC and influencer marketing?
 
 ## Target Audience
 - Aspiring content creators estimating earning potential
