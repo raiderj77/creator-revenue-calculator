@@ -61,6 +61,12 @@
 - **Key Inputs:** Content type (video/photo/bundle), video length, number of deliverables, usage rights, revision rounds, experience level, rush delivery
 - **Key Outputs:** Rate range (low/recommended/premium), rate factors breakdown, per-deliverable breakdown, portfolio tips, monthly income estimate, copyable rate card
 
+### 9. Engagement Rate Calculator
+- **URL:** https://creatorrevenuecalculator.com/tools/engagement-rate/
+- **Description:** Calculate engagement rate for Instagram, TikTok, YouTube, Twitter/X, and LinkedIn. See your engagement tier, compare against 2026 platform benchmarks, and learn how engagement affects sponsorship value.
+- **Key Inputs:** Platform, followers/subscribers, average likes, average comments, average shares, average views (TikTok/YouTube)
+- **Key Outputs:** Engagement rate %, engagement tier (Low/Average/Good/Excellent/Viral), platform benchmark comparison, sponsorship value impact, plain English explanation, copyable result
+
 ## Questions These Tools Answer
 - How much do YouTubers make per 1,000 views?
 - What are current CPM rates by niche for YouTube, TikTok, Instagram?
@@ -80,6 +86,11 @@
 - What are UGC rates in 2026?
 - How do usage rights affect UGC pricing?
 - What's the difference between UGC and influencer marketing?
+- What is a good engagement rate?
+- How to calculate engagement rate?
+- What is a good engagement rate on Instagram?
+- What is a good engagement rate on TikTok?
+- Does engagement rate affect sponsorship value?
 
 ## Target Audience
 - Aspiring content creators estimating earning potential
