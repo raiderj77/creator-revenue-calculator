@@ -73,6 +73,12 @@
 - **Key Inputs:** Patreon plan type, up to 4 membership tiers (name, price, patrons), monthly churn rate
 - **Key Outputs:** Gross monthly revenue, platform fee, processing fees, net monthly take-home, annual projection, revenue by tier breakdown, keep percentage, churn impact, copyable result
 
+### 11. Newsletter & Substack Revenue Calculator
+- **URL:** https://creatorrevenuecalculator.com/tools/newsletter-revenue/
+- **Description:** Estimate newsletter earnings from paid subscriptions, sponsorships, and referral programs. Compare platform fees across Substack, Beehiiv, ConvertKit, and Ghost with 2026 data. Includes full-time income estimate.
+- **Key Inputs:** Platform, total subscribers, free-to-paid conversion rate, subscription price, platform fee, sponsors per month, sponsor rate, issues per month, referral program toggle, referral rate, new subscribers
+- **Key Outputs:** Paid subscriber count, gross/net subscription revenue, sponsorship revenue, referral revenue, total monthly/annual revenue, revenue by stream breakdown, full-time subscriber estimate, copyable result
+
 ## Questions These Tools Answer
 - How much do YouTubers make per 1,000 views?
 - What are current CPM rates by niche for YouTube, TikTok, Instagram?
@@ -101,6 +107,11 @@
 - How much do Patreon creators earn?
 - What is a good Patreon tier pricing strategy?
 - Patreon vs Ko-fi vs Buy Me a Coffee fees?
+- How much can you make on Substack?
+- Substack vs Beehiiv revenue comparison?
+- How much does Substack take from creators?
+- What is a good newsletter conversion rate?
+- How much do newsletter sponsors pay?
 
 ## Target Audience
 - Aspiring content creators estimating earning potential
