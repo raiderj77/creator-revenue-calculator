@@ -112,6 +112,8 @@
       ]
     }
     </script>
+    <!-- Google Consent Mode v2 (must load before any Google scripts) -->
+    <script src="/assets/js/consent.js"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -341,3 +343,243 @@
                 
                 <div class="revenue-card">
                     <div class="revenue-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Sponsorships & Brand Deals</h3>
+                    <p><strong>Earnings:</strong> $2,000-$25,000+ per video</p>
+                    <p>Banks, brokerages, fintech apps, insurance companies, and financial software brands pay premium rates for finance audiences.</p>
+                </div>
+
+                <div class="revenue-card">
+                    <div class="revenue-icon"><i class="fas fa-link"></i></div>
+                    <h3>Affiliate Marketing</h3>
+                    <p><strong>Earnings:</strong> $50-$200+ per referral</p>
+                    <p>Brokerage account referrals, credit card sign-ups, financial tools, and investing platforms offer high-value commissions.</p>
+                </div>
+
+                <div class="revenue-card">
+                    <div class="revenue-icon"><i class="fas fa-users"></i></div>
+                    <h3>Memberships & Patreon</h3>
+                    <p><strong>Earnings:</strong> $2,000-$30,000+ monthly</p>
+                    <p>Exclusive stock picks, portfolio updates, market analysis. Finance audiences have high willingness to pay for premium content.</p>
+                </div>
+
+                <div class="revenue-card">
+                    <div class="revenue-icon"><i class="fas fa-microphone"></i></div>
+                    <h3>Consulting & Coaching</h3>
+                    <p><strong>Earnings:</strong> $200-$500+ per hour</p>
+                    <p>One-on-one financial coaching, portfolio reviews, and business consulting sessions for viewers who want personalized advice.</p>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Grow Your Finance Channel?</h3>
+                <p>Finance creators have the highest earning potential on YouTube. Build multiple revenue streams beyond ads.</p>
+                <a href="#calculator" class="cta-button">Calculate Your Earnings</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="compliance" class="info-section">
+        <div class="container">
+            <h2><i class="fas fa-shield-alt"></i> Compliance Tips for Finance YouTubers</h2>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>1. Always Include Disclaimers</h3>
+                    <p>State clearly that your content is for educational purposes only and does not constitute financial advice. Include disclaimers in video descriptions and on-screen.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>2. Disclose Affiliates & Sponsors</h3>
+                    <p>FTC guidelines require clear disclosure of sponsored content, affiliate links, and any financial relationships with companies you mention.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>3. Avoid Specific Investment Advice</h3>
+                    <p>Providing specific buy/sell recommendations may require licensing (Series 65 or RIA). Stick to educational content and general principles.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>4. Disclose Conflicts of Interest</h3>
+                    <p>If you hold positions in stocks or assets you discuss, disclose this to your audience. Transparency builds trust and protects you legally.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>5. Keep Records</h3>
+                    <p>Document your content creation process, sponsorship agreements, and affiliate relationships. Good records protect you if questions arise.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>6. Stay Current on Regulations</h3>
+                    <p>Financial regulations change frequently. Follow SEC, FTC, and platform-specific guidelines. Consider consulting a securities attorney as your channel grows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Finance YouTube Earnings Calculator</h3>
+                    <p>Free tool to estimate finance YouTube ad revenue based on 2026 CPM data. Part of the Creator Revenue Calculator network.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>More Calculators</h3>
+                    <ul>
+                        <li><a href="../youtube-ad-revenue/">YouTube Revenue Calculator</a></li>
+                        <li><a href="../gaming-youtube-revenue/">Gaming YouTube Calculator</a></li>
+                        <li><a href="../tiktok-revenue/">TikTok Earnings Calculator</a></li>
+                        <li><a href="../sponsorship-rate/">Sponsorship Rate Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="/cookies.html">Cookie Policy</a></li>
+                        <li><a href="/accessibility.html">Accessibility</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/about.html">About Creator Revenue Calculator</a></li>
+                        <li><a href="https://fibertools.app">FiberTools</a></li>
+                        <li><a href="https://mindchecktools.com">MindCheck Tools</a></li>
+                        <li><a href="https://flipmycase.com">FlipMyCase</a></li>
+                        <li><a href="https://contractextract.com">ContractExtract</a></li>
+                        <li><a href="https://medicalbillreader.com">Medical Bill Reader</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Creator Revenue Calculator. All rights reserved. This tool provides estimates only - actual earnings may vary.</p>
+                <p>Finance CPM data sourced from industry reports, creator surveys, and platform documentation (2026).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        // DOM Elements
+        const viewsInput = document.getElementById('views');
+        const cpmSlider = document.getElementById('cpm');
+        const cpmValue = document.getElementById('cpm-value');
+        const audienceSelect = document.getElementById('audience');
+        const contentTypeSelect = document.getElementById('content-type');
+        const calculateBtn = document.getElementById('calculate-btn');
+
+        // Result Elements
+        const monthlyRevenue = document.getElementById('monthly-revenue');
+        const yearlyRevenue = document.getElementById('yearly-revenue');
+        const perThousand = document.getElementById('per-thousand');
+        const perView = document.getElementById('per-view');
+        const youtubeShare = document.getElementById('youtube-share');
+        const affiliateEstimate = document.getElementById('affiliate-estimate');
+        const courseEstimate = document.getElementById('course-estimate');
+        const totalPotential = document.getElementById('total-potential');
+
+        // Update CPM value display
+        cpmSlider.addEventListener('input', function() {
+            cpmValue.textContent = '$' + parseFloat(this.value).toFixed(0);
+            calculateEarnings();
+        });
+
+        // Update CPM based on audience selection
+        audienceSelect.addEventListener('change', function() {
+            const selectedCPM = parseFloat(this.value);
+            cpmSlider.value = selectedCPM;
+            cpmValue.textContent = '$' + selectedCPM.toFixed(0);
+            calculateEarnings();
+        });
+
+        // Update CPM based on content type
+        contentTypeSelect.addEventListener('change', function() {
+            const selectedCPM = parseFloat(this.value);
+            cpmSlider.value = selectedCPM;
+            cpmValue.textContent = '$' + selectedCPM.toFixed(0);
+            calculateEarnings();
+        });
+
+        // Calculate earnings function
+        function calculateEarnings() {
+            const views = parseFloat(viewsInput.value) || 0;
+            const cpm = parseFloat(cpmSlider.value);
+
+            // Calculate basic earnings
+            const revenuePerThousand = cpm * 0.55; // YouTube takes 45%
+            const monthlyEarnings = (views / 1000) * revenuePerThousand;
+            const yearlyEarnings = monthlyEarnings * 12;
+            const earningsPerView = views > 0 ? monthlyEarnings / views : 0;
+
+            // Update basic results
+            monthlyRevenue.textContent = '$' + monthlyEarnings.toFixed(2);
+            yearlyRevenue.textContent = '$' + yearlyEarnings.toFixed(2);
+            perThousand.textContent = '$' + revenuePerThousand.toFixed(2);
+            perView.textContent = '$' + earningsPerView.toFixed(4);
+            youtubeShare.textContent = '$' + monthlyEarnings.toFixed(2);
+
+            // Calculate additional revenue streams (estimates for finance niche)
+            var affiliateMin = monthlyEarnings * 1.5;
+            var affiliateMax = monthlyEarnings * 4;
+            affiliateEstimate.textContent = '$' + affiliateMin.toFixed(0) + '-$' + affiliateMax.toFixed(0);
+
+            var courseMin = monthlyEarnings * 3;
+            var courseMax = monthlyEarnings * 15;
+            courseEstimate.textContent = '$' + courseMin.toFixed(0) + '-$' + courseMax.toFixed(0);
+
+            var totalMin = monthlyEarnings + affiliateMin + courseMin;
+            var totalMax = monthlyEarnings + affiliateMax + courseMax;
+            totalPotential.textContent = '$' + totalMin.toFixed(0) + '-$' + totalMax.toFixed(0);
+        }
+
+        // Share results function
+        document.getElementById('share-twitter').addEventListener('click', function() {
+            var views = viewsInput.value;
+            var cpm = cpmSlider.value;
+            var monthly = monthlyRevenue.textContent;
+            var yearly = yearlyRevenue.textContent;
+
+            var tweetText = 'I calculated my finance YouTube earnings: ' + views + ' views at $' + cpm + ' CPM = ' + monthly + '/month (' + yearly + '/year). Try the free calculator: ' + window.location.href;
+            var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetText);
+            window.open(tweetUrl, '_blank');
+        });
+
+        // Copy results function
+        document.getElementById('copy-results').addEventListener('click', function() {
+            var views = viewsInput.value;
+            var cpm = cpmSlider.value;
+            var monthly = monthlyRevenue.textContent;
+            var yearly = yearlyRevenue.textContent;
+            var perThousandVal = perThousand.textContent;
+
+            var resultsText = 'Finance YouTube Earnings Results:\n' +
+                'Monthly Views: ' + views + '\n' +
+                'CPM Rate: $' + cpm + '\n' +
+                'Monthly Ad Revenue: ' + monthly + '\n' +
+                'Yearly Ad Revenue: ' + yearly + '\n' +
+                'Earnings per 1,000 Views: ' + perThousandVal + '\n\n' +
+                'Calculated with Creator Revenue Calculator: ' + window.location.href;
+
+            navigator.clipboard.writeText(resultsText).then(function() {
+                alert('Results copied to clipboard!');
+            });
+        });
+
+        // Initialize calculator
+        calculateEarnings();
+
+        // Calculate on view input change
+        viewsInput.addEventListener('input', calculateEarnings);
+
+        // Calculate on button click
+        calculateBtn.addEventListener('click', calculateEarnings);
+    </script>
+</body>
+</html>

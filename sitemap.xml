@@ -7,7 +7,7 @@
   <!-- Main Pages -->
   <url>
     <loc>https://creatorrevenuecalculator.com/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,265 +15,103 @@
   <!-- YouTube Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#cpm-data</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/#faq</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- TikTok Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/tiktok-revenue/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/tiktok-revenue/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/tiktok-revenue/#resources</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Twitch Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/twitch-revenue/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/twitch-revenue/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/twitch-revenue/#resources</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Instagram Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/instagram-revenue/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/instagram-revenue/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/instagram-revenue/#resources</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Podcast Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/#resources</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Affiliate Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/affiliate-calculator/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/affiliate-calculator/#calculator</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/affiliate-calculator/#resources</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
-  <!-- Gaming YouTube Revenue Calculator (NEW) -->
+  <!-- Gaming YouTube Revenue Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#calculator</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#revenue-sources</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/#tips</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Sponsorship Rate Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/sponsorship-rate/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/sponsorship-rate/#calculator</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/sponsorship-rate/#benchmarks</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/sponsorship-rate/#faq</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- UGC Creator Rate Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/ugc-rate/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/ugc-rate/#calculator</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/ugc-rate/#faq</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Engagement Rate Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/engagement-rate/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/engagement-rate/#calculator</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/engagement-rate/#faq</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Patreon Revenue Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/#calculator</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/#faq</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Newsletter Revenue Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/newsletter-revenue/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/newsletter-revenue/#calculator</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creatorrevenuecalculator.com/tools/newsletter-revenue/#faq</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <!-- Finance YouTube Revenue Calculator -->
   <url>
     <loc>https://creatorrevenuecalculator.com/tools/finance-youtube-revenue/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -281,7 +119,7 @@
   <!-- Guide -->
   <url>
     <loc>https://creatorrevenuecalculator.com/guide/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -289,37 +127,37 @@
   <!-- Legal & Info Pages -->
   <url>
     <loc>https://creatorrevenuecalculator.com/about.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://creatorrevenuecalculator.com/contact.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://creatorrevenuecalculator.com/privacy.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://creatorrevenuecalculator.com/terms.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://creatorrevenuecalculator.com/cookies.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://creatorrevenuecalculator.com/accessibility.html</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

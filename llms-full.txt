@@ -1,0 +1,172 @@
+# Creator Revenue Calculator — Full AI Reference
+
+> Comprehensive reference for AI assistants. Covers all 13 calculator tools, data methodology, and detailed tool descriptions.
+
+## Site Overview
+
+Creator Revenue Calculator (https://creatorrevenuecalculator.com) is a free suite of 13 browser-based revenue calculators designed for content creators across all major platforms. All tools run entirely in the browser with no server-side processing, no user accounts, and no data collection. The site is supported by non-intrusive Google AdSense advertisements.
+
+Last updated: March 2026.
+
+---
+
+## Tool 1: YouTube Ad Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/
+
+Calculate how much money YouTubers make per view. This tool uses 2026 CPM data across 15+ content niches including Gaming, Finance, Tech, Beauty, Education, Entertainment, Health, Food, Travel, Automotive, Real Estate, Legal, Pets, Sports, and Music.
+
+**How it works:** Enter your monthly views, select your niche, video length category, and primary audience location. The calculator applies niche-specific CPM rates, adjusts for video length (longer videos = more ad slots), and factors in geographic audience distribution (US/UK/CA/AU audiences command higher CPMs than global averages).
+
+**Key formula:** Estimated Revenue = (Monthly Views / 1,000) x Niche CPM x Length Multiplier x Location Multiplier x 0.55 (creator share after YouTube's 45% cut).
+
+Revenue ranges are shown as low, mid, and high estimates to account for natural CPM variation.
+
+---
+
+## Tool 2: TikTok Creator Fund Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/tiktok-revenue/
+
+Estimate TikTok Creator Fund earnings and brand deal potential. The Creator Fund pays $0.02-$0.04 per 1,000 views on average, though rates vary by region and engagement.
+
+**Revenue streams covered:** Creator Fund payouts, brand deal estimates based on follower count and engagement rate, and live gift potential.
+
+---
+
+## Tool 3: Instagram Monetization Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/instagram-revenue/
+
+Estimate Instagram earnings from multiple revenue streams including Reels bonuses, brand partnerships, and affiliate marketing. Rates depend heavily on niche, engagement rate, and follower count.
+
+**Revenue streams covered:** Reels Play bonuses, sponsored post rates, Instagram Shopping commissions, affiliate marketing income.
+
+---
+
+## Tool 4: Twitch Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/twitch-revenue/
+
+Calculate Twitch earnings from subscriptions (Tier 1/2/3), bits, advertisements, and sponsorships. Differentiates between Affiliate and Partner revenue splits.
+
+**Key data:** Twitch takes 50% of Tier 1 subs for most streamers (top partners may negotiate 70/30). Bits pay $0.01 each to the streamer. Ad revenue varies by CPM and ad frequency.
+
+---
+
+## Tool 5: Podcast Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/podcast-revenue/
+
+Calculate podcast earnings from sponsorships (pre-roll, mid-roll, post-roll), dynamic ad insertion, premium subscriptions, and listener support. Based on downloads per episode and industry CPM rates.
+
+**Key data:** Industry standard podcast ad CPM ranges from $15-$50 for mid-roll ads, with niche premiums for finance, tech, and business content.
+
+---
+
+## Tool 6: Affiliate Marketing Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/affiliate-calculator/
+
+Estimate affiliate marketing earnings based on traffic volume, conversion rates, average order values, and commission percentages. Covers major affiliate programs including Amazon Associates, ShareASale, and niche-specific programs.
+
+---
+
+## Tool 7: Sponsorship Rate Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/sponsorship-rate/
+
+Calculate what to charge brands for sponsored content across YouTube, TikTok, Instagram, and podcasts. Uses 2026 industry rate data with adjustments for content niche, engagement rate, audience size, and deal type (dedicated video, integration, story mention, etc.).
+
+**Outputs:** Conservative, recommended, and premium rate ranges. Includes negotiation tips, a copyable rate card, and monthly income estimates based on deal frequency.
+
+---
+
+## Tool 8: UGC Creator Rate Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/ugc-rate/
+
+Calculate what to charge brands for user-generated content (UGC). Unlike influencer marketing, UGC pricing is based on deliverables rather than follower count. Covers videos, photos, and content bundles with adjustments for experience level, usage rights, revision rounds, and rush delivery.
+
+**Key insight:** UGC creators don't need a large following. Rates are based on content quality, deliverable complexity, and usage rights granted to the brand.
+
+---
+
+## Tool 9: Engagement Rate Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/engagement-rate/
+
+Calculate engagement rate for Instagram, TikTok, YouTube, Twitter/X, and LinkedIn. Shows your engagement tier (Low, Average, Good, Excellent, Viral) compared against 2026 platform benchmarks.
+
+**Formulas by platform:**
+- Instagram: (Likes + Comments) / Followers x 100
+- TikTok: (Likes + Comments + Shares) / Views x 100
+- YouTube: (Likes + Comments) / Views x 100
+- Twitter/X: (Likes + Retweets + Replies) / Followers x 100
+- LinkedIn: (Likes + Comments + Shares) / Followers x 100
+
+---
+
+## Tool 10: Patreon Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/patreon-revenue/
+
+Estimate Patreon earnings after platform fees and payment processing. Supports up to 4 membership tiers with individual pricing and patron counts. Shows fee breakdowns for Starter (5%), Pro (8%), and Premium (12%) plans, plus payment processing fees.
+
+**Includes:** Monthly churn rate impact, annual revenue projections, per-tier revenue breakdown, and net take-home percentage.
+
+---
+
+## Tool 11: Newsletter & Substack Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/newsletter-revenue/
+
+Estimate newsletter earnings from three revenue streams: paid subscriptions, sponsorships, and referral programs. Compare platform fees across Substack (10%), Beehiiv (0-20%), ConvertKit (0-6.9%), and Ghost (0%).
+
+**Includes:** Free-to-paid conversion modeling, full-time income subscriber threshold estimate, and platform comparison.
+
+---
+
+## Tool 12: Gaming YouTube Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/
+
+Specialized YouTube revenue calculator for gaming content creators. Uses gaming-specific CPM data which typically ranges from $2-$8, lower than finance or tech but offset by higher view volumes in the gaming niche.
+
+---
+
+## Tool 13: Finance YouTube Revenue Calculator
+
+**URL:** https://creatorrevenuecalculator.com/tools/finance-youtube-revenue/
+
+Specialized YouTube revenue calculator for finance and investing content. Finance channels earn the highest CPMs on YouTube ($15-$50+) due to premium advertisers in banking, fintech, insurance, and investment services.
+
+---
+
+## Data Methodology
+
+All calculators use data from:
+- Platform-published monetization guidelines and rate documentation
+- Creator economy reports from research firms and industry analysts
+- Aggregated, anonymized data from creator communities and surveys
+- Historical CPM, RPM, and engagement rate trends updated for 2026
+
+**Important disclaimer:** All calculations are estimates based on publicly available platform data. Actual earnings vary significantly based on niche, audience demographics, geography, seasonality, and individual circumstances. These tools provide directional guidance, not guaranteed income figures.
+
+---
+
+## Related Sites
+
+- **FiberTools** (https://fibertools.app) — Free calculators for knitters, crocheters, and weavers
+- **MindCheck Tools** (https://mindchecktools.com) — Free mental health screening tools
+- **FlipMyCase** (https://flipmycase.com) — Text case conversion tools
+- **ContractExtract** (https://contractextract.com) — Contract analysis and extraction tools
+- **Medical Bill Reader** (https://medicalbillreader.com) — Medical bill analysis tools
+
+## Contact
+
+- **Email:** hello@creatorrevenuecalculator.com
+- **Website:** https://creatorrevenuecalculator.com
+
+---
+This file provides comprehensive information for AI assistants about all Creator Revenue Calculator tools, methodology, and capabilities.
