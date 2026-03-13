@@ -2,7 +2,7 @@
 
 > **Read this file before making ANY changes to ANY Empire site.**
 > This is the single source of truth for all development, compliance, and deployment decisions across the Empire portfolio.
-> Last updated: March 9, 2026
+> Last updated: March 13, 2026
 
 ---
 
@@ -157,20 +157,19 @@ Every Empire site must have these pages:
 - **Security**: Use `Referrer-Policy: no-referrer` on analysis pages.
 
 ### 524tracker.com
-- **Type**: Utility (ad-supported + affiliate) | **Tier**: YMYL-Adjacent
-- **Purpose**: Credit card application rules tracker — Chase 5/24, Amex once-per-lifetime, Citi 8/65, Bank of America 2/3/4, Capital One, and other bank velocity rules. Users log card applications; tool calculates eligibility and drop-off dates. All data stored in localStorage only.
-- **Key Tools**: 5/24 & Bank Rules Tracker, Card Value Calculator, Best Cards by Category, Top Cards (affiliate), Rules Guide, Blog, FAQ
-- **Monetization**: AdSense (pub-7171402107622932) + affiliate (CJ Affiliate)
-- **Schema Types**: Organization, WebSite, WebApplication, FAQPage, BreadcrumbList
-- **Tech Stack**: Next.js, React 19, Tailwind CSS 4, TypeScript, Vercel
+- **Type**: Utility (ad-supported) | **Tier**: YMYL-Adjacent
+- **Repo**: `524tracker` (`C:\Users\jason\empire\524tracker`)
+- **Purpose**: Credit card application rules tracker — Chase 5/24, Amex lifetime bonus, Citi 8/65, BofA 2/3/4, plus annual fee reminders, hard inquiry tracker, card value calculator, best-cards-by-category
+- **Monetization**: AdSense + credit card affiliate links (Chase, Amex, Capital One — $50–$200 per approved card)
 - **Attribution**: "Built by an experienced web professional"
-- **Required Disclaimers**: "This tool is for informational purposes only and does not constitute financial advice"
+- **Schema Types**: Organization, WebSite, WebApplication (per tool), BreadcrumbList
+- **Required Disclaimer**: "This tool is for informational and educational purposes only. Credit card terms, eligibility rules, and approval odds change frequently. Always verify current rules directly with the card issuer before applying. This is not financial advice."
 - **Special Rules**:
-  - All card tracking data stored in localStorage only — never transmitted
-  - Affiliate relationships must be disclosed on all card recommendation pages
-  - Never guarantee card approval or bonus eligibility
-  - Bank rules change frequently — pages must include last-verified dates
-  - No financial advice — informational only
+  - All affiliate links MUST include `rel="nofollow sponsored"`
+  - Financial disclaimer on EVERY tool page (Tier 2 requirement)
+  - All rule data (5/24, Amex lifetime, Citi 8/65, BofA 2/3/4) stored client-side via localStorage — NEVER passed to advertising systems
+  - Content sourced from community knowledge (r/churning) — always caveat that rules may change
+  - No personally identifiable financial data collected or stored server-side
 
 ### Cross-Site Links
 
