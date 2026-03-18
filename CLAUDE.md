@@ -2,6 +2,10 @@
 
 > Source of truth for Claude Code on this project. Last updated: 2026-03-09
 
+## Before Doing Anything
+1. Read this file and EMPIRE_BUILD_STANDARDS.md first
+2. Show Jason a plan. Wait for approval.
+
 ## Project Identity
 
 - **Site**: Creator Revenue Calculator
