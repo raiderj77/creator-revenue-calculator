@@ -846,3 +846,42 @@ p {
     width: 100%;
   }
 }
+
+/* Answer Block */
+.answer-block {
+  border-left: 4px solid #2563eb;
+  background: #f8fafc;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.answer-block-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+@media (max-width: 640px) {
+  .answer-block-grid { grid-template-columns: 1fr; }
+}
+.answer-block-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+.answer-block-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #374151;
+}
+.answer-block-updated {
+  display: block;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
