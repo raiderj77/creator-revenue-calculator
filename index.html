@@ -498,6 +498,23 @@
         </div>
     </section>
 
+    <!-- Email Capture -->
+    <section style="padding: var(--spacing-xl, 3rem) 0; background: var(--light, #f9fafb);">
+        <div class="container" style="display:flex; justify-content:center;">
+            <div class="email-capture" data-source="creatorrevenuecalc-homepage" data-lead-magnet="revenue-projection-pdf" data-button-text="Send My Projection" role="complementary" aria-label="Save your results">
+              <p class="email-capture-headline">Email me my revenue projection</p>
+              <p class="email-capture-subtext">Get your personalized 12-month forecast plus tips to hit your income goal faster</p>
+              <div class="email-capture-form">
+                <label for="email-capture-input" class="sr-only">Email address</label>
+                <input id="email-capture-input" type="email" placeholder="your@email.com" aria-describedby="email-capture-error">
+                <button type="button">Send My Projection</button>
+              </div>
+              <p class="email-capture-error" id="email-capture-error" role="alert"></p>
+              <p class="email-capture-privacy">No spam. Unsubscribe anytime. We never sell your data.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -567,5 +584,6 @@
 
     <!-- JavaScript -->
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/email-capture.js"></script>
 </body>
 </html>
