@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Pre-commit hook: block commits of protected files
+# CLAUDE.md, EMPIRE_BUILD_STANDARDS.md, .claude/settings.local.json
+#
+
+BLOCKED_FILES="CLAUDE.md EMPIRE_BUILD_STANDARDS.md .claude/settings.local.json"
+BLOCKED=0
+
+for file in $BLOCKED_FILES; do
+  if git diff --cached --name-only | grep -qx "$file"; then
+    echo "❌ BLOCKED: $file cannot be committed via this hook."
+    echo "   Remove it from staging: git reset HEAD $file"
+    BLOCKED=1
+  fi
+done
+
+if [ "$BLOCKED" -eq 1 ]; then
+  exit 1
+fi
+
+exit 0
