@@ -657,6 +657,52 @@ p {
     color: var(--primary);
 }
 
+/* Footer Budget Callout */
+.footer-callout {
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.footer-callout-inner {
+    max-width: 620px;
+    margin: 0 auto;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+}
+
+.footer-callout-heading {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.footer-callout-text {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+}
+
+.footer-callout-btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.45rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.footer-callout-btn:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-lg);
