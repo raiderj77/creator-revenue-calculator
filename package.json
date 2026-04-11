@@ -4,9 +4,16 @@
   "description": "YouTube and creator platform income estimation tools",
   "type": "module",
   "scripts": {
+    "build:blog": "node scripts/build-blog.mjs",
     "lint:content": "node scripts/content-lint.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "prebuild": "npm run lint:predeploy && npm run lint:content"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1"
+  }
 }
