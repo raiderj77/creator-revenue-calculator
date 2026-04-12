@@ -990,6 +990,14 @@ p {
   color: #9ca3af;
 }
 
+/* GEO content section headings */
+.tools-section ~ section h2,
+.about-section ~ section h2,
+section.bg-white h2,
+section h2:not(.section-title):not(.hero-title) {
+  color: #1f2937;
+}
+
 /* Dark Mode — automatic (system preference) */
 @media (prefers-color-scheme: dark) {
   :root {
