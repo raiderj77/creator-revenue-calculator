@@ -1,10 +1,15 @@
 /**
- * Google Consent Mode v2 + Cookie Consent Banner
+ * Google Consent Mode v2 + Cookie Consent Banner + GPC Support
  * Creator Revenue Calculator
  * Must load BEFORE any gtag, Google Analytics, or AdSense scripts.
+ * GPC (Global Privacy Control) — MODPA §14-4604 compliance, effective April 1 2026
  */
 (function () {
   'use strict';
+
+  // --- GPC (Global Privacy Control) Detection ---
+  // Honors both navigator.globalPrivacyControl and GPC cookie
+  var gpcActive = !!navigator.globalPrivacyControl || document.cookie.indexOf('empire_gpc=1') !== -1;
 
   // --- Google Consent Mode v2: default all denied ---
   window.dataLayer = window.dataLayer || [];
@@ -22,8 +27,9 @@
   });
 
   // --- Apply saved preference immediately (before banner renders) ---
+  // GPC overrides all choices: if active, keep everything denied
   var saved = localStorage.getItem('cookie_consent');
-  if (saved === 'granted') {
+  if (saved === 'granted' && !gpcActive) {
     gtag('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
@@ -33,11 +39,11 @@
       personalization_storage: 'granted'
     });
   }
-  // 'declined' keeps everything denied — no update needed
+  // 'declined' or GPC active keeps everything denied — no update needed
 
   // --- Banner logic (runs after DOM ready) ---
   function initBanner() {
-    if (saved) return; // choice already made, no banner
+    if (saved || gpcActive) return; // choice already made or GPC active, no banner
 
     var banner = document.createElement('div');
     banner.id = 'crc-consent-banner';
