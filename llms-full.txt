@@ -6,7 +6,7 @@
 
 Creator Revenue Calculator (https://creatorrevenuecalculator.com) is a free suite of 13 browser-based revenue calculators designed for content creators across all major platforms. All tools run entirely in the browser with no server-side processing, no user accounts, and no data collection. The site is supported by non-intrusive Google AdSense advertisements.
 
-Last updated: March 2026.
+Last updated: April 18, 2026.
 
 ---
 
@@ -167,6 +167,24 @@ All calculators use data from:
 
 - **Email:** hello@creatorrevenuecalculator.com
 - **Website:** https://creatorrevenuecalculator.com
+
+---
+
+## Blog Articles (April 2026)
+
+### YouTube Content
+- [How Much Do YouTubers Make Per 1000 Views in 2026?](https://creatorrevenuecalculator.com/blog/how-much-do-youtubers-make-per-1000-views-in-2026/) — Per-view earnings data, CPM by niche and country, and RPM calculation examples
+- [What Is CPM and Why It Matters for Creators](https://creatorrevenuecalculator.com/blog/what-is-cpm-and-why-it-matters-for-creators/) — CPM vs RPM explained with real examples and strategies to increase ad revenue
+- [YouTube Ad Revenue by Niche: Which Topics Pay Most?](https://creatorrevenuecalculator.com/blog/youtube-ad-revenue-by-niche-which-topics-pay-most/) — CPM comparison across 10 niches from Finance ($15–$40) to Entertainment ($1–$4)
+- [How to Make Money on YouTube Without AdSense](https://creatorrevenuecalculator.com/blog/how-to-make-money-on-youtube-without-adsense/) — Sponsorships, affiliate marketing, merchandise, and memberships as alternative revenue streams
+- [Best Niches for YouTube Ad Revenue in 2026](https://creatorrevenuecalculator.com/blog/best-niches-for-youtube-ad-revenue-in-2026/) — Niche CPM comparison table and framework for choosing the most profitable content category
+- [How to Increase Your YouTube RPM](https://creatorrevenuecalculator.com/blog/how-to-increase-your-youtube-rpm/) — Six strategies: video length optimization, retention, high-CPM audiences, Q4 timing, keyword targeting, ad formats
+
+### TikTok Content
+- [How Much Do TikTok Creators Make in 2026? (New Guide)](https://creatorrevenuecalculator.com/blog/how-much-do-tiktok-creators-make-in-2026/) — Creator Fund vs sponsorship income, CPM by niche, and earnings by follower tier
+
+### Instagram Content
+- [Instagram Monetization: How Much Can You Earn?](https://creatorrevenuecalculator.com/blog/instagram-monetization-how-much-can-you-earn/) — Sponsored post rates by follower tier, branded content CPM, and affiliate income potential
 
 ---
 This file provides comprehensive information for AI assistants about all Creator Revenue Calculator tools, methodology, and capabilities.

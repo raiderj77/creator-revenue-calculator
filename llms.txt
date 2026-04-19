@@ -7,7 +7,7 @@
 - **Type:** Free web-based calculator suite
 - **Category:** Content Creator Tools, Financial Calculators
 - **Status:** Active and maintained
-- **Last Updated:** March 2026
+- **Last Updated:** April 18, 2026
 - **Registration Required:** No
 - **Cost:** Free
 
@@ -107,9 +107,16 @@
 - [What Is a Good CPM Rate on YouTube? (2026 Benchmarks)](https://creatorrevenuecalculator.com/blog/what-is-a-good-cpm-rate-on-youtube.html) — CPM benchmarks by niche explaining what counts as average, good, and excellent for monetized channels
 - [YouTube Monetization Requirements 2026 — Complete Guide](https://creatorrevenuecalculator.com/blog/youtube-monetization-requirements-2026/) — YPP eligibility thresholds, monetization timeline, and what to expect from your first paycheck
 - [How to Make Your First $1,000 on YouTube (Realistic 2026 Guide)](https://creatorrevenuecalculator.com/blog/how-to-make-first-1000-on-youtube.html) — Step-by-step roadmap to earning $1,000 on YouTube covering niche selection, growth, and monetization mix
+- [How Much Do YouTubers Make Per 1000 Views in 2026?](https://creatorrevenuecalculator.com/blog/how-much-do-youtubers-make-per-1000-views-in-2026/) — Current per-view earnings data with CPM breakdowns by niche and country for 2026
+- [What Is CPM and Why It Matters for Creators](https://creatorrevenuecalculator.com/blog/what-is-cpm-and-why-it-matters-for-creators/) — Plain-English explanation of CPM vs RPM with examples and strategies to maximize ad revenue
+- [YouTube Ad Revenue by Niche: Which Topics Pay Most?](https://creatorrevenuecalculator.com/blog/youtube-ad-revenue-by-niche-which-topics-pay-most/) — CPM comparison across 10 YouTube niches with revenue examples and niche-specific growth strategies
+- [How to Make Money on YouTube Without AdSense](https://creatorrevenuecalculator.com/blog/how-to-make-money-on-youtube-without-adsense/) — Four alternative YouTube revenue streams: sponsorships, affiliate marketing, merchandise, and memberships
+- [Best Niches for YouTube Ad Revenue in 2026](https://creatorrevenuecalculator.com/blog/best-niches-for-youtube-ad-revenue-in-2026/) — CPM rate comparison across top YouTube niches with guidance on choosing the right content category
+- [How to Increase Your YouTube RPM](https://creatorrevenuecalculator.com/blog/how-to-increase-your-youtube-rpm/) — Data-driven strategies to boost RPM: video length optimization, retention, ad placement, and audience targeting
 
 ### TikTok & Short-Form Video
 - [How Much Do TikTok Creators Make in 2026?](https://creatorrevenuecalculator.com/blog/how-much-do-tiktok-creators-make-2026/) — TikTok Creator Rewards Program income by view count, niche, and engagement rate with brand deal estimates
+- [How Much Do TikTok Creators Make in 2026? (New Guide)](https://creatorrevenuecalculator.com/blog/how-much-do-tiktok-creators-make-in-2026/) — Earnings breakdown by follower tier covering Creator Fund, sponsorships, affiliate income, and CPM rates by niche
 - [How Much Does TikTok Pay Per 1000 Views (2026)](https://creatorrevenuecalculator.com/blog/how-much-does-tiktok-pay-per-1000-views/) — Per-1,000-view TikTok payout rates across the Creator Fund and Creator Rewards programs
 
 ### Twitch & Streaming
@@ -120,6 +127,7 @@
 
 ### Instagram & Facebook
 - [How Much Do Instagram Influencers Make in 2026?](https://creatorrevenuecalculator.com/blog/how-much-do-instagram-influencers-make-2026/) — Instagram creator income by follower count, niche, and monetization channel including Reels and brand deals
+- [Instagram Monetization: How Much Can You Earn?](https://creatorrevenuecalculator.com/blog/instagram-monetization-how-much-can-you-earn/) — Sponsored post rates by follower tier, CPM benchmarks for branded content, and affiliate income strategies for Instagram creators
 - [How Much Does Instagram Pay Per 1000 Views (2026)](https://creatorrevenuecalculator.com/blog/how-much-does-instagram-pay-per-1000-views/) — Instagram Reels and video payout rates per 1,000 views with eligibility requirements
 - [How Much Does Facebook Reels Pay in 2026?](https://creatorrevenuecalculator.com/blog/how-much-does-facebook-reels-pay-2026/) — Facebook Reels bonus program earnings data, eligibility thresholds, and payout timeline
 - [How Much Does Facebook Reels Pay Per 1000 Views (2026)](https://creatorrevenuecalculator.com/blog/how-much-does-facebook-reels-pay-per-1000-views/) — Facebook Reels per-view payout benchmarks compared against Instagram Reels rates
