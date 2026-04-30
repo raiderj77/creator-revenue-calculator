@@ -868,7 +868,7 @@ Run through this EVERY time before deploying:
 
 Things Claude Code must NEVER do on ANY Empire site:
 
-1. **Never expose the site owner's personal name** in any code, content, comments, metadata, or configuration
+1. **Never expose the site owner's personal name** in any code, content, comments, metadata, or configuration — EXCEPT on the About page, blog post bylines, and Article/Person schema of YMYL sites where Google's E-E-A-T scrutiny requires a verifiable named author with credentials. YMYL sites and their attribution: [mindchecktools.com](http://mindchecktools.com) (Jason Ramirez, CADC-II), [524tracker.com](http://524tracker.com) (Jason Ramirez, Founder of Your Friendly Developer), [taxbreaktools.com](http://taxbreaktools.com) (Jason Ramirez, Founder of Your Friendly Developer), [contractextract.com](http://contractextract.com) (Jason Ramirez, Founder of Your Friendly Developer), [medicalbillreader.com](http://medicalbillreader.com) (Jason Ramirez, Founder of Your Friendly Developer). Tool pages, calculator pages, OG tags on non-author pages, and footers across all sites use generic credentials only ("Built by an experienced web professional with a focus on [domain]").
 2. **Never modify ads.txt** unless explicitly asked — incorrect ads.txt stops ALL ad revenue
 3. **Never remove legal pages** (privacy policy, terms of service) — creates legal exposure
 4. **Never hardcode API keys** in any file — use environment variables exclusively
