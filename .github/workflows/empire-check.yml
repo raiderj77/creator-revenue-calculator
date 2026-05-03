@@ -1,0 +1,142 @@
+name: Empire Compliance Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # ────────────────────────────────────────────────────────────────
+  # Job 1 — Build (runs in parallel with compliance)
+  # ────────────────────────────────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+  # ────────────────────────────────────────────────────────────────
+  # Job 2 — Empire compliance gates (no Node required)
+  # ────────────────────────────────────────────────────────────────
+  compliance:
+    name: Compliance Gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Check 2: Required public files ──────────────────────────
+      - name: Required public files exist
+        run: |
+          FAILED=0
+          for FILE in public/ads.txt public/robots.txt public/llms.txt; do
+            if [ ! -f "$FILE" ]; then
+              echo "::error file=$FILE::MISSING — $FILE is required on all Empire sites. Create it in the public/ directory."
+              FAILED=1
+            else
+              echo "✓ $FILE"
+            fi
+          done
+          [ "$FAILED" -eq 0 ] || exit 1
+
+      # ── Check 3: AdSense publisher ID ───────────────────────────
+      - name: AdSense publisher ID in ads.txt
+        run: |
+          if [ ! -f public/ads.txt ]; then
+            echo "::warning::Skipping AdSense check — public/ads.txt missing (caught above)"
+            exit 0
+          fi
+          if ! grep -qF "pub-7171402107622932" public/ads.txt; then
+            echo "::error file=public/ads.txt::ADSENSE FAIL — public/ads.txt must contain 'pub-7171402107622932'. Wrong or missing publisher ID stops ALL ad revenue."
+            echo "  Expected line: google.com, pub-7171402107622932, DIRECT, f08c47fec0942fa0"
+            echo "  Actual content of public/ads.txt:"
+            cat public/ads.txt
+            exit 1
+          fi
+          echo "✓ AdSense publisher ID pub-7171402107622932 confirmed"
+
+      # ── Check 4: AI crawler rules in robots.txt ─────────────────
+      - name: AI crawler rules in robots.txt
+        run: |
+          if [ ! -f public/robots.txt ]; then
+            echo "::warning::Skipping robots.txt check — file missing (caught above)"
+            exit 0
+          fi
+          FAILED=0
+          for BOT in GPTBot ClaudeBot PerplexityBot Google-Extended; do
+            if ! grep -q "^User-agent: ${BOT}" public/robots.txt; then
+              echo "::error file=public/robots.txt::ROBOTS FAIL — Missing 'User-agent: ${BOT}' in public/robots.txt. Required for GEO/AI discoverability (Empire Standard §10–11). Add it per the canonical robots.txt template."
+              FAILED=1
+            else
+              echo "✓ User-agent: ${BOT}"
+            fi
+          done
+          [ "$FAILED" -eq 0 ] || exit 1
+
+      # ── Check 5: IndexNow key file ───────────────────────────────
+      - name: IndexNow key file exists
+        run: |
+          KEY_FILE=""
+          while IFS= read -r F; do
+            STEM=$(basename "$F" .txt)
+            if [[ "$STEM" =~ ^[0-9a-f]{32}$ ]]; then
+              KEY_FILE="$F"
+              break
+            fi
+          done < <(find public/ -maxdepth 1 -name "*.txt" 2>/dev/null || true)
+
+          if [ -z "$KEY_FILE" ]; then
+            echo "::error::INDEXNOW FAIL — No IndexNow key file found in public/. Expected a file named with exactly 32 lowercase hex characters (e.g. public/abc123...def.txt). Generate a key at https://www.bing.com/indexnow and place the .txt file in public/ (Empire Standard §10)."
+            exit 1
+          fi
+          echo "✓ IndexNow key file: $KEY_FILE"
+
+      # ── Check 6: Personal name exposure ─────────────────────────
+      - name: Personal name exposure check
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          # mhsud = mindchecktools.com — has a named-author YMYL E-E-A-T exception
+          if [[ "$REPO" == */mhsud ]]; then
+            echo "ℹ Skipping — mhsud has named-author exception (Empire Standard §17 Warning #1)"
+            exit 0
+          fi
+
+          # Collect all source directories that exist in this repo
+          SEARCH_DIRS=()
+          for DIR in src app components lib hooks types config; do
+            [ -d "$DIR" ] && SEARCH_DIRS+=("$DIR")
+          done
+          [ -d "public" ] && SEARCH_DIRS+=("public")
+
+          if [ "${#SEARCH_DIRS[@]}" -eq 0 ]; then
+            echo "ℹ No standard source directories found — skipping name check"
+            exit 0
+          fi
+
+          MATCHES=$(grep -rl "Jason Ramirez" "${SEARCH_DIRS[@]}" \
+            --include="*.ts"   --include="*.tsx" \
+            --include="*.js"   --include="*.jsx" \
+            --include="*.html" --include="*.css" \
+            --include="*.txt"  --include="*.json" \
+            2>/dev/null || true)
+
+          if [ -n "$MATCHES" ]; then
+            echo "::error::NAME EXPOSURE FAIL — 'Jason Ramirez' found in source/public files (Empire Standard §17 Warning #1). Use generic credentials instead, e.g. 'Built by an experienced web professional with a focus on [domain]'. Offending files:"
+            while IFS= read -r LINE; do echo "  $LINE"; done <<< "$MATCHES"
+            exit 1
+          fi
+          echo "✓ No personal name exposure detected"
