@@ -41,15 +41,23 @@ function getFiles(dir, extensions) {
 // ---------------------------------------------------------------------------
 
 /**
- * Check for personal name exposure.
- * The site owner's name must never appear in public content or code.
+ * Check for personal name exposure in body content.
+ * Policy updated 2026-05-11: byline metadata is now allowed portfolio-wide
+ * (name + CADC-II credential for unified author entity / EEAT). The name
+ * still should not appear casually in prose, alt text, code, or anywhere
+ * outside controlled byline fields.
  */
 function checkPersonalName(file, lines) {
   const namePattern = /\bJason\s+Ramirez\b/i;
+  // Skip allowed byline locations: frontmatter author:/reviewer:/author_name: lines,
+  // and any Person/Author schema JSON-LD "name" fields.
+  const bylineLinePattern = /^\s*(author|reviewer|author_name|byline)\s*:/i;
+  const schemaNamePattern = /"name"\s*:\s*"Jason Ramirez/i;
   for (let i = 0; i < lines.length; i++) {
-    if (namePattern.test(lines[i])) {
-      fail(file, i + 1, "Personal name detected — never expose site owner's name");
-    }
+    if (!namePattern.test(lines[i])) continue;
+    if (bylineLinePattern.test(lines[i])) continue;
+    if (schemaNamePattern.test(lines[i])) continue;
+    fail(file, i + 1, "Personal name detected in body/prose — name is only allowed in byline metadata (author/reviewer frontmatter, Person schema)");
   }
 }
 
