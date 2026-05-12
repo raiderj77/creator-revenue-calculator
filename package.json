@@ -7,7 +7,8 @@
     "build:blog": "node scripts/build-blog.mjs",
     "lint:content": "node scripts/content-lint.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
-    "prebuild": "npm run lint:predeploy && npm run lint:content"
+    "prebuild": "npm run lint:predeploy && npm run lint:content",
+    "build": "npm run build:blog"
   },
   "private": true,
   "dependencies": {
