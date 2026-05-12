@@ -67,7 +67,7 @@ Practical implication: a personal finance channel with 50,000 monthly views can 
 
 ## Which metric should you actually track week to week?
 
-Track RPM as your primary revenue health metric. Monitor CPM as a signal about audience value to advertisers.
+[Track RPM as your primary revenue health metric](/blog/how-to-increase-your-youtube-rpm/). Monitor CPM as a signal about audience value to advertisers.
 
 If your CPM rises but your RPM stays flat, that usually means a larger share of your views are coming from unmonetized sources, such as subscribers who use ad blockers, traffic from regions with low ad fill rates, or a spike in views on older content that is not being actively promoted to advertisers.
 
