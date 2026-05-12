@@ -67,6 +67,9 @@ Practical implication: a personal finance channel with 50,000 monthly views can 
 
 ## Which metric should you actually track week to week?
 
+Track RPM as your primary revenue health metric because it reflects actual dollars earned per thousand total views, not just monetized ones. CPM tells you what advertisers are paying, but RPM tells you what you are keeping. A rising CPM with flat RPM usually signals growing unmonetized traffic eating into your effective yield.
+
+
 [Track RPM as your primary revenue health metric](/blog/how-to-increase-your-youtube-rpm/). Monitor CPM as a signal about audience value to advertisers.
 
 If your CPM rises but your RPM stays flat, that usually means a larger share of your views are coming from unmonetized sources, such as subscribers who use ad blockers, traffic from regions with low ad fill rates, or a spike in views on older content that is not being actively promoted to advertisers.
