@@ -1,0 +1,46 @@
+name: Build Blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/blog/**'
+      - 'scripts/build-blog.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    # Don't loop forever if the build itself pushes a commit
+    if: "!contains(github.event.head_commit.message, '[skip-blog-build]')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need write token for git push back
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build blog HTML
+        run: npm run build:blog
+
+      - name: Commit rebuilt HTML if anything changed
+        run: |
+          git config user.name "rex-blog-builder"
+          git config user.email "rex@yourfriendlydeveloper.com"
+          if git diff --quiet blog/ sitemap.xml; then
+            echo "No blog HTML changes to commit"
+            exit 0
+          fi
+          git add blog/ sitemap.xml
+          git commit -m "build: rebuild blog HTML [skip-blog-build]"
+          git push
