@@ -34,7 +34,7 @@ Here is what that looks like in actual numbers:
 - **1,000 free YouTube subscribers, 5% conversion:** 50 patrons
 - **10,000 free subscribers, 2% conversion:** 200 patrons
 
-At a $5 average pledge and 200 patrons, that is $1,000/month gross before Patreon's platform fee. [Patreon charges creators between 5% and 12% of monthly revenue](https://support.patreon.com/hc/en-us/articles/203913499-What-are-Patreon-s-fees) depending on which plan (Free, Pro, or Premium) you are on, plus payment processing fees of roughly 2.9% plus $0.30 per transaction for payments over $3. Your $1,000 gross becomes closer to $870-$920 net depending on your plan.
+At a $5 average pledge and 200 patrons, that is $1,000/month gross before Patreon's platform fee. [Patreon charges creators between 5% and 12% of monthly revenue](https://support.patreon.com/hc/en-us/articles/203913499-What-are-Patreon-s-fees) depending on which plan (Free, Pro, or Premium) you are on, [plus payment processing fees of roughly 2.9% plus $0.30 per transaction](/blog/what-creators-need-to-know-about-patreons-fees-increase-in-2/) for payments over $3. [Your $1,000 gross becomes closer to $870-$920 net depending on your plan](/blog/understanding-patreons-2026-fee-structure-and-its-impact-on-/).
 
 The 1%-10% range is consistent with what independent creator economy analysts report. Creator economy researcher [Li Jin cited sub-10% paid conversion as typical](https://li.substack.com/p/the-passion-economy-and-the-future) for most independent creators, even those with highly engaged audiences.
 
