@@ -24,6 +24,9 @@ That Stripe per-transaction fee matters more at low price points than most peopl
 
 ## What does the actual net revenue comparison look like?
 
+A $5 subscriber nets you roughly $4.06 after Stripe's 2.9% plus $0.30 and Substack's 10% cut. To clear $1,000 a month, that means 247 paying readers at $5 versus 47 at $25. The per-subscriber math favors higher price points sharply, but conversion rates rarely scale the same way.
+
+
 Here is a side-by-side table using real fee math. All figures assume monthly billing and US-based Stripe rates.
 
 | Scenario | Gross per sub | Stripe fee | Substack 10% | Net per sub | Subs needed for $1,000/mo net |
