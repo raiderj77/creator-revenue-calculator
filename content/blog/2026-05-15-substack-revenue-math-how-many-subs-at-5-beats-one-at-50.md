@@ -16,9 +16,9 @@ reviewer: "Jason Ramirez, CADC-II"
 
 ## What does Substack actually take from my revenue?
 
-Substack charges a 10% platform fee on paid subscriptions, plus Stripe payment processing fees of approximately 2.9% plus $0.30 per transaction, [as documented in Substack's own pricing page](https://substack.com/going-paid). So on a $5/month subscription, you net roughly $4.35 after both cuts. On a $50/month subscription, you net roughly $44.20.
+Substack charges a 10% platform fee on paid subscriptions, plus [Stripe payment processing fees of approximately 2.9% plus $0.30 per transaction](/blog/unpacking-patreons-official-2026-fees-how-much-do-creators-r/), [as documented in Substack's own pricing page](https://substack.com/going-paid). So on a $5/month subscription, you net roughly $4.35 after both cuts. On a $50/month subscription, you net roughly $44.20.
 
-That Stripe per-transaction fee matters more at low price points than most people realize. On a $5 charge, the $0.30 flat fee alone eats 6% of the gross before Substack's 10% even applies. On a $50 charge, that same $0.30 is only 0.6% of gross. This is the hidden cost of a low-price, high-volume strategy.
+That Stripe per-transaction fee matters more at low price points than most people realize. On a $5 charge, the $0.30 flat fee alone eats 6% of the gross before Substack's 10% even applies. On a $50 charge, [that same $0.30 is only 0.6% of gross](/blog/understanding-patreons-2026-fee-structure-and-its-impact-on-/). This is the hidden cost of a low-price, high-volume strategy.
 
 ---
 
@@ -65,7 +65,7 @@ Charge the lowest price that a meaningful percentage of your audience will pay w
 
 [Substack's guidance on pricing](https://substack.com/going-paid) specifically recommends against underpricing, noting that writers often set prices too low out of fear. Their suggested starting point is $5 to $10/month or $50 to $100/year, but they acknowledge that professional niches support higher prices.
 
-One practical test: offer a founding member tier at 2x to 3x your standard price with no extra benefits. If 5% to 10% of your paid subscribers choose it, your audience has more price tolerance than your base tier suggests.
+One practical test: [offer a founding member tier at 2x to 3x your standard price](/blog/how-a-patreon-tier-ladder-converts-free-fans-to-paid-subscribers/) with no extra benefits. If 5% to 10% of your paid subscribers choose it, your audience has more price tolerance than your base tier suggests.
 
 ---
 
