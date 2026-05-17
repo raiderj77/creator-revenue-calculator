@@ -34,7 +34,7 @@ Most nano-creators are not getting inbound brand deals yet. When they do land on
 
 **Micro (10,000-100,000 subscribers/followers)**
 
-This is where cash deals become reliable. YouTube mid-roll or end-card integrations typically run $200-$1,500 per placement. Dedicated videos (the entire video is the sponsorship) run $500-$5,000 depending on niche. Finance, software, and B2B niches sit at the high end. Lifestyle and general entertainment sit at the low end. Podcast sponsorships at this tier generally follow a CPM of $20-$40 per thousand downloads per episode, per [Spotify's 2023 Podcast Advertising Playbook](https://ads.spotify.com/en-US/news-and-insights/podcast-advertising-playbook/).
+This is where cash deals become reliable. YouTube mid-roll or end-card integrations typically run $200-$1,500 per placement. Dedicated videos (the entire video is the sponsorship) run $500-$5,000 depending on niche. Finance, software, and B2B niches sit at the high end. Lifestyle and general entertainment sit at the low end. Podcast sponsorships at this tier generally follow a [CPM of $20-$40 per thousand downloads per episode](/blog/substack-revenue-math-how-many-subs-at-5-beats-one-at-50/), per [Spotify's 2023 Podcast Advertising Playbook](https://ads.spotify.com/en-US/news-and-insights/podcast-advertising-playbook/).
 
 **Mid-tier (100,000-500,000 subscribers/followers)**
 
@@ -56,7 +56,7 @@ A simple starting formula used by many mid-tier creators: take your average view
 
 Example: 80,000 average views / 1,000 = 80. At a $25 CPM for a general audience, that is $2,000 per integration. At a $50 CPM for a personal finance audience, that is $4,000.
 
-[YouTube's own Help Center](https://support.google.com/youtube/answer/72857) does not publish sponsorship rate guidance (that is between you and the brand), but it does confirm that AdSense CPMs vary widely by niche, which is a useful signal for what brands in your category are already paying for attention.
+[YouTube's own Help Center](https://support.google.com/youtube/answer/72857) does not publish sponsorship rate guidance (that is between you and the brand), but it does confirm that [AdSense CPMs vary widely by niche](/blog/youtube-cpm-rates-by-niche-2026/), which is a useful signal for what brands in your category are already paying for attention.
 
 The CPM you can charge scales with how much the brand earns per customer. A software company with a $500 annual subscription can justify a $75 CPM. A consumer goods company with a $30 product margin cannot.
 
