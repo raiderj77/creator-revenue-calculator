@@ -26,6 +26,9 @@ The industry shorthand for this is CPM-on-deliverables, meaning brands think abo
 
 ## What are the actual rate ranges by audience size tier?
 
+Rates scale from roughly $50 per video at the nano level to $50,000 or more at the mega tier. Nano creators with 1,000 to 10,000 followers typically earn $50 to $300 per integration. Mid-tier channels around 100,000 to 500,000 subscribers commonly see $2,000 to $10,000, based on widely reported creator disclosures.
+
+
 Here are working ranges based on reported industry data and creator disclosures, not aspirational headlines.
 
 **Nano (1,000-10,000 subscribers/followers)**
@@ -63,6 +66,9 @@ The CPM you can charge scales with how much the brand earns per customer. A soft
 ---
 
 ## What kills a deal even when your numbers look right?
+
+Audience geography is the most common deal-killer brands rarely explain directly. A channel with 90 percent of viewers outside the US, UK, Canada, and Australia faces steep rate cuts because most brand budgets are geo-targeted. Statista digital advertising data consistently shows North America and Western Europe commanding the largest programmatic and direct spend globally.
+
 
 Three things consistently derail sponsorship conversations regardless of audience size.
 
