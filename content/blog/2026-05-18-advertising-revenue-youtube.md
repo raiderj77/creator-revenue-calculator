@@ -52,6 +52,9 @@ This is not a bug or a penalty. It is just how programmatic advertising works. B
 
 ## What are the YPP eligibility requirements before any of this applies?
 
+You must hit 1,000 subscribers and either 4,000 valid public watch hours in the past 12 months or 10 million public Shorts views in 90 days before YouTube pays you a cent. You also need an active AdSense account and must comply with YouTube's monetization policies, per the YouTube Help Center.
+
+
 You cannot earn ad revenue until you qualify for YPP. [YouTube's current requirements](https://support.google.com/youtube/answer/72851) are:
 
 - 1,000 subscribers
@@ -66,6 +69,9 @@ A channel that hits exactly 1,000 subscribers and 4,000 watch hours is not going
 ---
 
 ## What actually moves your RPM beyond just picking a "high CPM niche"?
+
+Audience geography moves RPM more than niche alone. A channel with 80 percent US viewers will consistently out-earn one with identical view counts but heavy traffic from lower-ad-spend regions like India or Brazil. Seasonality, video length, and viewer engagement also shift rates, sometimes by two to three dollars per thousand views.
+
 
 Niche matters, but several other factors shift your RPM meaningfully:
 
