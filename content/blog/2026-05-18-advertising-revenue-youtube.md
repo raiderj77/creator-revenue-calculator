@@ -18,7 +18,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 YouTube pays you through the [YouTube Partner Program (YPP)](https://support.google.com/youtube/answer/72857), and the split is fixed: YouTube keeps 45%, you keep 55% of the ad revenue generated on your content. This is documented directly in [YouTube's help center](https://support.google.com/youtube/answer/72857?hl=en). There is no negotiating that split.
 
-The number you hear thrown around most is CPM, which stands for cost per mille, meaning cost per 1,000 ad impressions. But CPM is what advertisers pay Google. What you see in YouTube Studio is RPM, revenue per mille, which is your 55% share after YouTube's cut, calculated across all your views including ones that showed no ad at all.
+The number you hear thrown around most is [CPM, which stands for cost per mille](/blog/what-is-rpm-vs-cpm-for-youtube-creators/), meaning cost per 1,000 ad impressions. But [CPM is what advertisers pay Google](/blog/youtube-rpm-vs-cpm-which-metric-actually-predicts-your-payout/). What you see in YouTube Studio is RPM, revenue per mille, which is your 55% share after YouTube's cut, calculated across all your views including ones that showed no ad at all.
 
 A channel might have a $10 CPM but only a 40% ad impression rate, meaning 40% of views actually loaded a monetizable ad. That math gives you roughly $2.20 RPM. On 100,000 views, that is $220 for the month.
 
@@ -26,7 +26,7 @@ A channel might have a $10 CPM but only a 40% ad impression rate, meaning 40% of
 
 ## What CPM ranges should you realistically expect?
 
-RPM for most channels falls between $1 and $5 for general audiences, with personal finance, investing, and B2B software channels regularly hitting $8 to $15 RPM or higher. Gaming and entertainment channels frequently land below $2.
+RPM for most channels falls between $1 and $5 for general audiences, with [personal finance, investing, and B2B software channels regularly hitting](/blog/youtube-cpm-rates-by-niche-2026/) $8 to $15 RPM or higher. Gaming and entertainment channels frequently land below $2.
 
 [Influencer Marketing Hub's 2024 YouTube money report](https://influencermarketinghub.com/how-much-does-youtube-pay/) aggregates creator-reported data and consistently shows RPM ranges of $1.61 to $29.30 depending on niche, with the median general-interest channel sitting around $2 to $3. Those are self-reported numbers, so treat them as directional, not definitive.
 
