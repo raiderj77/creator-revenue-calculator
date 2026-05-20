@@ -16,6 +16,9 @@ reviewer: "Jason Ramirez, CADC-II"
 
 ## Does Instagram actually pay per view?
 
+Instagram does not pay creators per view. There is no native ad-revenue-sharing program like YouTube's Partner Program, so no CPM deposit arrives after your Reel gets 50,000 plays. Meta ran invite-only Reels Play Bonuses, but paused most of those programs through 2023 and 2024, per Meta's own help documentation.
+
+
 No, Instagram has no open ad-revenue-sharing program equivalent to YouTube's Partner Program. There is no CPM check that arrives because your Reel hit 100,000 plays.
 
 Instagram has run several creator bonus programs over the years, including Reels Play Bonuses, but [Meta has scaled back and paused many of these programs](https://help.instagram.com/1186538785474564) as of 2023-2024. The bonuses that do exist are invite-only, capped at specific earning limits, and vary by region. If you were not invited, the view counter means nothing to your bank account directly.
@@ -26,6 +29,9 @@ The practical implication: a creator with 500,000 Reel views and no brand deal, 
 
 ## What did Instagram's bonus programs actually pay?
 
+When active, Reels Play Bonuses reportedly paid between $600 and $35,000 per month, but the program was invite-only with opaque thresholds. Some creators needed 58,000 plays to earn anything; others needed millions. Meta never published a standard rate card, making those figures impossible to replicate or plan around.
+
+
 When Reels Play Bonuses were active, reported payouts ranged from roughly $600 to $35,000 per month, but those figures came with heavy asterisks.
 
 The program was invite-only and the payout thresholds were opaque. Creators in the program reported needing anywhere from 58,000 to several million plays per month to hit the maximum bonus tier, depending on their account. [Meta's own help documentation](https://help.instagram.com/1186538785474564) confirmed bonuses were "based on plays your Reels receive" but never published a fixed rate per play. Reverse-engineering creator reports suggests effective rates of $0.01 to $0.06 per 1,000 plays at best, which is far below YouTube's average CPM.
@@ -35,6 +41,9 @@ For context, [YouTube's own help center](https://support.google.com/youtube/answ
 ---
 
 ## Where do Instagram creators actually make money?
+
+Instagram creators earn primarily through brand sponsorships, affiliate commissions, and traffic sent to owned platforms like newsletters or courses. Sponsorships dominate. Influencer Marketing Hub's 2024 benchmark report shows mid-tier creators charging $200 to $1,000 per post, meaning income depends on deal volume, not view counts.
+
 
 The real monetization stack for Instagram is [brand sponsorships, affiliate commissions, and driving traffic](/blog/instagram-monetization-how-much-can-you-earn/) to owned platforms.
 
@@ -66,6 +75,9 @@ That is a reasonable outcome for a mid-tier creator with a relevant niche and on
 ---
 
 ## What variables actually move the number?
+
+Niche, audience geography, engagement rate, and deal frequency matter far more than raw view counts. A finance creator with 30,000 followers routinely out-earns a lifestyle creator with 300,000. Statista data consistently shows US, UK, and Australian audiences commanding premium brand rates compared to most other regions.
+
 
 Four factors determine your effective earnings per 1,000 views more than follower count does.
 
