@@ -36,7 +36,7 @@ For context, [YouTube's own help center](https://support.google.com/youtube/answ
 
 ## Where do Instagram creators actually make money?
 
-The real monetization stack for Instagram is brand sponsorships, affiliate commissions, and driving traffic to owned platforms.
+The real monetization stack for Instagram is [brand sponsorships, affiliate commissions, and driving traffic](/blog/instagram-monetization-how-much-can-you-earn/) to owned platforms.
 
 **Brand sponsorships** are the dominant income source. According to [Influencer Marketing Hub's 2024 benchmark report](https://influencermarketinghub.com/influencer-rates/), Instagram creators typically charge:
 
@@ -53,7 +53,7 @@ These are ranges, not guarantees. A 50,000-follower account in a low-engagement 
 
 ---
 
-## How do I calculate my own effective RPM on Instagram?
+## How do I calculate my own [effective RPM on Instagram](/blog/deep-diving-cpm-trends-for-instagram-reels-creators-in-2026/)?
 
 Take every dollar you earned in a month from Instagram-related activity, divide by total views, multiply by 1,000.
 
