@@ -73,6 +73,9 @@ A rough comparison for a creator with 100,000 engaged followers or subscribers:
 
 ## What Should You Actually Track If You Post Reels?
 
+Track profile link clicks, follower conversion rate, and inbound brand inquiries, not raw views. Views measure reach, not revenue. A Reel with 50,000 views that drives 200 link clicks and two sponsor emails is worth more than one with 500,000 views that converts nothing.
+
+
 Stop tracking views as a proxy for income. Track these instead:
 
 1. **Profile link clicks per Reel** - this measures whether Reels is actually driving traffic to monetizable destinations.
