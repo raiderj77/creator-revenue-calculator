@@ -16,7 +16,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 ## What Did Instagram Actually Pay Per 1000 Views?
 
-The Reels Play Bonus program, when it existed at scale, paid creators roughly $0.01 to $0.06 per 1,000 views depending on account size, content category, and invite tier. That translates to $10 to $60 per million views. Instagram [began winding down the Reels Play Bonus in the US in March 2023](https://help.instagram.com/713160010094234), redirecting resources toward what Meta called "more sustainable" monetization tools.
+The Reels Play Bonus program, when it existed at scale, paid creators [roughly $0.01 to $0.06 per 1,000 views depending on account size](/blog/how-much-money-per-1000-views-on-instagram/), content category, and invite tier. That translates to $10 to $60 per million views. Instagram [began winding down the Reels Play Bonus in the US in March 2023](https://help.instagram.com/713160010094234), redirecting resources toward what Meta called "more sustainable" monetization tools.
 
 To put that range in context: YouTube's AdSense CPM for US English content typically runs $2 to $10 per 1,000 views depending on niche, according to [YouTube's own monetization documentation](https://support.google.com/youtube/answer/72857). Reels, even at its best bonus rates, was paying 20 to 200 times less per thousand views than a monetized YouTube channel in the same niche.
 
@@ -44,7 +44,7 @@ That is worse than the old Reels Play Bonus. Gift monetization works only when y
 
 ## Where Does Real Instagram Reels Money Come From?
 
-Brand sponsorships. Full stop. According to [Influencer Marketing Hub's 2024 Benchmark Report](https://influencermarketinghub.com/influencer-marketing-benchmark-report/), Instagram remains the top platform for influencer marketing spend, with the average sponsored post rate for a mid-tier creator (100K to 500K followers) running $500 to $5,000 per post depending on niche and engagement rate.
+Brand sponsorships. Full stop. According to [Influencer Marketing Hub's 2024 Benchmark Report](https://influencermarketinghub.com/influencer-marketing-benchmark-report/), [Instagram remains the top platform for influencer marketing spend](/blog/instagram-monetization-how-much-can-you-earn/), with the average sponsored post rate for a mid-tier creator (100K to 500K followers) running $500 to $5,000 per post depending on niche and engagement rate.
 
 Here is what that math looks like at different account sizes, using conservative industry estimates:
 
