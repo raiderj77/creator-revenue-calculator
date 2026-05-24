@@ -15,7 +15,7 @@ author: "Your Friendly Developer LLC"
 
 ## What is CPM and why does it vary so much?
 
-CPM stands for cost per mille, meaning what an advertiser pays per 1,000 ad impressions. Your actual take-home is based on RPM (revenue per mille), which is what you earn per 1,000 views after YouTube takes its 45% cut. According to the [YouTube Help Center](https://support.google.com/youtube/answer/72902), YouTube keeps 45% of ad revenue and pays creators the remaining 55%.
+CPM stands for cost per mille, meaning [what an advertiser pays per 1,000 ad impressions](/blog/youtube-rpm-vs-cpm-which-metric-actually-predicts-your-payout/). Your actual take-home is based on RPM (revenue per mille), which is what you earn per 1,000 views after YouTube takes its 45% cut. According to the [YouTube Help Center](https://support.google.com/youtube/answer/72902), [YouTube keeps 45% of ad revenue and pays creators](/blog/advertising-revenue-youtube/) the remaining 55%.
 
 If advertisers are paying a $10 CPM, your RPM works out to roughly $5.50. On 10,000 views, that is $55 before any other deductions. But that assumes every single view is monetized, which never happens.
 
@@ -31,7 +31,7 @@ Using a 55% monetized playback rate as a middle estimate, your 10,000 views beco
 
 ## What RPM numbers are realistic in 2026?
 
-Reported RPM ranges vary widely by niche. Based on aggregated creator reports and data compiled by [Statista on YouTube CPM rates by category](https://www.statista.com/topics/2019/youtube/), here are rough RPM benchmarks for US-based audiences:
+Reported RPM ranges vary widely by niche. Based on aggregated creator reports and data compiled by [Statista on YouTube CPM rates by category](https://www.statista.com/topics/2019/youtube/), here are [rough RPM benchmarks for US-based audiences](/blog/youtube-cpm-rates-by-niche-2026/):
 
 | Niche | Estimated RPM Range |
 |---|---|
