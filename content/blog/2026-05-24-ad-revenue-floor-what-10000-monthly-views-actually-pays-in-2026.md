@@ -48,6 +48,9 @@ These are not guarantees. They are the ranges creators in those niches commonly 
 
 ## So what does 10,000 views actually pay across different niches?
 
+At a 55% monetized playback rate, 10,000 views becomes roughly 5,500 monetized views. A finance channel earning a $15 RPM clears about $82. A health channel at $8 RPM earns $44. Gaming at $2.50 RPM yields $13.75. A vlog channel at $1.80 RPM takes home under $10.
+
+
 Run the numbers with a 55% monetized playback rate applied to 10,000 views (5,500 monetized views), then apply RPM:
 
 - **Finance channel, $15 RPM:** 5,500 / 1,000 x $15 = **$82.50**
