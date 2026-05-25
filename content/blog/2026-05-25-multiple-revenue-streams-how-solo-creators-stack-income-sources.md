@@ -25,6 +25,9 @@ Stacking streams is not about chasing every platform. It is about making sure no
 
 ## What does a realistic mid-tier creator income stack actually look like?
 
+A 50,000-subscriber YouTube channel in personal finance realistically earns $3,000 to $6,000 monthly across three to four streams. Influencer Marketing Hub's 2024 data puts personal finance CPMs at $12 to $45, so AdSense alone rarely covers a living wage. Affiliate commissions and a small paid newsletter close the gap.
+
+
 Here is a concrete example built on documented platform ranges, not fantasy.
 
 Assume a creator with a 50,000-subscriber YouTube channel in a personal finance niche, posting twice a week, with a 4% email list conversion to a paid Substack:
@@ -45,6 +48,9 @@ That is not a hype number. That is what the math produces when you use the floor
 ---
 
 ## How does Patreon fit into this, and is it worth the effort?
+
+Patreon is worth it only if your audience wants ongoing access or community, not just free content. Patreon's own pricing page documents fees of 5 to 12 percent of revenue plus payment processing, so a creator earning $1,000 monthly nets closer to $880. Thin margins make patron count, not just revenue, the metric to watch.
+
 
 Patreon works when your audience has a strong community identity and wants access, not just content. It is a poor fit for audiences that follow you for information alone.
 
@@ -67,6 +73,9 @@ The honest framing: digital products are high-effort upfront and high-variance i
 ---
 
 ## What order should a creator build these streams in?
+
+Build distribution first, then one direct revenue stream, then diversify. Without an audience, conversion rates are meaningless. Most creators who skip straight to merchandise or courses before reaching a consistent traffic baseline report near-zero sales, according to repeated patterns documented in Creator Economy reports from Stripe and Linktree since 2022.
+
 
 Build in order of leverage, not excitement.
 
