@@ -17,7 +17,7 @@ author: "Your Friendly Developer LLC"
 
 Because it is. A single platform controls your income when it controls your distribution. YouTube can change its CPM floor overnight. Patreon has adjusted its fee structure multiple times. Substack takes 10% of paid subscriptions. Any one of these platforms shifting policy moves your income without your input.
 
-The practical risk is compounding: ad revenue is volatile by design. [YouTube's own Help Center](https://support.google.com/youtube/answer/72857) notes that CPM varies by season, viewer geography, and content category. Q4 CPMs can run 40–60% higher than Q1 CPMs in the same channel because advertisers front-load budgets toward the holiday quarter. If you built your budget around a Q4 number, January will feel like a pay cut.
+The practical risk is compounding: [ad revenue is volatile by design](/blog/ad-revenue-floor-what-10000-monthly-views-actually-pays-in-2026/). [YouTube's own Help Center](https://support.google.com/youtube/answer/72857) notes that CPM varies by season, viewer geography, and content category. Q4 CPMs can run 40–60% higher than Q1 CPMs in the same channel because advertisers front-load budgets toward the holiday quarter. If you built your budget around a Q4 number, January will feel like a pay cut.
 
 Stacking streams is not about chasing every platform. It is about making sure no single policy change can zero out your income in a month.
 
@@ -33,7 +33,7 @@ Assume a creator with a 50,000-subscriber YouTube channel in a personal finance 
 Personal finance is a high-CPM niche. [Influencer Marketing Hub's 2024 CPM data](https://influencermarketinghub.com/youtube-cpm/) puts finance content CPM between $12 and $45. At 200,000 monthly views and a $15 RPM (revenue per mille, which is what you actually receive after YouTube's 45% cut), that is $3,000/month. At a $9 RPM in a slow quarter, that drops to $1,800. Budget for the floor.
 
 **Substack Paid Subscriptions**
-A 50,000-subscriber YouTube channel might convert 2,000 email subscribers. If 4% of those pay $8/month, that is 80 paying subscribers, or $640/month gross. Substack takes 10% plus Stripe payment processing fees of approximately 2.9% plus $0.30 per transaction, per [Substack's pricing page](https://substack.com/going-paid). Net is closer to $570/month. Small, but it does not fluctuate with ad markets.
+[A 50,000-subscriber YouTube channel might convert 2,000 email subscribers](/blog/substack-revenue-math-how-many-subs-at-5-beats-one-at-50/). If 4% of those pay $8/month, that is 80 paying subscribers, or $640/month gross. Substack takes 10% plus Stripe payment processing fees of approximately 2.9% plus $0.30 per transaction, per [Substack's pricing page](https://substack.com/going-paid). Net is closer to $570/month. Small, but it does not fluctuate with ad markets.
 
 **One Mid-Tier Sponsorship**
 A 50,000-subscriber channel in finance can realistically charge $1,500–$3,000 per integration based on industry benchmarks. [Influencer Marketing Hub's 2024 Influencer Marketing Benchmark Report](https://influencermarketinghub.com/influencer-marketing-benchmark-report/) puts YouTube mid-tier integration rates in that range for high-CPM niches. At two deals per month, that is $3,000–$6,000/month, but most creators at this size close one reliable deal per month. Budget for one.
@@ -72,7 +72,7 @@ Build in order of leverage, not excitement.
 
 1. **Ad revenue or a free platform first.** Get distribution working before you monetize directly. No audience means no conversion rate matters.
 2. **One direct revenue stream second.** A paid newsletter or Patreon gives you income that does not depend on algorithm traffic. Even $200/month from 25 paying subscribers changes your psychological relationship with the work.
-3. **Sponsorships third.** You need a track record and a media kit. Sponsors want to see engagement data, not just subscriber counts. Build the proof before pitching.
+3. **Sponsorships third.** You need a track record and a media kit. [Sponsors want to see engagement data, not just subscriber counts](/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier/). Build the proof before pitching.
 4. **Digital products fourth.** These require an audience that already trusts your judgment enough to pay for it upfront. That trust takes time.
 
 The creators who burn out fastest are the ones who try to run all four streams simultaneously before any single one has traction. Depth in one stream funds the time to build the next one.
