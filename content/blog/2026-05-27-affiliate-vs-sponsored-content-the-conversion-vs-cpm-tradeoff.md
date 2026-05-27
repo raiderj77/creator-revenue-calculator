@@ -55,6 +55,9 @@ Patreon's own research, referenced in their [2023 creator economy report](https:
 
 ## How should you actually decide which to prioritize?
 
+Run the numbers for your specific situation before picking a default. Audiences under 10,000 with a tight niche often earn more from affiliate links because no minimum reach threshold exists. Larger but broader audiences typically convert poorly on affiliate offers, making flat-fee sponsorships the more predictable income source.
+
+
 Run the numbers for your specific situation before defaulting to either model.
 
 If your audience is under 10,000 and you have a clear niche with high-ticket relevant products, affiliate is often more accessible because you do not need to pitch sponsors or meet minimum reach thresholds most brands require. If your audience is larger but broad, sponsorships may pay more reliably because conversion rates on general audiences tend to be lower.
