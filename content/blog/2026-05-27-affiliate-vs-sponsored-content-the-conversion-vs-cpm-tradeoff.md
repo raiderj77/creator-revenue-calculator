@@ -9,7 +9,7 @@ author: "Your Friendly Developer LLC"
 
 # Affiliate vs Sponsored Content: The Conversion vs CPM Tradeoff
 
-> **Short answer:** Sponsored content pays a flat fee upfront regardless of audience action, while affiliate income depends entirely on clicks and purchases. Sponsored deals typically pay $500–$50,000+ per placement based on reach; affiliate commissions average 5–30% per sale. Neither is universally better. The right choice depends on your audience size, trust level, and whether you can drive purchases.
+> **Short answer:** Sponsored content pays a flat fee upfront regardless of audience action, while affiliate income depends entirely on clicks and purchases. Sponsored deals typically pay $500–$50,000+ per placement based on reach; affiliate commissions average 5–30% per sale. Neither is universally better. The right choice depends on your [audience size, trust level, and whether you can drive purchases](/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier/).
 
 ---
 
@@ -17,7 +17,7 @@ author: "Your Friendly Developer LLC"
 
 Sponsored content pays you a negotiated flat rate (or CPM-based rate) for the placement itself. Affiliate income pays you a percentage of sales or a fixed bounty only when your audience converts. One is a media buy. The other is performance marketing with you as the channel.
 
-A sponsor paying a $30 CPM on a YouTube video with 100,000 views would pay you $3,000 whether one person clicks or ten thousand do. An affiliate arrangement on the same video might offer a 10% commission on a $100 product. If 200 viewers buy, that's $2,000. If 20 buy, it's $200. The upside is theoretically uncapped, but the floor is zero.
+[A sponsor paying a $30 CPM on a YouTube video](/blog/ad-revenue-floor-what-10000-monthly-views-actually-pays-in-2026/) with 100,000 views would pay you $3,000 whether one person clicks or ten thousand do. An affiliate arrangement on the same video might offer a 10% commission on a $100 product. If 200 viewers buy, that's $2,000. If 20 buy, it's $200. The upside is theoretically uncapped, but the floor is zero.
 
 This math is the entire argument. Sponsorships transfer conversion risk to the brand. Affiliate deals transfer it to you.
 
@@ -63,7 +63,7 @@ A practical framework:
 
 - **Content shelf life under 30 days** (news, trending topics, live streams): Sponsorships. The content will not drive affiliate revenue long enough to matter.
 - **Evergreen tutorials, reviews, or how-to content**: Affiliate, especially if you can target search intent.
-- **High-trust, small niche audience**: Affiliate on high-commission products first, then layer in sponsorships as leverage to negotiate better rates.
+- **High-trust, small niche audience**: Affiliate on high-commission products first, then [layer in sponsorships as leverage to negotiate better rates](/blog/multiple-revenue-streams-how-solo-creators-stack-income-sources/).
 - **Large, broad audience**: Sponsorships as a baseline, affiliate as supplemental income on products you genuinely use.
 
 Most working creators end up running both simultaneously. The real mistake is treating them as mutually exclusive or assuming one is inherently more ethical or lucrative than the other. They are different financial instruments. Use the one that matches the content type, the audience relationship, and the product category in front of you.
