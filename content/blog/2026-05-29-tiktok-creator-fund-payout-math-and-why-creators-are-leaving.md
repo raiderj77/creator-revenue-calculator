@@ -65,7 +65,7 @@ The practical alternatives fall into a few buckets:
 
 **Driving traffic to owned platforms:** Many TikTok creators use the platform as a top-of-funnel tool to grow a Substack newsletter or Patreon membership. [Patreon's own creator data](https://www.patreon.com/about) shows that creators with 1,000 patrons at $5/month earn $5,000 monthly before Patreon's 5–12% platform fee. That is recurring, predictable income that does not depend on an algorithm distributing a fixed pool.
 
-**YouTube Shorts and long-form:** Creators who repurpose or expand TikTok content for YouTube access the ad-share model. YouTube Shorts has its own revenue pool similar to TikTok's structure, but long-form YouTube content earns through standard AdSense.
+**YouTube Shorts and long-form:** Creators who repurpose or expand TikTok content for YouTube access the ad-share model. YouTube Shorts has its own revenue pool similar to TikTok's structure, but [long-form YouTube content earns through standard AdSense](/blog/ad-revenue-floor-what-10000-monthly-views-actually-pays-in-2026/).
 
 ---
 
