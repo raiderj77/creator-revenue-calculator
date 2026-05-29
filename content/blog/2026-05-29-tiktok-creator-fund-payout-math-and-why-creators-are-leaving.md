@@ -31,6 +31,9 @@ Ten million views in a month is not a casual achievement. Most full-time creator
 
 ## How does TikTok's payout compare to YouTube?
 
+YouTube pays dramatically more per view than TikTok's Creator Fund. YouTube's Partner Program pays creators 55 percent of ad revenue generated on their content, with US CPMs typically ranging from $2 to $10. TikTok's Creator Fund, a fixed pool divided among all eligible creators, routinely delivers $0.02 to $0.04 per 1,000 views by contrast.
+
+
 YouTube pays more, and the structural reason is simple: YouTube shares advertising revenue with creators, while TikTok's Creator Fund is a fixed pool that dilutes as it grows.
 
 YouTube's [Partner Program overview](https://support.google.com/youtube/answer/72857) states creators receive 55% of ad revenue generated on their content. US YouTube CPMs reported by creators typically range from $2–$10 per 1,000 views depending on niche, with finance and business content often exceeding $10. [Statista data on YouTube CPM rates](https://www.statista.com/topics/2019/youtube/) shows average CPMs across categories sitting in the $4–$6 range for US audiences.
@@ -56,6 +59,9 @@ TikTok has since launched the [TikTok Creativity Program Beta](https://newsroom.
 ---
 
 ## What are creators doing instead of relying on the Creator Fund?
+
+Most creators are keeping their TikTok audience but replacing Fund income with brand sponsorships, Patreon memberships, or platform diversification. A creator with 500,000 followers can earn $500 to $2,500 per sponsored post according to Creator IQ benchmarks, which already exceeds what the Fund pays on millions of organic views.
+
 
 The creators leaving the fund are not leaving TikTok entirely. They are leaving the fund as a revenue strategy and building income elsewhere.
 
