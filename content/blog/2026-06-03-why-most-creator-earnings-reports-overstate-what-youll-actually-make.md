@@ -25,11 +25,11 @@ The same distortion happens with YouTube, Substack, and sponsorship case studies
 
 ## What does YouTube actually pay per 1,000 views?
 
-YouTube pays creators 55% of ad revenue generated on their content, keeping 45%, [per YouTube's own Partner Program documentation](https://support.google.com/youtube/answer/72902). The CPM (cost per mille) is what advertisers pay. The RPM (revenue per mille) is what you actually receive -- and it's always lower.
+YouTube pays creators 55% of ad revenue generated on their content, keeping 45%, [per YouTube's own Partner Program documentation](https://support.google.com/youtube/answer/72902). The CPM (cost per mille) is what advertisers pay. The [RPM (revenue per mille) is what you actually receive](/blog/youtube-rpm-vs-cpm-which-metric-actually-predicts-your-payout/) -- and it's always lower.
 
 According to [YouTube's help center explanation of RPM vs CPM](https://support.google.com/youtube/answer/9314357), RPM accounts for the platform's cut and is calculated across all your views, including those that generate zero ad revenue. A channel might see a CPM of $8 quoted in a case study, but if 30% of views are non-monetized (pre-roll skips, ad-blocker users, viewers in low-CPM regions), the actual RPM could land at $3 to $4.
 
-Concrete example: 100,000 views at a $4 RPM = $400 gross. After nothing else, that's your YouTube check. No platform cut is deducted again at this stage because RPM already reflects the 55/45 split. But you still owe self-employment tax on that $400, and if you paid an editor $150 for the video, your actual profit is $250 before income tax.
+Concrete example: [100,000 views at a $4 RPM](/blog/ad-revenue-floor-what-10000-monthly-views-actually-pays-in-2026/) = $400 gross. After nothing else, that's your YouTube check. No platform cut is deducted again at this stage because RPM already reflects the 55/45 split. But you still owe self-employment tax on that $400, and if you paid an editor $150 for the video, your actual profit is $250 before income tax.
 
 RPM varies enormously by niche. Finance and software channels can see RPMs of $15 to $25. Gaming and entertainment channels often land between $2 and $5. [Influencer Marketing Hub's 2024 CPM data](https://influencermarketinghub.com/youtube-money-calculator/) shows this spread clearly, though treat any third-party calculator as an estimate rather than a guarantee.
 
