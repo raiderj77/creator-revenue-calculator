@@ -15,6 +15,9 @@ author: "Your Friendly Developer LLC"
 
 ## Why do the income numbers you see online never match reality?
 
+They are almost always gross figures from outlier performers, not typical creators. Patreon's own fee documentation shows the platform takes 5 to 12 percent depending on your plan, plus roughly 2.9 percent plus $0.30 per transaction in payment processing. Those cuts never appear in the headline number.
+
+
 Because they're almost always gross figures drawn from outlier performers. When a headline says "this creator makes $10,000 a month on Patreon," it rarely mentions that Patreon takes between 5% and 12% of that depending on your plan, plus payment processing fees of roughly 2.9% plus $0.30 per transaction for most US cards, [as documented in Patreon's own fee breakdown](https://support.patreon.com/hc/en-us/articles/204606315). Before taxes, that $10,000 becomes closer to $8,700. After self-employment tax (15.3% on net earnings in the US) and income tax, a solo creator in a mid-range bracket might clear $6,000 to $6,500.
 
 That's still real money. But it's not $10,000.
@@ -57,6 +60,9 @@ A more grounded benchmark: creators with 50,000 to 100,000 YouTube subscribers t
 
 ## So what's a realistic income picture for a mid-tier creator?
 
+A YouTube creator with 50,000 subscribers and 200,000 monthly views might gross around $1,800 per month combining AdSense and one sponsorship. After payment fees and self-employment tax of 15.3 percent, that figure drops closer to $1,500, before accounting for equipment, software, or any business expenses.
+
+
 Here's a rough model for a YouTube creator with 50,000 subscribers, 200,000 monthly views, one sponsorship per month, and no other revenue streams:
 
 - YouTube RPM at $4: $800/month gross
@@ -73,6 +79,9 @@ The math isn't discouraging if you go in with accurate expectations. It's only d
 ---
 
 ## Where do the inflated numbers actually come from?
+
+Survivorship bias is the main culprit. Platforms, press releases, and income-reveal videos sample creators who are doing well enough to talk publicly about earnings. Gross revenue is also far easier to quote than net income, and almost no public report adjusts for taxes, fees, or operating costs.
+
 
 Three sources, mostly:
 
