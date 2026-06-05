@@ -60,7 +60,7 @@ A more grounded benchmark: creators with 50,000 to 100,000 YouTube subscribers t
 
 ## So what's a realistic income picture for a mid-tier creator?
 
-A YouTube creator with 50,000 subscribers and 200,000 monthly views might gross around $1,800 per month combining AdSense and one sponsorship. After payment fees and self-employment tax of 15.3 percent, that figure drops closer to $1,500, before accounting for equipment, software, or any business expenses.
+A YouTube creator with 50,000 subscribers and 200,000 monthly views might gross around $1,800 per month [combining AdSense and one sponsorship](/blog/multiple-revenue-streams-how-solo-creators-stack-income-sources/). After payment fees and self-employment tax of 15.3 percent, that figure drops closer to $1,500, before accounting for equipment, software, or any business expenses.
 
 
 Here's a rough model for a YouTube creator with 50,000 subscribers, 200,000 monthly views, one sponsorship per month, and no other revenue streams:
