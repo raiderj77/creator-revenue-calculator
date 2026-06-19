@@ -29,6 +29,9 @@ Most working creators land on Pro. The jump to Premium only makes financial sens
 
 ## What are the payment processing fees on top of that?
 
+Patreon charges a standard rate of 2.9% plus $0.30 per transaction for most payments, or a micropayment rate of 5%. These fees vary depending on the type and size of transactions, adding to your overall costs.
+
+
 Payment processing is a separate fee that Patreon passes through from its payment partners. It is not included in the platform percentage.
 
 [Patreon's fee documentation](https://support.patreon.com/hc/en-us/articles/204606125-Patreon-s-fee-breakdown) outlines two processing rate structures:
@@ -43,6 +46,9 @@ There are also currency conversion fees (typically 2.5%) when patrons pay in cur
 ---
 
 ## What does Patreon actually cost on a real monthly income example?
+
+For a creator with 200 patrons at $5/month each, total gross is $1,000. After an 8% platform fee and payment processing fees of about $89, the net payout is $831, or roughly 16.9% in total fees.
+
 
 Here is the math for a creator on the Pro plan with 200 patrons paying $5/month each. Total gross: $1,000.
 
