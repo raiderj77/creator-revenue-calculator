@@ -25,13 +25,13 @@ According to the [YouTube Help Center](https://support.google.com/youtube/answer
 - Compliance with YouTube's monetization policies
 - Residence in a [country where YPP is available](https://support.google.com/youtube/answer/7101720)
 
-YouTube expanded Shorts monetization through the Shorts ad revenue pool in 2023, and that structure remains in place for 2026. Shorts RPM operates differently from long-form -- more on that below.
+[YouTube expanded Shorts monetization through the Shorts ad revenue pool in 2023](/blog/youtube-shorts-monetization-how-it-works/), and that structure remains in place for 2026. Shorts RPM operates differently from long-form -- more on that below.
 
 One thing creators often miss: meeting the threshold does not guarantee approval. YouTube reviews channels manually before granting monetization, and channels with policy violations, reused content, or thin original material get rejected even if the numbers check out.
 
 ---
 
-## What Is RPM and How Is It Different from CPM?
+## [What Is RPM and How Is It Different from CPM?](/blog/youtube-rpm-vs-cpm-which-metric-actually-predicts-your-payout/)
 
 RPM is what you actually earn per 1,000 views. CPM is what advertisers pay per 1,000 ad impressions. YouTube keeps roughly 45% of ad revenue for long-form content, so your RPM will always be lower than the CPM advertisers are bidding.
 
