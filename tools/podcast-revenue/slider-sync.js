@@ -1,4 +1,4 @@
-// slider-sync.js — Universal slider↔input sync for all calculators
+// slider-sync.js, Universal slider↔input sync for all calculators
 // Drop this file into each tool folder and add a <script> tag BEFORE the tool's own JS
 // <script src="slider-sync.js"></script>
 //
@@ -58,6 +58,6 @@
             numberInput.value = slider.value;
         });
 
-        console.log('Slider sync loaded — ' + sliders.length + ' sliders paired ✓');
+        console.log('Slider sync loaded, ' + sliders.length + ' sliders paired ✓');
     });
 })();

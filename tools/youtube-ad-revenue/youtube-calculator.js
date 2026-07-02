@@ -1,4 +1,4 @@
-// YouTube Ad Revenue Calculator 2026 — FIXED
+// YouTube Ad Revenue Calculator 2026, FIXED
 // Matches actual HTML element IDs in index.html
 
 (function() {
@@ -190,6 +190,6 @@
     // Run initial calculation
     calculate();
 
-    console.log('YouTube Calculator 2026 loaded — IDs matched ✓');
+    console.log('YouTube Calculator 2026 loaded, IDs matched ✓');
 
 })();

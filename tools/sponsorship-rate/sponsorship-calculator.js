@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var negotiationTips = {
         'nano':  'Lead with your engagement rate and niche focus. Nano creators with 5%+ engagement are often more valuable per dollar than mega influencers. Propose a trial post with a performance bonus.',
-        'micro': 'Lead with engagement rate — brands pay more for 5%+ engagement than raw follower count. Package 2–3 deliverables together (post + stories + reel) to increase deal value by 40–60%.',
-        'mid':   'You have negotiating power. Request usage rights fees separately (+25–50%) and always push for 30-day exclusivity limits. Ask for the brand\'s budget first — never anchor low.',
+        'micro': 'Lead with engagement rate, brands pay more for 5%+ engagement than raw follower count. Package 2–3 deliverables together (post + stories + reel) to increase deal value by 40–60%.',
+        'mid':   'You have negotiating power. Request usage rights fees separately (+25–50%) and always push for 30-day exclusivity limits. Ask for the brand\'s budget first, never anchor low.',
         'macro': 'Negotiate usage rights, exclusivity windows, and whitelisting fees as separate line items. A single macro deal should cover 3–5x what a single sponsored post pays. Build long-term ambassador deals.',
         'mega':  'At your level, work with a talent manager. Charge separately for content creation, usage rights, exclusivity, and whitelisting. Ambassador deals (3–6 month contracts) are more valuable than one-offs.'
     };

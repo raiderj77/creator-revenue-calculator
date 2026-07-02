@@ -1,5 +1,5 @@
 /**
- * content-lint.js — Content compliance linter for creatorrevenuecalculator.com
+ * content-lint.js, Content compliance linter for creatorrevenuecalculator.com
  * Scans content/**\/*.{md,mdx} and src/**\/*.{tsx,ts} for:
  *   - Personal name exposure (site owner)
  *   - Guaranteed earnings language (site must show estimates only)
@@ -17,7 +17,7 @@ let failures = 0;
 
 function fail(file, line, msg) {
   const rel = relative(ROOT, file);
-  console.error(`  ❌ ${rel}:${line} — ${msg}`);
+  console.error(`  ❌ ${rel}:${line}, ${msg}`);
   failures++;
 }
 
@@ -57,13 +57,13 @@ function checkPersonalName(file, lines) {
     if (!namePattern.test(lines[i])) continue;
     if (bylineLinePattern.test(lines[i])) continue;
     if (schemaNamePattern.test(lines[i])) continue;
-    fail(file, i + 1, "Personal name detected in body/prose — name is only allowed in byline metadata (author/reviewer frontmatter, Person schema)");
+    fail(file, i + 1, "Personal name detected in body/prose, name is only allowed in byline metadata (author/reviewer frontmatter, Person schema)");
   }
 }
 
 /**
  * Check for guaranteed earnings language.
- * This site shows estimates only — never guaranteed figures.
+ * This site shows estimates only, never guaranteed figures.
  * Skip lines that are clearly negating the claim (e.g. "not guaranteed income").
  */
 function checkGuaranteedEarnings(file, lines) {
@@ -74,7 +74,7 @@ function checkGuaranteedEarnings(file, lines) {
     { pattern: /will make \$/i, label: '"will make $"' },
   ];
 
-  // Lines negating the claim are compliant disclaimers — skip them
+  // Lines negating the claim are compliant disclaimers, skip them
   const negationPattern = /\b(not|no|never|non-|aren't|isn't|aren't|aren't)\b/i;
 
   for (let i = 0; i < lines.length; i++) {
@@ -83,7 +83,7 @@ function checkGuaranteedEarnings(file, lines) {
         fail(
           file,
           i + 1,
-          `Guaranteed earnings language detected (${label}) — use estimate language instead`
+          `Guaranteed earnings language detected (${label}), use estimate language instead`
         );
       }
     }
@@ -115,7 +115,7 @@ for (const file of allFiles) {
 // ---------------------------------------------------------------------------
 console.log("\n" + "=".repeat(50));
 if (failures > 0) {
-  console.error(`\n💥 ${failures} content issue(s) found — fix before deploying.\n`);
+  console.error(`\n💥 ${failures} content issue(s) found, fix before deploying.\n`);
   process.exit(1);
 } else {
   console.log("\n🎉 All content checks passed.\n");

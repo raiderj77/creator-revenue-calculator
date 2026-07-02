@@ -113,7 +113,7 @@ These tools, while essential for a robust creator business, come with their own 
 
 ### Patron Churn
 
-This isn't a direct fee, but patron churn—the rate at which patrons cancel their pledges—is a significant "cost" to a creator's potential revenue. Patreon's monthly billing system means creators are always working to retain existing patrons and acquire new ones. A high churn rate means constantly replacing lost revenue, and the marketing and engagement effort required to do so is a real operational cost. I track churn rates across various creator types, and it’s a constant battle for most.
+This isn't a direct fee, but patron churn, the rate at which patrons cancel their pledges, is a significant "cost" to a creator's potential revenue. Patreon's monthly billing system means creators are always working to retain existing patrons and acquire new ones. A high churn rate means constantly replacing lost revenue, and the marketing and engagement effort required to do so is a real operational cost. I track churn rates across various creator types, and it’s a constant battle for most.
 
 ## Optimizing Your Patreon Strategy to Mitigate Fees
 

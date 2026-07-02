@@ -1,4 +1,4 @@
-/* "Look up your channel" — pulls real public stats via the YouTube Data API and
+/* "Look up your channel", pulls real public stats via the YouTube Data API and
    personalizes the calculator. The API key below is HTTP-referrer-restricted to
    creatorrevenuecalculator.com + limited to the YouTube Data API, so it is safe
    to ship in client code (it will not work from any other domain). */
@@ -72,7 +72,7 @@
         .then(function (d) {
           var it = d && d.items && d.items[0];
           if (!it) {
-            msg.textContent = "Couldn't find that channel — try your @handle.";
+            msg.textContent = "Couldn't find that channel, try your @handle.";
             return;
           }
           var s = it.statistics || {}, sn = it.snippet || {};
@@ -82,16 +82,16 @@
           var months = Math.max(1, (Date.now() - new Date(sn.publishedAt).getTime()) / (1000 * 60 * 60 * 24 * 30.44));
           var monthly = setViews(views / months);
           msg.innerHTML =
-            "<strong>" + (sn.title || "Your channel") + "</strong> — " +
+            "<strong>" + (sn.title || "Your channel") + "</strong>, " +
             fmt(subs) + " subscribers · " + fmt(views) + " total views · " +
             fmt(vids) + " videos.<br>Set Monthly Views to your lifetime average (~" +
-            fmt(monthly) + ") — adjust to your recent traffic for a sharper estimate.";
+            fmt(monthly) + "), adjust to your recent traffic for a sharper estimate.";
           if (typeof window.gtag === "function") {
             window.gtag("event", "channel_lookup", { channel: sn.title || "" });
           }
         })
         .catch(function () {
-          msg.textContent = "Lookup failed — please try again.";
+          msg.textContent = "Lookup failed, please try again.";
         });
     }
 

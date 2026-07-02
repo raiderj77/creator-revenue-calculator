@@ -2,7 +2,7 @@
  * Google Consent Mode v2 + Cookie Consent Banner + GPC Support
  * Creator Revenue Calculator
  * Must load BEFORE any gtag, Google Analytics, or AdSense scripts.
- * GPC (Global Privacy Control) — MODPA §14-4604 compliance, effective April 1 2026
+ * GPC (Global Privacy Control), MODPA §14-4604 compliance, effective April 1 2026
  */
 (function () {
   'use strict';
@@ -39,7 +39,7 @@
       personalization_storage: 'granted'
     });
   }
-  // 'declined' or GPC active keeps everything denied — no update needed
+  // 'declined' or GPC active keeps everything denied, no update needed
 
   // --- Banner logic (runs after DOM ready) ---
   function initBanner() {

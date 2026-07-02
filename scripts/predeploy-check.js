@@ -1,5 +1,5 @@
 /**
- * predeploy-check.js — Empire Build Standards compliance check for creatorrevenuecalculator.com
+ * predeploy-check.js, Empire Build Standards compliance check for creatorrevenuecalculator.com
  * Validates: ads.txt, robots.txt, llms.txt, legal pages, cross-site links, security headers
  * Exit code 1 on failure, 0 on pass.
  */
@@ -47,7 +47,7 @@ check("ads.txt", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 2. robots.txt — AI crawlers + Bingbot crawl-delay
+// 2. robots.txt, AI crawlers + Bingbot crawl-delay
 // ---------------------------------------------------------------------------
 check("robots.txt", () => {
   const p = resolve(ROOT, "robots.txt");
@@ -170,7 +170,7 @@ check("Security headers", () => {
       break;
     }
   }
-  if (!configContent) return fail("No next.config or vercel.json found — security headers not configured");
+  if (!configContent) return fail("No next.config or vercel.json found, security headers not configured");
 
   const requiredHeaders = [
     "Strict-Transport-Security",
@@ -194,7 +194,7 @@ check("Security headers", () => {
 // ---------------------------------------------------------------------------
 console.log("\n" + "=".repeat(50));
 if (failures > 0) {
-  console.error(`\n💥 ${failures} check(s) FAILED — fix before deploying.\n`);
+  console.error(`\n💥 ${failures} check(s) FAILED, fix before deploying.\n`);
   process.exit(1);
 } else {
   console.log("\n🎉 All predeploy checks passed.\n");

@@ -21,7 +21,7 @@ YouTube CPM in 2026 averages around $3.50 globally, but that number tells you al
 
 **CPM** (Cost Per Mille) is what advertisers pay YouTube for every 1,000 ad impressions. **RPM** (Revenue Per Mille) is what you actually receive per 1,000 views after YouTube takes its cut.
 
-YouTube keeps 45% of ad revenue. You keep 55%. That means a $10 CPM translates to roughly $5.50 RPM — and your RPM will always be lower than your CPM because not every view generates an ad impression.
+YouTube keeps 45% of ad revenue. You keep 55%. That means a $10 CPM translates to roughly $5.50 RPM, and your RPM will always be lower than your CPM because not every view generates an ad impression.
 
 The metric that matters for your income is RPM, not CPM. Use our [YouTube Revenue Calculator](https://creatorrevenuecalculator.com) to estimate your monthly earnings based on your niche's RPM range.
 
@@ -54,7 +54,7 @@ The ranges below reflect U.S.-based audiences in 2026. Rates outside the U.S. ar
 
 ## Why Finance Pays 20x More Than Gaming
 
-Finance content earns premium CPMs because advertisers in that space — banks, brokerages, credit card companies, tax software — have massive customer acquisition budgets and high lifetime customer value. When someone clicks an ad for a brokerage account, that advertiser might earn thousands from that customer over a lifetime. They can afford to pay $30–$50 per 1,000 impressions.
+Finance content earns premium CPMs because advertisers in that space, banks, brokerages, credit card companies, tax software, have massive customer acquisition budgets and high lifetime customer value. When someone clicks an ad for a brokerage account, that advertiser might earn thousands from that customer over a lifetime. They can afford to pay $30–$50 per 1,000 impressions.
 
 Gaming advertisers sell lower-margin products to a younger audience. That keeps bids low.
 
@@ -100,7 +100,7 @@ If you publish your biggest content in Q4 and slowest content in Q1, you can sig
 
 For most channels, sponsorships outpay AdSense by 3–5x per view. A finance creator with 100,000 monthly views earning $8 RPM from AdSense takes home $800. The same creator with one mid-roll sponsorship in a top video might earn $2,000–$5,000 from a single deal.
 
-This means niche CPM matters less than you think once you hit 50,000+ monthly views. The real ceiling is sponsorship rates in your niche — and those track even more closely with audience purchasing power than AdSense does.
+This means niche CPM matters less than you think once you hit 50,000+ monthly views. The real ceiling is sponsorship rates in your niche, and those track even more closely with audience purchasing power than AdSense does.
 
 Use our [YouTube Revenue Calculator](https://creatorrevenuecalculator.com) to model both your AdSense income and estimated sponsorship potential based on your subscriber count and niche.
 
