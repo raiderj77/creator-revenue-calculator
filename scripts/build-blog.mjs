@@ -133,9 +133,9 @@ function generatePostHtml(post, bodyHtml) {
     mainEntityOfPage: canonicalUrl,
     image: ogImage,
     author: {
-      "@type": "Organization",
-      name: "Creator Revenue Calculator",
-      url: BASE_URL,
+      "@type": "Person",
+      name: "Jason Ramirez",
+      url: `${BASE_URL}/about.html`,
     },
     publisher: {
       "@type": "Organization",
@@ -391,7 +391,7 @@ ${breadcrumbSchema}
             </nav>
 
             <h1>${titleEsc}</h1>
-            <p class="article-meta">${dateDisplay ? `Published ${dateDisplay} &middot; ` : ""}Creator Revenue Calculator &middot; Built by a digital marketing professional</p>
+            <p class="article-meta">${dateDisplay ? `Published ${dateDisplay} &middot; ` : ""}<a href="/about.html" style="color:inherit;text-decoration:underline;">Jason Ramirez</a></p>
 
             <div class="revenue-disclaimer" role="note">
                 <strong>Revenue Disclaimer:</strong> Revenue estimates are approximations based on publicly available data. Actual earnings may vary significantly.
