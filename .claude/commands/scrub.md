@@ -1,24 +1,25 @@
 # Scrub Command
 
-Use this command to remove invisible AI-generated watermarks and telltale patterns from markdown content files.
+Use this command to clean up formatting artifacts (invisible Unicode characters, em-dash overuse) from markdown content files for readability and consistency with house style.
 
 ## Usage
 `/scrub [file path]`
 
 ## What This Command Does
-1. Removes invisible Unicode watermarks commonly embedded by AI systems
-2. Replaces em-dashes with contextually appropriate punctuation
+1. Removes invisible Unicode formatting artifacts that generation/editing tools sometimes introduce (zero-width spaces, byte-order marks, etc.)
+2. Replaces em-dashes with contextually appropriate punctuation, per house style
 3. Cleans up whitespace and formatting artifacts
-4. Makes content appear naturally human-written
-5. Provides statistics on changes made
+4. Provides statistics on changes made
 
 ## Why This Matters
 
-AI language models often embed invisible Unicode characters as watermarks or identifiers in generated content. Additionally, AI tends to overuse certain punctuation patterns like em-dashes. This command removes these telltale signs to make content appear more naturally written.
+Invisible Unicode characters (zero-width spaces, byte order marks, zero-width non-joiners, word joiners, soft hyphens) sometimes get introduced during content generation or copy/paste and serve no purpose in published content: they can cause subtle rendering or search-indexing issues. Em-dash de-emphasis is a house style preference, not every publication uses them heavily.
+
+**This command is a formatting/readability pass only. It is not a device for concealing how content was produced, and must never be described or used as one.** All AI-assisted content on Empire sites is subject to the disclosure and editorial-review requirements in EMPIRE_BUILD_STANDARDS.md §6.8. Running `/scrub` does not satisfy those requirements and does not change whether a piece needs an AI-disclosure statement.
 
 ## Process
 
-### 1. Watermark Detection & Removal
+### 1. Invisible Character Removal
 
 The scrubber identifies and removes several types of invisible Unicode characters:
 
@@ -33,27 +34,21 @@ The scrubber identifies and removes several types of invisible Unicode character
 
 ### 2. Em-Dash Replacement
 
-AI-generated content tends to overuse em-dashes (—). The scrubber intelligently replaces them based on context:
+The scrubber replaces em-dashes (—) based on context, per house style:
 
 #### Contextual Rules
 - **Attribution**: Replaces with comma when used for quotes or attribution
   - Example: "Text — Author Name" becomes "Text, Author Name"
-
 - **Independent Clauses**: Replaces with semicolon when joining complete thoughts
   - Example: "First clause — second clause" becomes "First clause; second clause"
-
 - **Strong Breaks**: Replaces with period when separating distinct sentences
   - Example: "Sentence one — Sentence two" becomes "Sentence one. Sentence two"
-
 - **Simple Separation**: Replaces with comma for list items or simple separation
   - Example: "Item — detail" becomes "Item, detail"
-
 - **Conjunctive Adverbs**: Replaces with semicolon before words like "however", "therefore", "moreover"
   - Example: "Text — however, more text" becomes "Text; however, more text"
 
 ### 3. Whitespace Normalization
-
-After removing watermarks and replacing em-dashes, the scrubber cleans up formatting:
 
 - **Multiple Spaces**: Reduces multiple consecutive spaces to single space
 - **Punctuation Spacing**: Removes spaces before punctuation marks
@@ -67,7 +62,7 @@ The command displays:
 ### Statistics Report
 ```
 Content Scrubbing Complete:
-  - Unicode watermarks removed: [count]
+  - Unicode formatting artifacts removed: [count]
   - Format-control chars removed: [count]
   - Em-dashes replaced: [count]
 ```
@@ -79,41 +74,27 @@ Content Scrubbing Complete:
 
 ## Integration with Writing Workflow
 
-This command is designed to run automatically after content generation:
+This command runs automatically after content generation:
 
 ### Automatic Execution
-After `/write` or `/rewrite` commands save article files, the scrubber should run automatically on:
-- Main article file in `content/drafts/` directory
-- Any generated content that will be published
-
-### Manual Execution
-You can also manually scrub any markdown file:
-- Testing content cleanliness
-- Cleaning legacy content
-- Processing externally generated content
-- Verifying scrubbing was successful
+After `/write` or `/rewrite` commands save article files, the scrubber should run automatically on the main article file, as a formatting/readability pass. This happens **before**, and independently of, the AI-disclosure decision required by EMPIRE_BUILD_STANDARDS.md §6.8 — running `/scrub` does not remove the need to add a disclosure statement where one is required.
 
 ## Technical Details
 
 ### Implementation
-The scrubbing functionality is implemented in:
 - **Module**: `data_sources/modules/content_scrubber.py`
 - **Main Function**: `scrub_file(file_path, output_path, verbose)`
 - **Class**: `ContentScrubber` with specialized methods for each cleaning operation
 
 ### Idempotency
-The scrubber is idempotent - running it multiple times on already-cleaned content produces no additional changes. This makes it safe to:
-- Run multiple times on same file
-- Include in automated workflows
-- Use as quality check without risk of over-processing
+The scrubber is idempotent, running it multiple times on already-cleaned content produces no additional changes.
 
 ### Safety
 The scrubbing process:
 - Never modifies visible content or meaning
-- Only removes invisible/problematic characters
+- Only removes invisible/formatting-artifact characters
 - Preserves all markdown formatting
 - Maintains document structure
-- Safe for all content types
 
 ## Example Usage
 
@@ -134,23 +115,22 @@ Content​ marketing​ is​ a​ powerful​ strategy—businesses can reach g
 ```
 Content marketing is a powerful strategy; businesses can reach global audiences, and convert more customers.
 ```
-(Clean text with appropriate punctuation)
+(Clean text with house-style punctuation)
 
 ## Quality Standards
 
 Every scrubbed file ensures:
-- Zero invisible Unicode watermarks
-- Natural punctuation patterns
+- Zero invisible Unicode formatting artifacts
+- House-style punctuation
 - Clean whitespace formatting
-- No telltale AI signatures
-- Publish-ready cleanliness
+- Publish-ready formatting
 
 ## Best Practices
 
-1. **Always Scrub Before Publishing**: Make this the final step before any content goes live
-2. **Run on All AI-Generated Content**: Even if you edit the content, scrub it
-3. **Check Statistics**: Review the stats to understand what was cleaned
-4. **Test on Sample Content**: If unsure, scrub a copy first to verify results
-5. **Include in Workflows**: Automate scrubbing in your content pipeline
+1. Run as a formatting pass before publishing, alongside (not instead of) the AI-disclosure and editorial-review requirements in EMPIRE_BUILD_STANDARDS.md §6.8
+2. Run on all generated content as a readability step
+3. Check statistics to understand what was cleaned
+4. Test on sample content if unsure
+5. Include in workflows as a formatting step, not a compliance step
 
-This ensures all published content appears naturally written and free of AI indicators.
+This ensures published content is clean and consistently formatted. **It does not, and must not, substitute for the AI-content-disclosure or editorial-review requirements in EMPIRE_BUILD_STANDARDS.md §6.8.**
