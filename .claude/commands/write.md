@@ -370,7 +370,7 @@ Every article MUST include a **40–60 word direct answer block** beneath each H
 
 ### YMYL Compliance Override
 
-**mindchecktools.com ONLY — append this block to every article before saving:**
+**mindchecktools.com ONLY , append this block to every article before saving:**
 ```
 ---
 *This article is for informational purposes only and does not constitute medical or mental health advice. If you are in crisis, call or text 988 (Suicide & Crisis Lifeline) or text HOME to 741741 (Crisis Text Line). For substance use support, call SAMHSA at 1-800-662-4357.*
@@ -378,7 +378,7 @@ Every article MUST include a **40–60 word direct answer block** beneath each H
 *Reviewed by a Certified Drug and Alcohol Counselor (CADC-II).*
 ```
 
-**medicalbillreader.com ONLY — append this block:**
+**medicalbillreader.com ONLY , append this block:**
 ```
 ---
 *This article is for informational purposes only and does not constitute financial, legal, or medical billing advice. Consult a qualified billing advocate or healthcare attorney for your specific situation.*
@@ -388,7 +388,7 @@ Every article MUST include a **40–60 word direct answer block** beneath each H
 
 ### Attribution Rules (All Sites)
 - **mindchecktools.com**: Use "Reviewed by a Certified Drug and Alcohol Counselor (CADC-II)"
-- **All other sites**: Use generic bylines only — no personal names in author fields
+- **All other sites**: Use generic bylines only , no personal names in author fields
 - **Exception**: mindchecktools.com tool pages (not blog posts) may display "Jason Ramirez, CADC-II" for E-E-A-T
 
 ### Output Path (Empire)
