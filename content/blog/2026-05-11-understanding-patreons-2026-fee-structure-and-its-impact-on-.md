@@ -6,9 +6,12 @@ description: "Patreon's expected 2026 fee changes may lower how much creators ta
 status: published
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
+canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"
 ---
 
 # Understanding Patreon's 2026 Fee Structure and Its Impact on Creator Revenue
+
+> **Update, July 2026:** Patreon now charges a standard 10% platform fee for creator pages launched after August 4, 2025. Pages launched earlier keep the rates from their original plan (5%, 8%, or 12%). Where this article describes tiered plan pricing as current, read it as the legacy structure. Full current details: [How Much Does Patreon Take?](/blog/how-much-does-patreon-take/)
 
 > Patreon's expected 2026 fee changes may lower how much creators take home. Public platform data and industry trends suggest creators could face higher base percentages, new transaction fees, and tiered feature fees. This means creators should rethink their pricing and focus more on giving patrons real value. Creators need to get ready for these changes now.
 

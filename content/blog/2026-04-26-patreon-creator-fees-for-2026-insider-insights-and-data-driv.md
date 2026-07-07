@@ -6,9 +6,12 @@ description: "Creator fees affect how much money creators keep on Patreon. There
 status: published
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
+canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"
 ---
 
 # Patreon Creator Fees for 2026: Insider Insights and Data-Driven Analysis
+
+> **Update, July 2026:** Patreon now charges a standard 10% platform fee for creator pages launched after August 4, 2025. Pages launched earlier keep the rates from their original plan (5%, 8%, or 12%). Where this article describes tiered plan pricing as current, read it as the legacy structure. Full current details: [How Much Does Patreon Take?](/blog/how-much-does-patreon-take/)
 
 > Creator fees affect how much money creators keep on Patreon. There are different fee plans and estimated CPM rates for 2026. Knowing how these fees work can help you earn more. This article explains Patreon creator fees and how they affect your income.
 

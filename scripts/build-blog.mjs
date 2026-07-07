@@ -67,6 +67,12 @@ function getAllPosts() {
 
     // Skip if explicitly not published
     if (data.status && data.status !== "published") continue;
+    // EMPTY-SLUG GUARD: non-ASCII titles slugify to nothing and would
+    // render to blog//index.html (= the blog index) and poison the sitemap.
+    if (!((data.slug) || slugFromFilename(filename)).trim()) {
+      console.warn(`  \u26a0 Skipping ${filename}: empty slug`);
+      continue;
+    }
 
     const slug = (data.slug) || slugFromFilename(filename);
     const dateStr = data.date || "";
@@ -84,6 +90,7 @@ function getAllPosts() {
       title: data.title || "",
       date: dateStr,
       description: data.description || "",
+      canonical: data.canonical || "",
       keywords: parseKeywords(data.keywords),
       content,
       filename,
@@ -112,7 +119,8 @@ async function markdownToHtml(mdContent) {
 // ── Generate post HTML ────────────────────────────────────────────────────────
 
 function generatePostHtml(post, bodyHtml) {
-  const canonicalUrl = `${BASE_URL}/blog/${post.slug}/`;
+  // Frontmatter `canonical:` consolidates near-duplicate posts onto one URL
+  const canonicalUrl = post.canonical || `${BASE_URL}/blog/${post.slug}/`;
   const ogImage = `${BASE_URL}/assets/images/og-image.png`;
   const titleEsc = escapeHtml(post.title);
   const descEsc = escapeHtml(post.description || post.title);
@@ -439,6 +447,7 @@ function updateSitemap(posts) {
 
   let added = 0;
   for (const post of posts) {
+    if (!post.slug) continue;
     const url = `${BASE_URL}/blog/${post.slug}/`;
     if (sitemap.includes(url)) continue;
 
