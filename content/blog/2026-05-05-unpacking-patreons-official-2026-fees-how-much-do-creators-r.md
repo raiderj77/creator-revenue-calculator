@@ -6,9 +6,12 @@ description: "Patreon's 2026 fee structure will likely continue to feature tiere
 status: published
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
+canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"
 ---
 
 # Unpacking Patreon's Official 2026 Fees: How Much Do Creators Really Pay?
+
+> **Update, July 2026:** Patreon now charges a standard 10% platform fee for creator pages launched after August 4, 2025. Pages launched earlier keep the rates from their original plan (5%, 8%, or 12%). Where this article describes tiered plan pricing as current, read it as the legacy structure. Full current details: [How Much Does Patreon Take?](/blog/how-much-does-patreon-take/)
 
 > Patreon's 2026 fee structure will likely continue to feature tiered percentages (e.g., 8-12%) plus payment processing charges (around 2.9% + $0.30 per transaction for US). Based on my analysis, creators with an average pledge of $5 will effectively surrender 15-20% of their gross earnings to Patreon and associated fees, significantly impacting net take-home pay. Understanding these layers is crucial for accurate income projections.
 
