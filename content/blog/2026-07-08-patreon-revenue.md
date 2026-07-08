@@ -13,7 +13,7 @@ Patreon revenue depends on three things: how many fans you have, how much you ch
 
 ## Step 1: What Does Patreon Actually Take From Your Earnings?
 
-Patreon takes a percentage of what you earn, plus payment processing fees. The exact cut depends on which plan you pick. You keep less than 100% of what fans pay, always.
+[Patreon takes a percentage of what you earn, plus payment processing fees.](/blog/how-much-does-patreon-take/) [The exact cut depends on which plan you pick.](/blog/patreon-fees-2026-breakdown-of-platform-and-transaction-cost/) You keep less than 100% of what fans pay, always.
 
 Patreon offers three creator plans, according to Patreon's own help center. The Lite plan takes 8% of your earnings. The Pro plan takes 10%. The Premium plan takes 12%. On top of that, payment processing fees run about 2.9% plus 30 cents per transaction, similar to standard Stripe rates.
 
