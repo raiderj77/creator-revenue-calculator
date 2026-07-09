@@ -15,7 +15,7 @@ Patreon revenue depends on three things: how many fans you have, how much you ch
 
 [Patreon takes a percentage of what you earn, plus payment processing fees.](/blog/how-much-does-patreon-take/) [The exact cut depends on which plan you pick.](/blog/patreon-fees-2026-breakdown-of-platform-and-transaction-cost/) You keep less than 100% of what fans pay, always.
 
-Patreon offers three creator plans, according to Patreon's own help center. The Lite plan takes 8% of your earnings. The Pro plan takes 10%. The Premium plan takes 12%. On top of that, payment processing fees run about 2.9% plus 30 cents per transaction, similar to standard Stripe rates.
+Patreon offers three creator plans, according to Patreon's own help center. Since August 4, 2025, Patreon takes a flat 10% platform fee for new creators. Creators who joined before that date keep their legacy plan rates (5%, 8%, or 12% depending on their old tier). On top of that, payment processing fees run about 2.9% plus 30 cents per transaction, similar to standard Stripe rates.
 
 So if a fan pays $5 a month on the Pro plan, Patreon takes 10%, or 50 cents. Payment processing takes roughly another 44 cents. You keep about $4.06. That's before taxes.
 
@@ -111,7 +111,7 @@ That's a real number you can plan around. It's not a guarantee. It's a starting 
 Most Patreon creators earn well under $200 a month. Platform-wide data shows the median creator has a small patron count, often fewer than 20 supporters, pledging an average of $5-$10 each. Only a small fraction of creators, typically those with existing audiences on YouTube, podcasts, or social media, cross the $1,000/month threshold. Patreon works best as a supplemental income stream layered on top of another platform rather than a standalone business for most niches.
 
 ### How does Patreon calculate how much creators actually get paid?
-Patreon takes a platform fee of 8-12% depending on your plan tier, then payment processing fees of roughly 3-5% are deducted on top. So on $1,000 in pledges, you might net $850-$900 after all fees. Failed or declined payments (common with monthly billing) also reduce actual payouts below pledged totals, typically by another 5-10%, meaning real revenue often lands lower than your dashboard's pledge number suggests.
+Patreon takes a 10% platform fee for creators who joined on or after August 4, 2025 (legacy accounts keep their old 5-12% tier rates), then payment processing fees of roughly 3-5% are deducted on top, plus a 2.5% currency conversion fee where it applies. So on $1,000 in pledges, you might net $850-$900 after all fees. Failed or declined payments (common with monthly billing) also reduce actual payouts below pledged totals, typically by another 5-10%, meaning real revenue often lands lower than your dashboard's pledge number suggests.
 
 ### How many patrons do I need to make $1,000 a month on Patreon?
 At a $5 average pledge, you'd need roughly 235-250 active patrons to net $1,000 after fees and payment failures. At a $10 average, that drops to around 120-130 patrons. The math depends heavily on your tier structure, creators who offer a higher-priced tier ($15-25) with strong perceived value can reach the same revenue with far fewer supporters, which is usually a more sustainable growth path than relying on high patron counts alone.
@@ -141,7 +141,7 @@ Typical conversion rates range from 0.5% to 2% of an active audience. A creator 
       "name": "How does Patreon calculate how much creators actually get paid?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Patreon takes a platform fee of 8-12% depending on your plan tier, then payment processing fees of roughly 3-5% are deducted on top. So on $1,000 in pledges, you might net $850-$900 after all fees. Failed or declined payments (common with monthly billing) also reduce actual payouts below pledged totals, typically by another 5-10%, meaning real revenue often lands lower than your dashboard's pledge number suggests."
+        "text": "Patreon takes a 10% platform fee for creators who joined on or after August 4, 2025 (legacy accounts keep their old 5-12% tier rates), then payment processing fees of roughly 3-5% are deducted on top, plus a 2.5% currency conversion fee where it applies. So on $1,000 in pledges, you might net $850-$900 after all fees. Failed or declined payments (common with monthly billing) also reduce actual payouts below pledged totals, typically by another 5-10%, meaning real revenue often lands lower than your dashboard's pledge number suggests."
       }
     },
     {
