@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-snippet:-1">
-    <script src="/assets/js/theme.js"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="a9a99ccb-4863-4e33-a895-a6d5642f408d" data-blockingmode="auto" type="text/javascript"></script>
+    <script src="/assets/js/theme.js" defer></script>
+
     <title>Sponsorship Rate Calculator 2026 | What to Charge for Brand Deals</title>
     <meta name="description" content="Free sponsorship rate calculator for creators. Find out what to charge brands for YouTube, TikTok, Instagram, and podcast deals. 2026 rates by niche and platform.">
     <meta name="author" content="Built by a digital marketing professional">
@@ -28,7 +26,7 @@
     <link rel="canonical" href="https://creatorrevenuecalculator.com/tools/sponsorship-rate/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+
 
     <!-- Schema.org: WebApplication -->
     <script type="application/ld+json">
@@ -146,25 +144,23 @@
     </script>
 
     <link rel="stylesheet" href="sponsorship-calculator.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Consent Mode v2 (must load before any Google scripts) -->
-    <script src="/assets/js/consent.js"></script>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-144KWSY4TP"></script>
-    <script>gtag('js', new Date()); gtag('config', 'G-144KWSY4TP');</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vsqobt7va0");
-</script>
-</head>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/subset.css">
+
+
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg"></head>
 <body>
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <nav class="navbar">
         <div class="container">
             <a href="/" class="logo"><i class="fas fa-calculator"></i> Creator Revenue Calculator</a>
-            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;">🌙</button>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" type="button">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
@@ -182,7 +178,7 @@
     <main id="main-content">
 
     <!-- Hero Section -->
-        <section class="answer-block" aria-label="Quick Answer" role="region" style="max-width:1200px;margin:1.5rem auto;padding-left:1.5rem;padding-right:1.5rem;">
+        <section class="answer-block" aria-label="Quick Answer" style="max-width:1200px;margin:1.5rem auto;padding-left:1.5rem;padding-right:1.5rem;">
       <div class="answer-block-grid">
         <div class="answer-block-item">
           <span class="answer-block-label">What is this?</span>
@@ -209,14 +205,10 @@
                 <div class="stat"><div class="stat-number">2.0x</div><div class="stat-label">Finance Niche Premium</div></div>
                 <div class="stat"><div class="stat-number">+50%</div><div class="stat-label">High Engagement Boost</div></div>
             </div>
-            <div class="adsense-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7171402107622932"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+
+
+
+
         </div>
     </section>
 
@@ -235,7 +227,7 @@
                         <label for="followers"><i class="fas fa-users"></i> Followers / Subscribers</label>
                         <div class="input-with-slider">
                             <input type="number" id="followers" min="1000" max="10000000" step="1000" value="25000">
-                            <input type="range" id="followers-slider" min="1000" max="10000000" step="1000" value="25000">
+                            <input type="range" id="followers-slider" min="1000" max="10000000" step="1000" value="25000" aria-label="Followers / Subscribers slider">
                         </div>
                         <div class="input-hint">1,000 – 10,000,000</div>
                     </div>
@@ -245,13 +237,13 @@
                         <div class="input-with-slider">
                             <input type="number" id="engagementRate" min="0.1" max="15" step="0.1" value="3.5">
                             <span class="percent">%</span>
-                            <input type="range" id="engagementRate-slider" min="0.1" max="15" step="0.1" value="3.5">
+                            <input type="range" id="engagementRate-slider" min="0.1" max="15" step="0.1" value="3.5" aria-label="Engagement Rate slider">
                         </div>
                         <div class="input-hint">Likes + comments ÷ followers × 100</div>
                     </div>
 
                     <div class="input-group">
-                        <label for="platform"><i class="fas fa-bullhorn"></i> Platform & Content Type</label>
+                        <label for="platform"><i class="fas fa-bullhorn"></i> Platform &amp; Content Type</label>
                         <select id="platform">
                             <optgroup label="YouTube">
                                 <option value="youtube-dedicated">YouTube Dedicated Video (2.0–3.0x)</option>
@@ -263,7 +255,7 @@
                             </optgroup>
                             <optgroup label="Instagram">
                                 <option value="instagram-reel">Instagram Reel (1.5x)</option>
-                                <option value="instagram-feed" selected>Instagram Feed Post (1.0x base)</option>
+                                <option value="instagram-feed" selected="">Instagram Feed Post (1.0x base)</option>
                                 <option value="instagram-story">Instagram Story (0.3x)</option>
                                 <option value="instagram-carousel">Instagram Carousel (0.8x)</option>
                             </optgroup>
@@ -284,7 +276,7 @@
                             <option value="health">💪 Health/Fitness (1.4x)</option>
                             <option value="beauty">✨ Beauty/Skincare (1.3x)</option>
                             <option value="gaming">🎮 Gaming (1.2x)</option>
-                            <option value="lifestyle" selected>🏠 Lifestyle/Fashion (1.0x)</option>
+                            <option value="lifestyle" selected="">🏠 Lifestyle/Fashion (1.0x)</option>
                             <option value="food">🍕 Food/Cooking (1.0x)</option>
                             <option value="travel">✈️ Travel (0.9x)</option>
                         </select>
@@ -294,7 +286,7 @@
                         <label for="dealType"><i class="fas fa-handshake"></i> Deal Type</label>
                         <select id="dealType">
                             <option value="dedicated">Dedicated Post/Video (brand is sole focus, 1.75x)</option>
-                            <option value="integration" selected>Integration/Mention (1.0x base)</option>
+                            <option value="integration" selected="">Integration/Mention (1.0x base)</option>
                             <option value="series">Series, 3+ Posts (0.85x per post discount)</option>
                             <option value="exclusivity">w/ Exclusivity Clause (+35%)</option>
                         </select>
@@ -304,12 +296,12 @@
                         <label for="podcastDownloads"><i class="fas fa-podcast"></i> Monthly Downloads per Episode</label>
                         <div class="input-with-slider">
                             <input type="number" id="podcastDownloads" min="100" max="1000000" step="100" value="10000">
-                            <input type="range" id="podcastDownloads-slider" min="100" max="1000000" step="100" value="10000">
+                            <input type="range" id="podcastDownloads-slider" min="100" max="1000000" step="100" value="10000" aria-label="Monthly Downloads per Episode slider">
                         </div>
                         <div class="input-hint">Average downloads per episode</div>
                     </div>
 
-                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" type="button">
                         <i class="fas fa-calculator"></i> Calculate My Rate
                     </button>
                 </div>
@@ -365,7 +357,7 @@
                         </div>
 
                         <!-- Copy Rate Card -->
-                        <button class="copy-rate-card" id="copyRateCard">
+                        <button class="copy-rate-card" id="copyRateCard" type="button">
                             <i class="fas fa-copy"></i> Copy Rate Card
                         </button>
 
@@ -376,28 +368,14 @@
                 </div>
             </div>
 
-            <div class="adsense-container" style="margin-top:2rem;">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7171402107622932"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+
+
+
+
         </div>
 
-            <!-- Email Capture -->
-            <div class="email-capture" data-source="creatorrevenuecalc-results" data-lead-magnet="revenue-projection-pdf" data-button-text="Send My Projection" role="complementary" aria-label="Save your results">
-              <p class="email-capture-headline">Email me my revenue projection</p>
-              <p class="email-capture-subtext">Get your personalized 12-month forecast plus tips to hit your income goal faster</p>
-              <div class="email-capture-form">
-                <label for="email-capture-input" class="sr-only">Email address</label>
-                <input id="email-capture-input" type="email" placeholder="your@email.com" aria-describedby="email-capture-error">
-                <button type="button">Send My Projection</button>
-              </div>
-              <p class="email-capture-error" id="email-capture-error" role="alert"></p>
-              <p class="email-capture-privacy">No spam. Unsubscribe anytime. We never sell your data.</p>
-            </div>
+
+
 
     </section>
 
@@ -575,7 +553,7 @@
                 <p>TikTok and Instagram Reels earn a 1.5x multiplier due to high organic reach and engagement rates. Instagram Stories, at 0.3x, are priced lower because they disappear after 24 hours and have lower completion rates. Podcasts use an entirely different model, CPM based on downloads rather than follower counts, because listener attention during audio ads is measurably higher than scroll-past rates on social media.</p>
 
                 <h3>What Should a Creator With 200,000 to 250,000 Followers Charge?</h3>
-                <p>Run the numbers through the same formula: (followers &divide; 1,000) &times; engagement rate &times; platform multiplier &times; niche multiplier. At 200,000 to 250,000 followers, the follower term is 200 to 250. With a healthy 3% engagement rate on a 1.0x platform and a 1.0x niche, that puts the base rate around $600 to $750 per post before adjustments. The same account posting a dedicated YouTube video (2.0x to 3.0x multiplier) or working in a high-value niche could land several times higher.</p>
+                <p>Run the numbers through the same formula: (followers ÷ 1,000) × engagement rate × platform multiplier × niche multiplier. At 200,000 to 250,000 followers, the follower term is 200 to 250. With a healthy 3% engagement rate on a 1.0x platform and a 1.0x niche, that puts the base rate around $600 to $750 per post before adjustments. The same account posting a dedicated YouTube video (2.0x to 3.0x multiplier) or working in a high-value niche could land several times higher.</p>
                 <p>At this follower tier, engagement quality matters more than ever. Brands vetting mid-size creators look closely at whether those followers actually interact. An account with 225,000 followers and 1% engagement earns a lower justified rate than one with 120,000 followers and 5% engagement. Use the calculator above with your real engagement rate rather than reaching for a flat market number, and treat the output as your negotiation floor, not the ceiling.</p>
 
                 <h3>Why Niche Matters More Than Follower Count</h3>
@@ -599,7 +577,7 @@
 
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>How much should I charge for a sponsored post?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -610,7 +588,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>What's a good engagement rate for brand deals?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -628,7 +606,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>Why do finance creators charge more for sponsorships?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -639,7 +617,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>Should I offer a discount for multiple sponsored posts?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -650,7 +628,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>What is an exclusivity clause and how much should I charge?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -661,7 +639,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>How do podcast sponsorship rates work?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -677,7 +655,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>When should I raise my sponsorship rates?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -728,16 +706,12 @@
         </div>
     </section>
 
-    <!-- AdSense -->
+
     <div class="container">
-        <div class="adsense-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7171402107622932"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+
+
+
+
     </div>
 
     </main>
@@ -780,6 +754,7 @@
                     <a href="/terms.html" class="footer-link">Terms of Service</a>
                     <a href="/cookies.html" class="footer-link">Cookie Policy</a>
                     <a href="/accessibility.html" class="footer-link">Accessibility</a>
+                    <a href="/affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a>
                 </div>
             </div>
 
@@ -788,18 +763,18 @@
                 <div class="footer-callout-inner">
                     <h3 class="footer-callout-heading">Budget Your Creator Income</h3>
                     <p class="footer-callout-text">Our Bi-Weekly Paycheck Budget Tracker syncs to your actual pay schedule, track income, bills, savings, and spending by paycheck in free Google Sheets.</p>
-                    <a href="https://www.etsy.com/shop/DevelopVault" class="footer-callout-btn" rel="nofollow sponsored noopener noreferrer" target="_blank">Get It on Etsy &#x2192;</a>
+                    <a href="https://www.etsy.com/shop/DevelopVault" class="footer-callout-btn" rel="nofollow sponsored noopener noreferrer" target="_blank">Get It on Etsy →</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Your Friendly Developer. All rights reserved.</p>
+                <p>© 2026 Your Friendly Developer. All rights reserved.</p>
                 <p style="font-size:0.75rem; color:#999; margin-top:0.5rem;">
                     More Free Tools:
-                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> &middot;
-                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> &middot;
-                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> &middot;
-                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> &middot;
-                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> &middot;
+                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> ·
+                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> ·
+                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> ·
+                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> ·
+                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> ·
                     <a href="https://524tracker.com" style="color:#818cf8; text-decoration:none;">524 Tracker</a>
                 </p>
                 <p class="disclaimer">All calculations are estimates based on publicly available platform data and are provided for informational purposes only. Not financial advice. Results may vary.</p>
@@ -809,7 +784,7 @@
 
     <!-- JavaScript -->
     <script src="slider-sync.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js" defer=""></script>
     <script src="sponsorship-calculator.js"></script>
 
     <script>
@@ -827,5 +802,6 @@
     });
     </script>
 
-</body>
-</html>
+
+
+</body></html>

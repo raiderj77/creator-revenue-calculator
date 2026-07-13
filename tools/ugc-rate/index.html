@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-snippet:-1">
-    <script src="/assets/js/theme.js"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="a9a99ccb-4863-4e33-a895-a6d5642f408d" data-blockingmode="auto" type="text/javascript"></script>
+    <script src="/assets/js/theme.js" defer></script>
+
     <title>UGC Creator Rate Calculator 2026 | How Much to Charge for UGC</title>
     <meta name="description" content="Free UGC pricing calculator. Find out what to charge brands for user generated content, videos, photos, and bundles. 2026 rates by experience, usage rights, and deliverables.">
     <meta name="author" content="Built by a digital marketing professional">
@@ -28,7 +26,7 @@
     <link rel="canonical" href="https://creatorrevenuecalculator.com/tools/ugc-rate/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+
 
     <!-- Schema.org: WebApplication -->
     <script type="application/ld+json">
@@ -146,25 +144,23 @@
     </script>
 
     <link rel="stylesheet" href="ugc-calculator.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Consent Mode v2 (must load before any Google scripts) -->
-    <script src="/assets/js/consent.js"></script>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-144KWSY4TP"></script>
-    <script>gtag('js', new Date()); gtag('config', 'G-144KWSY4TP');</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932" crossorigin="anonymous"></script>
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vsqobt7va0");
-</script>
-</head>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/subset.css">
+
+
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg"></head>
 <body>
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <nav class="navbar">
         <div class="container">
             <a href="/" class="logo"><i class="fas fa-calculator"></i> Creator Revenue Calculator</a>
-            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;">🌙</button>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" type="button">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
@@ -182,7 +178,7 @@
     <main id="main-content">
 
     <!-- Hero Section -->
-        <section class="answer-block" aria-label="Quick Answer" role="region" style="max-width:1200px;margin:1.5rem auto;padding-left:1.5rem;padding-right:1.5rem;">
+        <section class="answer-block" aria-label="Quick Answer" style="max-width:1200px;margin:1.5rem auto;padding-left:1.5rem;padding-right:1.5rem;">
       <div class="answer-block-grid">
         <div class="answer-block-item">
           <span class="answer-block-label">What is this?</span>
@@ -209,14 +205,10 @@
                 <div class="stat"><div class="stat-number">2.5x</div><div class="stat-label">Whitelisting Premium</div></div>
                 <div class="stat"><div class="stat-number">0</div><div class="stat-label">Followers Needed</div></div>
             </div>
-            <div class="adsense-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7171402107622932"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+
+
+
+
         </div>
     </section>
 
@@ -234,7 +226,7 @@
                     <div class="input-group">
                         <label for="contentType"><i class="fas fa-photo-video"></i> Content Type</label>
                         <select id="contentType">
-                            <option value="video" selected>Video</option>
+                            <option value="video" selected="">Video</option>
                             <option value="photo">Photo</option>
                             <option value="bundle">Bundle (3 videos + 3 photos)</option>
                         </select>
@@ -244,7 +236,7 @@
                         <label for="videoLength"><i class="fas fa-clock"></i> Video Length</label>
                         <select id="videoLength">
                             <option value="15s">15 seconds (0.75x)</option>
-                            <option value="30s" selected>30 seconds (1.0x base)</option>
+                            <option value="30s" selected="">30 seconds (1.0x base)</option>
                             <option value="60s">60 seconds (1.4x)</option>
                             <option value="2min">2+ minutes (2.0x)</option>
                         </select>
@@ -254,7 +246,7 @@
                         <label for="deliverables"><i class="fas fa-layer-group"></i> Number of Deliverables</label>
                         <div class="input-with-slider">
                             <input type="number" id="deliverables" min="1" max="20" step="1" value="3">
-                            <input type="range" id="deliverables-slider" min="1" max="20" step="1" value="3">
+                            <input type="range" id="deliverables-slider" min="1" max="20" step="1" value="3" aria-label="Number of Deliverables slider">
                         </div>
                         <div class="input-hint">How many videos, photos, or bundles</div>
                     </div>
@@ -262,7 +254,7 @@
                     <div class="input-group">
                         <label for="usageRights"><i class="fas fa-shield-alt"></i> Usage Rights</label>
                         <select id="usageRights">
-                            <option value="organic" selected>Organic Only, brand posts on their feed (1.0x)</option>
+                            <option value="organic" selected="">Organic Only, brand posts on their feed (1.0x)</option>
                             <option value="paid-ads">Paid Ads, brand runs as advertisement (1.75x)</option>
                             <option value="whitelisting">Whitelisting, ads from your account (2.5x)</option>
                         </select>
@@ -273,7 +265,7 @@
                         <label for="revisions"><i class="fas fa-redo"></i> Revisions Included</label>
                         <select id="revisions">
                             <option value="0">0 rounds</option>
-                            <option value="1" selected>1 round (included in base)</option>
+                            <option value="1" selected="">1 round (included in base)</option>
                             <option value="2">2 rounds (+$75/deliverable)</option>
                             <option value="unlimited">Unlimited (+$200/deliverable)</option>
                         </select>
@@ -283,7 +275,7 @@
                         <label for="experience"><i class="fas fa-star"></i> Experience Level</label>
                         <select id="experience">
                             <option value="beginner">Beginner (0–10 projects completed)</option>
-                            <option value="intermediate" selected>Intermediate (10–50 projects)</option>
+                            <option value="intermediate" selected="">Intermediate (10–50 projects)</option>
                             <option value="established">Established (50+ projects)</option>
                         </select>
                     </div>
@@ -291,12 +283,12 @@
                     <div class="input-group">
                         <label for="rush"><i class="fas fa-bolt"></i> Rush Delivery</label>
                         <select id="rush">
-                            <option value="no" selected>No, standard 5–7 day turnaround</option>
+                            <option value="no" selected="">No, standard 5–7 day turnaround</option>
                             <option value="yes">Yes, 24–48 hour delivery (+35%)</option>
                         </select>
                     </div>
 
-                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;">
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" type="button">
                         <i class="fas fa-calculator"></i> Calculate My Rate
                     </button>
                 </div>
@@ -362,7 +354,7 @@
                         </div>
 
                         <!-- Copy Rate Card -->
-                        <button class="copy-rate-card" id="copyRateCard">
+                        <button class="copy-rate-card" id="copyRateCard" type="button">
                             <i class="fas fa-copy"></i> Copy Rate Card
                         </button>
 
@@ -373,28 +365,14 @@
                 </div>
             </div>
 
-            <div class="adsense-container" style="margin-top:2rem;">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7171402107622932"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+
+
+
+
         </div>
 
-            <!-- Email Capture -->
-            <div class="email-capture" data-source="creatorrevenuecalc-results" data-lead-magnet="revenue-projection-pdf" data-button-text="Send My Projection" role="complementary" aria-label="Save your results">
-              <p class="email-capture-headline">Email me my revenue projection</p>
-              <p class="email-capture-subtext">Get your personalized 12-month forecast plus tips to hit your income goal faster</p>
-              <div class="email-capture-form">
-                <label for="email-capture-input" class="sr-only">Email address</label>
-                <input id="email-capture-input" type="email" placeholder="your@email.com" aria-describedby="email-capture-error">
-                <button type="button">Send My Projection</button>
-              </div>
-              <p class="email-capture-error" id="email-capture-error" role="alert"></p>
-              <p class="email-capture-privacy">No spam. Unsubscribe anytime. We never sell your data.</p>
-            </div>
+
+
 
     </section>
 
@@ -591,7 +569,7 @@
 
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>How much should I charge for UGC as a beginner?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -602,7 +580,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>What's the difference between UGC and influencer content?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -613,7 +591,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>Why do usage rights cost extra for UGC?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -629,7 +607,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>What does whitelisting mean in UGC?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -640,7 +618,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>How many revisions should I include in my UGC pricing?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -651,7 +629,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>Should I charge a rush fee for UGC?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -662,7 +640,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" type="button">
                         <span>How much can UGC creators earn per month?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
@@ -710,16 +688,12 @@
         </div>
     </section>
 
-    <!-- AdSense -->
+
     <div class="container">
-        <div class="adsense-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7171402107622932"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+
+
+
+
     </div>
 
     </main>
@@ -763,6 +737,7 @@
                     <a href="/terms.html" class="footer-link">Terms of Service</a>
                     <a href="/cookies.html" class="footer-link">Cookie Policy</a>
                     <a href="/accessibility.html" class="footer-link">Accessibility</a>
+                    <a href="/affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a>
                 </div>
             </div>
 
@@ -771,18 +746,18 @@
                 <div class="footer-callout-inner">
                     <h3 class="footer-callout-heading">Budget Your Creator Income</h3>
                     <p class="footer-callout-text">Our Bi-Weekly Paycheck Budget Tracker syncs to your actual pay schedule, track income, bills, savings, and spending by paycheck in free Google Sheets.</p>
-                    <a href="https://www.etsy.com/shop/DevelopVault" class="footer-callout-btn" rel="nofollow sponsored noopener noreferrer" target="_blank">Get It on Etsy &#x2192;</a>
+                    <a href="https://www.etsy.com/shop/DevelopVault" class="footer-callout-btn" rel="nofollow sponsored noopener noreferrer" target="_blank">Get It on Etsy →</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Your Friendly Developer. All rights reserved.</p>
+                <p>© 2026 Your Friendly Developer. All rights reserved.</p>
                 <p style="font-size:0.75rem; color:#999; margin-top:0.5rem;">
                     More Free Tools:
-                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> &middot;
-                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> &middot;
-                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> &middot;
-                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> &middot;
-                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> &middot;
+                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> ·
+                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> ·
+                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> ·
+                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> ·
+                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> ·
                     <a href="https://524tracker.com" style="color:#818cf8; text-decoration:none;">524 Tracker</a>
                 </p>
                 <p class="disclaimer">All calculations are estimates based on publicly available industry data and are provided for informational purposes only. Not financial advice. Results may vary.</p>
@@ -792,7 +767,7 @@
 
     <!-- JavaScript -->
     <script src="slider-sync.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js" defer=""></script>
     <script src="ugc-calculator.js"></script>
 
     <script>
@@ -810,5 +785,6 @@
     });
     </script>
 
-</body>
-</html>
+
+
+</body></html>

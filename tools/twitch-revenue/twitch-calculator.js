@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const streamHoursInput = document.getElementById('streamHours');
     const gameCategorySelect = document.getElementById('gameCategory');
     const calculateBtn = document.getElementById('calculateBtn');
-    
+
     // Result elements
     const subscriptionsResult = document.getElementById('subscriptions');
     const subscriptionsDetail = document.getElementById('subscriptionsDetail');
@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const sponsorshipsDetail = document.getElementById('sponsorshipsDetail');
     const totalEarningsResult = document.getElementById('totalEarnings');
     const totalDetail = document.getElementById('totalDetail');
-    
+
     // Breakdown elements
     const perSubscriberResult = document.getElementById('perSubscriber');
     const per100BitsResult = document.getElementById('per100Bits');
     const perHourResult = document.getElementById('perHour');
     const twitchFeeResult = document.getElementById('twitchFee');
-    
+
     // CPM rates by game category (2026 data)
     // CPM rates by game category (2026 data)
     const cpmRates = {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'sports': 1.0,
         'casino': 1.3
     };
-    
+
     // Sponsorship rates by average viewers (2026 data)
     const sponsorshipRates = {
         '50': 50,    // 50-100 viewers
@@ -47,22 +47,22 @@ document.addEventListener('DOMContentLoaded', function() {
         '5000': 10000, // 5,000-10,000 viewers
         '10000': 25000 // 10,000+ viewers
     };
-    
+
     // Sponsorship rates by average viewers (2026 data)
     initFAQ();
-    
+
     // Set up event listeners
     calculateBtn.addEventListener('click', calculateEarnings);
-    
+
     // Calculate on input changes
     [avgViewersInput, subscribersInput, bitsPerMonthInput, streamHoursInput, gameCategorySelect].forEach(input => {
         input.addEventListener('input', calculateEarnings);
         input.addEventListener('change', calculateEarnings);
     });
-    
+
     // Initial calculation
     calculateEarnings();
-    
+
     // Main calculation function
     function calculateEarnings() {
         // Get input values
@@ -71,38 +71,38 @@ document.addEventListener('DOMContentLoaded', function() {
         const bitsPerMonth = parseInt(bitsPerMonthInput.value) || 0;
         const streamHoursPerWeek = parseInt(streamHoursInput.value) || 0;
         const gameCategory = gameCategorySelect.value;
-        
+
         // Calculate monthly stream hours (assuming 4 weeks per month)
         const streamHoursPerMonth = streamHoursPerWeek * 4;
-        
+
         // 1. Subscription Revenue
         // Tier distribution: 90% Tier 1, 8% Tier 2, 2% Tier 3
         const tier1Subs = subscribers * 0.9;
         const tier2Subs = subscribers * 0.08;
         const tier3Subs = subscribers * 0.02;
-        
+
         // Streamer gets 50% of subscription price
         const subscriptionRevenue = (tier1Subs * 2.50) + (tier2Subs * 5.00) + (tier3Subs * 12.50);
-        
+
         // 2. Bits Revenue
-        // Streamer gets ~$0.80 per 100 bits (after Twitch fee)
-        const bitsRevenue = (bitsPerMonth / 100) * 0.80;
-        
+        // Twitch credits creators $0.01 per Bit used in chat.
+        const bitsRevenue = bitsPerMonth * 0.01;
+
         // 3. Ad Revenue
         // Get CPM rate for selected game category
         const cpmRate = cpmRates[gameCategory]?.avg || 5;
-        
+
         // Calculate ad impressions
         // Assumptions: 3 minutes of ads per hour, 1 ad per minute, 1 viewer = 1 impression
         const adsPerHour = 3; // 3 minutes of ads per hour
         const impressionsPerHour = avgViewers * adsPerHour;
         const monthlyImpressions = impressionsPerHour * streamHoursPerMonth;
-        
+
         // Calculate ad revenue (CPM = cost per 1000 impressions)
         // Streamer gets 55% of ad revenue (standard Twitch split)
         const grossAdRevenue = (monthlyImpressions / 1000) * cpmRate;
         const adRevenue = grossAdRevenue * 0.55; // 55% to streamer
-        
+
         // 4. Sponsorship Revenue
         let sponsorshipRevenue = 0;
         if (avgViewers >= 10000) {
@@ -118,24 +118,24 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (avgViewers >= 50) {
             sponsorshipRevenue = sponsorshipRates['50'];
         }
-        
+
         // Adjust sponsorship based on game category
         const categoryMultiplier = getCategoryMultiplier(gameCategory);
         sponsorshipRevenue *= categoryMultiplier;
-        
+
         // 5. Calculate totals
         const totalRevenue = subscriptionRevenue + bitsRevenue + adRevenue + sponsorshipRevenue;
-        
+
         // Update UI with results
         updateResults(subscriptionRevenue, bitsRevenue, adRevenue, sponsorshipRevenue, totalRevenue);
-        
+
         // Update breakdown stats
         updateBreakdownStats(subscriptionRevenue, bitsRevenue, totalRevenue, subscribers, bitsPerMonth, streamHoursPerMonth);
-        
+
         // Update revenue split visualization
         updateRevenueSplitVisualization(subscriptionRevenue, bitsRevenue, adRevenue, sponsorshipRevenue);
     }
-    
+
     function updateResults(subscriptionRevenue, bitsRevenue, adRevenue, sponsorshipRevenue, totalRevenue) {
         // Format currency
         const formatCurrency = (amount) => {
@@ -146,60 +146,60 @@ document.addEventListener('DOMContentLoaded', function() {
                 maximumFractionDigits: 0
             }).format(amount);
         };
-        
+
         // Update main results
         subscriptionsResult.textContent = formatCurrency(subscriptionRevenue);
         subscriptionsDetail.textContent = `${Math.round(subscribersInput.value || 0)} subscribers`;
-        
+
         bitsResult.textContent = formatCurrency(bitsRevenue);
         bitsDetail.textContent = `${Math.round(bitsPerMonthInput.value || 0)} bits/month`;
-        
+
         adRevenueResult.textContent = formatCurrency(adRevenue);
         adRevenueDetail.textContent = `${gameCategorySelect.options[gameCategorySelect.selectedIndex].text}`;
-        
+
         sponsorshipsResult.textContent = formatCurrency(sponsorshipRevenue);
         sponsorshipsDetail.textContent = `${Math.round(avgViewersInput.value || 0)} avg viewers`;
-        
+
         totalEarningsResult.textContent = formatCurrency(totalRevenue);
         totalDetail.textContent = 'Net monthly earnings';
     }
-    
+
     function updateBreakdownStats(subscriptionRevenue, bitsRevenue, totalRevenue, subscribers, bitsPerMonth, streamHoursPerMonth) {
         // Calculate per-subscriber earnings
         const perSubscriber = subscribers > 0 ? subscriptionRevenue / subscribers : 0;
         perSubscriberResult.textContent = `$${perSubscriber.toFixed(2)}`;
-        
+
         // Calculate per-100-bits earnings
         const per100Bits = bitsPerMonth > 0 ? (bitsRevenue / bitsPerMonth) * 100 : 0;
         per100BitsResult.textContent = `$${per100Bits.toFixed(2)}`;
-        
+
         // Calculate per-hour earnings
         const perHour = streamHoursPerMonth > 0 ? totalRevenue / streamHoursPerMonth : 0;
         perHourResult.textContent = `$${perHour.toFixed(2)}`;
-        
+
         // Twitch fee is fixed at 50% for most streamers
-        twitchFeeResult.textContent = '50%';
+        twitchFeeResult.textContent = '50% baseline';
     }
-    
+
     function updateRevenueSplitVisualization(subscriptionRevenue, bitsRevenue, adRevenue, sponsorshipRevenue) {
         // Calculate total gross revenue (before Twitch fees)
-        const totalGross = subscriptionRevenue * 2 + bitsRevenue * 2 + adRevenue / 0.55;
-        
+        const totalGross = subscriptionRevenue * 2 + bitsRevenue + adRevenue / 0.55 + sponsorshipRevenue;
+
         // Calculate streamer share percentage
         const streamerShare = ((subscriptionRevenue + bitsRevenue + adRevenue + sponsorshipRevenue) / totalGross) * 100;
         const twitchShare = 100 - streamerShare;
-        
+
         // Update visualization
         const streamerBar = document.querySelector('.split-creator');
         const twitchBar = document.querySelector('.split-twitch');
-        
+
         if (streamerBar) streamerBar.style.width = `${streamerShare}%`;
         if (streamerBar) streamerBar.querySelector('span').textContent = `Streamer: ${Math.round(streamerShare)}%`;
-        
+
         if (twitchBar) twitchBar.style.width = `${twitchShare}%`;
         if (twitchBar) twitchBar.querySelector('span').textContent = `Twitch: ${Math.round(twitchShare)}%`;
     }
-    
+
     function getCategoryMultiplier(category) {
         // Sponsorship multiplier based on game category
         const multipliers = {
@@ -210,28 +210,28 @@ document.addEventListener('DOMContentLoaded', function() {
             'sports': 1.0,
             'casino': 1.3
         };
-        
+
         return multipliers[category] || 1.0;
     }
-    
+
     function initFAQ() {
         const faqQuestions = document.querySelectorAll('.faq-question');
-        
+
         faqQuestions.forEach(question => {
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const isActive = answer.classList.contains('active');
-                
+
                 // Close all other FAQ answers
                 document.querySelectorAll('.faq-answer').forEach(ans => {
                     ans.classList.remove('active');
                 });
-                
+
                 // Remove active class from all questions
                 document.querySelectorAll('.faq-question').forEach(q => {
                     q.classList.remove('active');
                 });
-                
+
                 // Toggle current FAQ
                 if (!isActive) {
                     answer.classList.add('active');
@@ -239,34 +239,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         // Open first FAQ by default
         if (faqQuestions.length > 0) {
             faqQuestions[0].click();
         }
     }
-    
+
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     if (mobileMenuToggle && navMenu) {
         mobileMenuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            mobileMenuToggle.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
+            mobileMenuToggle.innerHTML = navMenu.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
                 : '<i class="fas fa-bars"></i>';
         });
     }
-    
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 // Close mobile menu if open
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     navMenu.classList.remove('active');
                     mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
-                
+
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'

@@ -228,16 +228,6 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 .share-btn.facebook { background: #1877f2; color: white; }
 .share-btn.reddit { background: #ff4500; color: white; }
 
-/* --- AdSense placeholders --- */
-.adsense-container {
-    margin: var(--spacing-md) 0;
-    text-align: center;
-    border: 2px dashed var(--gray-light);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    background: var(--light);
-    grid-column: 1 / -1;
-}
 .adsense-sidebar { grid-column: auto; }
 .ad-placeholder { color: var(--gray); font-family: monospace; }
 .ad-placeholder p { color: var(--red); font-weight: 600; margin-bottom: 0.25rem; }

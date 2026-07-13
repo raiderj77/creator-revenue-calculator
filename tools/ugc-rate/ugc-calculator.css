@@ -281,17 +281,6 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 .disclaimer p { margin: 0; }
 .disclaimer i { color: var(--brand); }
 
-/* --- AdSense --- */
-.adsense-container {
-    margin: var(--spacing-md) 0;
-    text-align: center;
-    border: 2px dashed var(--gray-light);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    background: var(--light);
-    grid-column: 1 / -1;
-}
-
 /* --- Benchmark Data Table --- */
 .benchmark-section { background: var(--light); }
 .benchmark-table-container { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
