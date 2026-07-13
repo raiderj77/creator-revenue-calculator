@@ -108,10 +108,10 @@ check("llms.txt", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 4. Legal pages (privacy, terms, about, contact)
+// 4. Trust and legal pages
 // ---------------------------------------------------------------------------
 check("Legal pages", () => {
-  const pages = ["privacy", "terms", "about", "contact"];
+  const pages = ["privacy", "terms", "about", "contact", "cookies", "accessibility", "affiliate-disclosure"];
   for (const page of pages) {
     const html = resolve(ROOT, `${page}.html`);
     const tsx = resolve(ROOT, `src/app/${page}/page.tsx`);

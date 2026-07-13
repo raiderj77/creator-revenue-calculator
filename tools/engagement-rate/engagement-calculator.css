@@ -609,15 +609,6 @@ a:hover { color: var(--brand-dark); }
     transform: translateY(-1px);
 }
 
-/* --- ADSENSE --- */
-.adsense-container {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md);
-    text-align: center;
-    min-height: 100px;
-}
-
 /* --- FOOTER --- */
 .footer {
     background: var(--dark);

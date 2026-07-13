@@ -224,20 +224,10 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
     transition: opacity 0.2s;
 }
 .share-btn:hover { opacity: 0.85; }
-.share-btn.twitter { background: #1da1f2; color: white; }
-.share-btn.facebook { background: #1877f2; color: white; }
-.share-btn.reddit { background: #ff4500; color: white; }
+.share-btn.twitter { background: #0b6fa4; color: white; }
+.share-btn.facebook { background: #0b57d0; color: white; }
+.share-btn.reddit { background: #b32d00; color: white; }
 
-/* --- AdSense placeholders --- */
-.adsense-container {
-    margin: var(--spacing-md) 0;
-    text-align: center;
-    border: 2px dashed var(--gray-light);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    background: var(--light);
-    grid-column: 1 / -1;
-}
 .adsense-sidebar { grid-column: auto; }
 .ad-placeholder { color: var(--gray); font-family: monospace; }
 .ad-placeholder p { color: var(--red); font-weight: 600; margin-bottom: 0.25rem; }
@@ -353,7 +343,7 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 }
 .gear-category {
     font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.05em; color: var(--red);
+    letter-spacing: 0.05em; color: var(--red-dark);
     margin-bottom: 0.5rem;
 }
 .gear-card h3 { color: var(--dark); margin-bottom: 0.5rem; font-size: 1.05rem; }

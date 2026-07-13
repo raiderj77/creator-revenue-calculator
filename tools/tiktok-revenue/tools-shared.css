@@ -190,12 +190,6 @@ section { padding: var(--spacing-xl) 0; }
 }
 .gear-disclaimer i { color: var(--brand); }
 
-/* --- AdSense --- */
-.adsense-container {
-    margin: var(--spacing-md) 0; text-align: center;
-    border: 2px dashed var(--gray-light); border-radius: var(--radius-md);
-    padding: var(--spacing-md); background: var(--light);
-}
 .ad-placeholder { color: var(--gray); font-family: monospace; }
 .ad-placeholder p { font-size: 1rem; color: var(--brand); font-weight: 600; margin-bottom: 0.25rem; }
 .ad-code { background: white; padding: var(--spacing-sm); border-radius: var(--radius-sm); font-size: 0.75rem; text-align: left; overflow-x: auto; border: 1px solid var(--border); }
