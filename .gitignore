@@ -6,3 +6,4 @@ data_sources/cache/
 content/drafts/
 content/review-required/
 node_modules/
+.vercel
