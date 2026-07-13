@@ -24,6 +24,7 @@ const privacy = read("privacy.html");
 const cookies = read("cookies.html");
 const affiliateDisclosure = read("affiliate-disclosure.html");
 const vercel = read("vercel.json");
+const vercelConfig = JSON.parse(vercel);
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -34,7 +35,11 @@ pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync
 pass((sitemap.match(/<url>/g) || []).length === 22, "sitemap contains the 13 calculators and nine core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
-pass(vercel.includes('"source": "/blog/:path*"'), "retired article routes permanently redirect to calculators");
+pass(
+  vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
+  "retired article routes with and without trailing slashes permanently redirect to calculators",
+);
+pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site root instead of the verification-files directory");
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
 pass(!fs.existsSync(path.join(root, "llms-full.txt")) && !read("llms.txt").includes("/blog/"), "AI discovery does not promote the retired article archive");
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");

@@ -1,7 +1,10 @@
 {
+  "outputDirectory": ".",
   "redirects": [
     { "source": "/blog", "destination": "/#tools", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/#tools", "permanent": true }
+    { "source": "/blog/", "destination": "/#tools", "permanent": true },
+    { "source": "/blog/:path*", "destination": "/#tools", "permanent": true },
+    { "source": "/blog/:path*/", "destination": "/#tools", "permanent": true }
   ],
   "headers": [
     {
