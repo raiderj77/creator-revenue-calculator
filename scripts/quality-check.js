@@ -25,6 +25,11 @@ const cookies = read("cookies.html");
 const affiliateDisclosure = read("affiliate-disclosure.html");
 const vercel = read("vercel.json");
 const vercelConfig = JSON.parse(vercel);
+const siteStyles = read("assets/css/style.css");
+const mobileStyles = siteStyles.slice(
+  siteStyles.indexOf("@media (max-width: 768px)"),
+  siteStyles.indexOf("@media (max-width: 480px)"),
+);
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -50,6 +55,8 @@ pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(p
 pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
 pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"), "Instagram calculator does not invent a universal Reels payout");
 pass(read("tools/twitch-revenue/twitch-calculator.js").includes("bitsPerMonth * 0.01"), "Twitch Bits use the published one-cent-per-Bit creator baseline");
+pass(/\.about-stats\s*{\s*grid-template-columns:\s*1fr;\s*}/.test(mobileStyles), "homepage trust statistics collapse to one column on phones");
+pass(/\.stat-content\s*{[^}]*min-width:\s*0;/s.test(siteStyles), "homepage statistic text can shrink without forcing horizontal scrolling");
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
