@@ -553,6 +553,7 @@ p {
 
 .stat-content {
     flex: 1;
+    min-width: 0;
 }
 
 .stat-number {
@@ -815,6 +816,14 @@ p {
 
     .tools-grid {
         grid-template-columns: 1fr;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-width: 0;
     }
 
     .cta-actions {
