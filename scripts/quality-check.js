@@ -37,12 +37,17 @@ pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunc
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
-pass((sitemap.match(/<url>/g) || []).length === 22, "sitemap contains the 13 calculators and nine core pages");
+pass((sitemap.match(/<url>/g) || []).length === 21, "sitemap contains the 13 calculators and eight current core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
+pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
 pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
   "retired article routes with and without trailing slashes permanently redirect to calculators",
+);
+pass(
+  vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/guide") && redirect.destination === "/#tools").length === 3,
+  "unverified paid guide routes permanently redirect to the free calculators",
 );
 pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site root instead of the verification-files directory");
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
