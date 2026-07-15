@@ -9,13 +9,13 @@ author: "Creatorrevenuecalculator"
 
 # Patreon Income Tracker: 7 Mistakes That Wreck Your Numbers
 
-Most Patreon income trackers fail for one reason: creators track the wrong number. They track gross pledges, not what actually lands in the bank. Patreon takes a flat 10% platform fee for new creators (joined on or after August 4, 2025), plus payment processing fees and sometimes a 2.5% currency conversion fee. Track net, not gross.
+Most Patreon income trackers fail for one reason: creators track the wrong number. They track gross pledges, not what actually lands in the bank. Patreon takes a flat 10% platform fee for new creators (joined on or after August 4, 2025), plus [payment processing fees and sometimes a 2.5% currency conversion fee](/blog/patreon-revenue/). Track net, not gross.
 
 ## Am I Tracking the Wrong Number From the Start?
 
 Yes, if you're tracking total pledges instead of actual payout. Your Patreon dashboard shows pledge totals. That's not your income. Your real income is what hits your bank account after fees.
 
-This mistake happens because Patreon's main dashboard is built to show growth, not take-home pay. It's motivating to watch pledges climb. But pledges are a promise, not a payment. Real income comes after three things get subtracted.
+This mistake happens because [Patreon's main dashboard is built to show growth, not take-home pay](/blog/how-much-does-patreon-take/). It's motivating to watch pledges climb. But pledges are a promise, not a payment. Real income comes after three things get subtracted.
 
 First, the platform fee. As of August 4, 2025, Patreon charges a flat 10% fee to all creators who join on or after that date. If you joined before that date, you may still be on legacy pricing: Lite (5%), Pro (8%), or Premium (12%), based on your old plan. Check your settings page to confirm which one applies to you. Don't assume.
 
