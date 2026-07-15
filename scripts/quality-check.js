@@ -56,6 +56,10 @@ pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice a
 pass(/Google Analytics and Microsoft Clarity are disabled/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/does not intentionally set advertising or analytics cookies/i.test(cookies), "cookie notice accurately states current behavior");
 pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
+pass(!/AdSense (?:typically )?represents (?:only )?30 to 50 percent/i.test(publicText), "homepage does not invent a universal AdSense revenue mix");
+pass(!/brand sponsorships \(\$500 to \$50,000\+/i.test(publicText), "homepage does not publish an unsupported sponsorship range");
+pass(!/sponsorship rates typically range from \$10 to \$50/i.test(publicText), "homepage does not publish an unsupported sponsorship CPM");
+pass(indexOfOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
 pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
 pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"), "Instagram calculator does not invent a universal Reels payout");
@@ -87,3 +91,7 @@ for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
 
 if (failures) process.exit(1);
 console.log("\nAll product quality checks passed.");
+
+function indexOfOfficialEarningsOverview() {
+  return read("index.html").includes("https://support.google.com/youtube/answer/72902");
+}
