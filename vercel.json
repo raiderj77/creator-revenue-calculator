@@ -1,6 +1,9 @@
 {
   "outputDirectory": ".",
   "redirects": [
+    { "source": "/guide", "destination": "/#tools", "permanent": true },
+    { "source": "/guide/", "destination": "/#tools", "permanent": true },
+    { "source": "/guide/index.html", "destination": "/#tools", "permanent": true },
     { "source": "/blog", "destination": "/#tools", "permanent": true },
     { "source": "/blog/", "destination": "/#tools", "permanent": true },
     { "source": "/blog/:path*", "destination": "/#tools", "permanent": true },
