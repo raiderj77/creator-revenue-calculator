@@ -30,6 +30,8 @@ const mobileStyles = siteStyles.slice(
   siteStyles.indexOf("@media (max-width: 768px)"),
   siteStyles.indexOf("@media (max-width: 480px)"),
 );
+const themeScript = read("assets/js/theme.js");
+const printStyles = read("assets/css/print-results.css");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -66,6 +68,10 @@ pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"
 pass(read("tools/twitch-revenue/twitch-calculator.js").includes("bitsPerMonth * 0.01"), "Twitch Bits use the published one-cent-per-Bit creator baseline");
 pass(/\.about-stats\s*{\s*grid-template-columns:\s*1fr;\s*}/.test(mobileStyles), "homepage trust statistics collapse to one column on phones");
 pass(/\.stat-content\s*{[^}]*min-width:\s*0;/s.test(siteStyles), "homepage statistic text can shrink without forcing horizontal scrolling");
+pass((publicText.match(/class="results-card"/g) || []).length === 13, "all 13 calculator result cards remain present");
+pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
+pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
+pass(printStyles.includes(".copy-result") && printStyles.includes(".share-buttons"), "print output excludes copy and sharing controls");
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
