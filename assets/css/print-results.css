@@ -1,0 +1,55 @@
+.print-results-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #166534;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.print-results-button:hover {
+  background: #14532d;
+  transform: translateY(-1px);
+}
+
+.print-results-button:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+@media print {
+  body:has([data-printable-results]) * {
+    visibility: hidden;
+  }
+
+  body:has([data-printable-results]) [data-printable-results],
+  body:has([data-printable-results]) [data-printable-results] * {
+    visibility: visible;
+  }
+
+  body:has([data-printable-results]) [data-printable-results] {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  .print-results-button,
+  .copy-result,
+  .share-buttons {
+    display: none !important;
+  }
+}
