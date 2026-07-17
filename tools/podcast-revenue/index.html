@@ -6,10 +6,9 @@
     <script src="/assets/js/theme.js" defer></script>
 
     <title>Podcast Revenue Calculator 2026 | Free</title>
-    <meta name="description" content="Free podcast revenue calculator. Estimate ad, sponsorship, and Patreon earnings based on your downloads. 2026 CPM rates. No signup required.">
-    <meta name="author" content="Built by a digital marketing professional">
+    <meta name="description" content="Free podcast revenue scenario calculator. Enter downloads, ad slots, contract CPM, creator share, and an optional signed-sponsor CPM. No signup required.">
     <meta property="og:title" content="Podcast Revenue Calculator">
-    <meta property="og:description" content="Free podcast revenue calculator. Estimate earnings from host-read ads, sponsorships, Patreon, and affiliate marketing based on your download numbers.">
+    <meta property="og:description" content="Model podcast ad inventory with your downloads, contract CPM, creator share, and optional signed-sponsor rate.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +19,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Podcast Revenue Calculator",
-      "description": "Free podcast revenue calculator. Estimate earnings from host-read ads, sponsorships, and affiliate marketing based on your download numbers.",
+      "description": "Model podcast ad inventory with explicit downloads, contract CPM, creator share, and optional signed-sponsor inputs.",
       "url": "https://creatorrevenuecalculator.com/tools/podcast-revenue/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
@@ -31,13 +30,12 @@
         "priceCurrency": "USD"
       },
       "author": {
-        "@type": "Person",
-        "name": "Built by a digital marketing professional",
-        "jobTitle": "Digital Marketing Professional",
-        "url": "https://creatorrevenuecalculator.com/about"
+        "@type": "Organization",
+        "name": "Creator Revenue Calculator",
+        "url": "https://creatorrevenuecalculator.com/about.html"
       },
       "datePublished": "2025-01-01",
-      "dateModified": "2026-04-26"
+      "dateModified": "2026-07-16"
     }
     </script>
 
@@ -131,28 +129,28 @@
       <div class="answer-block-grid">
         <div class="answer-block-item">
           <span class="answer-block-label">What is this?</span>
-          <p class="answer-block-text">A free calculator that estimates podcast revenue from sponsorships, dynamic ads, and listener support using 2026 CPM rates.</p>
+          <p class="answer-block-text">A free scenario calculator for podcast ad inventory and an optional signed direct-sponsor rate.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Who needs it?</span>
-          <p class="answer-block-text">Podcasters who want to estimate monetization potential or negotiate fair sponsorship rates based on download numbers.</p>
+          <p class="answer-block-text">Podcasters who have a CPM quote or contract share and want to model the monthly math.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Bottom line</span>
-          <p class="answer-block-text">Enter your monthly downloads to see revenue estimates, podcast ad CPMs range from $15-50 depending on niche.</p>
+          <p class="answer-block-text">Use your own offer terms. The calculator does not invent a niche CPM or assume that a sponsor is booked.</p>
         </div>
       </div>
-      <time datetime="2026-04-15" class="answer-block-updated">Last updated: April 15, 2026</time>
+      <time datetime="2026-07-16" class="answer-block-updated">Last updated: July 16, 2026</time>
     </section>
 
     <section class="hero">
         <div class="container">
             <h1>Podcast Revenue Calculator</h1>
-            <p class="subtitle">Find out how much your podcast can earn from ads, sponsorships, and listener support, based on 2026 CPM rates.</p>
+            <p class="subtitle">Model ad inventory with your downloads, CPM, contract share, and optional signed-sponsor rate.</p>
             <div class="hero-stats">
-                <div class="stat"><div class="stat-number">$18–$50</div><div class="stat-label">CPM Range</div></div>
-                <div class="stat"><div class="stat-number">5K+</div><div class="stat-label">Downloads for Sponsors</div></div>
-                <div class="stat"><div class="stat-number">70%</div><div class="stat-label">Host-Read Premium</div></div>
+                <div class="stat"><div class="stat-number">Your</div><div class="stat-label">Contract CPM</div></div>
+                <div class="stat"><div class="stat-number">Your</div><div class="stat-label">Ad Inventory</div></div>
+                <div class="stat"><div class="stat-number">Your</div><div class="stat-label">Creator Share</div></div>
             </div>
 
 
@@ -182,16 +180,19 @@
                         <input type="number" id="episodesPerMonth" min="1" max="30" value="4">
                     </div>
                     <div class="input-group">
-                        <label for="niche"><i class="fas fa-tags"></i> Podcast Niche</label>
-                        <select id="niche">
-                            <option value="business">💼 Business &amp; Entrepreneurship</option>
-                            <option value="finance">💰 Finance &amp; Investing</option>
-                            <option value="tech">💻 Technology</option>
-                            <option value="health">⚕️ Health &amp; Wellness</option>
-                            <option value="education" selected="">🎓 Education</option>
-                            <option value="trueCrime">🔍 True Crime</option>
-                            <option value="comedy">😂 Comedy</option>
-                        </select>
+                        <label for="adCpm"><i class="fas fa-file-contract"></i> Contract Ad CPM ($)</label>
+                        <input type="number" id="adCpm" min="0" max="1000" step="0.01" value="25">
+                        <div class="input-hint">Replace the planning default with a real insertion order or marketplace offer.</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="creatorShare"><i class="fas fa-percentage"></i> Creator Share After Fees (%)</label>
+                        <input type="number" id="creatorShare" min="0" max="100" step="0.1" value="75">
+                        <div class="input-hint">Use the share in your hosting, network, or sales agreement.</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="sponsorCpm"><i class="fas fa-handshake"></i> Net Direct-Sponsor CPM ($, optional)</label>
+                        <input type="number" id="sponsorCpm" min="0" max="1000" step="0.01" value="0">
+                        <div class="input-hint">Leave at zero unless a direct sponsor is actually included in your scenario.</div>
                     </div>
                     <div class="input-group">
                         <label for="preRollAds"><i class="fas fa-ad"></i> Pre-Roll Ads Per Episode</label>
@@ -244,7 +245,7 @@
                             <div class="breakdown-item"><div class="breakdown-label">Per ad slot:</div><div class="breakdown-value" id="perAdSlot">$0.00</div></div>
                             <div class="breakdown-item"><div class="breakdown-label">Monthly downloads:</div><div class="breakdown-value" id="monthlyDownloads">0</div></div>
                         </div>
-                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> Estimates based on 2026 podcast CPM data. Actual earnings vary.</p></div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> This is a planning scenario, not a forecast. Replace every default with your actual agreement terms.</p></div>
                     </div>
                 </div>
             </div>
@@ -260,72 +261,17 @@
 
     </div></section>
 
-<em>Tip: Focus on growing to 5,000+ downloads per episode - this unlocks most premium opportunities.</em><p></p>
-
-
-
-                <div class="guide-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Join Ad Networks &amp; Platforms</h3>
-                        <p>Start earning through established networks:</p>
-                        <ul>
-                            <li><strong>Apply to networks:</strong> Spotify, Apple, Megaphone, Acast</li>
-                            <li><strong>Understand fees:</strong> Most take 20-30% of revenue</li>
-                            <li><strong>Set ad rates:</strong> Based on downloads and niche</li>
-                            <li><strong>Choose ad formats:</strong> Pre-roll, mid-roll, post-roll</li>
-                            <li><strong>Track performance:</strong> Use network analytics</li>
-                        </ul>
-                        <p><em>Tip: Start with smaller networks (Podcorn, AdvertiseCast) before applying to premium networks.</em></p>
-                    </div>
-                </div>
-
-                <div class="guide-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Secure Direct Sponsorships</h3>
-                        <p>Move beyond networks for higher earnings:</p>
-                        <ul>
-                            <li><strong>Build media kit:</strong> Stats, demographics, past sponsors</li>
-                            <li><strong>Reach out to brands:</strong> Those aligned with your niche</li>
-                            <li><strong>Offer host-read ads:</strong> Command 30-50% premium</li>
-                            <li><strong>Create packages:</strong> Episode sponsorships, series sponsors</li>
-                            <li><strong>Track results:</strong> Provide brands with performance data</li>
-                        </ul>
-                        <p><em>Tip: Direct sponsorships typically pay 20-40% more than network rates.</em></p>
-                    </div>
-                </div>
-
-                <div class="guide-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Diversify Revenue Streams</h3>
-                        <p>Build sustainable podcast business:</p>
-                        <ul>
-                            <li><strong>Affiliate marketing:</strong> 10-30% commissions on products</li>
-                            <li><strong>Premium content:</strong> Bonus episodes, early access</li>
-                            <li><strong>Merchandise:</strong> Branded products for superfans</li>
-                            <li><strong>Live events:</strong> Meetups, conferences, workshops</li>
-                            <li><strong>Consulting/services:</strong> Leverage podcast authority</li>
-                        </ul>
-                        <p><em>Tip: The most successful podcasters have 3+ revenue streams.</em></p>
-                    </div>
-                </div>
-
-
-
-
-    <!-- Podcaster Gear Section -->
+    <!-- Methodology -->
     <section id="methodology" class="info-section">
         <div class="container">
             <h2>How the podcast revenue estimate works</h2>
-            <p>Podcast advertising is usually planned from downloads per episode rather than total lifetime downloads. This calculator models pre-roll, mid-roll, and post-roll inventory separately, then adds a direct-sponsorship scenario. The advertising formula is <strong>downloads per episode ÷ 1,000 × modeled CPM × placement multiplier × ad slots × episodes per month × creator share</strong>.</p>
+            <p>Podcast advertising is often planned from downloads per episode rather than total lifetime downloads. This calculator models pre-roll, mid-roll, and post-roll inventory separately. The advertising formula is <strong>downloads per episode ÷ 1,000 × your CPM × placement multiplier × ad slots × episodes per month × your creator share</strong>. A direct-sponsor line is added only when you enter a nonzero net sponsor CPM.</p>
 
             <h3>Built-in planning assumptions</h3>
-            <p>The model applies different placement multipliers because a host-read mid-roll is usually more prominent than a short post-roll. It also applies a 25% network or platform allowance to modeled ad inventory and a 10% allowance to the direct-sponsorship line. These are not universal fees. Replace the output with your host's actual contract terms before making a budget.</p>
+            <p>The model uses transparent planning weights of 0.8 for pre-roll, 1.0 for mid-roll, and 0.7 for post-roll. Those weights are assumptions, not universal market rules. The CPM and creator share are explicit inputs so you can replace the defaults with an insertion order, marketplace offer, or hosting agreement. The optional sponsor input is a net CPM after any costs you expect to pay.</p>
 
             <h3>Worked example</h3>
-            <p>A show with 5,000 downloads per episode and four episodes per month enters a $25 CPM with one pre-roll and one mid-roll. Using the calculator's 0.8 pre-roll and 1.2 mid-roll multipliers, gross ad inventory is $250 per episode. After the modeled 25% allowance, that is $187.50 per episode or <strong>$750 per month</strong>. The separate direct-sponsor scenario adds about $585 under its assumptions, for a combined scenario of $1,335. A show without a signed direct sponsor should exclude that second line.</p>
+            <p>A show with 5,000 downloads per episode and four episodes per month enters a $25 CPM, a 75% creator share, one pre-roll, and one mid-roll. The modeled monthly ad inventory is <strong>$675</strong>: 5 × $25 × (0.8 + 1.0) × 4 × 0.75. With the sponsor CPM left at zero, the calculator adds no sponsorship revenue.</p>
 
             <h3>How much do podcasts make per 1,000 downloads?</h3>
             <p>There is no single podcast RPM. Placement, format, audience geography, niche, campaign targeting, host endorsement, sell-through, make-goods, and whether the sale is direct or programmatic all change the result. Use the CPM from an actual insertion order or marketplace offer when available.</p>
@@ -344,22 +290,22 @@
             </ul>
 
             <h3>Limitations</h3>
-            <p>The output does not predict sell-through, dynamic insertion eligibility, skipped ads, make-goods, regional pricing, taxes, refunds, payment processing, exclusivity, production cost, or contract minimums. The sponsor line assumes a booking that may never occur. Use this as a scenario builder and compare a potential host-read deal with the <a href="/tools/sponsorship-rate/">sponsorship rate calculator</a>.</p>
+            <p>The output does not predict sell-through, dynamic insertion eligibility, skipped ads, make-goods, regional pricing, taxes, refunds, payment processing, exclusivity, production cost, or contract minimums. It does not include a sponsor unless you enter one. Use this as a scenario builder and compare a potential host-read deal with the <a href="/tools/sponsorship-rate/">sponsorship rate calculator</a>.</p>
         </div>
     </section>
 
     <section id="resources" class="resources-section">
         <div class="container">
             <div class="section-header">
-                <h2><i class="fas fa-shopping-cart"></i> Essential Podcasting Gear 2026</h2>
-                <p class="subtitle">Recommended equipment to improve your podcast audio quality and production value</p>
+                <h2><i class="fas fa-shopping-cart"></i> Podcasting gear to compare</h2>
+                <p class="subtitle">Affiliate-linked examples. Check the current product page, compatibility, price, and reviews before buying.</p>
             </div>
 
             <div class="gear-grid">
                 <div class="gear-card">
                     <div class="gear-category">🎤 Audio</div>
                     <h3>Blue Yeti USB Microphone</h3>
-                    <p class="gear-description">Professional USB condenser microphone with multiple pattern selection for crystal clear podcast audio.</p>
+                    <p class="gear-description">USB condenser microphone with selectable pickup patterns and onboard gain control.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-microphone"></i> Cardioid</span>
                         <span class="spec"><i class="fas fa-sliders-h"></i> Gain Control</span>
@@ -372,7 +318,7 @@
                 <div class="gear-card">
                     <div class="gear-category">📹 Camera</div>
                     <h3>Logitech C920x HD Pro Webcam</h3>
-                    <p class="gear-description">Full HD 1080p webcam for video podcasting, live streaming, and recording video content.</p>
+                    <p class="gear-description">Webcam marketed for 1080p video calls, streaming, and recorded video.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-video"></i> 1080p</span>
                         <span class="spec"><i class="fas fa-lightbulb"></i> Auto Light</span>
@@ -385,7 +331,7 @@
                 <div class="gear-card">
                     <div class="gear-category">💡 Lighting</div>
                     <h3>Neewer Ring Light Kit</h3>
-                    <p class="gear-description">18-inch ring light with stand for professional studio lighting in video podcasts and recordings.</p>
+                    <p class="gear-description">Ring-light kit with a stand and adjustable output for desk or video setups.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-lightbulb"></i> 5500K</span>
                         <span class="spec"><i class="fas fa-sliders-h"></i> Dimmable</span>
@@ -398,7 +344,7 @@
                 <div class="gear-card">
                     <div class="gear-category">💾 Storage</div>
                     <h3>SanDisk 128GB SD Card</h3>
-                    <p class="gear-description">High-speed SD card for storing podcast recordings, audio files, and production assets.</p>
+                    <p class="gear-description">128GB SD card; confirm its speed rating and device compatibility on the current listing.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-hdd"></i> 128GB</span>
                         <span class="spec"><i class="fas fa-tachometer-alt"></i> 170MB/s</span>
@@ -411,7 +357,7 @@
                 <div class="gear-card">
                     <div class="gear-category">🎧 Monitoring</div>
                     <h3>Sony MDR-7506 Headphones</h3>
-                    <p class="gear-description">Professional studio headphones for accurate audio monitoring during podcast recording and editing.</p>
+                    <p class="gear-description">Closed-back wired headphones commonly marketed for studio monitoring.</p>
                     <div class="gear-specs">
                         <span class="spec"><i class="fas fa-headphones"></i> Closed-back</span>
                         <span class="spec"><i class="fas fa-volume-up"></i> 40mm Drivers</span>

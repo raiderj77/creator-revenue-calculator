@@ -32,6 +32,10 @@ const mobileStyles = siteStyles.slice(
 );
 const themeScript = read("assets/js/theme.js");
 const printStyles = read("assets/css/print-results.css");
+const home = read("index.html");
+const mainScript = read("assets/js/main.js");
+const podcastPage = read("tools/podcast-revenue/index.html");
+const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -72,6 +76,12 @@ pass((publicText.match(/class="results-card"/g) || []).length === 13, "all 13 ca
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
 pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
 pass(printStyles.includes(".copy-result") && printStyles.includes(".share-buttons"), "print output excludes copy and sharing controls");
+pass(!mainScript.includes("card.style.opacity = '0'"), "homepage calculator cards remain visible without scroll-triggered JavaScript");
+pass(!/Free, accurate revenue calculators|real 2026 data from actual creators|Always free/.test(home), "homepage avoids unsupported accuracy, sourcing, and future-price claims");
+pass(podcastPage.includes('id="sponsorCpm"') && podcastPage.includes('value="0"'), "podcast calculator excludes direct sponsorship revenue by default");
+pass(podcastPage.includes('id="adCpm"') && podcastPage.includes('id="creatorShare"'), "podcast calculator asks for explicit contract CPM and creator share inputs");
+pass(!podcastScript.includes("nicheRates") && !podcastScript.includes("updateRevenueSplitVisualization"), "podcast calculator does not invent niche rates or access a missing split chart");
+pass(podcastScript.includes("monthlyAdSlots = slotsPerEpisode * episodesPerMonth"), "podcast per-slot output uses the monthly number of ad placements");
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");

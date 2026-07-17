@@ -59,30 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Tool card animations
-    const toolCards = document.querySelectorAll('.tool-card');
-    
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    toolCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(card);
-    });
-    
     // Update copyright year
     const copyrightElement = document.querySelector('.footer-bottom p');
     if (copyrightElement && copyrightElement.textContent.includes('2024')) {
