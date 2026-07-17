@@ -757,6 +757,11 @@ p {
     margin-bottom: var(--spacing-xs);
 }
 
+.footer-bottom p,
+.footer-bottom .disclaimer {
+    color: #d1d5db;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     h1 {
