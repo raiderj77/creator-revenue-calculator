@@ -1,0 +1,117 @@
+/* Shared WCAG fixes verified across every sitemap route. */
+.gear-category,
+.tier-card-header {
+    color: #374151 !important;
+}
+
+.results-section > p,
+.sublabel,
+.subtitle,
+.benchmark-label {
+    color: #4b5563 !important;
+}
+
+.footer,
+footer {
+    --accessible-footer-link: #e5e7eb;
+}
+
+.footer a,
+footer a,
+.footer-link {
+    color: var(--accessible-footer-link) !important;
+}
+
+.footer p,
+footer p,
+.footer-bottom,
+.footer-bottom p,
+.footer-bottom .disclaimer {
+    color: #d1d5db !important;
+}
+
+footer .disclaimer {
+    background: transparent !important;
+    color: #d1d5db !important;
+}
+
+main a[href^="mailto:"] {
+    color: #065f46 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.15em;
+}
+
+.result-value,
+.positive .factor-value,
+.fee-row .value.net,
+td[style*="#22c55e"] {
+    color: #166534 !important;
+}
+
+.rate-tier.recommended .rate-tier-label,
+.rate-tier.recommended .rate-tier-value,
+.guide-step em {
+    color: #92400e !important;
+}
+
+.fee-row .value.negative,
+.value.negative,
+.churn-value,
+td[style*="#ef4444"] {
+    color: #b91c1c !important;
+}
+
+.value.net {
+    color: #166534 !important;
+}
+
+.input-section-label,
+.paid-subs-badge,
+#paidSubs {
+    color: #92400e !important;
+}
+
+#learn a:not(.related-card),
+#faq a {
+    color: #1d4ed8 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.15em;
+}
+
+.btn-primary,
+#calculateBtn.btn-primary {
+    background: #92400e !important;
+    color: #ffffff !important;
+}
+
+.skip-nav {
+    color: #111827 !important;
+}
+
+.tier-badge {
+    background: #166534 !important;
+    color: #ffffff !important;
+}
+
+#benchmarkMultiple {
+    color: #166534 !important;
+}
+
+.formula-text {
+    color: #92400e !important;
+}
+
+.benchmark-table thead .tier-low { color: #fca5a5 !important; }
+.benchmark-table thead .tier-avg { color: #fcd34d !important; }
+.benchmark-table thead .tier-good { color: #86efac !important; }
+.benchmark-table thead .tier-exc { color: #93c5fd !important; }
+.benchmark-table tbody .tier-low { color: #b91c1c !important; }
+.benchmark-table tbody .tier-avg { color: #92400e !important; }
+.benchmark-table tbody .tier-good { color: #166534 !important; }
+.benchmark-table tbody .tier-exc { color: #1d4ed8 !important; }
+
+.cpm-table-container:focus,
+.benchmark-table-container:focus {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
