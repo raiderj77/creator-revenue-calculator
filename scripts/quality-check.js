@@ -36,6 +36,7 @@ const home = read("index.html");
 const mainScript = read("assets/js/main.js");
 const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
+const patreonPage = read("tools/patreon-revenue/index.html");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -82,6 +83,11 @@ pass(podcastPage.includes('id="sponsorCpm"') && podcastPage.includes('value="0"'
 pass(podcastPage.includes('id="adCpm"') && podcastPage.includes('id="creatorShare"'), "podcast calculator asks for explicit contract CPM and creator share inputs");
 pass(!podcastScript.includes("nicheRates") && !podcastScript.includes("updateRevenueSplitVisualization"), "podcast calculator does not invent niche rates or access a missing split chart");
 pass(podcastScript.includes("monthlyAdSlots = slotsPerEpisode * episodesPerMonth"), "podcast per-slot output uses the monthly number of ad placements");
+for (let tier = 1; tier <= 4; tier += 1) {
+  pass(patreonPage.includes(`id="tierName${tier}" aria-label="Tier ${tier} name"`), `Patreon tier ${tier} name has an accessible name`);
+  pass(patreonPage.includes(`id="tierPrice${tier}" aria-label="Tier ${tier} monthly price in dollars"`), `Patreon tier ${tier} price has an accessible name`);
+  pass(patreonPage.includes(`id="tierPatrons${tier}" aria-label="Tier ${tier} patron count"`), `Patreon tier ${tier} patron count has an accessible name`);
+}
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
