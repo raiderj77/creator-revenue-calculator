@@ -38,6 +38,7 @@ const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
+const youtubePage = read("tools/youtube-ad-revenue/index.html");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -64,6 +65,15 @@ pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice a
 pass(/Google Analytics and Microsoft Clarity are disabled/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/does not intentionally set advertising or analytics cookies/i.test(cookies), "cookie notice accurately states current behavior");
 pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
+for (const retiredAsin of ["B07NQKQN7H", "B086T4KMNX", "B08F7PTF53"]) {
+  pass(!publicText.includes(retiredAsin), `retired Amazon product ${retiredAsin} is not linked`);
+}
+for (const currentAsin of ["B00N1YPXW2", "B085TFF7M1", "B01LXDNNBW"]) {
+  pass(youtubePage.includes(currentAsin), `verified Amazon product ${currentAsin} remains linked from the YouTube tool`);
+}
+for (const retiredUrl of ["elgato.com/en/partner", "nzxt.com/partner"]) {
+  pass(!publicText.includes(retiredUrl), `retired external destination ${retiredUrl} is not linked`);
+}
 pass(!/AdSense (?:typically )?represents (?:only )?30 to 50 percent/i.test(publicText), "homepage does not invent a universal AdSense revenue mix");
 pass(!/brand sponsorships \(\$500 to \$50,000\+/i.test(publicText), "homepage does not publish an unsupported sponsorship range");
 pass(!/sponsorship rates typically range from \$10 to \$50/i.test(publicText), "homepage does not publish an unsupported sponsorship CPM");
