@@ -97,7 +97,7 @@ open index.html
 
 ### Current
 1. **Amazon Associates:** Product affiliate links in YouTube calculator
-   - Associates ID: `ytearnings-20`
+   - Associates ID: `creatorcalc-20`
    - Products: Creator gear (microphones, cameras, lighting, etc.)
    - Commission: 1-10% depending on product category
 

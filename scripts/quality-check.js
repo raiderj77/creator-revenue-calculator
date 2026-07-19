@@ -65,6 +65,8 @@ pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice a
 pass(/Google Analytics and Microsoft Clarity are disabled/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/does not intentionally set advertising or analytics cookies/i.test(cookies), "cookie notice accurately states current behavior");
 pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
+pass(!publicText.includes("tag=ytearnings-20"), "creator pages do not reuse FiberTools' Amazon tracking ID");
+pass((publicText.match(/tag=creatorcalc-20/g) || []).length === 26, "all 26 creator-equipment links use the dedicated Amazon tracking ID");
 for (const retiredAsin of ["B07NQKQN7H", "B086T4KMNX", "B08F7PTF53"]) {
   pass(!publicText.includes(retiredAsin), `retired Amazon product ${retiredAsin} is not linked`);
 }

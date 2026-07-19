@@ -33,7 +33,7 @@
 - Mobile: follow Better Ads Standard
 - Google Consent Mode v2: configure all 6 parameters (ad_storage, ad_user_data, ad_personalization, analytics_storage, functionality_storage, personalization_storage)
 - For EEA/UK visitors: Google-certified CMP with IAB TCF v2.2 required
-- AdSense + Amazon Associates (ytearnings-20) for creator equipment. Affiliate links: `rel="nofollow sponsored"`.
+- AdSense + Amazon Associates (creatorcalc-20) for creator equipment. Affiliate links: `rel="nofollow sponsored"`.
 
 ## 2. SEO — Google Search Essentials
 
