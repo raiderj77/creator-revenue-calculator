@@ -41,7 +41,7 @@ The Empire is a portfolio of 7 websites: 5 utility tools (ad-supported via Googl
 - **Package Manager**: npm
 - **AdSense Publisher ID**: `ca-pub-7171402107622932`
 - **ads.txt content**: `google.com, pub-7171402107622932, DIRECT, f08c47fec0942fa0`
-- **Amazon Associates ID**: `ytearnings-20`
+- **Amazon Associates ID**: `creatorcalc-20`
 - **Attribution Rule**: NEVER use the site owner's personal name anywhere in public-facing content, code, comments, or metadata. Use generic professional credentials instead.
 
 ### Compliance Tiers
@@ -127,7 +127,7 @@ Every Empire site must have these pages:
 ### creatorrevenuecalculator.com
 - **Type**: Utility (ad-supported) | **Tier**: Standard
 - **Purpose**: YouTube and creator platform income estimation
-- **Monetization**: AdSense + Amazon Associates (`ytearnings-20`) for creator equipment
+- **Monetization**: AdSense + Amazon Associates (`creatorcalc-20`) for creator equipment
 - **Attribution**: "Built by a digital marketing professional"
 - **Schema Types**: Organization, WebSite, WebApplication, BreadcrumbList
 - **Required Disclaimer**: "Revenue estimates are approximations based on publicly available CPM data and industry averages. Actual earnings may vary significantly."
@@ -258,8 +258,8 @@ public/
 - **YMYL sites**: Consider implementing non-personalized ads on health screening and medical bill analysis pages to avoid privacy concerns with sensitive health data.
 
 ### Amazon Associates
-- Tag: `ytearnings-20`
-- Used on: fibertools.app, creatorrevenuecalculator.com
+- FiberTools tag: `ytearnings-20`
+- Creator Revenue Calculator tag: `creatorcalc-20`
 - All affiliate links must include `rel="nofollow sponsored"` attribute
 
 ---
