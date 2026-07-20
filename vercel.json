@@ -1,6 +1,13 @@
 {
   "outputDirectory": ".",
   "redirects": [
+    { "source": "/blog/how-much-do-patreon-creators-make-2026", "destination": "/tools/patreon-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-patreon-creators-make-2026/", "destination": "/tools/patreon-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-youtubers-with-100k-subscribers-make.html", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-newsletter-writers-make", "destination": "/tools/newsletter-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-newsletter-writers-make/", "destination": "/tools/newsletter-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-tiktok-creators-make-2026", "destination": "/tools/tiktok-revenue/", "permanent": true },
+    { "source": "/blog/how-much-do-tiktok-creators-make-2026/", "destination": "/tools/tiktok-revenue/", "permanent": true },
     { "source": "/guide", "destination": "/#tools", "permanent": true },
     { "source": "/guide/", "destination": "/#tools", "permanent": true },
     { "source": "/guide/index.html", "destination": "/#tools", "permanent": true },

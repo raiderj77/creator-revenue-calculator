@@ -54,6 +54,17 @@ pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
   "retired article routes with and without trailing slashes permanently redirect to calculators",
 );
+const searchIntentRedirects = {
+  "/blog/how-much-do-patreon-creators-make-2026": "/tools/patreon-revenue/",
+  "/blog/how-much-do-youtubers-with-100k-subscribers-make.html": "/tools/youtube-ad-revenue/",
+  "/blog/how-much-do-newsletter-writers-make": "/tools/newsletter-revenue/",
+  "/blog/how-much-do-tiktok-creators-make-2026": "/tools/tiktok-revenue/",
+};
+for (const [source, destination] of Object.entries(searchIntentRedirects)) {
+  const redirectIndex = vercelConfig.redirects?.findIndex((redirect) => redirect.source === source && redirect.destination === destination && redirect.permanent === true) ?? -1;
+  const fallbackIndex = vercelConfig.redirects?.findIndex((redirect) => redirect.source === "/blog/:path*") ?? -1;
+  pass(redirectIndex >= 0 && redirectIndex < fallbackIndex, `${source} permanently redirects to its maintained calculator before the generic blog fallback`);
+}
 pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/guide") && redirect.destination === "/#tools").length === 3,
   "unverified paid guide routes permanently redirect to the free calculators",
