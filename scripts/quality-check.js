@@ -40,7 +40,11 @@ const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 
-pass(!/(adsbygoogle|adsense-container|googlesyndication|googletagmanager|google-analytics|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "ads and tracking are absent from public product pages and deployment policy");
+pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
+pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
+pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
+pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
+pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
 pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunctional email collection UI is absent");
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
@@ -73,8 +77,8 @@ pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site roo
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
 pass(!fs.existsSync(path.join(root, "llms-full.txt")) && !read("llms.txt").includes("/blog/"), "AI discovery does not promote the retired article archive");
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");
-pass(/Google Analytics and Microsoft Clarity are disabled/i.test(privacy), "privacy notice accurately states analytics status");
-pass(/does not intentionally set advertising or analytics cookies/i.test(cookies), "cookie notice accurately states current behavior");
+pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
+pass(/script is not downloaded/i.test(cookies), "cookie notice accurately states denied-consent behavior");
 pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
 pass(!publicText.includes("tag=ytearnings-20"), "creator pages do not reuse FiberTools' Amazon tracking ID");
 pass((publicText.match(/tag=creatorcalc-20/g) || []).length === 26, "all 26 creator-equipment links use the dedicated Amazon tracking ID");
