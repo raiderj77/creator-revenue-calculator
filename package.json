@@ -11,8 +11,7 @@
     "build": "npm run lint:predeploy && npm run lint:content && npm run lint:html && npm run test:quality"
   },
   "private": true,
-  "dependencies": {},
   "devDependencies": {
-    "html-validate": "10.4.0"
+    "html-validate": "11.5.6"
   }
 }
