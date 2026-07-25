@@ -94,7 +94,7 @@ for (const retiredUrl of ["elgato.com/en/partner", "nzxt.com/partner"]) {
 pass(!/AdSense (?:typically )?represents (?:only )?30 to 50 percent/i.test(publicText), "homepage does not invent a universal AdSense revenue mix");
 pass(!/brand sponsorships \(\$500 to \$50,000\+/i.test(publicText), "homepage does not publish an unsupported sponsorship range");
 pass(!/sponsorship rates typically range from \$10 to \$50/i.test(publicText), "homepage does not publish an unsupported sponsorship CPM");
-pass(indexOfOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
+pass(hasOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
 pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
 pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"), "Instagram calculator does not invent a universal Reels payout");
@@ -147,6 +147,18 @@ for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
 if (failures) process.exit(1);
 console.log("\nAll product quality checks passed.");
 
-function indexOfOfficialEarningsOverview() {
-  return read("index.html").includes("https://support.google.com/youtube/answer/72902");
+function hasOfficialEarningsOverview() {
+  const hrefs = [...read("index.html").matchAll(/\bhref="([^"]+)"/gi)].map((match) => match[1]);
+  return hrefs.some((href) => {
+    try {
+      const url = new URL(href);
+      return url.protocol === "https:"
+        && url.hostname === "support.google.com"
+        && url.pathname === "/youtube/answer/72902"
+        && url.search === ""
+        && url.hash === "";
+    } catch {
+      return false;
+    }
+  });
 }
