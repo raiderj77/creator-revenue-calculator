@@ -38,6 +38,8 @@ const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
+const sponsorshipPage = read("tools/sponsorship-rate/index.html");
+const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
@@ -94,6 +96,29 @@ for (const retiredUrl of ["elgato.com/en/partner", "nzxt.com/partner"]) {
 pass(!/AdSense (?:typically )?represents (?:only )?30 to 50 percent/i.test(publicText), "homepage does not invent a universal AdSense revenue mix");
 pass(!/brand sponsorships \(\$500 to \$50,000\+/i.test(publicText), "homepage does not publish an unsupported sponsorship range");
 pass(!/sponsorship rates typically range from \$10 to \$50/i.test(publicText), "homepage does not publish an unsupported sponsorship CPM");
+pass(
+  ["baseFee", "deliverables", "productionCosts", "usageRightsPct", "exclusivityPct", "rushPct"]
+    .every((id) => sponsorshipPage.includes(`id="${id}"`)),
+  "sponsorship worksheet asks for explicit creator fees, costs, and contract adjustments",
+);
+pass(
+  sponsorshipPage.includes("This tool does not supply a market rate")
+    && sponsorshipPage.includes("based only on your entries, not a market-rate recommendation"),
+  "sponsorship worksheet clearly labels results as user-supplied scenarios",
+);
+pass(
+  !/followers.{0,12}1,000|per 1K followers|finance niche premium|real 2026 rate data|\$18 CPM|\$25 CPM|\$50\+ CPM/i.test(sponsorshipPage),
+  "sponsorship page does not publish unsupported follower, niche, or podcast benchmarks",
+);
+pass(
+  !/platformData|nicheData|tierBenchmarks|engagementMultiplier|podcastDownloads/i.test(sponsorshipScript),
+  "sponsorship calculation contains no hidden platform, niche, engagement, or podcast multipliers",
+);
+pass(
+  sponsorshipScript.includes("contentSubtotal = baseFee * deliverables")
+    && sponsorshipScript.includes("quoteTotal = contentSubtotal + addOns"),
+  "sponsorship quote total is calculated only from visible user inputs",
+);
 pass(hasOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
 pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
