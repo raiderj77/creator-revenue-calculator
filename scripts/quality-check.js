@@ -41,6 +41,7 @@ const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
 const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
+const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
@@ -120,6 +121,45 @@ pass(
   "sponsorship quote total is calculated only from visible user inputs",
 );
 pass(hasOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
+pass(
+  youtubePage.includes('id="views"')
+    && youtubePage.includes('id="ad-revenue-per-thousand"')
+    && youtubePage.includes('id="ad-revenue-per-thousand" min="0" max="100000" step="0.01" value="0"'),
+  "YouTube calculator requires explicit views and a zero-default post-share revenue assumption",
+);
+pass(
+  youtubePage.includes("The calculator does not supply a CPM, RPM, niche rate, or forecast")
+    && youtubePage.includes("No niche, location, engagement, video-length, or claimed industry rate is added behind the scenes"),
+  "YouTube calculator clearly labels results as user-supplied scenarios",
+);
+pass(
+  !/actual creator reports|2026 CPM|CPM rates by niche|finance.{0,20}\$|gaming.{0,20}\$|global average|most creators earn|typical earnings/i.test(youtubePage),
+  "YouTube page does not publish unsupported CPM, niche, or creator-earnings benchmarks",
+);
+pass(
+  !/cpmData|locationMultipliers|videoLengthMultipliers|getEngagementMultiplier|CREATOR_SHARE|YOUTUBE_FEE/i.test(youtubeScript),
+  "YouTube calculation contains no hidden niche, location, length, engagement, or platform-share multipliers",
+);
+pass(
+  youtubeScript.includes("monthlyRevenue = monthlyViews / 1000 * postShareRevenuePerThousand")
+    && youtubeScript.includes("annualRevenue = monthlyRevenue * 12"),
+  "YouTube scenario is calculated only from the two visible user inputs",
+);
+pass(
+  [
+    "https://support.google.com/youtube/answer/9314357?hl=en",
+    "https://support.google.com/youtube/answer/72902?hl=en",
+    "https://support.google.com/youtube/answer/12504220?hl=en",
+  ].every((source) => youtubePage.includes(source)),
+  "YouTube page links the official RPM, partner earnings, and Shorts policies",
+);
+pass(
+  !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/data-sources-section.html"))
+    && !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/youtube-data-sources.md"))
+    && !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/submissions-log.md"))
+    && !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/slider-sync.js")),
+  "obsolete YouTube benchmark content, submission copy, and duplicate slider code are removed",
+);
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
 pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
 pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"), "Instagram calculator does not invent a universal Reels payout");
