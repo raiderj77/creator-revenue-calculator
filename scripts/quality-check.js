@@ -45,6 +45,12 @@ const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
+pass(
+  themeScript.includes("navigator.globalPrivacyControl === true")
+    && themeScript.includes("if (globalPrivacyControlIsActive()) choice = 'denied'")
+    && themeScript.includes("if (!gpcActive) actions.appendChild(allow)"),
+  "Global Privacy Control overrides saved analytics consent and removes the allow action",
+);
 pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
 pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
