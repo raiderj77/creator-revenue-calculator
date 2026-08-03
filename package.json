@@ -1,7 +1,7 @@
 {
   "name": "creator-revenue-calculator",
   "version": "1.0.0",
-  "description": "YouTube and creator platform income estimation tools",
+  "description": "Transparent browser-based creator revenue scenario calculators",
   "type": "module",
   "scripts": {
     "lint:content": "node scripts/content-lint.js",

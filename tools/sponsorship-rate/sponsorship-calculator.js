@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(function (question) {
+        question.setAttribute('aria-expanded', 'false');
         question.addEventListener('click', function () {
             var answer = this.nextElementSibling;
             var wasActive = answer.classList.contains('active');
@@ -141,11 +142,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             document.querySelectorAll('.faq-question').forEach(function (item) {
                 item.classList.remove('active');
+                item.setAttribute('aria-expanded', 'false');
             });
 
             if (!wasActive) {
                 answer.classList.add('active');
                 this.classList.add('active');
+                this.setAttribute('aria-expanded', 'true');
             }
         });
     });

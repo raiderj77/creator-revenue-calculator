@@ -1,293 +1,73 @@
-// Instagram Revenue Calculator 2026 - JavaScript
+(function () {
+  'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const followersInput = document.getElementById('followers');
-    const engagementInput = document.getElementById('engagementRate');
-    const postsPerWeekInput = document.getElementById('postsPerWeek');
-    const reelsPerWeekInput = document.getElementById('reelsPerWeek');
-    const liveHoursInput = document.getElementById('liveHours');
-    const nicheSelect = document.getElementById('niche');
-    const calculateBtn = document.getElementById('calculateBtn');
+  var ids = [
+    'brandDealsCount',
+    'netBrandDealFee',
+    'affiliateSales',
+    'netCommissionPerSale',
+    'liveBadgeNet',
+    'platformBonusNet'
+  ];
 
-    // Result elements
-    const brandDealsResult = document.getElementById('brandDeals');
-    const brandDealsDetail = document.getElementById('brandDealsDetail');
-    const reelsBonusResult = document.getElementById('reelsBonus');
-    const reelsBonusDetail = document.getElementById('reelsBonusDetail');
-    const badgeIncomeResult = document.getElementById('badgeIncome');
-    const badgeIncomeDetail = document.getElementById('badgeIncomeDetail');
-    const affiliateRevenueResult = document.getElementById('affiliateRevenue');
-    const affiliateRevenueDetail = document.getElementById('affiliateRevenueDetail');
-    const totalEarningsResult = document.getElementById('totalEarnings');
-    const totalDetail = document.getElementById('totalDetail');
+  function number(id) {
+    var element = document.getElementById(id);
+    var parsed = element ? Number.parseFloat(element.value) : 0;
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+  }
 
-    // Breakdown elements
-    const perFollowerResult = document.getElementById('perFollower');
-    const perPostResult = document.getElementById('perPost');
-    const perReelResult = document.getElementById('perReel');
-    const engagementMultiplierResult = document.getElementById('engagementMultiplier');
+  function count(id) {
+    return Math.floor(number(id));
+  }
 
-    // CPM rates by niche (2026 data)
-    // CPM rates by niche (2026 data)
-    const nicheRates = {
-        'fashion': { cpm: 35, brandDealMultiplier: 1.3 },
-        'fitness': { cpm: 30, brandDealMultiplier: 1.2 },
-        'travel': { cpm: 25, brandDealMultiplier: 1.4 },
-        'food': { cpm: 20, brandDealMultiplier: 1.1 },
-        'tech': { cpm: 40, brandDealMultiplier: 1.5 },
-        'lifestyle': { cpm: 25, brandDealMultiplier: 1.0 },
-        'comedy': { cpm: 15, brandDealMultiplier: 0.9 },
-    };
+  function money(value) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 2
+    }).format(value);
+  }
 
-    // Initialize FAQ functionality
-    initFAQ();
+  function text(id, value) {
+    var element = document.getElementById(id);
+    if (element) element.textContent = value;
+  }
 
-    // Set up event listeners
-    calculateBtn.addEventListener('click', calculate);
+  function calculate() {
+    var brandDealsCount = count('brandDealsCount');
+    var netBrandDealFee = number('netBrandDealFee');
+    var affiliateSales = count('affiliateSales');
+    var netCommissionPerSale = number('netCommissionPerSale');
+    var liveBadgeNet = number('liveBadgeNet');
+    var platformBonusNet = number('platformBonusNet');
 
-    // Calculate on input changes
-    [followersInput, engagementInput, postsPerWeekInput, reelsPerWeekInput, liveHoursInput, nicheSelect].forEach(input => {
-        input.addEventListener('input', calculate);
-        input.addEventListener('change', calculate);
+    var brandRevenue = brandDealsCount * netBrandDealFee;
+    var affiliateRevenue = affiliateSales * netCommissionPerSale;
+    var total = brandRevenue + affiliateRevenue + liveBadgeNet + platformBonusNet;
+
+    text('brandDeals', money(brandRevenue));
+    text('brandDealsDetail', Math.round(brandDealsCount).toLocaleString('en-US') + ' completed deliverables × ' + money(netBrandDealFee));
+    text('affiliateRevenue', money(affiliateRevenue));
+    text('affiliateDetail', Math.round(affiliateSales).toLocaleString('en-US') + ' attributed sales × ' + money(netCommissionPerSale));
+    text('badgeIncome', money(liveBadgeNet));
+    text('badgeDetail', 'Net dashboard amount entered directly');
+    text('reelsBonus', money(platformBonusNet));
+    text('reelsBonusDetail', 'Confirmed dashboard offer entered directly');
+    text('totalEarnings', money(total));
+    text('totalDetail', 'Sum of the four visible revenue lines; no hidden multipliers.');
+    text('perPost', money(netBrandDealFee));
+    text('perReel', money(netCommissionPerSale));
+    text('perFollower', money(0));
+    text('engagementMultiplier', '0×');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    ids.forEach(function (id) {
+      var element = document.getElementById(id);
+      if (element) element.addEventListener('input', calculate);
     });
-
-    // Initial calculation
+    var button = document.getElementById('calculateBtn');
+    if (button) button.addEventListener('click', calculate);
     calculate();
-
-    // Main calculation function
-    function calculate() {
-        // Get input values
-        const followers = parseInt(followersInput.value) || 0;
-        const engagementRate = parseFloat(engagementInput.value) || 0;
-        const postsPerWeek = parseInt(postsPerWeekInput.value) || 0;
-        const reelsPerWeek = parseInt(reelsPerWeekInput.value) || 0;
-        const liveHoursPerWeek = parseInt(liveHoursInput.value) || 0;
-        const niche = nicheSelect.value;
-
-        // Calculate monthly values (assuming 4 weeks per month)
-        const postsPerMonth = postsPerWeek * 4;
-        const reelsPerMonth = reelsPerWeek * 4;
-        const liveHoursPerMonth = liveHoursPerWeek * 4;
-
-        // 1. Brand Deal Revenue
-        const brandDeals = calculateBrandDeals(followers, engagementRate, postsPerMonth, niche);
-
-        // 2. Reels Bonus Revenue
-        const reelsBonus = calculateReelsBonus(reelsPerMonth, followers, engagementRate);
-
-        // 3. Badge Income from Instagram Live
-        const badgeIncome = calculateBadgeIncome(liveHoursPerMonth, followers);
-
-        // 4. Affiliate Revenue
-        const affiliateRevenue = calculateAffiliateRevenue(followers, engagementRate, niche);
-
-        // 5. Calculate totals
-        const totalRevenue = brandDeals + reelsBonus + badgeIncome + affiliateRevenue;
-
-        // Update UI with results
-        updateResults(brandDeals, reelsBonus, badgeIncome, affiliateRevenue, totalRevenue);
-
-        // Update breakdown stats
-        updateBreakdownStats(brandDeals, reelsBonus, totalRevenue, followers, postsPerMonth, reelsPerMonth, engagementRate);
-    }
-
-    function calculateBrandDeals(followers, engagementRate, postsPerMonth, niche) {
-        // Base rate: $10 per 1,000 followers per post
-        const baseRatePerPost = (followers / 1000) * 10;
-
-        // Engagement multiplier
-        const engagementMultiplier = getEngagementMultiplier(engagementRate);
-
-        // Niche multiplier
-        const nicheMultiplier = nicheRates[niche]?.brandDealMultiplier || 1.0;
-
-        // Calculate monthly brand deal revenue
-        // Assuming 20% of posts are sponsored (industry average)
-        const sponsoredPosts = postsPerMonth * 0.2;
-
-        return baseRatePerPost * engagementMultiplier * nicheMultiplier * sponsoredPosts;
-    }
-
-    function calculateReelsBonus(reelsPerMonth, followers, engagementRate) {
-        // Instagram does not publish a universal per-view Reels bonus rate.
-        // Avoid inventing direct platform income; eligible creators should use
-        // the amount shown in their professional dashboard.
-        return 0;
-    }
-
-    function calculateBadgeIncome(liveHoursPerMonth, followers) {
-        if (followers < 10000 || liveHoursPerMonth < 1) return 0;
-
-        // Badge income calculation
-        // Average badges per hour: 1 badge per 100 concurrent viewers
-        const avgConcurrentViewers = followers * 0.01; // 1% of followers watch live
-        const badgesPerHour = avgConcurrentViewers / 100;
-
-        // Average badge value: $2.50 (mix of 1, 2, and 3 heart badges)
-        const revenuePerBadge = 2.50;
-
-        return badgesPerHour * revenuePerBadge * liveHoursPerMonth;
-    }
-
-    function calculateAffiliateRevenue(followers, engagementRate, niche) {
-        // Affiliate revenue based on followers and engagement
-        const baseRatePerFollower = 0.01; // $0.01 per follower per month
-        const engagementMultiplier = getEngagementMultiplier(engagementRate);
-
-        // Niche multiplier for affiliate conversions
-        const nicheMultiplier = getAffiliateNicheMultiplier(niche);
-
-        // Conversion rate: 0.5% of followers make purchases
-        const convertingFollowers = followers * 0.005;
-
-        return baseRatePerFollower * followers * engagementMultiplier * nicheMultiplier;
-    }
-
-    function calculateAvgViews(followers, engagementRate) {
-        // Estimate average views per reel based on followers and engagement
-        const baseReach = followers * 0.15; // 15% of followers see reel
-        const engagementBoost = 1 + (engagementRate / 10); // Higher engagement = more reach
-
-        return baseReach * engagementBoost;
-    }
-
-    function getEngagementMultiplier(engagementRate) {
-        // Engagement rate multiplier for earnings
-        if (engagementRate >= 10) return 2.0;
-        if (engagementRate >= 7) return 1.5;
-        if (engagementRate >= 5) return 1.2;
-        if (engagementRate >= 3) return 1.0;
-        return 0.8; // Below 3% engagement
-    }
-
-    function getAffiliateNicheMultiplier(niche) {
-        // Affiliate conversion rates by niche
-        const multipliers = {
-            'fashion': 1.5,
-            'fitness': 1.3,
-            'travel': 1.4,
-            'food': 1.2,
-            'tech': 1.6,
-            'lifestyle': 1.1,
-            'comedy': 0.9,
-        };
-
-        return multipliers[niche] || 1.0;
-    }
-
-    function updateResults(brandDeals, reelsBonus, badgeIncome, affiliateRevenue, totalRevenue) {
-        // Format currency
-        const formatCurrency = (amount) => {
-            return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(amount);
-        };
-
-        // Update main results
-        brandDealsResult.textContent = formatCurrency(brandDeals);
-        brandDealsDetail.textContent = `${Math.round(postsPerWeekInput.value || 0)} posts/week`;
-
-        reelsBonusResult.textContent = formatCurrency(reelsBonus);
-        reelsBonusDetail.textContent = 'No universal public rate';
-
-        badgeIncomeResult.textContent = formatCurrency(badgeIncome);
-        badgeIncomeDetail.textContent = `${Math.round(liveHoursInput.value || 0)} live hours/week`;
-
-        affiliateRevenueResult.textContent = formatCurrency(affiliateRevenue);
-        affiliateRevenueDetail.textContent = `${nicheSelect.options[nicheSelect.selectedIndex].text}`;
-
-        totalEarningsResult.textContent = formatCurrency(totalRevenue);
-        totalDetail.textContent = 'Net monthly earnings';
-    }
-
-    function updateBreakdownStats(brandDeals, reelsBonus, totalRevenue, followers, postsPerMonth, reelsPerMonth, engagementRate) {
-        // Calculate per-follower earnings
-        const perFollower = followers > 0 ? totalRevenue / followers : 0;
-        perFollowerResult.textContent = `$${perFollower.toFixed(4)}`;
-
-        // Calculate per-post earnings
-        const perPost = postsPerMonth > 0 ? brandDeals / postsPerMonth : 0;
-        perPostResult.textContent = `$${perPost.toFixed(2)}`;
-
-        // Calculate per-reel earnings
-        const perReel = reelsPerMonth > 0 ? reelsBonus / reelsPerMonth : 0;
-        perReelResult.textContent = `$${perReel.toFixed(2)}`;
-
-        // Engagement multiplier
-        const engagementMultiplier = getEngagementMultiplier(engagementRate);
-        engagementMultiplierResult.textContent = `${engagementMultiplier.toFixed(1)}x`;
-    }
-
-    function initFAQ() {
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isActive = answer.classList.contains('active');
-
-                // Close all other FAQ answers
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.classList.remove('active');
-                });
-
-                // Remove active class from all questions
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    q.classList.remove('active');
-                });
-
-                // Toggle current FAQ
-                if (!isActive) {
-                    answer.classList.add('active');
-                    question.classList.add('active');
-                }
-            });
-        });
-
-        // Open first FAQ by default
-        if (faqQuestions.length > 0) {
-            faqQuestions[0].click();
-        }
-    }
-
-    // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuToggle.innerHTML = navMenu.classList.contains('active')
-                ? '<i class="fas fa-times"></i>'
-                : '<i class="fas fa-bars"></i>';
-        });
-    }
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Close mobile menu if open
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
+  });
+})();

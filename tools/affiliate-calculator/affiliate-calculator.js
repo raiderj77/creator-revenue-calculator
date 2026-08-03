@@ -1,4 +1,4 @@
-// Affiliate Income Calculator 2026 - JavaScript
+// Affiliate Revenue Scenario Calculator
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
@@ -27,28 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlySalesResult = document.getElementById('monthlySales');
     const commissionDisplayResult = document.getElementById('commissionDisplay');
 
-    // Industry benchmarks (2026 data)
-    const industryBenchmarks = {
-        'conversionRates': {
-            'beginner': 1,
-            'intermediate': 2,
-            'advanced': 3,
-            'expert': 5
-        },
-        'commissionRates': {
-            'digital': 30,
-            'physical': 10,
-            'services': 20,
-            'subscriptions': 25
-        },
-        'averageOrderValues': {
-            'digital': 50,
-            'physical': 100,
-            'services': 200,
-            'subscriptions': 150
-        }
-    };
-
     // Initialize FAQ functionality
     initFAQ();
 
@@ -71,14 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const conversionRate = parseFloat(conversionRateInput.value) || 0;
         const averageOrderValue = parseFloat(averageOrderValueInput.value) || 0;
         const commissionRate = parseFloat(commissionRateInput.value) || 0;
-        const affiliatePrograms = parseInt(affiliateProgramsInput.value) || 1;
-
         // Validate inputs
         const validatedConversionRate = Math.min(Math.max(conversionRate, 0), 100);
         const validatedCommissionRate = Math.min(Math.max(commissionRate, 0), 100);
 
         // 1. Calculate monthly sales
-        const monthlySales = Math.floor(monthlyTraffic * (validatedConversionRate / 100));
+        const monthlySales = monthlyTraffic * (validatedConversionRate / 100);
 
         // 2. Calculate monthly revenue (before commission)
         const monthlyRevenue = monthlySales * averageOrderValue;
@@ -91,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const adjustedMonthlyCommissions = monthlyCommissions;
 
         // 5. Calculate other time periods
-        const dailyCommissions = adjustedMonthlyCommissions / 30;
-        const weeklyCommissions = adjustedMonthlyCommissions / 4;
+        const dailyCommissions = adjustedMonthlyCommissions * 12 / 365;
+        const weeklyCommissions = adjustedMonthlyCommissions * 12 / 52;
         const yearlyCommissions = adjustedMonthlyCommissions * 12;
 
         // 6. Calculate total commissions (monthly as primary metric)
@@ -121,10 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update main results
         dailyEarningsResult.textContent = formatCurrency(dailyCommissions);
-        dailyDetail.textContent = 'Average per day';
+        dailyDetail.textContent = 'Annualized daily average';
 
         weeklyEarningsResult.textContent = formatCurrency(weeklyCommissions);
-        weeklyDetail.textContent = 'Average per week';
+        weeklyDetail.textContent = 'Annualized weekly average';
 
         monthlyEarningsResult.textContent = formatCurrency(monthlyCommissions);
         monthlyDetail.textContent = 'Primary metric';
@@ -146,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         perSaleResult.textContent = `$${perSale.toFixed(2)}`;
 
         // Monthly sales count
-        monthlySalesResult.textContent = monthlySales.toLocaleString();
+        monthlySalesResult.textContent = monthlySales.toLocaleString('en-US', { maximumFractionDigits: 2 });
 
         // Commission rate display
         commissionDisplayResult.textContent = `${commissionRate}%`;
@@ -172,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const faqQuestions = document.querySelectorAll('.faq-question');
 
         faqQuestions.forEach(question => {
+            question.setAttribute('aria-expanded', 'false');
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const isActive = answer.classList.contains('active');
@@ -184,12 +161,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove active class from all questions
                 document.querySelectorAll('.faq-question').forEach(q => {
                     q.classList.remove('active');
+                    q.setAttribute('aria-expanded', 'false');
                 });
 
                 // Toggle current FAQ
                 if (!isActive) {
                     answer.classList.add('active');
                     question.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
                 }
             });
         });

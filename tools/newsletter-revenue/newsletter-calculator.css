@@ -1,4 +1,4 @@
-/* Newsletter & Substack Revenue Calculator 2026 - Stylesheet */
+/* Newsletter Revenue Scenario Calculator - Stylesheet */
 
 /* --- VARIABLES --- */
 :root {
@@ -73,6 +73,37 @@ a:hover { color: var(--brand-dark); }
     cursor: pointer;
 }
 
+/* --- QUICK ANSWER --- */
+.answer-block {
+    background: var(--white);
+    border-left: 4px solid var(--brand);
+    padding: var(--spacing-lg) 0;
+}
+.answer-block-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+.answer-block-label {
+    display: block;
+    color: var(--brand-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.answer-block-text {
+    color: var(--gray-dark);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+}
+.answer-block-updated {
+    display: block;
+    color: var(--gray);
+    font-size: 0.78rem;
+    margin-top: var(--spacing-md);
+}
+
 /* --- HERO --- */
 .hero {
     background: linear-gradient(135deg, var(--dark) 0%, #374151 100%);
@@ -138,8 +169,8 @@ a:hover { color: var(--brand-dark); }
     box-shadow: var(--shadow-lg);
 }
 .input-group { margin-bottom: var(--spacing-lg); }
-.input-group.conditional { display: none; }
-.input-group.conditional.visible { display: block; }
+.conditional { display: none; }
+.conditional.visible { display: block; }
 .input-group label {
     display: flex;
     align-items: center;
@@ -352,36 +383,6 @@ a:hover { color: var(--brand-dark); }
 .stream-bar.sponsor { background: var(--stream-sponsor); }
 .stream-bar.referral { background: var(--stream-referral); }
 
-/* --- FULLTIME ESTIMATE --- */
-.fulltime-section {
-    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-    border-left: 4px solid var(--brand);
-    border-radius: var(--radius-sm);
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-}
-.fulltime-section h4 {
-    font-size: 0.95rem;
-    color: var(--brand-dark);
-    margin-bottom: var(--spacing-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-.fulltime-section h4 i { color: var(--brand); }
-.fulltime-value {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--brand-dark);
-    margin-bottom: var(--spacing-xs);
-}
-.fulltime-detail {
-    font-size: 0.85rem;
-    color: var(--gray-dark);
-    line-height: 1.5;
-}
-
 /* --- COPY BUTTON --- */
 .copy-result {
     width: 100%;
@@ -413,33 +414,6 @@ a:hover { color: var(--brand-dark); }
     border-top: 1px solid #e5e7eb;
 }
 .disclaimer i { margin-right: var(--spacing-xs); }
-
-/* --- BENCHMARK TABLE --- */
-.benchmark-section { padding: var(--spacing-2xl) 0; }
-.benchmark-table-container { overflow-x: auto; }
-.benchmark-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-}
-.benchmark-table thead { background: var(--dark); }
-.benchmark-table th {
-    color: var(--white);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: var(--spacing-md);
-    text-align: left;
-}
-.benchmark-table td {
-    padding: var(--spacing-md);
-    font-size: 0.9rem;
-    border-bottom: 1px solid #e5e7eb;
-    color: var(--gray-dark);
-}
-.benchmark-table tbody tr:hover { background: #f9fafb; }
 
 /* --- EDUCATION SECTION --- */
 .education-section { padding: var(--spacing-2xl) 0; }
@@ -564,6 +538,7 @@ a:hover { color: var(--brand-dark); }
 }
 .btn-primary { background: var(--brand); color: var(--white); }
 .btn-primary:hover { background: var(--brand-dark); color: var(--white); transform: translateY(-1px); }
+.input-panel .btn-primary { width: 100%; justify-content: center; }
 
 /* --- FOOTER --- */
 .footer {
@@ -610,6 +585,7 @@ a:hover { color: var(--brand-dark); }
 }
 
 @media (max-width: 768px) {
+    .answer-block-grid { grid-template-columns: 1fr; }
     .hamburger { display: block; }
     .nav-links {
         display: none;
@@ -630,6 +606,4 @@ a:hover { color: var(--brand-dark); }
     .section-header h2 { font-size: 1.4rem; }
     .total-monthly-value { font-size: 2rem; }
     .footer-content { grid-template-columns: 1fr; }
-    .benchmark-table { font-size: 0.8rem; }
-    .benchmark-table th, .benchmark-table td { padding: var(--spacing-sm); }
 }

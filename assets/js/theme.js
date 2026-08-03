@@ -51,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
   var storageKey = 'creatorrevenuecalculator:analytics-consent';
   var scriptId = 'creatorrevenuecalculator-google-analytics';
 
+  function globalPrivacyControlIsActive() {
+    try {
+      return navigator.globalPrivacyControl === true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   function setDisabled(disabled) {
     window['ga-disable-' + measurementId] = disabled;
   }
@@ -112,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function saveChoice(choice) {
+    if (globalPrivacyControlIsActive()) choice = 'denied';
     try { window.localStorage.setItem(storageKey, choice); } catch (error) {}
     if (choice === 'granted') initializeAnalytics();
     else disableAnalytics();
@@ -129,6 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('crc-analytics-choices')) return;
     if (launcher) launcher.remove();
 
+    var gpcActive = globalPrivacyControlIsActive();
+
     var dialog = document.createElement('div');
     dialog.id = 'crc-analytics-choices';
     dialog.className = 'crc-analytics-dialog';
@@ -138,10 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var heading = document.createElement('strong');
     heading.textContent = 'Optional, privacy-limited analytics';
     var copy = document.createElement('p');
-    copy.textContent = 'If allowed, Google Analytics receives only this page title and path after the URL query string is removed. Calculator inputs and results are never sent.';
+    copy.textContent = gpcActive
+      ? 'Your browser sent a Global Privacy Control signal, so optional analytics remain off.'
+      : 'If allowed, Google Analytics receives only this page title and path after the URL query string is removed. Calculator inputs and results are never sent.';
     var actions = document.createElement('div');
     actions.className = 'crc-analytics-actions';
-    var deny = makeButton('Continue without analytics', 'crc-analytics-secondary');
+    var deny = makeButton(gpcActive ? 'Close privacy choices' : 'Continue without analytics', 'crc-analytics-secondary');
     var allow = makeButton('Allow analytics', 'crc-analytics-primary');
     var details = document.createElement('a');
     details.href = '/privacy.html';
@@ -159,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     actions.appendChild(deny);
-    actions.appendChild(allow);
+    if (!gpcActive) actions.appendChild(allow);
     actions.appendChild(details);
     dialog.appendChild(heading);
     dialog.appendChild(copy);
@@ -183,6 +196,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var choice = null;
     try { choice = window.localStorage.getItem(storageKey); } catch (error) {}
+    if (globalPrivacyControlIsActive()) {
+      saveChoice('denied');
+      showLauncher();
+      return;
+    }
     if (choice === 'granted') initializeAnalytics();
     if (choice === 'granted' || choice === 'denied') showLauncher();
     else showChoices(null);

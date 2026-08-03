@@ -1,6 +1,15 @@
 {
   "outputDirectory": ".",
   "redirects": [
+    { "source": "/tools/gaming-youtube-revenue", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/gaming-youtube-revenue/", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/gaming-youtube-revenue/index.html", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/finance-youtube-revenue", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/finance-youtube-revenue/", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/finance-youtube-revenue/index.html", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
+    { "source": "/tools/ugc-rate", "destination": "/tools/sponsorship-rate/", "permanent": true },
+    { "source": "/tools/ugc-rate/", "destination": "/tools/sponsorship-rate/", "permanent": true },
+    { "source": "/tools/ugc-rate/index.html", "destination": "/tools/sponsorship-rate/", "permanent": true },
     { "source": "/blog/how-much-do-patreon-creators-make-2026", "destination": "/tools/patreon-revenue/", "permanent": true },
     { "source": "/blog/how-much-do-patreon-creators-make-2026/", "destination": "/tools/patreon-revenue/", "permanent": true },
     { "source": "/blog/how-much-do-youtubers-with-100k-subscribers-make.html", "destination": "/tools/youtube-ad-revenue/", "permanent": true },

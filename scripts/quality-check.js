@@ -9,7 +9,16 @@ const pass = (condition, message) => {
 };
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-  if ([".git", "blog", "content", "node_modules", "scripts"].includes(entry.name)) return [];
+  if ([
+    ".git",
+    "blog",
+    "content",
+    "node_modules",
+    "scripts",
+    "finance-youtube-revenue",
+    "gaming-youtube-revenue",
+    "ugc-rate",
+  ].includes(entry.name)) return [];
   const absolute = path.join(dir, entry.name);
   return entry.isDirectory() ? walk(absolute) : [absolute];
 });
@@ -20,12 +29,14 @@ const publicFiles = [
 ];
 const publicText = publicFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n");
 const sitemap = read("sitemap.xml");
+const llmsText = read("llms.txt");
 const privacy = read("privacy.html");
 const cookies = read("cookies.html");
 const affiliateDisclosure = read("affiliate-disclosure.html");
 const vercel = read("vercel.json");
 const vercelConfig = JSON.parse(vercel);
 const siteStyles = read("assets/css/style.css");
+const accessibilityStyles = read("assets/css/accessibility-audit-fixes.css");
 const mobileStyles = siteStyles.slice(
   siteStyles.indexOf("@media (max-width: 768px)"),
   siteStyles.indexOf("@media (max-width: 480px)"),
@@ -33,7 +44,21 @@ const mobileStyles = siteStyles.slice(
 const themeScript = read("assets/js/theme.js");
 const printStyles = read("assets/css/print-results.css");
 const home = read("index.html");
+const guidePage = read("guide/index.html");
+const retiredToolPages = new Map([
+  ["tools/finance-youtube-revenue/index.html", read("tools/finance-youtube-revenue/index.html")],
+  ["tools/gaming-youtube-revenue/index.html", read("tools/gaming-youtube-revenue/index.html")],
+  ["tools/ugc-rate/index.html", read("tools/ugc-rate/index.html")],
+]);
 const mainScript = read("assets/js/main.js");
+const aboutPage = read("about.html");
+const contactPage = read("contact.html");
+const accessibilityPage = read("accessibility.html");
+const termsPage = read("terms.html");
+const affiliatePage = read("tools/affiliate-calculator/index.html");
+const affiliateScript = read("tools/affiliate-calculator/affiliate-calculator.js");
+const newsletterPage = read("tools/newsletter-revenue/index.html");
+const newsletterScript = read("tools/newsletter-revenue/newsletter-calculator.js");
 const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 const patreonPage = read("tools/patreon-revenue/index.html");
@@ -42,9 +67,46 @@ const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
+const twitchPage = read("tools/twitch-revenue/index.html");
+const twitchScript = read("tools/twitch-revenue/twitch-calculator.js");
+const tiktokPage = read("tools/tiktok-revenue/index.html");
+const tiktokScript = read("tools/tiktok-revenue/tiktok-calculator.js");
+const instagramPage = read("tools/instagram-revenue/index.html");
+const instagramScript = read("tools/instagram-revenue/instagram-calculator.js");
+const engagementPage = read("tools/engagement-rate/index.html");
+const engagementScript = read("tools/engagement-rate/engagement-calculator.js");
+const maintainedCorePages = new Map([
+  ["index.html", home],
+  ["about.html", aboutPage],
+  ["contact.html", contactPage],
+  ["privacy.html", privacy],
+  ["cookies.html", cookies],
+  ["terms.html", termsPage],
+  ["accessibility.html", accessibilityPage],
+  ["affiliate-disclosure.html", affiliateDisclosure],
+]);
+const maintainedToolPages = new Map([
+  ["tools/affiliate-calculator/index.html", affiliatePage],
+  ["tools/engagement-rate/index.html", engagementPage],
+  ["tools/instagram-revenue/index.html", instagramPage],
+  ["tools/newsletter-revenue/index.html", newsletterPage],
+  ["tools/patreon-revenue/index.html", patreonPage],
+  ["tools/podcast-revenue/index.html", podcastPage],
+  ["tools/sponsorship-rate/index.html", sponsorshipPage],
+  ["tools/tiktok-revenue/index.html", tiktokPage],
+  ["tools/twitch-revenue/index.html", twitchPage],
+  ["tools/youtube-ad-revenue/index.html", youtubePage],
+]);
+const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages]);
 
 pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
+pass(
+  themeScript.includes("navigator.globalPrivacyControl === true")
+    && themeScript.includes("if (globalPrivacyControlIsActive()) choice = 'denied'")
+    && themeScript.includes("if (!gpcActive) actions.appendChild(allow)"),
+  "Global Privacy Control overrides saved analytics consent and removes the allow action",
+);
 pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
 pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
@@ -53,13 +115,27 @@ pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunc
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
-pass((sitemap.match(/<url>/g) || []).length === 21, "sitemap contains the 13 calculators and eight current core pages");
+pass((sitemap.match(/<url>/g) || []).length === 18, "sitemap contains the 10 maintained calculators and eight current core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
+pass(/<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(guidePage), "retired guide remains explicitly noindex even outside the production redirect layer");
+pass(
+  ["/tools/finance-youtube-revenue/", "/tools/gaming-youtube-revenue/", "/tools/ugc-rate/"]
+    .every((route) => !sitemap.includes(route)),
+  "retired benchmark-driven tools are absent from the sitemap",
+);
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
 pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
   "retired article routes with and without trailing slashes permanently redirect to calculators",
+);
+pass(
+  vercelConfig.redirects?.some((redirect) => (
+    redirect.source === "/blog/:path*"
+      && redirect.destination === "/#tools"
+      && redirect.permanent === true
+  )),
+  "every descendant of the legacy article archive is covered by a permanent wildcard redirect",
 );
 const searchIntentRedirects = {
   "/blog/how-much-do-patreon-creators-make-2026": "/tools/patreon-revenue/",
@@ -76,15 +152,54 @@ pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/guide") && redirect.destination === "/#tools").length === 3,
   "unverified paid guide routes permanently redirect to the free calculators",
 );
+for (const [base, destination] of Object.entries({
+  "/tools/finance-youtube-revenue": "/tools/youtube-ad-revenue/",
+  "/tools/gaming-youtube-revenue": "/tools/youtube-ad-revenue/",
+  "/tools/ugc-rate": "/tools/sponsorship-rate/",
+})) {
+  for (const source of [base, `${base}/`, `${base}/index.html`]) {
+    pass(
+      vercelConfig.redirects?.some((redirect) => redirect.source === source && redirect.destination === destination && redirect.permanent === true),
+      `${source} permanently redirects to a maintained explicit-input tool`,
+    );
+  }
+}
+pass(
+  [...retiredToolPages.values()].every((page) => /<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(page)),
+  "retired tool files remain noindex if served outside the production redirect layer",
+);
 pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site root instead of the verification-files directory");
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
-pass(!fs.existsSync(path.join(root, "llms-full.txt")) && !read("llms.txt").includes("/blog/"), "AI discovery does not promote the retired article archive");
+const frameHeaders = (vercelConfig.headers || [])
+  .flatMap((rule) => rule.headers || [])
+  .filter((header) => String(header.key).toLowerCase() === "x-frame-options");
+pass(
+  frameHeaders.length > 0 && frameHeaders.every((header) => String(header.value).toUpperCase() === "DENY"),
+  "all production X-Frame-Options rules match the master DENY policy",
+);
+pass(!fs.existsSync(path.join(root, "llms-full.txt")) && !llmsText.includes("/blog/"), "AI discovery does not promote the retired article archive");
+pass(!llmsText.includes("/guide/"), "AI discovery does not promote the retired paid guide");
+pass(
+  [privacy, cookies, affiliateDisclosure].every((page) => !page.includes('href="/guide/"')),
+  "trust and privacy navigation does not route visitors through the retired guide",
+);
+pass(
+  [home, aboutPage, contactPage, privacy, cookies, termsPage, accessibilityPage, affiliateDisclosure].every((page) => (
+    /<a\b(?=[^>]*\bclass="skip-nav")(?=[^>]*\bhref="#main-content")[^>]*>Skip to main content<\/a>/.test(page)
+  )),
+  "all eight core pages provide a consistently styled skip link",
+);
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");
 pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/script is not downloaded/i.test(cookies), "cookie notice accurately states denied-consent behavior");
 pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
 pass(!publicText.includes("tag=ytearnings-20"), "creator pages do not reuse FiberTools' Amazon tracking ID");
-pass((publicText.match(/tag=creatorcalc-20/g) || []).length === 26, "all 26 creator-equipment links use the dedicated Amazon tracking ID");
+const creatorAffiliateAnchors = [...publicText.matchAll(/<a\b[^>]*href="[^"]*tag=creatorcalc-20[^"]*"[^>]*>/gi)].map((match) => match[0]);
+pass(creatorAffiliateAnchors.length >= 3, "maintained creator-equipment links remain available");
+pass(
+  creatorAffiliateAnchors.every((anchor) => /rel="[^"]*nofollow[^"]*"/i.test(anchor) && /rel="[^"]*sponsored[^"]*"/i.test(anchor)),
+  "every Creator Amazon link is qualified with nofollow and sponsored",
+);
 for (const retiredAsin of ["B07NQKQN7H", "B086T4KMNX", "B08F7PTF53"]) {
   pass(!publicText.includes(retiredAsin), `retired Amazon product ${retiredAsin} is not linked`);
 }
@@ -107,6 +222,7 @@ pass(
     && sponsorshipPage.includes("based only on your entries, not a market-rate recommendation"),
   "sponsorship worksheet clearly labels results as user-supplied scenarios",
 );
+pass(sponsorshipPage.includes('id="baseFee" min="0" max="1000000" step="25" value="0"'), "sponsorship worksheet supplies no default base fee");
 pass(
   !/followers.{0,12}1,000|per 1K followers|finance niche premium|real 2026 rate data|\$18 CPM|\$25 CPM|\$50\+ CPM/i.test(sponsorshipPage),
   "sponsorship page does not publish unsupported follower, niche, or podcast benchmarks",
@@ -161,20 +277,283 @@ pass(
   "obsolete YouTube benchmark content, submission copy, and duplicate slider code are removed",
 );
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
-pass(read("tools/affiliate-calculator/affiliate-calculator.js").includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
-pass(read("tools/instagram-revenue/instagram-calculator.js").includes("return 0"), "Instagram calculator does not invent a universal Reels payout");
-pass(read("tools/twitch-revenue/twitch-calculator.js").includes("bitsPerMonth * 0.01"), "Twitch Bits use the published one-cent-per-Bit creator baseline");
+pass(affiliateScript.includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
+pass(
+  affiliateScript.includes("monthlySales = monthlyTraffic * (validatedConversionRate / 100)")
+    && affiliateScript.includes("dailyCommissions = adjustedMonthlyCommissions * 12 / 365")
+    && affiliateScript.includes("weeklyCommissions = adjustedMonthlyCommissions * 12 / 52")
+    && !affiliateScript.includes("Math.floor(monthlyTraffic"),
+  "affiliate expected sales and time-period equivalents avoid hidden rounding and four-week-month assumptions",
+);
+pass(
+  ["monthlyTraffic", "conversionRate", "averageOrderValue", "commissionRate"]
+    .every((id) => affiliatePage.includes(`id="${id}"`) && new RegExp(`id="${id}"[^>]*value="0"`).test(affiliatePage)),
+  "affiliate scenario exposes its four arithmetic inputs with zero defaults",
+);
+pass(
+  !/2026 data|commission data included|2026 affiliate data|Avg Conversion Rate|industryBenchmarks|Amazon\s*~?\s*4%|\$50\s*(?:-|to)\s*\$200/i.test(affiliatePage + affiliateScript),
+  "affiliate page and script contain no dated or hidden commission benchmarks",
+);
+pass(
+  [
+    "subscriberMode",
+    "paidSubscribers",
+    "listSize",
+    "conversionRate",
+    "monthlyPrice",
+    "platformFeePercent",
+    "completedSponsorships",
+    "netPerSponsorship",
+    "confirmedReferrals",
+    "netPerReferral",
+    "otherMonthlyCosts",
+  ].every((id) => newsletterPage.includes(`id="${id}"`)),
+  "newsletter scenario exposes every subscriber, revenue, fee, and cost input",
+);
+const newsletterNumberInputs = [...newsletterPage.matchAll(/<input\s+type="number"[^>]*>/gi)].map((match) => match[0]);
+pass(
+  newsletterNumberInputs.length === 10 && newsletterNumberInputs.every((input) => /\bvalue="0"/.test(input)),
+  "newsletter scenario gives all ten numeric inputs zero defaults",
+);
+pass(
+  newsletterPage.includes('<option value="direct" selected>Enter paid subscribers directly</option>')
+    && newsletterPage.includes('<option value="derived">Use list size and my conversion assumption</option>')
+    && newsletterScript.includes("Math.round(listSize * conversionRate / 100)"),
+  "newsletter supports a direct paid-subscriber count or an explicit user-supplied conversion scenario",
+);
+pass(
+  newsletterScript.includes("grossSubscriptions = paidSubscribers * monthlyPrice")
+    && newsletterScript.includes("platformFee = grossSubscriptions * platformFeePercent / 100")
+    && newsletterScript.includes("sponsorshipRevenue = completedSponsorships * netPerSponsorship")
+    && newsletterScript.includes("referralRevenue = confirmedReferrals * netPerReferral")
+    && newsletterScript.includes("totalMonthly = netSubscriptions + sponsorshipRevenue + referralRevenue - otherMonthlyCosts"),
+  "newsletter result is calculated only from visible user inputs",
+);
+pass(
+  !/Substack|Beehiiv|ConvertKit|Ghost|platformData|Free Forever|full.?time|target\s*=\s*5000|\$5,?000\s+(?:monthly|per month)|\$50,?000\s*(?:-|to)\s*\$500,?000|\$25\s*(?:-|to)\s*\$75|2\s*(?:-|to)\s*5%/i.test(newsletterPage + newsletterScript),
+  "newsletter page and script contain no platform table, income target, or supplied conversion and sponsorship benchmarks",
+);
+pass(!fs.existsSync(path.join(root, "tools/newsletter-revenue/slider-sync.js")), "newsletter tool contains no obsolete duplicate slider code");
+pass(
+  twitchPage.includes('id="netPerSubscriber"')
+    && twitchPage.includes('id="netAdRevenuePerThousand"')
+    && twitchPage.includes('id="sponsorshipRevenueInput"'),
+  "Twitch scenario asks for visible dashboard and contract values",
+);
+pass(
+  twitchScript.includes("bitsUsed * 0.01")
+    && twitchScript.includes("subscribers = count('subscribers')")
+    && twitchScript.includes("bitsUsed = count('bitsPerMonth')")
+    && twitchScript.includes("adImpressions = count('adImpressions')")
+    && !/cpmRates|sponsorshipRates|getCategoryMultiplier|avgViewers/.test(twitchScript),
+  "Twitch calculation uses whole-count inputs, the published Bits baseline, and no viewer, niche, ad, or sponsor multipliers",
+);
+pass(
+  tiktokPage.includes('id="qualifiedViews"')
+    && tiktokPage.includes('id="rewardPerThousand"')
+    && tiktokPage.includes('id="netBrandDealFee"'),
+  "TikTok scenario asks for qualified-view, dashboard, and completed-deal values",
+);
+pass(
+  !/Creator Fund|creatorFundRates|cpmRates|brandDealRates|liveGiftMultipliers|engagementMultiplier/i.test(tiktokScript)
+    && tiktokScript.includes("qualifiedViews = count('qualifiedViews')")
+    && tiktokScript.includes("brandDealsCount = count('brandDealsCount')")
+    && tiktokScript.includes("qualifiedViews / 1000 * rewardPerThousand"),
+  "TikTok calculation uses whole-count inputs and no former-fund, follower, niche, engagement, or gift multipliers",
+);
+pass(
+  instagramPage.includes('id="netBrandDealFee"')
+    && instagramPage.includes('id="netCommissionPerSale"')
+    && instagramPage.includes('id="platformBonusNet"'),
+  "Instagram scenario asks for completed-work, affiliate-report, and dashboard values",
+);
+pass(
+  !/nicheRates|getEngagementMultiplier|baseRatePerFollower|sponsoredPosts|calculateReelsBonus/i.test(instagramScript)
+    && instagramScript.includes("brandDealsCount = count('brandDealsCount')")
+    && instagramScript.includes("affiliateSales = count('affiliateSales')")
+    && instagramScript.includes("affiliateSales * netCommissionPerSale"),
+  "Instagram calculation uses whole-count inputs and no follower, niche, engagement, sponsored-post, or Reels payout assumptions",
+);
+pass(
+  engagementPage.includes("follower-based")
+    && engagementPage.includes("view-based")
+    && !/top 1%|adds ~40%|double your sponsorship rate|vs\. platform average|benchmarks based on 2026/i.test(engagementPage),
+  "engagement page explains both formulas without unsupported tiers or sponsorship premiums",
+);
+pass(
+  engagementScript.includes("likes + comments + shares + saves")
+    && !/benchmarkData|sponsorshipImpact|modifier|tier|Ã/i.test(engagementScript),
+  "engagement calculation is transparent arithmetic with no hidden benchmark data",
+);
 pass(/\.about-stats\s*{\s*grid-template-columns:\s*1fr;\s*}/.test(mobileStyles), "homepage trust statistics collapse to one column on phones");
 pass(/\.stat-content\s*{[^}]*min-width:\s*0;/s.test(siteStyles), "homepage statistic text can shrink without forcing horizontal scrolling");
-pass((publicText.match(/class="results-card"/g) || []).length === 13, "all 13 calculator result cards remain present");
+pass(
+  accessibilityStyles.includes("minmax(0, 1fr)")
+    && accessibilityStyles.includes("overflow-wrap: anywhere")
+    && /\.input-panel,[\s\S]*?min-width:\s*0;/.test(accessibilityStyles),
+  "shared accessibility styles keep calculator grids, panels, and long email links inside phone viewports",
+);
+pass(
+  /html\[data-theme="dark"\]\s+body\.calculator-page/.test(accessibilityStyles)
+    && /html\[data-theme="dark"\][\s\S]*?\.input-panel[\s\S]*?background:\s*#1e293b\s*!important/.test(accessibilityStyles)
+    && /html\[data-theme="dark"\][\s\S]*?input[\s\S]*?background:\s*#0f172a\s*!important/.test(accessibilityStyles),
+  "shared accessibility styles provide dark calculator surfaces and form controls",
+);
+const resultCards = [...publicText.matchAll(/<div\s+class="results-card"[^>]*>/g)].map((match) => match[0]);
+pass(
+  resultCards.length === 10 && resultCards.every((card) => /aria-live="polite"/.test(card)),
+  "all 10 maintained calculator result cards remain present and announce updates politely",
+);
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
 pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
 pass(printStyles.includes(".copy-result") && printStyles.includes(".share-buttons"), "print output excludes copy and sharing controls");
 pass(!mainScript.includes("card.style.opacity = '0'"), "homepage calculator cards remain visible without scroll-triggered JavaScript");
-pass(!/Free, accurate revenue calculators|real 2026 data from actual creators|Always free/.test(home), "homepage avoids unsupported accuracy, sourcing, and future-price claims");
+pass(
+  !/Free, accurate revenue calculators|real 2026 data from actual creators|Always free|Free Forever|Based on actual creator reports and industry benchmarks|TikTok Creator Fund|Reels Play/.test(home),
+  "homepage avoids unsupported accuracy, sourcing, historical-program, and future-price claims",
+);
+const homeApplicationSchema = jsonLdDocuments(home).find((document) => document["@type"] === "WebApplication");
+pass(
+  homeApplicationSchema?.name === "Creator Revenue Calculator"
+    && homeApplicationSchema?.description === "A collection of browser-based creator revenue scenario calculators that use visible, user-supplied platform, contract, payout, fee, and cost inputs."
+    && !/Free YouTube Income Estimator|Estimate earnings, CPM rates, and monetization potential/.test(home),
+  "homepage WebApplication schema describes the full explicit-input calculator collection",
+);
+const maintainedNonAuthorPages = [
+  home,
+  contactPage,
+  accessibilityPage,
+  termsPage,
+  affiliatePage,
+  newsletterPage,
+  patreonPage,
+  sponsorshipPage,
+  youtubePage,
+].join("\n");
+pass(
+  !/"@type"\s*:\s*"Person"/.test(maintainedNonAuthorPages)
+    && (publicText.match(/"@type"\s*:\s*"Person"/g) || []).length === 1
+    && /"@type"\s*:\s*"Person"[\s\S]*?"name"\s*:\s*"Jason Ramirez"/.test(aboutPage),
+  "only the real public about-page author retains Person schema",
+);
+pass(
+  aboutPage.includes("About Jason Ramirez")
+    && aboutPage.includes("CADC-II counselor")
+    && aboutPage.includes("Creator Revenue Calculator"),
+  "owner-approved public name, credentials, and site organization remain on the About page",
+);
+pass(
+  !/Prunedale|addressLocality|addressRegion|Your Friendly Developer|\bLLC\b/i.test(aboutPage),
+  "About metadata, schema, and copy omit the author's exact location and private company identity",
+);
+pass(
+  [affiliatePage, engagementPage, instagramPage, newsletterPage, patreonPage, podcastPage, sponsorshipPage, tiktokPage, twitchPage, youtubePage].every((page) => (
+    page.includes('<meta name="author" content="Creator Revenue Calculator">')
+      && /"author"\s*:\s*\{\s*"@type"\s*:\s*"Organization",\s*"name"\s*:\s*"Creator Revenue Calculator",\s*"url"\s*:\s*"https:\/\/creatorrevenuecalculator\.com\/"/s.test(page)
+  )),
+  "all 10 maintained tools use site-level author metadata and Organization schema",
+);
+pass(!/Built by a digital marketing professional/i.test(publicText), "generic invented author credentials are absent from public pages");
+pass(
+  !/respond(?:s|ed|ing)?[^.\n]{0,80}\bwithin\s+\d+\s+hours|Most messages receive a reply within|incorporate the most requested features/i.test(contactPage),
+  "contact page makes no unsupported response-time or roadmap-delivery promises",
+);
+for (const [file, html] of maintainedPages) {
+  const title = html.match(/<title>([^<]+)<\/title>/i)?.[1].trim() || "";
+  const canonical = tagAttributes(html, "link").find((attributes) => attributes.rel === "canonical")?.href;
+  const expectedAuthor = file === "about.html" ? "Jason Ramirez" : "Creator Revenue Calculator";
+  const completeMetadata = title.length > 0
+    && metaContent(html, "name", "description")
+    && metaContent(html, "name", "robots")?.includes("max-snippet:-1")
+    && metaContent(html, "name", "author") === expectedAuthor
+    && canonical
+    && metaContent(html, "property", "og:title")
+    && metaContent(html, "property", "og:description")
+    && metaContent(html, "property", "og:type")
+    && metaContent(html, "property", "og:url") === canonical
+    && metaContent(html, "property", "og:image")
+    && metaContent(html, "name", "twitter:card")
+    && metaContent(html, "name", "twitter:title")
+    && metaContent(html, "name", "twitter:description")
+    && metaContent(html, "name", "twitter:image");
+  pass(Boolean(completeMetadata), `${file} provides complete index, author, canonical, Open Graph, and Twitter metadata`);
+  pass(title.length > 0 && title.length < 60, `${file} title remains below 60 characters`);
+}
+pass(
+  [...maintainedToolPages.values()].every((page) => /<body\b[^>]*\bclass="[^"]*\bcalculator-page\b[^"]*"/i.test(page)),
+  "all 10 maintained calculators opt into the shared mobile and dark-mode contract",
+);
+const maintainedProductPages = [
+  home,
+  affiliatePage,
+  engagementPage,
+  instagramPage,
+  newsletterPage,
+  patreonPage,
+  podcastPage,
+  sponsorshipPage,
+  tiktokPage,
+  twitchPage,
+  youtubePage,
+].join("\n");
+pass(
+  !/\/tools\/(?:finance-youtube-revenue|gaming-youtube-revenue|ugc-rate)\//.test(maintainedProductPages),
+  "maintained product pages do not link visitors to retired benchmark-driven tools",
+);
+pass(
+  !/based on publicly available platform data|industry data and updated 2026 rates|Data is for estimation purposes only|public benchmarks rather than affiliate compensation|calculators use publicly available data, industry averages/i.test(publicText),
+  "public pages do not claim that explicit-input scenarios come from supplied platform or industry data",
+);
+pass(!mainScript.includes("IntersectionObserver"), "homepage statistics render their final values without animated zero states");
+pass(
+  mainScript.includes("isOpen ? 'Close navigation' : 'Open navigation'")
+    && mainScript.includes("setMobileMenuLabel(!isOpen)")
+    && mainScript.includes("setMobileMenuLabel(false)"),
+  "mobile navigation announces whether the toggle will open or close the menu",
+);
+pass(
+  home.includes("Studio Inputs")
+    && home.includes("No Niche Multiplier")
+    && !/CPM Calculator|Niche Analysis/.test(home),
+  "homepage describes the YouTube worksheet without retired CPM or niche-analysis claims",
+);
+pass(
+  /\.skip-nav\s*\{[^}]*top:\s*-6rem;/s.test(accessibilityStyles)
+    && /\.skip-nav:focus\s*\{[^}]*top:\s*1rem;/s.test(accessibilityStyles),
+  "skip navigation remains hidden until keyboard focus",
+);
+pass(/\.hero \.subtitle\s*\{[^}]*#e5e7eb/s.test(accessibilityStyles), "hero supporting copy keeps readable contrast on dark backgrounds");
+pass(
+  /@media \(prefers-reduced-motion: reduce\)/.test(accessibilityStyles)
+    && /animation-duration:\s*0\.01ms !important/.test(accessibilityStyles)
+    && /transition-duration:\s*0\.01ms !important/.test(accessibilityStyles),
+  "shared accessibility styles honor reduced-motion preferences",
+);
+pass(
+  [newsletterScript, patreonScript, sponsorshipScript, youtubeScript].every((script) => (
+    /setAttribute\(['"]aria-expanded['"],\s*['"]false['"]\)/.test(script)
+      && /setAttribute\(['"]aria-expanded['"],\s*['"]true['"]\)/.test(script)
+  )),
+  "maintained accordion FAQs expose their open and closed state",
+);
+pass(!/^MANAGERDOMAIN=/im.test(read("ads.txt")), "ads.txt does not name the publisher itself as an external monetization manager");
+pass(
+  !/fibertools\.app|mindchecktools\.com|flipmycase\.com|contractextract\.com|medicalbillreader\.com|524tracker\.com/.test(publicText),
+  "maintained public pages do not publish a template-wide portfolio link ring",
+);
 pass(podcastPage.includes('id="sponsorCpm"') && podcastPage.includes('value="0"'), "podcast calculator excludes direct sponsorship revenue by default");
 pass(podcastPage.includes('id="adCpm"') && podcastPage.includes('id="creatorShare"'), "podcast calculator asks for explicit contract CPM and creator share inputs");
-pass(!podcastScript.includes("nicheRates") && !podcastScript.includes("updateRevenueSplitVisualization"), "podcast calculator does not invent niche rates or access a missing split chart");
+pass(
+  podcastPage.includes('id="adCpm" min="0" max="1000" step="0.01" value="0"')
+    && podcastPage.includes('id="creatorShare" min="0" max="100" step="0.1" value="0"'),
+  "podcast variable contract and creator-share rates start at zero",
+);
+pass(
+  !/nicheRates|placementMultipliers|updateRevenueSplitVisualization/.test(podcastScript)
+    && podcastScript.includes("downloadsPerEpisode = wholeValue(downloadsInput)")
+    && podcastScript.includes("return (downloadsPerEpisode / 1000) * cpm * adCount * creatorShare * episodesPerMonth"),
+  "podcast calculator uses whole-count inputs and no niche, placement, or missing-chart multipliers",
+);
 pass(podcastScript.includes("monthlyAdSlots = slotsPerEpisode * episodesPerMonth"), "podcast per-slot output uses the monthly number of ad placements");
 pass(patreonPage.includes('<option value="standard" selected="">Standard, 10% (new creators)</option>'), "Patreon calculator defaults new creators to the current 10% standard plan");
 pass(!/Starter|Premium|12% platform fee|15% platform fee/.test(patreonPage), "Patreon page does not present discontinued plan tiers as current");
@@ -185,6 +564,11 @@ for (let tier = 1; tier <= 4; tier += 1) {
   pass(patreonPage.includes(`id="tierName${tier}" aria-label="Tier ${tier} name"`), `Patreon tier ${tier} name has an accessible name`);
   pass(patreonPage.includes(`id="tierPrice${tier}" aria-label="Tier ${tier} monthly price in dollars"`), `Patreon tier ${tier} price has an accessible name`);
   pass(patreonPage.includes(`id="tierPatrons${tier}" aria-label="Tier ${tier} patron count"`), `Patreon tier ${tier} patron count has an accessible name`);
+  pass(
+    new RegExp(`id="tierPrice${tier}"[^>]*value="0"`).test(patreonPage)
+      && new RegExp(`id="tierPatrons${tier}"[^>]*value="0"`).test(patreonPage),
+    `Patreon tier ${tier} price and patron count start at zero`,
+  );
 }
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
@@ -212,6 +596,21 @@ for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
 if (failures) process.exit(1);
 console.log("\nAll product quality checks passed.");
 
+function tagAttributes(html, tagName) {
+  const elements = [...html.matchAll(new RegExp(`<${tagName}\\b[^>]*>`, "gi"))].map((match) => match[0]);
+  return elements.map((element) => Object.fromEntries(
+    [...element.matchAll(/([:\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)]
+      .map((match) => [match[1].toLowerCase(), match[2] ?? match[3] ?? ""]),
+  ));
+}
+
+function metaContent(html, attributeName, attributeValue) {
+  const expectedName = attributeName.toLowerCase();
+  return tagAttributes(html, "meta")
+    .find((attributes) => attributes[expectedName]?.toLowerCase() === attributeValue.toLowerCase())
+    ?.content;
+}
+
 function hasOfficialEarningsOverview() {
   const hrefs = [...read("index.html").matchAll(/\bhref="([^"]+)"/gi)].map((match) => match[1]);
   return hrefs.some((href) => {
@@ -226,4 +625,12 @@ function hasOfficialEarningsOverview() {
       return false;
     }
   });
+}
+
+function jsonLdDocuments(html) {
+  return [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((match) => {
+      try { return JSON.parse(match[1]); } catch { return null; }
+    })
+    .filter(Boolean);
 }

@@ -26,12 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const perAdSlotResult = document.getElementById('perAdSlot');
     const monthlyDownloadsResult = document.getElementById('monthlyDownloads');
 
-    const placementMultipliers = {
-        'pre-roll': 0.8,
-        'mid-roll': 1,
-        'post-roll': 0.7
-    };
-
     initFAQ();
     calculateBtn.addEventListener('click', calculate);
     [
@@ -54,20 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
         return Number.isFinite(value) ? value : fallback;
     }
 
+    function wholeValue(input) {
+        return Math.floor(Math.max(0, numericValue(input)));
+    }
+
     function calculate() {
-        const downloadsPerEpisode = Math.max(0, numericValue(downloadsInput));
-        const episodesPerMonth = Math.max(0, numericValue(episodesInput));
+        const downloadsPerEpisode = wholeValue(downloadsInput);
+        const episodesPerMonth = wholeValue(episodesInput);
         const adCpm = Math.max(0, numericValue(adCpmInput));
         const creatorShare = Math.min(100, Math.max(0, numericValue(creatorShareInput))) / 100;
         const sponsorCpm = Math.max(0, numericValue(sponsorCpmInput));
-        const preRollAds = Math.max(0, numericValue(preRollInput));
-        const midRollAds = Math.max(0, numericValue(midRollInput));
-        const postRollAds = Math.max(0, numericValue(postRollInput));
+        const preRollAds = wholeValue(preRollInput);
+        const midRollAds = wholeValue(midRollInput);
+        const postRollAds = wholeValue(postRollInput);
         const monthlyDownloads = downloadsPerEpisode * episodesPerMonth;
 
-        const preRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, preRollAds, adCpm, creatorShare, 'pre-roll');
-        const midRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, midRollAds, adCpm, creatorShare, 'mid-roll');
-        const postRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, postRollAds, adCpm, creatorShare, 'post-roll');
+        const preRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, preRollAds, adCpm, creatorShare);
+        const midRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, midRollAds, adCpm, creatorShare);
+        const postRollRevenue = calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, postRollAds, adCpm, creatorShare);
         const sponsorshipRevenue = sponsorCpm > 0
             ? (downloadsPerEpisode / 1000) * sponsorCpm * episodesPerMonth
             : 0;
@@ -84,17 +82,16 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
 
-    function calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, adCount, cpm, creatorShare, adType) {
-        const multiplier = placementMultipliers[adType] || 1;
-        return (downloadsPerEpisode / 1000) * cpm * multiplier * adCount * creatorShare * episodesPerMonth;
+    function calculateAdRevenue(downloadsPerEpisode, episodesPerMonth, adCount, cpm, creatorShare) {
+        return (downloadsPerEpisode / 1000) * cpm * adCount * creatorShare * episodesPerMonth;
     }
 
     function formatCurrency(amount) {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(amount);
     }
 

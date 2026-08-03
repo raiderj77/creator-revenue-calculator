@@ -10,7 +10,7 @@
 
 - **Site**: Creator Revenue Calculator
 - **Domain**: creatorrevenuecalculator.com
-- **Purpose**: YouTube and creator platform income estimation
+- **Purpose**: Transparent creator-revenue scenario calculators using visible inputs
 - **Type**: utility-site
 - **Compliance Tier**: Standard
 
@@ -63,7 +63,7 @@ How to maintain these:
 - Maintain About page with verifiable organizational info and mission
 - Include Contact information accessible from every page
 - Describe editorial review process (especially for YMYL content)
-- Attribution: "Built by a digital marketing professional" — NEVER use personal name
+- Attribution: use Organization schema on tools and policy pages; preserve Jason Ramirez's real public name and credentials on the About page and any genuinely authored content
 
 ## 5. Structured Data (JSON-LD)
 
@@ -193,12 +193,7 @@ Do NOT enable strict COEP/COOP on pages with ads (breaks ad rendering).
 
 ## Cross-Site Links
 
-Footer links to all sister sites (exclude self):
-- [FiberTools](https://fibertools.app)
-- [MindCheck Tools](https://mindchecktools.com)
-- [FlipMyCase](https://flipmycase.com)
-- [ContractExtract](https://contractextract.com)
-- [Medical Bill Reader](https://medicalbillreader.com)
+Do not add a template-wide sister-site footer ring. Link to another portfolio site only when it is directly useful in the page context and the anchor explains the relationship. Keep the footer focused on Creator Revenue Calculator tools, trust pages, and disclosures.
 
 ## Deployment
 
@@ -219,12 +214,12 @@ Footer links to all sister sites (exclude self):
 
 ## Warnings — Things Claude Code Must NEVER Do
 
-1. Never expose the site owner's personal name in code, content, comments, or metadata
+1. Preserve Jason Ramirez's owner-approved public identity and credentials on the About page; use Organization attribution on non-author pages
 2. Never modify ads.txt unless explicitly asked
 3. Never remove legal pages (privacy, terms)
 4. Never hardcode API keys — use environment variables
 5. Never push to main without testing build
-6. Never remove sister site cross-links
+6. Never add or restore a template-wide sister-site footer ring
 7. Never remove or weaken security headers
 8. Never remove accessibility features (alt text, ARIA, focus indicators)
 9. Never remove llms.txt or AI crawler rules from robots.txt
@@ -236,4 +231,4 @@ For cross-site operations, read the relevant skill:
 - CLAUDE.md generation: ~/empire-skills/empire-projectfiles/SKILL.md
 
 ## Calculator Logic
-Show revenue ranges (low-mid-high), not single numbers. Allow custom CPM input with sensible defaults. Explain what CPM means and what affects it. Required disclaimer: "Revenue estimates are approximations based on publicly available CPM data."
+Keep every variable revenue rate visible and editable, with a zero default unless an authoritative fixed rule is cited. Do not supply hidden platform, niche, follower, conversion, sponsor, or payout multipliers. Explain the formula, input source, and limitations. Required disclaimer: "Calculator outputs are arithmetic from visible inputs and are provided for informational purposes only. Not financial advice. Verify material inputs against your own current records."
