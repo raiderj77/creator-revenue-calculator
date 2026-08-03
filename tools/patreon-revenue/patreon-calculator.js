@@ -160,12 +160,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.querySelectorAll('.faq-question').forEach(function(question) {
+        question.setAttribute('aria-expanded', 'false');
         question.addEventListener('click', function() {
             var answer = this.nextElementSibling;
             var isActive = answer.classList.contains('active');
             document.querySelectorAll('.faq-answer').forEach(function(item) { item.classList.remove('active'); });
-            document.querySelectorAll('.faq-question').forEach(function(item) { item.classList.remove('active'); });
-            if (!isActive) { answer.classList.add('active'); question.classList.add('active'); }
+            document.querySelectorAll('.faq-question').forEach(function(item) {
+                item.classList.remove('active');
+                item.setAttribute('aria-expanded', 'false');
+            });
+            if (!isActive) {
+                answer.classList.add('active');
+                question.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+            }
         });
     });
 

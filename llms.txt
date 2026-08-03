@@ -1,6 +1,6 @@
 # Creator Revenue Calculator
 
-Creator Revenue Calculator provides 13 free, browser-based estimation tools for creators. Calculator inputs stay in the visitor's browser. Results are estimates, not guarantees or financial advice.
+Creator Revenue Calculator provides 10 free, browser-based scenario and calculation tools for creators. Calculator inputs stay in the visitor's browser. Results are arithmetic scenarios, not guarantees or financial advice.
 
 ## Calculators
 
@@ -10,20 +10,18 @@ Creator Revenue Calculator provides 13 free, browser-based estimation tools for 
 - Instagram revenue: https://creatorrevenuecalculator.com/tools/instagram-revenue/
 - Podcast revenue: https://creatorrevenuecalculator.com/tools/podcast-revenue/
 - Affiliate revenue: https://creatorrevenuecalculator.com/tools/affiliate-calculator/
-- Gaming YouTube revenue: https://creatorrevenuecalculator.com/tools/gaming-youtube-revenue/
-- Finance YouTube revenue: https://creatorrevenuecalculator.com/tools/finance-youtube-revenue/
 - Sponsorship rates: https://creatorrevenuecalculator.com/tools/sponsorship-rate/
-- UGC rates: https://creatorrevenuecalculator.com/tools/ugc-rate/
 - Engagement rate: https://creatorrevenuecalculator.com/tools/engagement-rate/
 - Newsletter revenue: https://creatorrevenuecalculator.com/tools/newsletter-revenue/
 - Patreon revenue: https://creatorrevenuecalculator.com/tools/patreon-revenue/
 
 ## Trust and limitations
 
-- Methodology guide: https://creatorrevenuecalculator.com/guide/
+- How the calculators work: https://creatorrevenuecalculator.com/#about
 - About: https://creatorrevenuecalculator.com/about.html
 - Privacy: https://creatorrevenuecalculator.com/privacy.html
 - Affiliate disclosure: https://creatorrevenuecalculator.com/affiliate-disclosure.html
-- Calculations use public benchmarks and user-selected assumptions; actual earnings can vary materially.
-- Google AdSense, Google Analytics, and Microsoft Clarity are not enabled.
+- Material revenue rates start at zero or come from visible user-selected inputs; actual earnings can vary materially.
+- Google AdSense and Microsoft Clarity are not enabled. Privacy-limited Google Analytics loads only after explicit opt-in.
 - The former article archive is retired from public discovery pending individual editorial review.
+- The former gaming/finance niche calculators redirect to the maintained YouTube scenario calculator, and the former UGC benchmark page redirects to the explicit-input sponsorship quote worksheet.

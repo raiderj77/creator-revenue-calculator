@@ -1,6 +1,6 @@
 /**
  * predeploy-check.js, Empire Build Standards compliance check for creatorrevenuecalculator.com
- * Validates: ads.txt, robots.txt, llms.txt, legal pages, cross-site links, security headers
+ * Validates: ads.txt, robots.txt, llms.txt, legal pages, trust navigation, security headers
  * Exit code 1 on failure, 0 on pass.
  */
 
@@ -43,6 +43,11 @@ check("ads.txt", () => {
     pass("OWNERDOMAIN directive present");
   } else {
     fail("OWNERDOMAIN directive missing from ads.txt");
+  }
+  if (/^MANAGERDOMAIN=/im.test(content)) {
+    fail("MANAGERDOMAIN must not name the publisher itself; add it only for a real primary or exclusive monetization manager");
+  } else {
+    pass("No unsupported MANAGERDOMAIN declaration");
   }
 });
 
@@ -125,34 +130,27 @@ check("Legal pages", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 5. Cross-site sister links
+// 5. Trust navigation
 // ---------------------------------------------------------------------------
-check("Cross-site links", () => {
-  // Check index.html for static sites, or Footer.tsx for Next.js
-  let footerContent = "";
-  const footerPath = resolve(ROOT, "src/components/Footer.tsx");
+check("Trust navigation", () => {
+  let pageContent = "";
   const indexPath = resolve(ROOT, "index.html");
-  if (existsSync(footerPath)) {
-    footerContent = readFileSync(footerPath, "utf-8");
-  } else if (existsSync(indexPath)) {
-    footerContent = readFileSync(indexPath, "utf-8");
-  } else {
-    return fail("No Footer.tsx or index.html found to check sister links");
-  }
+  if (existsSync(indexPath)) pageContent = readFileSync(indexPath, "utf-8");
+  else return fail("index.html missing");
 
-  const sisterSites = [
-    "mindchecktools.com",
-    "flipmycase.com",
-    "fibertools.app",
-    "contractextract.com",
-    "medicalbillreader.com",
-    "524tracker.com",
+  const trustPages = [
+    "/about.html",
+    "/contact.html",
+    "/privacy.html",
+    "/terms.html",
+    "/accessibility.html",
+    "/affiliate-disclosure.html",
   ];
-  for (const site of sisterSites) {
-    if (footerContent.includes(site)) {
-      pass(`Link to ${site}`);
+  for (const page of trustPages) {
+    if (pageContent.includes(page)) {
+      pass(`Homepage links ${page}`);
     } else {
-      fail(`Missing cross-site link to ${site} in footer`);
+      fail(`Homepage does not link ${page}`);
     }
   }
 });
@@ -186,6 +184,26 @@ check("Security headers", () => {
     } else {
       fail(`${header} missing from security headers config`);
     }
+  }
+
+  const vercelPath = resolve(ROOT, "vercel.json");
+  if (!existsSync(vercelPath)) {
+    fail("vercel.json missing; cannot verify the master X-Frame-Options policy");
+    return;
+  }
+
+  try {
+    const vercelConfig = JSON.parse(readFileSync(vercelPath, "utf-8"));
+    const frameHeaders = (vercelConfig.headers || [])
+      .flatMap((rule) => rule.headers || [])
+      .filter((header) => String(header.key).toLowerCase() === "x-frame-options");
+    if (frameHeaders.length > 0 && frameHeaders.every((header) => String(header.value).toUpperCase() === "DENY")) {
+      pass("X-Frame-Options matches the master DENY policy");
+    } else {
+      fail("X-Frame-Options must be DENY in every Vercel header rule");
+    }
+  } catch (error) {
+    fail(`vercel.json could not be parsed: ${error.message}`);
   }
 });
 

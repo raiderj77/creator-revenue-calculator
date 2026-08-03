@@ -7,11 +7,16 @@
 
     <title>Podcast Revenue Calculator 2026 | Free</title>
     <meta name="description" content="Free podcast revenue scenario calculator. Enter downloads, ad slots, contract CPM, creator share, and an optional signed-sponsor CPM. No signup required.">
+    <meta name="author" content="Creator Revenue Calculator">
     <meta property="og:title" content="Podcast Revenue Calculator">
     <meta property="og:description" content="Model podcast ad inventory with your downloads, contract CPM, creator share, and optional signed-sponsor rate.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/podcast-revenue/">
     <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Podcast Revenue Calculator">
+    <meta name="twitter:description" content="Model podcast ad inventory from your own downloads, contract terms, and ad slots.">
+    <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -32,10 +37,10 @@
       "author": {
         "@type": "Organization",
         "name": "Creator Revenue Calculator",
-        "url": "https://creatorrevenuecalculator.com/about.html"
+        "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2025-01-01",
-      "dateModified": "2026-07-16"
+      "dateModified": "2026-08-02"
     }
     </script>
 
@@ -103,7 +108,7 @@
 
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">    <link rel="stylesheet" href="/assets/css/accessibility-audit-fixes.css">
 </head>
-<body class="podcast">
+<body class="podcast calculator-page">
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <nav class="navbar">
@@ -141,7 +146,7 @@
           <p class="answer-block-text">Use your own offer terms. The calculator does not invent a niche CPM or assume that a sponsor is booked.</p>
         </div>
       </div>
-      <time datetime="2026-07-16" class="answer-block-updated">Last updated: July 16, 2026</time>
+      <time datetime="2026-08-02" class="answer-block-updated">Last reviewed: August 2, 2026</time>
     </section>
 
     <section class="hero">
@@ -181,13 +186,13 @@
                         <input type="number" id="episodesPerMonth" min="1" max="30" value="4">
                     </div>
                     <div class="input-group">
-                        <label for="adCpm"><i class="fas fa-file-contract"></i> Contract Ad CPM ($)</label>
-                        <input type="number" id="adCpm" min="0" max="1000" step="0.01" value="25">
-                        <div class="input-hint">Replace the planning default with a real insertion order or marketplace offer.</div>
+                        <label for="adCpm"><i class="fas fa-file-contract"></i> Contract or Blended Ad CPM ($)</label>
+                        <input type="number" id="adCpm" min="0" max="1000" step="0.01" value="0">
+                        <div class="input-hint">Enter the value from a real insertion order, marketplace offer, or deliberate scenario. The same entered CPM applies to every selected ad slot.</div>
                     </div>
                     <div class="input-group">
                         <label for="creatorShare"><i class="fas fa-percentage"></i> Creator Share After Fees (%)</label>
-                        <input type="number" id="creatorShare" min="0" max="100" step="0.1" value="75">
+                        <input type="number" id="creatorShare" min="0" max="100" step="0.1" value="0">
                         <div class="input-hint">Use the share in your hosting, network, or sales agreement.</div>
                     </div>
                     <div class="input-group">
@@ -212,7 +217,7 @@
                     </button>
                 </div>
                 <div class="results-panel">
-                    <div class="results-card">
+                    <div class="results-card" aria-live="polite">
                         <h3><i class="fas fa-dollar-sign"></i> Estimated Monthly Earnings</h3>
                         <div class="result-row">
                             <div class="result-label">Pre-Roll Revenue:</div>
@@ -246,7 +251,7 @@
                             <div class="breakdown-item"><div class="breakdown-label">Per ad slot:</div><div class="breakdown-value" id="perAdSlot">$0.00</div></div>
                             <div class="breakdown-item"><div class="breakdown-label">Monthly downloads:</div><div class="breakdown-value" id="monthlyDownloads">0</div></div>
                         </div>
-                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> This is a planning scenario, not a forecast. Replace every default with your actual agreement terms.</p></div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> This is a planning scenario, not a forecast. Variable revenue rates start at zero; use your actual agreement terms whenever available.</p></div>
                     </div>
                 </div>
             </div>
@@ -265,14 +270,14 @@
     <!-- Methodology -->
     <section id="methodology" class="info-section">
         <div class="container">
-            <h2>How the podcast revenue estimate works</h2>
-            <p>Podcast advertising is often planned from downloads per episode rather than total lifetime downloads. This calculator models pre-roll, mid-roll, and post-roll inventory separately. The advertising formula is <strong>downloads per episode ÷ 1,000 × your CPM × placement multiplier × ad slots × episodes per month × your creator share</strong>. A direct-sponsor line is added only when you enter a nonzero net sponsor CPM.</p>
+            <h2>How the podcast revenue scenario works</h2>
+            <p>Podcast advertising is often planned from downloads per episode rather than total lifetime downloads. This calculator reports pre-roll, mid-roll, and post-roll inventory separately but applies the same CPM you enter to each selected slot. The advertising formula is <strong>downloads per episode ÷ 1,000 × your CPM × ad slots × episodes per month × your creator share</strong>. A direct-sponsor line is added only when you enter a nonzero net sponsor CPM.</p>
 
-            <h3>Built-in planning assumptions</h3>
-            <p>The model uses transparent planning weights of 0.8 for pre-roll, 1.0 for mid-roll, and 0.7 for post-roll. Those weights are assumptions, not universal market rules. The CPM and creator share are explicit inputs so you can replace the defaults with an insertion order, marketplace offer, or hosting agreement. The optional sponsor input is a net CPM after any costs you expect to pay.</p>
+            <h3>No hidden placement multiplier</h3>
+            <p>The calculator does not assign a premium or discount to pre-roll, mid-roll, or post-roll inventory. If your agreement sets different prices by placement, run separate scenarios or enter a documented blended CPM. The CPM and creator share start at zero. The optional sponsor input is a net CPM after any costs you expect to pay.</p>
 
             <h3>Worked example</h3>
-            <p>A show with 5,000 downloads per episode and four episodes per month enters a $25 CPM, a 75% creator share, one pre-roll, and one mid-roll. The modeled monthly ad inventory is <strong>$675</strong>: 5 × $25 × (0.8 + 1.0) × 4 × 0.75. With the sponsor CPM left at zero, the calculator adds no sponsorship revenue.</p>
+            <p>A show with 5,000 downloads per episode and four episodes per month enters a $25 blended CPM, a 75% creator share, one pre-roll, and one mid-roll. The modeled monthly ad inventory is <strong>$750</strong>: 5 × $25 × 2 slots × 4 episodes × 0.75. With the sponsor CPM left at zero, the calculator adds no sponsorship revenue.</p>
 
             <h3>How much do podcasts make per 1,000 downloads?</h3>
             <p>There is no single podcast RPM. Placement, format, audience geography, niche, campaign targeting, host endorsement, sell-through, make-goods, and whether the sale is direct or programmatic all change the result. Use the CPM from an actual insertion order or marketplace offer when available.</p>
@@ -434,17 +439,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Your Friendly Developer. All rights reserved.</p>
-                <p style="font-size:0.75rem; color:#999; margin-top:0.5rem;">
-                    More Free Tools:
-                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> ·
-                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> ·
-                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> ·
-                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> ·
-                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> ·
-                    <a href="https://524tracker.com" style="color:#818cf8; text-decoration:none;">524 Tracker</a>
-                </p>
-                <p class="disclaimer">All calculations are estimates based on publicly available platform data and are provided for informational purposes only. Not financial advice. Results may vary.</p>
+                <p>© 2026 Creator Revenue Calculator. All rights reserved.</p>
+                <p class="disclaimer">Calculator outputs are arithmetic from visible inputs and are provided for informational purposes only. Not financial advice. Verify material inputs against your own current records.</p>
             </div>
         </div>
     </footer>

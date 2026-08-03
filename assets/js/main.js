@@ -1,22 +1,36 @@
 // Creator Revenue Calculator - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Creator Revenue Calculator loaded');
-    
     // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle, .hamburger');
+    const navMenu = document.querySelector('.nav-menu, #navLinks');
+    const setMobileMenuLabel = (isOpen) => {
+        if (mobileMenuToggle) {
+            mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        }
+    };
     
     if (mobileMenuToggle && navMenu) {
+        if (!mobileMenuToggle.hasAttribute('aria-expanded')) {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+        setMobileMenuLabel(mobileMenuToggle.getAttribute('aria-expanded') === 'true');
+
         mobileMenuToggle.addEventListener('click', function() {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            
+            const isOpen = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', String(!isOpen));
+            setMobileMenuLabel(!isOpen);
+            navMenu.classList.toggle('active', !isOpen);
+            if (!navMenu.classList.contains('nav-links')) {
+                navMenu.style.display = isOpen ? 'none' : 'flex';
+            }
+
             // Update icon
             const icon = this.querySelector('i');
-            if (navMenu.style.display === 'flex') {
+            if (icon && !isOpen) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
-            } else {
+            } else if (icon) {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
@@ -25,11 +39,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle window resize
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
-                navMenu.style.display = 'flex';
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                if (!navMenu.classList.contains('nav-links')) {
+                    navMenu.style.display = 'flex';
+                } else {
+                    navMenu.style.removeProperty('display');
+                }
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                setMobileMenuLabel(false);
+                const icon = mobileMenuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             } else {
-                navMenu.style.display = 'none';
+                if (!navMenu.classList.contains('nav-links')) {
+                    navMenu.style.display = 'none';
+                } else {
+                    navMenu.style.removeProperty('display');
+                }
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                setMobileMenuLabel(false);
             }
         });
     }
@@ -51,9 +82,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Close mobile menu if open
                 if (window.innerWidth <= 768 && navMenu) {
-                    navMenu.style.display = 'none';
-                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                    if (!navMenu.classList.contains('nav-links')) {
+                        navMenu.style.display = 'none';
+                    } else {
+                        navMenu.style.removeProperty('display');
+                    }
+                    navMenu.classList.remove('active');
+                    if (mobileMenuToggle) {
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        setMobileMenuLabel(false);
+                    }
+                    const icon = mobileMenuToggle ? mobileMenuToggle.querySelector('i') : null;
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             }
         });
@@ -74,40 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('mouseenter', function() {
             this.style.cursor = 'not-allowed';
         });
-    });
-    
-    // Stats counter animation (optional enhancement)
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    const statObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const stat = entry.target;
-                const targetNumber = parseInt(stat.textContent);
-                
-                if (!isNaN(targetNumber) && targetNumber > 0) {
-                    let current = 0;
-                    const increment = targetNumber / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= targetNumber) {
-                            stat.textContent = targetNumber + (stat.textContent.includes('+') ? '+' : '');
-                            clearInterval(timer);
-                        } else {
-                            stat.textContent = Math.floor(current);
-                        }
-                    }, 30);
-                }
-                
-                statObserver.unobserve(stat);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    statNumbers.forEach(stat => {
-        if (!stat.textContent.includes('%') && !isNaN(parseInt(stat.textContent))) {
-            statObserver.observe(stat);
-        }
     });
     
     // Add active class to current page in navigation
@@ -132,8 +141,4 @@ document.addEventListener('DOMContentLoaded', function() {
         tag.title = `Feature: ${tag.textContent}`;
     });
     
-    // Console greeting
-    console.log('%c🎯 Creator Revenue Calculator', 'color: #6366f1; font-size: 16px; font-weight: bold;');
-    console.log('%cFree tools for content creators', 'color: #6b7280;');
-    console.log('%chttps://creatorrevenuecalculator.com', 'color: #10b981;');
 });

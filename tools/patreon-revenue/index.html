@@ -4,13 +4,13 @@
     <meta name="robots" content="index, follow, max-snippet:-1">
     <script src="/assets/js/theme.js" defer></script>
 
-    <title>Patreon Revenue Calculator 2026 | Estimate Earnings After Fees</title>
+    <title>Patreon Revenue Calculator 2026 | Fees and Take-Home</title>
     <meta name="description" content="Estimate Patreon take-home revenue using the current 10% standard plan or eligible legacy plans, with current USD payment-processing rates.">
-    <meta name="author" content="Built by a digital marketing professional">
+    <meta name="author" content="Creator Revenue Calculator">
     <meta name="keywords" content="patreon revenue calculator, patreon earnings calculator, how much does patreon take, patreon fee calculator, patreon income calculator, patreon take home pay">
 
     <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="Patreon Revenue Calculator 2026 | Estimate Earnings After Fees">
+    <meta property="og:title" content="Patreon Revenue Calculator 2026 | Fees and Take-Home">
     <meta property="og:description" content="Free Patreon revenue calculator. Estimate monthly and annual earnings after platform fees and payment processing.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/patreon-revenue/">
@@ -18,7 +18,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Patreon Revenue Calculator 2026 | Estimate Earnings After Fees">
+    <meta name="twitter:title" content="Patreon Revenue Calculator 2026 | Fees and Take-Home">
     <meta name="twitter:description" content="Estimate Patreon earnings after current platform and USD payment-processing fees.">
     <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
@@ -45,13 +45,12 @@
         "priceCurrency": "USD"
       },
       "author": {
-        "@type": "Person",
-        "name": "Built by a digital marketing professional",
-        "jobTitle": "Digital Marketing Professional",
-        "url": "https://creatorrevenuecalculator.com/about"
+        "@type": "Organization",
+        "name": "Creator Revenue Calculator",
+        "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2026-03-08",
-      "dateModified": "2026-07-17"
+      "dateModified": "2026-08-02"
     }
     </script>
 
@@ -122,7 +121,7 @@
 
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">    <link rel="stylesheet" href="/assets/css/accessibility-audit-fixes.css">
 </head>
-<body>
+<body class="calculator-page">
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
     <nav class="navbar">
@@ -139,7 +138,6 @@
                 <a href="/tools/instagram-revenue/">Instagram</a>
                 <a href="/tools/podcast-revenue/">Podcast</a>
                 <a href="/tools/sponsorship-rate/">Sponsorship</a>
-                <a href="/tools/ugc-rate/">UGC</a>
                 <a href="/tools/engagement-rate/">Engagement</a>
                 <a href="/tools/patreon-revenue/" style="color: #f59e0b;">Patreon</a>
             </div>
@@ -157,7 +155,7 @@
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Who needs it?</span>
-          <p class="answer-block-text">Creators considering Patreon or current creators who want to optimize tier pricing and forecast growth.</p>
+          <p class="answer-block-text">Creators comparing tier revenue, current or eligible legacy fees, processing profiles, and a user-supplied churn scenario.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Bottom line</span>
@@ -223,8 +221,8 @@
                             <div class="tier-card-header">Tier 1</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName1" aria-label="Tier 1 name" placeholder="e.g. Supporter" value="Supporter">
-                                <input type="number" id="tierPrice1" aria-label="Tier 1 monthly price in dollars" min="1" max="10000" step="1" value="5" placeholder="$">
-                                <input type="number" id="tierPatrons1" aria-label="Tier 1 patron count" min="0" max="100000" step="1" value="50" placeholder="#">
+                                <input type="number" id="tierPrice1" aria-label="Tier 1 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
+                                <input type="number" id="tierPatrons1" aria-label="Tier 1 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
                             </div>
                         </div>
 
@@ -232,8 +230,8 @@
                             <div class="tier-card-header">Tier 2</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName2" aria-label="Tier 2 name" placeholder="e.g. Member" value="Member">
-                                <input type="number" id="tierPrice2" aria-label="Tier 2 monthly price in dollars" min="1" max="10000" step="1" value="10" placeholder="$">
-                                <input type="number" id="tierPatrons2" aria-label="Tier 2 patron count" min="0" max="100000" step="1" value="25" placeholder="#">
+                                <input type="number" id="tierPrice2" aria-label="Tier 2 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
+                                <input type="number" id="tierPatrons2" aria-label="Tier 2 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
                             </div>
                         </div>
 
@@ -241,8 +239,8 @@
                             <div class="tier-card-header">Tier 3</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName3" aria-label="Tier 3 name" placeholder="e.g. VIP" value="VIP">
-                                <input type="number" id="tierPrice3" aria-label="Tier 3 monthly price in dollars" min="1" max="10000" step="1" value="25" placeholder="$">
-                                <input type="number" id="tierPatrons3" aria-label="Tier 3 patron count" min="0" max="100000" step="1" value="10" placeholder="#">
+                                <input type="number" id="tierPrice3" aria-label="Tier 3 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
+                                <input type="number" id="tierPatrons3" aria-label="Tier 3 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
                             </div>
                         </div>
 
@@ -250,12 +248,12 @@
                             <div class="tier-card-header">Tier 4 (optional)</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName4" aria-label="Tier 4 name" placeholder="e.g. Superfan" value="">
-                                <input type="number" id="tierPrice4" aria-label="Tier 4 monthly price in dollars" min="0" max="10000" step="1" value="" placeholder="$">
-                                <input type="number" id="tierPatrons4" aria-label="Tier 4 patron count" min="0" max="100000" step="1" value="" placeholder="#">
+                                <input type="number" id="tierPrice4" aria-label="Tier 4 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
+                                <input type="number" id="tierPatrons4" aria-label="Tier 4 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
                             </div>
                         </div>
 
-                        <div class="input-hint">Add up to 4 tiers. Leave price or patrons at 0 to skip a tier.</div>
+                        <div class="input-hint">Add up to 4 tiers. Every tier amount starts at zero; enter current tier and patron figures from your own page.</div>
                     </div>
 
                     <div class="input-group">
@@ -271,7 +269,7 @@
 
                 <!-- Results Panel -->
                 <div class="results-panel">
-                    <div class="results-card">
+                    <div class="results-card" aria-live="polite">
                         <h3><i class="fas fa-dollar-sign"></i> Your Patreon Revenue</h3>
 
                         <!-- Revenue Summary -->
@@ -429,25 +427,25 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-tools"></i> Related Creator Tools</h2>
-                <p class="subtitle">More calculators for your creator business</p>
+                <p class="subtitle">More transparent scenario tools for your creator business</p>
             </div>
             <div class="related-grid">
                 <a href="/tools/sponsorship-rate/" class="related-card">
                     <i class="fas fa-handshake"></i>
-                    <h3>Sponsorship Rate Calculator</h3>
-                    <p>Calculate what to charge brands for sponsored posts and videos.</p>
+                    <h3>Sponsorship Quote Calculator</h3>
+                    <p>Build a quote from your own base fee, deliverables, production costs, and contract terms.</p>
                     <span class="btn btn-primary">Try Calculator</span>
                 </a>
-                <a href="/tools/ugc-rate/" class="related-card">
-                    <i class="fas fa-camera-retro"></i>
-                    <h3>UGC Rate Calculator</h3>
-                    <p>Find out what to charge for user generated content, no followers needed.</p>
+                <a href="/tools/engagement-rate/" class="related-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Engagement Rate Calculator</h3>
+                    <p>Calculate follower-based and view-based rates with a visible formula and no hidden benchmark.</p>
                     <span class="btn btn-primary">Try Calculator</span>
                 </a>
                 <a href="/tools/youtube-ad-revenue/" class="related-card">
                     <i class="fab fa-youtube"></i>
-                    <h3>YouTube Revenue Calculator</h3>
-                    <p>Estimate YouTube ad revenue based on views, niche, and audience location.</p>
+                    <h3>YouTube Revenue Scenario Calculator</h3>
+                    <p>Model revenue from your monthly views and your own post-share revenue-per-1,000-view input.</p>
                     <span class="btn btn-primary">Try Calculator</span>
                 </a>
             </div>
@@ -485,7 +483,6 @@
                     <a href="/tools/podcast-revenue/" class="footer-link">Podcast Calculator</a>
                     <a href="/tools/affiliate-calculator/" class="footer-link">Affiliate Calculator</a>
                     <a href="/tools/sponsorship-rate/" class="footer-link">Sponsorship Calculator</a>
-                    <a href="/tools/ugc-rate/" class="footer-link">UGC Rate Calculator</a>
                     <a href="/tools/engagement-rate/" class="footer-link">Engagement Calculator</a>
                     <a href="/tools/patreon-revenue/" class="footer-link">Patreon Calculator</a>
                 </div>
@@ -517,17 +514,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Your Friendly Developer. All rights reserved.</p>
-                <p style="font-size:0.75rem; color:#999; margin-top:0.5rem;">
-                    More Free Tools:
-                    <a href="https://fibertools.app" style="color:#818cf8; text-decoration:none;">FiberTools</a> ·
-                    <a href="https://mindchecktools.com" style="color:#818cf8; text-decoration:none;">MindCheck Tools</a> ·
-                    <a href="https://flipmycase.com" style="color:#818cf8; text-decoration:none;">FlipMyCase</a> ·
-                    <a href="https://contractextract.com" style="color:#818cf8; text-decoration:none;">ContractExtract</a> ·
-                    <a href="https://medicalbillreader.com" style="color:#818cf8; text-decoration:none;">Medical Bill Reader</a> ·
-                    <a href="https://524tracker.com" style="color:#818cf8; text-decoration:none;">524 Tracker</a>
-                </p>
-                <p class="disclaimer">All calculations are estimates based on publicly available platform data and are provided for informational purposes only. Not financial advice. Results may vary.</p>
+                <p>© 2026 Creator Revenue Calculator. All rights reserved.</p>
+                <p class="disclaimer">Calculator outputs are arithmetic from visible inputs and are provided for informational purposes only. Not financial advice. Verify material inputs against your own current records.</p>
             </div>
         </div>
     </footer>

@@ -1,4 +1,10 @@
 /* Shared WCAG fixes verified across every sitemap route. */
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
 .gear-category,
 .tier-card-header {
     color: #374151 !important;
@@ -86,6 +92,22 @@ td[style*="#ef4444"] {
 
 .skip-nav {
     color: #111827 !important;
+    position: fixed;
+    top: -6rem;
+    left: 1rem;
+    z-index: 10000;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.skip-nav:focus {
+    top: 1rem;
+}
+
+.hero .subtitle {
+    color: #e5e7eb !important;
 }
 
 .tier-badge {
@@ -114,4 +136,354 @@ td[style*="#ef4444"] {
 .benchmark-table-container:focus {
     outline: 3px solid #1d4ed8;
     outline-offset: 3px;
+}
+
+#theme-toggle,
+.hamburger,
+.mobile-menu-toggle {
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.15rem;
+}
+
+.hamburger {
+    display: none;
+}
+
+/* Keep grid and form content inside narrow viewports. */
+.tools-grid,
+.tool-card,
+.calculator-wrapper,
+.calculator-container,
+.calculator,
+.input-panel,
+.results-panel,
+.results-card,
+.input-group,
+.input-with-slider,
+.tier-inputs-container,
+.tier-card,
+.tier-card-fields,
+.contact-grid,
+.contact-card,
+.gear-grid,
+.gear-card,
+.related-grid,
+.related-card,
+.answer-block,
+.answer-block-grid,
+.answer-block-item,
+.breakdown,
+.breakdown-item,
+.result-row,
+.fee-row,
+.breakdown-row,
+.benchmark-table-container,
+.cpm-table-container {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.container,
+.container > *,
+.hero-content,
+.hero-image,
+.hero-actions,
+.hero-trust-strip,
+.hero-stats,
+.dashboard-preview,
+.dashboard-card,
+.footer-content,
+.footer-section,
+.footer-logo {
+    min-width: 0;
+    max-width: 100%;
+}
+
+body.calculator-page,
+body.calculator-page *,
+.contact-grid,
+.contact-grid * {
+    box-sizing: border-box;
+}
+
+body.calculator-page input,
+body.calculator-page select,
+body.calculator-page textarea,
+body.calculator-page button {
+    min-width: 0;
+    max-width: 100%;
+}
+
+body.calculator-page img,
+body.calculator-page svg,
+body.calculator-page canvas,
+body.calculator-page video {
+    max-width: 100%;
+    height: auto;
+}
+
+.benchmark-table-container,
+.cpm-table-container {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+}
+
+main a[href^="mailto:"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Calculator-specific dark mode. Tool styles load before this shared file. */
+html[data-theme="dark"] body.calculator-page {
+    --dark: #f8fafc;
+    --gray: #94a3b8;
+    --gray-dark: #cbd5e1;
+    --gray-light: #334155;
+    --light: #0f172a;
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] body.calculator-page main,
+html[data-theme="dark"] body.calculator-page .calculator-section,
+html[data-theme="dark"] body.calculator-page .how-it-works,
+html[data-theme="dark"] body.calculator-page .education-section,
+html[data-theme="dark"] body.calculator-page .faq-section,
+html[data-theme="dark"] body.calculator-page .related-section,
+html[data-theme="dark"] body.calculator-page .resources-section,
+html[data-theme="dark"] body.calculator-page .resources,
+html[data-theme="dark"] body.calculator-page .benchmark-section,
+html[data-theme="dark"] body.calculator-page .earnings-examples,
+html[data-theme="dark"] body.calculator-page .explanation-section,
+html[data-theme="dark"] body.calculator-page .info-section,
+html[data-theme="dark"] body.calculator-page .guide-section {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] body.calculator-page .navbar,
+html[data-theme="dark"] body.calculator-page .footer,
+html[data-theme="dark"] body.calculator-page footer {
+    background: #111827 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .calculator,
+html[data-theme="dark"] body.calculator-page .calculator-container,
+html[data-theme="dark"] body.calculator-page .input-panel,
+html[data-theme="dark"] body.calculator-page .results-panel,
+html[data-theme="dark"] body.calculator-page .results-card,
+html[data-theme="dark"] body.calculator-page .answer-block,
+html[data-theme="dark"] body.calculator-page .step,
+html[data-theme="dark"] body.calculator-page .step-content,
+html[data-theme="dark"] body.calculator-page .factor,
+html[data-theme="dark"] body.calculator-page .factor-item,
+html[data-theme="dark"] body.calculator-page .example,
+html[data-theme="dark"] body.calculator-page .myth,
+html[data-theme="dark"] body.calculator-page .guide-step,
+html[data-theme="dark"] body.calculator-page .gear-card,
+html[data-theme="dark"] body.calculator-page .related-card,
+html[data-theme="dark"] body.calculator-page .faq-item,
+html[data-theme="dark"] body.calculator-page .faq-question,
+html[data-theme="dark"] body.calculator-page .faq-answer,
+html[data-theme="dark"] body.calculator-page .tier-card,
+html[data-theme="dark"] body.calculator-page .churn-section,
+html[data-theme="dark"] body.calculator-page .fee-breakdown,
+html[data-theme="dark"] body.calculator-page .revenue-breakdown,
+html[data-theme="dark"] body.calculator-page .formula-breakdown,
+html[data-theme="dark"] body.calculator-page .negotiation-tip,
+html[data-theme="dark"] body.calculator-page .rate-factors,
+html[data-theme="dark"] body.calculator-page .tier-badge-container,
+html[data-theme="dark"] body.calculator-page .engagement-display,
+html[data-theme="dark"] body.calculator-page .stream-breakdown,
+html[data-theme="dark"] body.calculator-page .breakdown,
+html[data-theme="dark"] body.calculator-page .breakdown-item,
+html[data-theme="dark"] body.calculator-page .revenue-summary,
+html[data-theme="dark"] body.calculator-page .affiliate-disclosure,
+html[data-theme="dark"] body.calculator-page .cpm-data,
+html[data-theme="dark"] body.calculator-page .benchmark-table tbody tr,
+html[data-theme="dark"] body.calculator-page .cpm-table tbody tr {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] body.calculator-page input,
+html[data-theme="dark"] body.calculator-page select,
+html[data-theme="dark"] body.calculator-page textarea {
+    background: #0f172a !important;
+    border-color: #64748b !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] body.calculator-page input::placeholder,
+html[data-theme="dark"] body.calculator-page textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1;
+}
+
+html[data-theme="dark"] body.calculator-page h1,
+html[data-theme="dark"] body.calculator-page h2,
+html[data-theme="dark"] body.calculator-page h3,
+html[data-theme="dark"] body.calculator-page h4,
+html[data-theme="dark"] body.calculator-page .section-header h2,
+html[data-theme="dark"] body.calculator-page .input-group label,
+html[data-theme="dark"] body.calculator-page .tier-inputs-label,
+html[data-theme="dark"] body.calculator-page .results-card h3,
+html[data-theme="dark"] body.calculator-page .faq-question,
+html[data-theme="dark"] body.calculator-page .result-label,
+html[data-theme="dark"] body.calculator-page .breakdown-label,
+html[data-theme="dark"] body.calculator-page .label {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] body.calculator-page p,
+html[data-theme="dark"] body.calculator-page li,
+html[data-theme="dark"] body.calculator-page td,
+html[data-theme="dark"] body.calculator-page .subtitle,
+html[data-theme="dark"] body.calculator-page .sublabel,
+html[data-theme="dark"] body.calculator-page .input-hint,
+html[data-theme="dark"] body.calculator-page .micro-note,
+html[data-theme="dark"] body.calculator-page .gear-description,
+html[data-theme="dark"] body.calculator-page .gear-specs,
+html[data-theme="dark"] body.calculator-page .rate-tier-note,
+html[data-theme="dark"] body.calculator-page .disclaimer {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] body.calculator-page main a:not(.btn) {
+    color: #93c5fd !important;
+}
+
+html[data-theme="dark"] body.calculator-page .result-value,
+html[data-theme="dark"] body.calculator-page .breakdown-value,
+html[data-theme="dark"] body.calculator-page .fee-row .value.positive,
+html[data-theme="dark"] body.calculator-page .fee-row .value.net,
+html[data-theme="dark"] body.calculator-page .value.net,
+html[data-theme="dark"] body.calculator-page .net-monthly-value,
+html[data-theme="dark"] body.calculator-page .total-monthly-value {
+    color: #86efac !important;
+}
+
+html[data-theme="dark"] body.calculator-page .btn-secondary,
+html[data-theme="dark"] body.calculator-page .copy-result,
+html[data-theme="dark"] body.calculator-page .copy-rate-card {
+    background: #334155 !important;
+    border-color: #64748b !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] body.calculator-page table,
+html[data-theme="dark"] body.calculator-page th,
+html[data-theme="dark"] body.calculator-page td {
+    border-color: #475569 !important;
+}
+
+/* Trust and discovery pages also need dark surfaces when the shared toggle is active. */
+html[data-theme="dark"] .geo-content,
+html[data-theme="dark"] .contact-card {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] .geo-content h2,
+html[data-theme="dark"] .geo-content h3,
+html[data-theme="dark"] .contact-card h3 {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .geo-content p,
+html[data-theme="dark"] .geo-content li,
+html[data-theme="dark"] .contact-card p {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .geo-content a,
+html[data-theme="dark"] .contact-card a {
+    color: #93c5fd !important;
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .hamburger {
+        display: inline-flex;
+    }
+
+    .nav-links.nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 0.5rem;
+    }
+
+    .nav-links.nav-menu.active {
+        display: flex;
+    }
+
+    .nav-links.nav-menu a {
+        min-height: 2.75rem;
+        padding: 0.65rem 0;
+    }
+
+    .tools-grid,
+    .hero .container,
+    .dashboard-preview,
+    .footer-content,
+    body.calculator-page .calculator-wrapper,
+    body.calculator-page .calculator-container,
+    body.calculator-page .calculator,
+    .contact-grid,
+    body.calculator-page .gear-grid,
+    body.calculator-page .related-grid,
+    body.calculator-page .answer-block-grid,
+    body.calculator-page .tier-card-fields {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    body.calculator-page main,
+    body.calculator-page main > *,
+    body.calculator-page main .container,
+    body.calculator-page .input-panel,
+    body.calculator-page .results-panel,
+    body.calculator-page .results-card,
+    .contact-grid,
+    .contact-card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }
