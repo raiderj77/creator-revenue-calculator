@@ -192,7 +192,20 @@ pass(
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");
 pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/script is not downloaded/i.test(cookies), "cookie notice accurately states denied-consent behavior");
-pass(affiliateDisclosure.includes("As an Amazon Associate, we earn from qualifying purchases"), "Amazon Associates relationship is plainly disclosed");
+const requiredAmazonStatement = "As an Amazon Associate I earn from qualifying purchases";
+pass(affiliateDisclosure.includes(requiredAmazonStatement), "Amazon Associates relationship uses the required site disclosure");
+for (const [file, page] of [
+  ["tools/affiliate-calculator/index.html", affiliatePage],
+  ["tools/podcast-revenue/index.html", podcastPage],
+  ["tools/youtube-ad-revenue/index.html", youtubePage],
+]) {
+  const firstAmazonLink = page.search(/href="https:\/\/(?:www\.)?amazon\.com\/[^\"]*tag=creatorcalc-20/i);
+  const nearbyDisclosure = page.indexOf(requiredAmazonStatement);
+  pass(
+    firstAmazonLink > 0 && nearbyDisclosure >= 0 && nearbyDisclosure < firstAmazonLink,
+    `${file} places the clear Amazon commission disclosure before its first paid link`,
+  );
+}
 pass(!publicText.includes("tag=ytearnings-20"), "creator pages do not reuse FiberTools' Amazon tracking ID");
 const creatorAffiliateAnchors = [...publicText.matchAll(/<a\b[^>]*href="[^"]*tag=creatorcalc-20[^"]*"[^>]*>/gi)].map((match) => match[0]);
 pass(creatorAffiliateAnchors.length >= 3, "maintained creator-equipment links remain available");
