@@ -17,7 +17,6 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entr
     "scripts",
     "finance-youtube-revenue",
     "gaming-youtube-revenue",
-    "ugc-rate",
   ].includes(entry.name)) return [];
   const absolute = path.join(dir, entry.name);
   return entry.isDirectory() ? walk(absolute) : [absolute];
@@ -48,7 +47,6 @@ const guidePage = read("guide/index.html");
 const retiredToolPages = new Map([
   ["tools/finance-youtube-revenue/index.html", read("tools/finance-youtube-revenue/index.html")],
   ["tools/gaming-youtube-revenue/index.html", read("tools/gaming-youtube-revenue/index.html")],
-  ["tools/ugc-rate/index.html", read("tools/ugc-rate/index.html")],
 ]);
 const mainScript = read("assets/js/main.js");
 const aboutPage = read("about.html");
@@ -65,6 +63,8 @@ const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
 const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
+const ugcPage = read("tools/ugc-rate/index.html");
+const ugcScript = read("tools/ugc-rate/ugc-calculator.js");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
 const twitchPage = read("tools/twitch-revenue/index.html");
@@ -93,6 +93,7 @@ const maintainedToolPages = new Map([
   ["tools/patreon-revenue/index.html", patreonPage],
   ["tools/podcast-revenue/index.html", podcastPage],
   ["tools/sponsorship-rate/index.html", sponsorshipPage],
+  ["tools/ugc-rate/index.html", ugcPage],
   ["tools/tiktok-revenue/index.html", tiktokPage],
   ["tools/twitch-revenue/index.html", twitchPage],
   ["tools/youtube-ad-revenue/index.html", youtubePage],
@@ -115,15 +116,16 @@ pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunc
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
-pass((sitemap.match(/<url>/g) || []).length === 18, "sitemap contains the 10 maintained calculators and eight current core pages");
+pass((sitemap.match(/<url>/g) || []).length === 19, "sitemap contains the 11 maintained calculators and eight current core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
 pass(/<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(guidePage), "retired guide remains explicitly noindex even outside the production redirect layer");
 pass(
-  ["/tools/finance-youtube-revenue/", "/tools/gaming-youtube-revenue/", "/tools/ugc-rate/"]
+  ["/tools/finance-youtube-revenue/", "/tools/gaming-youtube-revenue/"]
     .every((route) => !sitemap.includes(route)),
-  "retired benchmark-driven tools are absent from the sitemap",
+  "retired benchmark-driven YouTube tools are absent from the sitemap",
 );
+pass(sitemap.includes("/tools/ugc-rate/"), "restored UGC quote worksheet is publicly discoverable");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
 pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
@@ -155,7 +157,6 @@ pass(
 for (const [base, destination] of Object.entries({
   "/tools/finance-youtube-revenue": "/tools/youtube-ad-revenue/",
   "/tools/gaming-youtube-revenue": "/tools/youtube-ad-revenue/",
-  "/tools/ugc-rate": "/tools/sponsorship-rate/",
 })) {
   for (const source of [base, `${base}/`, `${base}/index.html`]) {
     pass(
@@ -166,7 +167,11 @@ for (const [base, destination] of Object.entries({
 }
 pass(
   [...retiredToolPages.values()].every((page) => /<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(page)),
-  "retired tool files remain noindex if served outside the production redirect layer",
+  "retired YouTube tool files remain noindex if served outside the production redirect layer",
+);
+pass(
+  !vercelConfig.redirects?.some((redirect) => redirect.source.startsWith("/tools/ugc-rate")),
+  "UGC quote routes are no longer redirected to the sponsorship worksheet",
 );
 pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site root instead of the verification-files directory");
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
@@ -248,6 +253,84 @@ pass(
   sponsorshipScript.includes("contentSubtotal = baseFee * deliverables")
     && sponsorshipScript.includes("quoteTotal = contentSubtotal + addOns"),
   "sponsorship quote total is calculated only from visible user inputs",
+);
+const ugcInputIds = [
+  "baseFee",
+  "deliverables",
+  "productionCosts",
+  "revisionsFee",
+  "rawFootageFee",
+  "usageRightsFee",
+  "exclusivityFee",
+  "rushFee",
+];
+pass(
+  ugcInputIds.every((id) => ugcPage.includes(`id="${id}"`)),
+  "UGC worksheet exposes creation, quantity, cost, revision, asset, rights, exclusivity, and rush inputs",
+);
+pass(
+  ugcPage.includes('id="deliverables" min="1" max="1000" step="1" value="1"')
+    && ugcInputIds.filter((id) => id !== "deliverables").every((id) => new RegExp(`id="${id}"[^>]*value="0"`).test(ugcPage)),
+  "UGC worksheet uses one deliverable and zero for every monetary default",
+);
+pass(
+  ugcScript.includes("contentSubtotal = baseFee * deliverables")
+    && ugcScript.includes("addOns = productionCosts + revisionsFee + rawFootageFee + usageRightsFee + exclusivityFee + rushFee")
+    && ugcScript.includes("quoteTotal = contentSubtotal + addOns"),
+  "UGC quote formula uses only the eight visible user inputs",
+);
+pass(
+  ugcPage.includes("A $100 creation fee × 2 deliverables, plus $20 production, $30 revisions, $40 raw footage or variants, $50 usage rights, $60 exclusivity, and $70 rush equals a $470 quote scenario."),
+  "UGC worked example demonstrates the $470 acceptance calculation",
+);
+pass(
+  !/\$150|\$300|2(?:–|-)3x|per month|industry standard|typically charge|real 2026 rate|guaranteed/i.test(ugcPage + "\n" + ugcScript),
+  "UGC worksheet contains no retired benchmark, multiplier, monthly-income, standard, or guarantee claims",
+);
+pass(
+  ugcPage.includes("Quote worksheet, not a market-rate recommendation, guarantee, or contract; it does not provide legal, tax, or financial advice.")
+    && ugcPage.includes("What the Result Excludes")
+    && ugcPage.includes('datetime="2026-08-03"'),
+  "UGC worksheet displays its review date, exclusions, and decision-use limitations",
+);
+pass(
+  ugcPage.includes("<title>UGC Rate Calculator | Quote Content, Usage &amp; Add-Ons</title>")
+    && ugcPage.includes('content="Build a UGC quote from your own creation fee, deliverables, revisions, usage rights, raw footage, exclusivity, and rush terms. No hidden market rates."'),
+  "UGC search title and description match the approved query-focused metadata",
+);
+const ugcSchemas = jsonLdDocuments(ugcPage);
+pass(
+  ["WebApplication", "FAQPage", "BreadcrumbList"].every((type) => ugcSchemas.some((document) => document["@type"] === type)),
+  "UGC page provides WebApplication, FAQ, and breadcrumb structured data",
+);
+const ugcFaqPairs = [
+  ["Does this calculator supply a UGC market rate?", "No. It totals only the creation fee, deliverable count, costs, and add-ons you enter. It does not infer a price from experience, followers, platform, niche, or an industry benchmark."],
+  ["What should I put in the base creation fee?", "Enter a fee you selected using your own production time, costs, prior accepted offers, documented results, and business requirements. The worksheet does not choose or validate that fee."],
+  ["Why are usage rights and exclusivity separate?", "Usage rights define how a client may reuse the content. Exclusivity limits work you may do for specified competitors or categories. Separate amounts keep those different permissions and restrictions visible."],
+  ["What does the quote total exclude?", "The total excludes anything you do not enter, including taxes, payment processing, insurance, shipping, travel, licensing, and professional review. Add applicable items to the written quote."],
+  ["Does this worksheet replace a contract or professional advice?", "No. It is an arithmetic quote worksheet, not a contract, and does not provide legal, tax, or financial advice. Review material or unclear terms with an appropriately qualified professional."],
+];
+pass(
+  ugcFaqPairs.every(([question, answer]) => ugcPage.split(question).length === 3 && ugcPage.split(answer).length === 3),
+  "UGC visible FAQ questions and answers exactly match the FAQ schema",
+);
+pass(
+  ugcPage.includes('class="results-card" aria-live="polite" aria-atomic="true"')
+    && ugcPage.includes('id="copyQuote"')
+    && ugcScript.includes("navigator.clipboard.writeText")
+    && ugcScript.includes("event.key === 'Enter' || event.key === ' '")
+    && ugcScript.includes("setAttribute('aria-expanded', 'true')"),
+  "UGC results, copy action, and keyboard-native FAQ controls expose accessible state",
+);
+pass(
+  !/(amazon\.com|tag=creatorcalc-20|googlesyndication|adsbygoogle|etsy\.com)/i.test(ugcPage),
+  "UGC worksheet makes no ad, affiliate, Amazon, or storefront request",
+);
+pass(
+  home.includes('href="/tools/ugc-rate/"')
+    && sponsorshipPage.includes('href="/tools/ugc-rate/"')
+    && ugcPage.includes('href="/tools/sponsorship-rate/"'),
+  "homepage, sponsorship worksheet, and UGC worksheet cross-link the restored tool",
 );
 pass(hasOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
 pass(
@@ -414,8 +497,8 @@ pass(
 );
 const resultCards = [...publicText.matchAll(/<div\s+class="results-card"[^>]*>/g)].map((match) => match[0]);
 pass(
-  resultCards.length === 10 && resultCards.every((card) => /aria-live="polite"/.test(card)),
-  "all 10 maintained calculator result cards remain present and announce updates politely",
+  resultCards.length === 11 && resultCards.every((card) => /aria-live="polite"/.test(card)),
+  "all 11 maintained calculator result cards remain present and announce updates politely",
 );
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
 pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
@@ -460,11 +543,11 @@ pass(
   "About metadata, schema, and copy omit the author's exact location and private company identity",
 );
 pass(
-  [affiliatePage, engagementPage, instagramPage, newsletterPage, patreonPage, podcastPage, sponsorshipPage, tiktokPage, twitchPage, youtubePage].every((page) => (
+  [affiliatePage, engagementPage, instagramPage, newsletterPage, patreonPage, podcastPage, sponsorshipPage, ugcPage, tiktokPage, twitchPage, youtubePage].every((page) => (
     page.includes('<meta name="author" content="Creator Revenue Calculator">')
       && /"author"\s*:\s*\{\s*"@type"\s*:\s*"Organization",\s*"name"\s*:\s*"Creator Revenue Calculator",\s*"url"\s*:\s*"https:\/\/creatorrevenuecalculator\.com\/"/s.test(page)
   )),
-  "all 10 maintained tools use site-level author metadata and Organization schema",
+  "all 11 maintained tools use site-level author metadata and Organization schema",
 );
 pass(!/Built by a digital marketing professional/i.test(publicText), "generic invented author credentials are absent from public pages");
 pass(
@@ -494,7 +577,7 @@ for (const [file, html] of maintainedPages) {
 }
 pass(
   [...maintainedToolPages.values()].every((page) => /<body\b[^>]*\bclass="[^"]*\bcalculator-page\b[^"]*"/i.test(page)),
-  "all 10 maintained calculators opt into the shared mobile and dark-mode contract",
+  "all 11 maintained calculators opt into the shared mobile and dark-mode contract",
 );
 const maintainedProductPages = [
   home,
@@ -505,13 +588,14 @@ const maintainedProductPages = [
   patreonPage,
   podcastPage,
   sponsorshipPage,
+  ugcPage,
   tiktokPage,
   twitchPage,
   youtubePage,
 ].join("\n");
 pass(
-  !/\/tools\/(?:finance-youtube-revenue|gaming-youtube-revenue|ugc-rate)\//.test(maintainedProductPages),
-  "maintained product pages do not link visitors to retired benchmark-driven tools",
+  !/\/tools\/(?:finance-youtube-revenue|gaming-youtube-revenue)\//.test(maintainedProductPages),
+  "maintained product pages do not link visitors to retired benchmark-driven YouTube tools",
 );
 pass(
   !/based on publicly available platform data|industry data and updated 2026 rates|Data is for estimation purposes only|public benchmarks rather than affiliate compensation|calculators use publicly available data, industry averages/i.test(publicText),
@@ -543,7 +627,7 @@ pass(
   "shared accessibility styles honor reduced-motion preferences",
 );
 pass(
-  [newsletterScript, patreonScript, sponsorshipScript, youtubeScript].every((script) => (
+  [newsletterScript, patreonScript, sponsorshipScript, ugcScript, youtubeScript].every((script) => (
     /setAttribute\(['"]aria-expanded['"],\s*['"]false['"]\)/.test(script)
       && /setAttribute\(['"]aria-expanded['"],\s*['"]true['"]\)/.test(script)
   )),

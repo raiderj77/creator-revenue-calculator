@@ -1,263 +1,175 @@
-// UGC Creator Rate Calculator 2026 - JavaScript
+document.addEventListener('DOMContentLoaded', function () {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    // --- 2026 UGC RATE DATA ---
-
-    var experienceData = {
-        'beginner':     { label: 'Beginner',     videoBase: 225,  photoBase: 135 },
-        'intermediate': { label: 'Intermediate',  videoBase: 450,  photoBase: 270 },
-        'established':  { label: 'Established',   videoBase: 1050, photoBase: 630 }
+    var inputs = {
+        baseFee: document.getElementById('baseFee'),
+        deliverables: document.getElementById('deliverables'),
+        productionCosts: document.getElementById('productionCosts'),
+        revisionsFee: document.getElementById('revisionsFee'),
+        rawFootageFee: document.getElementById('rawFootageFee'),
+        usageRightsFee: document.getElementById('usageRightsFee'),
+        exclusivityFee: document.getElementById('exclusivityFee'),
+        rushFee: document.getElementById('rushFee')
     };
 
-    var videoLengthData = {
-        '15s':   { label: '15 seconds', multiplier: 0.75 },
-        '30s':   { label: '30 seconds', multiplier: 1.0 },
-        '60s':   { label: '60 seconds', multiplier: 1.4 },
-        '2min':  { label: '2+ minutes', multiplier: 2.0 }
-    };
+    var calculateButton = document.getElementById('calculateBtn');
+    var contentSubtotalOutput = document.getElementById('contentSubtotal');
+    var addOnsOutput = document.getElementById('addOnsTotal');
+    var quoteTotalOutput = document.getElementById('quoteTotal');
+    var breakdown = document.getElementById('quoteBreakdown');
+    var averageOutput = document.getElementById('averagePerDeliverable');
+    var averageDetail = document.getElementById('averageDetail');
+    var copyButton = document.getElementById('copyQuote');
+    var copyStatus = document.getElementById('copyStatus');
 
-    var usageRightsData = {
-        'organic':     { label: 'Organic Only',   multiplier: 1.0 },
-        'paid-ads':    { label: 'Paid Ads',       multiplier: 1.75 },
-        'whitelisting': { label: 'Whitelisting',  multiplier: 2.5 }
-    };
+    function nonNegativeNumber(input, fallback) {
+        var parsed = Number(input && input.value);
+        return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+    }
 
-    var revisionData = {
-        '0': { label: '0 rounds',   addon: 0 },
-        '1': { label: '1 round (included)', addon: 0 },
-        '2': { label: '2 rounds',   addon: 75 },
-        'unlimited': { label: 'Unlimited', addon: 200 }
-    };
+    function currency(value) {
+        return value.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
 
-    var portfolioTips = {
-        'beginner':     'Start by building a portfolio of 5–10 spec pieces for brands you love. Post them on social media and tag the brands. Many UGC creators land their first paid gig within 2–4 weeks of actively pitching.',
-        'intermediate': 'You have leverage now. Start raising rates after every 10 completed projects. Package multi-deliverable bundles (3 videos + 3 photos) to increase deal value by 30–50%. Negotiate usage rights as a separate line item.',
-        'established':  'At your level, retainer deals are more valuable than one-offs. Offer brands a monthly content package (8–12 pieces) at a slight discount per piece but guaranteed recurring income. Charge separately for concepts, scripting, and usage rights.'
-    };
+    function addBreakdownRow(label, value) {
+        var row = document.createElement('div');
+        row.className = 'factor-item neutral';
 
-    // --- DOM ELEMENTS ---
-    var contentTypeSelect = document.getElementById('contentType');
-    var videoLengthSelect = document.getElementById('videoLength');
-    var videoLengthGroup = document.getElementById('videoLengthGroup');
-    var deliverablesInput = document.getElementById('deliverables');
-    var usageRightsSelect = document.getElementById('usageRights');
-    var revisionsSelect = document.getElementById('revisions');
-    var experienceSelect = document.getElementById('experience');
-    var rushSelect = document.getElementById('rush');
-    var calculateBtn = document.getElementById('calculateBtn');
+        var labelElement = document.createElement('span');
+        labelElement.className = 'factor-label';
+        labelElement.textContent = label;
 
-    // Result elements
-    var rateLow = document.getElementById('rateLow');
-    var rateRecommended = document.getElementById('rateRecommended');
-    var ratePremium = document.getElementById('ratePremium');
-    var factorsContainer = document.getElementById('rateFactors');
-    var perUnitLabel = document.getElementById('perUnitLabel');
-    var perUnitValue = document.getElementById('perUnitValue');
-    var totalUnitsLabel = document.getElementById('totalUnitsLabel');
-    var totalUnitsValue = document.getElementById('totalUnitsValue');
-    var usageLineLabel = document.getElementById('usageLineLabel');
-    var usageLineValue = document.getElementById('usageLineValue');
-    var portfolioTipText = document.getElementById('portfolioTip');
-    var monthlyEstimate = document.getElementById('monthlyEstimate');
-    var monthlyDetail = document.getElementById('monthlyDetail');
-    var copyBtn = document.getElementById('copyRateCard');
+        var valueElement = document.createElement('span');
+        valueElement.className = 'factor-value';
+        valueElement.textContent = currency(value);
 
-    // --- CONDITIONAL VISIBILITY ---
-    contentTypeSelect.addEventListener('change', function() {
-        var showVideo = this.value === 'video' || this.value === 'bundle';
-        videoLengthGroup.classList.toggle('visible', showVideo);
-    });
+        row.appendChild(labelElement);
+        row.appendChild(valueElement);
+        breakdown.appendChild(row);
+    }
 
-    // --- EVENT LISTENERS ---
-    calculateBtn.addEventListener('click', calculate);
-    [contentTypeSelect, videoLengthSelect, deliverablesInput, usageRightsSelect, revisionsSelect, experienceSelect, rushSelect].forEach(function(el) {
-        el.addEventListener('input', calculate);
-        el.addEventListener('change', calculate);
-    });
-
-    // Initial calculation
-    calculate();
-
-    // --- MAIN CALCULATION ---
     function calculate() {
-        var contentType = contentTypeSelect.value;
-        var videoLength = videoLengthSelect.value;
-        var deliverables = parseInt(deliverablesInput.value) || 1;
-        var usageRights = usageRightsSelect.value;
-        var revisions = revisionsSelect.value;
-        var experience = experienceSelect.value;
-        var rush = rushSelect.value;
+        var baseFee = nonNegativeNumber(inputs.baseFee, 0);
+        var deliverables = Math.max(1, Math.floor(nonNegativeNumber(inputs.deliverables, 1)));
+        var productionCosts = nonNegativeNumber(inputs.productionCosts, 0);
+        var revisionsFee = nonNegativeNumber(inputs.revisionsFee, 0);
+        var rawFootageFee = nonNegativeNumber(inputs.rawFootageFee, 0);
+        var usageRightsFee = nonNegativeNumber(inputs.usageRightsFee, 0);
+        var exclusivityFee = nonNegativeNumber(inputs.exclusivityFee, 0);
+        var rushFee = nonNegativeNumber(inputs.rushFee, 0);
 
-        var exp = experienceData[experience];
-        var vLen = videoLengthData[videoLength];
-        var usage = usageRightsData[usageRights];
-        var rev = revisionData[revisions];
+        var contentSubtotal = baseFee * deliverables;
+        var addOns = productionCosts + revisionsFee + rawFootageFee + usageRightsFee + exclusivityFee + rushFee;
+        var quoteTotal = contentSubtotal + addOns;
+        var averagePerDeliverable = quoteTotal / deliverables;
 
-        var factors = [];
-        var unitRate = 0;
-        var unitLabel = '';
-        var subtotal = 0;
+        contentSubtotalOutput.textContent = currency(contentSubtotal);
+        addOnsOutput.textContent = currency(addOns);
+        quoteTotalOutput.textContent = currency(quoteTotal);
+        averageOutput.textContent = currency(averagePerDeliverable);
+        averageDetail.textContent = 'Quote total divided by ' + deliverables + (deliverables === 1 ? ' deliverable.' : ' deliverables.');
 
-        // 1. Calculate per-unit base rate
-        if (contentType === 'video') {
-            unitRate = exp.videoBase * vLen.multiplier;
-            unitLabel = 'per video (' + vLen.label + ')';
-            subtotal = unitRate * deliverables;
+        breakdown.textContent = '';
+        addBreakdownRow('Creation fee × ' + deliverables, contentSubtotal);
+        addBreakdownRow('Production costs', productionCosts);
+        addBreakdownRow('Revisions', revisionsFee);
+        addBreakdownRow('Raw footage or variants', rawFootageFee);
+        addBreakdownRow('Usage rights', usageRightsFee);
+        addBreakdownRow('Exclusivity', exclusivityFee);
+        addBreakdownRow('Rush', rushFee);
 
-            if (vLen.multiplier !== 1.0) {
-                var pct = Math.round((vLen.multiplier - 1) * 100);
-                var sign = pct > 0 ? '+' : '';
-                factors.push({ label: vLen.label + ' video length', value: sign + pct + '%', type: pct > 0 ? 'positive' : 'negative' });
-            }
-        } else if (contentType === 'photo') {
-            unitRate = exp.photoBase;
-            unitLabel = 'per photo';
-            subtotal = unitRate * deliverables;
-            factors.push({ label: 'Photo (60% of video rate)', value: formatMoney(unitRate), type: 'neutral' });
-        } else {
-            // Bundle: 3 videos + 3 photos per bundle unit
-            var videoRate = exp.videoBase * vLen.multiplier;
-            var photoRate = exp.photoBase;
-            unitRate = (videoRate * 3) + (photoRate * 3);
-            unitLabel = 'per bundle (3 videos + 3 photos)';
-            subtotal = unitRate * deliverables;
-            factors.push({ label: 'Bundle: 3 videos + 3 photos', value: formatMoney(unitRate), type: 'neutral' });
-        }
-
-        // Experience factor
-        factors.push({ label: exp.label + ' experience level', value: formatMoney(exp.videoBase) + ' video base', type: experience === 'established' ? 'positive' : experience === 'beginner' ? 'neutral' : 'neutral' });
-
-        // 2. Usage rights multiplier
-        var afterUsage = subtotal * usage.multiplier;
-        if (usage.multiplier > 1) {
-            factors.push({ label: usage.label + ' usage rights', value: '+' + Math.round((usage.multiplier - 1) * 100) + '%', type: 'positive' });
-        } else {
-            factors.push({ label: usage.label + ' usage rights', value: 'Included', type: 'neutral' });
-        }
-
-        // 3. Revision add-on
-        var revisionCost = rev.addon * deliverables;
-        if (rev.addon > 0) {
-            factors.push({ label: rev.label + ' revisions', value: '+' + formatMoney(revisionCost), type: 'negative' });
-        }
-
-        var beforeRush = afterUsage + revisionCost;
-
-        // 4. Rush fee
-        var rushMultiplier = rush === 'yes' ? 1.35 : 1.0;
-        var total = beforeRush * rushMultiplier;
-        if (rush === 'yes') {
-            factors.push({ label: 'Rush delivery', value: '+35%', type: 'positive' });
-        }
-
-        // 5. Calculate range
-        var low = Math.round(total * 0.8);
-        var recommended = Math.round(total);
-        var premium = Math.round(total * 1.3);
-
-        // --- UPDATE UI ---
-        rateLow.textContent = formatMoney(low);
-        rateRecommended.textContent = formatMoney(recommended);
-        ratePremium.textContent = formatMoney(premium);
-
-        // Factors
-        factorsContainer.innerHTML = '';
-        factors.forEach(function(f) {
-            var div = document.createElement('div');
-            div.className = 'factor-item ' + f.type;
-            div.innerHTML = '<span class="factor-label">' + f.label + '</span><span class="factor-value">' + f.value + '</span>';
-            factorsContainer.appendChild(div);
-        });
-
-        // Per-deliverable breakdown
-        perUnitLabel.textContent = 'Base rate ' + unitLabel + ':';
-        perUnitValue.textContent = formatMoney(Math.round(unitRate));
-        totalUnitsLabel.textContent = deliverables + ' deliverable' + (deliverables !== 1 ? 's' : '') + ' subtotal:';
-        totalUnitsValue.textContent = formatMoney(Math.round(subtotal));
-        usageLineLabel.textContent = 'After ' + usage.label.toLowerCase() + ' rights:';
-        usageLineValue.textContent = formatMoney(Math.round(afterUsage));
-
-        // Portfolio tip
-        portfolioTipText.textContent = portfolioTips[experience];
-
-        // Monthly estimate (4 projects/month)
-        var monthly = recommended * 4;
-        monthlyEstimate.textContent = formatMoney(monthly);
-        monthlyDetail.textContent = 'Based on 4 projects/month at your recommended rate (' + formatMoney(recommended) + ' each)';
-
-        // Store data for copy button
-        var typeLabel = contentType === 'bundle' ? 'Bundle' : contentType === 'video' ? 'Video' : 'Photo';
-        copyBtn.dataset.type = typeLabel;
-        copyBtn.dataset.low = formatMoney(low);
-        copyBtn.dataset.high = formatMoney(premium);
-        copyBtn.dataset.quantity = deliverables;
-        copyBtn.dataset.usage = usage.label;
-        copyBtn.dataset.experience = exp.label;
+        copyButton.dataset.summary = [
+            'UGC quote worksheet',
+            'Creation fee: ' + currency(baseFee) + ' × ' + deliverables,
+            'Content subtotal: ' + currency(contentSubtotal),
+            'Production costs: ' + currency(productionCosts),
+            'Revisions: ' + currency(revisionsFee),
+            'Raw footage or variants: ' + currency(rawFootageFee),
+            'Usage rights: ' + currency(usageRightsFee),
+            'Exclusivity: ' + currency(exclusivityFee),
+            'Rush: ' + currency(rushFee),
+            'Quote total: ' + currency(quoteTotal),
+            'User-supplied scenario; not a market-rate recommendation, contract, or guarantee.'
+        ].join('\n');
     }
 
-    // --- COPY RATE CARD ---
-    copyBtn.addEventListener('click', function() {
-        var text = 'UGC ' + this.dataset.type + ' rate: ' +
-                   this.dataset.low + '–' + this.dataset.high +
-                   ' | ' + this.dataset.quantity + ' deliverable' + (parseInt(this.dataset.quantity) !== 1 ? 's' : '') +
-                   ' | ' + this.dataset.usage + ' rights' +
-                   ' | ' + this.dataset.experience + ' creator';
+    function copySummary() {
+        var text = copyButton.dataset.summary || '';
 
-        var btn = this;
-        navigator.clipboard.writeText(text).then(function() {
-            btn.classList.add('copied');
-            btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
-            setTimeout(function() {
-                btn.classList.remove('copied');
-                btn.innerHTML = '<i class="fas fa-copy"></i> Copy Rate Card';
+        function showCopiedStatus() {
+            copyStatus.textContent = 'Quote summary copied.';
+            copyButton.textContent = 'Copied';
+            window.setTimeout(function () {
+                copyButton.textContent = 'Copy Quote Summary';
+                copyStatus.textContent = '';
             }, 2000);
-        }).catch(function() {
-            var textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            btn.classList.add('copied');
-            btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
-            setTimeout(function() {
-                btn.classList.remove('copied');
-                btn.innerHTML = '<i class="fas fa-copy"></i> Copy Rate Card';
-            }, 2000);
-        });
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(showCopiedStatus).catch(function () {
+                fallbackCopy(text, showCopiedStatus);
+            });
+            return;
+        }
+
+        fallbackCopy(text, showCopiedStatus);
+    }
+
+    function fallbackCopy(text, onSuccess) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        var copied = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        copyStatus.textContent = copied ? 'Quote summary copied.' : 'Copy failed. Select and copy the itemized values manually.';
+        if (copied) onSuccess();
+    }
+
+    Object.keys(inputs).forEach(function (key) {
+        inputs[key].addEventListener('input', calculate);
+        inputs[key].addEventListener('change', calculate);
     });
 
-    // --- HELPERS ---
-    function formatMoney(num) {
-        if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
-        if (num >= 10000) return '$' + (num / 1000).toFixed(1) + 'K';
-        return '$' + num.toLocaleString('en-US');
-    }
+    calculateButton.addEventListener('click', calculate);
+    copyButton.addEventListener('click', copySummary);
 
-    // --- FAQ ---
     var faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(function(question) {
-        question.addEventListener('click', function() {
-            var answer = this.nextElementSibling;
-            var isActive = answer.classList.contains('active');
+    faqQuestions.forEach(function (question) {
+        question.setAttribute('aria-expanded', 'false');
+        question.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                this.click();
+            }
+        });
+        question.addEventListener('click', function () {
+            var answer = document.getElementById(this.getAttribute('aria-controls'));
+            var shouldOpen = this.getAttribute('aria-expanded') !== 'true';
 
-            document.querySelectorAll('.faq-answer').forEach(function(ans) {
-                ans.classList.remove('active');
-            });
-            document.querySelectorAll('.faq-question').forEach(function(q) {
-                q.classList.remove('active');
+            faqQuestions.forEach(function (item) {
+                item.setAttribute('aria-expanded', 'false');
+                item.classList.remove('active');
+                var itemAnswer = document.getElementById(item.getAttribute('aria-controls'));
+                if (itemAnswer) itemAnswer.classList.remove('active');
             });
 
-            if (!isActive) {
+            if (shouldOpen && answer) {
+                this.setAttribute('aria-expanded', 'true');
+                this.classList.add('active');
                 answer.classList.add('active');
-                question.classList.add('active');
             }
         });
     });
 
-    if (faqQuestions.length > 0) {
-        faqQuestions[0].click();
-    }
+    if (faqQuestions.length > 0) faqQuestions[0].click();
+    calculate();
 });

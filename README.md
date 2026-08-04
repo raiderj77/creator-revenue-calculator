@@ -4,7 +4,7 @@ Static, browser-based scenario calculators for creator revenue planning at https
 
 ## Current product
 
-The production site contains 10 maintained tools:
+The production site contains 11 maintained tools:
 
 - YouTube ad revenue scenario
 - Twitch revenue scenario
@@ -12,12 +12,13 @@ The production site contains 10 maintained tools:
 - Instagram revenue scenario
 - Podcast revenue scenario
 - Sponsorship quote worksheet
+- UGC quote worksheet
 - Engagement rate calculator
 - Patreon revenue scenario
 - Newsletter revenue scenario
 - Affiliate marketing scenario
 
-The former finance/gaming YouTube benchmark pages permanently redirect to the maintained YouTube tool. The former UGC benchmark page permanently redirects to the explicit-input sponsorship worksheet.
+The former finance and gaming YouTube benchmark pages permanently redirect to the maintained YouTube tool. The UGC route now serves an explicit-input quote worksheet with no supplied market rates.
 
 ## Design principles
 
