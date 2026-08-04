@@ -65,6 +65,7 @@ const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const ugcPage = read("tools/ugc-rate/index.html");
 const ugcScript = read("tools/ugc-rate/ugc-calculator.js");
+const ugcStyles = read("tools/ugc-rate/ugc-calculator.css");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
 const twitchPage = read("tools/twitch-revenue/index.html");
@@ -264,20 +265,64 @@ const ugcInputIds = [
   "exclusivityFee",
   "rushFee",
 ];
+const ugcMoneyInputIds = ugcInputIds.filter((id) => id !== "deliverables");
 pass(
   ugcInputIds.every((id) => ugcPage.includes(`id="${id}"`)),
   "UGC worksheet exposes creation, quantity, cost, revision, asset, rights, exclusivity, and rush inputs",
 );
 pass(
   ugcPage.includes('id="deliverables" min="1" max="1000" step="1" value="1"')
-    && ugcInputIds.filter((id) => id !== "deliverables").every((id) => new RegExp(`id="${id}"[^>]*value="0"`).test(ugcPage)),
+    && ugcMoneyInputIds.every((id) => new RegExp(`id="${id}"[^>]*value="0"`).test(ugcPage)),
   "UGC worksheet uses one deliverable and zero for every monetary default",
+);
+pass(
+  ugcPage.includes('id="deliverables" min="1" max="1000" step="1"')
+    && ugcScript.includes("deliverables: { label: 'Number of deliverables', min: 1, max: 1000, step: 1, whole: true }")
+    && ugcScript.includes("rules.whole && !Number.isInteger(value)"),
+  "UGC deliverable count must be a whole number from 1 through 1,000",
+);
+pass(
+  ugcMoneyInputIds.every((id) => ugcPage.includes(`id="${id}" min="0" max="1000000" step="0.01"`))
+    && ugcScript.includes("value < rules.min || value > rules.max")
+    && ugcScript.includes("!isStepAligned(value, rules.min, rules.step)"),
+  "UGC money inputs reject negative, over-limit, and sub-cent values",
+);
+pass(
+  ugcScript.includes("rawValue === ''")
+    && ugcScript.includes("!Number.isFinite(value)")
+    && !ugcScript.includes("function nonNegativeNumber")
+    && !ugcScript.includes("Math.max(1")
+    && !ugcScript.includes("Math.floor("),
+  "UGC input parsing rejects invalid values without silent fallback, clamping, or flooring",
+);
+pass(
+  ugcInputIds.every((id) => ugcScript.includes(`var ${id} = validation.values.${id};`)),
+  "UGC calculations use the exact validated values displayed in all eight fields",
 );
 pass(
   ugcScript.includes("contentSubtotal = baseFee * deliverables")
     && ugcScript.includes("addOns = productionCosts + revisionsFee + rawFootageFee + usageRightsFee + exclusivityFee + rushFee")
     && ugcScript.includes("quoteTotal = contentSubtotal + addOns"),
   "UGC quote formula uses only the eight visible user inputs",
+);
+pass(
+  ugcInputIds.every((id) => ugcPage.includes(`aria-describedby="${id}Hint ${id}Error"`)
+    && ugcPage.includes(`id="${id}Error" aria-live="polite"`))
+    && ugcScript.includes("input.setAttribute('aria-invalid', 'true')")
+    && ugcScript.includes("errorElement.textContent = error"),
+  "UGC invalid fields expose accessible inline errors tied to each input",
+);
+pass(
+  ugcScript.includes("contentSubtotalOutput.textContent = '—'")
+    && ugcScript.includes("quoteTotalOutput.textContent = '—'")
+    && ugcScript.includes("copyButton.disabled = true")
+    && ugcScript.includes("delete copyButton.dataset.summary")
+    && ugcScript.includes("if (focusFirstInvalid) validation.invalidInputs[0].focus()")
+    && ugcScript.includes("calculateButton.addEventListener('click', function () { calculate(true); })")
+    && ugcScript.includes("inputs[key].addEventListener('input', function () { calculate(false); })")
+    && ugcStyles.includes('input[type="number"][aria-invalid="true"]')
+    && ugcStyles.includes(".copy-rate-card:disabled"),
+  "UGC invalid state clears results, disables copying, and focuses only after an explicit calculation",
 );
 pass(
   ugcPage.includes("A $100 creation fee × 2 deliverables, plus $20 production, $30 revisions, $40 raw footage or variants, $50 usage rights, $60 exclusivity, and $70 rush equals a $470 quote scenario."),
