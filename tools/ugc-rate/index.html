@@ -186,50 +186,58 @@
                     <div class="input-panel">
                         <div class="input-group">
                             <label for="baseFee"><i class="fas fa-dollar-sign" aria-hidden="true"></i> Base Creation Fee per Deliverable</label>
-                            <input type="number" id="baseFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="baseFeeHint">
+                            <input type="number" id="baseFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="baseFeeHint baseFeeError">
                             <div class="input-hint" id="baseFeeHint">Use a fee you selected from your own production requirements and evidence.</div>
+                            <p class="input-error" id="baseFeeError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="deliverables"><i class="fas fa-list" aria-hidden="true"></i> Number of Deliverables</label>
-                            <input type="number" id="deliverables" min="1" max="1000" step="1" value="1" inputmode="numeric" aria-describedby="deliverablesHint">
+                            <input type="number" id="deliverables" min="1" max="1000" step="1" value="1" inputmode="numeric" aria-describedby="deliverablesHint deliverablesError">
                             <div class="input-hint" id="deliverablesHint">Count the videos, photos, hooks, or other pieces priced at the base fee.</div>
+                            <p class="input-error" id="deliverablesError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="productionCosts"><i class="fas fa-camera" aria-hidden="true"></i> Production Costs</label>
-                            <input type="number" id="productionCosts" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="productionCostsHint">
+                            <input type="number" id="productionCosts" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="productionCostsHint productionCostsError">
                             <div class="input-hint" id="productionCostsHint">Optional props, locations, crew, travel, shipping, or equipment rental.</div>
+                            <p class="input-error" id="productionCostsError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="revisionsFee"><i class="fas fa-edit" aria-hidden="true"></i> Revisions Add-on</label>
-                            <input type="number" id="revisionsFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="revisionsFeeHint">
+                            <input type="number" id="revisionsFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="revisionsFeeHint revisionsFeeError">
                             <div class="input-hint" id="revisionsFeeHint">Enter the total amount chosen for revision rounds beyond the included scope.</div>
+                            <p class="input-error" id="revisionsFeeError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="rawFootageFee"><i class="fas fa-photo-video" aria-hidden="true"></i> Raw Footage or Variants Add-on</label>
-                            <input type="number" id="rawFootageFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="rawFootageFeeHint">
+                            <input type="number" id="rawFootageFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="rawFootageFeeHint rawFootageFeeError">
                             <div class="input-hint" id="rawFootageFeeHint">Optional amount for raw files, alternate hooks, aspect ratios, or edited variants.</div>
+                            <p class="input-error" id="rawFootageFeeError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="usageRightsFee"><i class="fas fa-file-contract" aria-hidden="true"></i> Usage Rights Add-on</label>
-                            <input type="number" id="usageRightsFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="usageRightsFeeHint">
+                            <input type="number" id="usageRightsFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="usageRightsFeeHint usageRightsFeeError">
                             <div class="input-hint" id="usageRightsFeeHint">Enter an amount chosen for the specified channels, territory, term, and paid or organic use.</div>
+                            <p class="input-error" id="usageRightsFeeError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="exclusivityFee"><i class="fas fa-handshake" aria-hidden="true"></i> Exclusivity Add-on</label>
-                            <input type="number" id="exclusivityFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="exclusivityFeeHint">
+                            <input type="number" id="exclusivityFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="exclusivityFeeHint exclusivityFeeError">
                             <div class="input-hint" id="exclusivityFeeHint">Enter an amount chosen for named competitors, categories, territories, and dates.</div>
+                            <p class="input-error" id="exclusivityFeeError" aria-live="polite"></p>
                         </div>
 
                         <div class="input-group">
                             <label for="rushFee"><i class="fas fa-clock" aria-hidden="true"></i> Rush Add-on</label>
-                            <input type="number" id="rushFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="rushFeeHint">
+                            <input type="number" id="rushFee" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" aria-describedby="rushFeeHint rushFeeError">
                             <div class="input-hint" id="rushFeeHint">Optional amount for an agreed shortened production or approval timeline.</div>
+                            <p class="input-error" id="rushFeeError" aria-live="polite"></p>
                         </div>
 
                         <button id="calculateBtn" class="btn btn-primary" type="button" style="width:100%;justify-content:center;margin-top:1rem;">
