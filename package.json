@@ -12,6 +12,6 @@
   },
   "private": true,
   "devDependencies": {
-    "html-validate": "11.5.6"
+    "html-validate": "11.6.0"
   }
 }
