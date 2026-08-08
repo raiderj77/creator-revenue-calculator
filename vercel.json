@@ -1,6 +1,16 @@
 {
   "outputDirectory": ".",
   "redirects": [
+    { "source": "/about", "destination": "/about.html", "permanent": true },
+    { "source": "/contact", "destination": "/contact.html", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy.html", "permanent": true },
+    { "source": "/terms", "destination": "/terms.html", "permanent": true },
+    { "source": "/cookies", "destination": "/cookies.html", "permanent": true },
+    { "source": "/affiliate-disclosure", "destination": "/affiliate-disclosure.html", "permanent": true },
+    { "source": "/tools/creator-calculator", "destination": "/#tools", "permanent": true },
+    { "source": "/calculator", "destination": "/#tools", "permanent": true },
+    { "source": "/calculator/", "destination": "/#tools", "permanent": true },
+    { "source": "/calculator/instagram", "destination": "/tools/instagram-revenue/", "permanent": true },
     { "source": "/tools/gaming-youtube-revenue", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
     { "source": "/tools/gaming-youtube-revenue/", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
     { "source": "/tools/gaming-youtube-revenue/index.html", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
