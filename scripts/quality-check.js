@@ -128,6 +128,29 @@ pass(
 );
 pass(sitemap.includes("/tools/ugc-rate/"), "restored UGC quote worksheet is publicly discoverable");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
+const legacyGscRedirects = {
+  "/about": "/about.html",
+  "/contact": "/contact.html",
+  "/privacy": "/privacy.html",
+  "/terms": "/terms.html",
+  "/cookies": "/cookies.html",
+  "/accessibility": "/accessibility.html",
+  "/affiliate-disclosure": "/affiliate-disclosure.html",
+  "/tools/creator-calculator": "/#tools",
+  "/calculator": "/#tools",
+  "/calculator/": "/#tools",
+  "/calculator/instagram": "/tools/instagram-revenue/",
+};
+for (const [source, destination] of Object.entries(legacyGscRedirects)) {
+  pass(
+    vercelConfig.redirects?.some((redirect) => (
+      redirect.source === source
+        && redirect.destination === destination
+        && redirect.permanent === true
+    )),
+    `${source} permanently redirects to its current canonical destination`,
+  );
+}
 pass(
   vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
   "retired article routes with and without trailing slashes permanently redirect to calculators",
