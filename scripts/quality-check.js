@@ -134,6 +134,7 @@ const legacyGscRedirects = {
   "/privacy": "/privacy.html",
   "/terms": "/terms.html",
   "/cookies": "/cookies.html",
+  "/accessibility": "/accessibility.html",
   "/affiliate-disclosure": "/affiliate-disclosure.html",
   "/tools/creator-calculator": "/#tools",
   "/calculator": "/#tools",
