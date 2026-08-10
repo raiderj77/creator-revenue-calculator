@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow, max-snippet:-1">
-  <title>Newsletter Revenue Scenario Calculator | Free Tool</title>
-  <meta name="description" content="Model newsletter subscription, completed sponsorship, and confirmed referral revenue with your own subscriber, pricing, fee, and cost inputs.">
+  <title>Newsletter &amp; Substack Revenue Calculator | Free Tool</title>
+  <meta name="description" content="Model Substack or newsletter revenue using your own paid-subscriber, price, platform-fee, sponsorship, referral, and cost inputs. No supplied benchmark.">
   <meta name="author" content="Creator Revenue Calculator">
   <link rel="canonical" href="https://creatorrevenuecalculator.com/tools/newsletter-revenue/">
-  <meta property="og:title" content="Newsletter Revenue Scenario Calculator">
-  <meta property="og:description" content="Build a transparent newsletter revenue scenario from figures you supply.">
+  <meta property="og:title" content="Newsletter &amp; Substack Revenue Calculator">
+  <meta property="og:description" content="Build a transparent Substack or newsletter revenue scenario from figures you supply.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/newsletter-revenue/">
   <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Newsletter Revenue Scenario Calculator">
-  <meta name="twitter:description" content="Model subscriptions, completed sponsorships, referrals, fees, and costs using your own records.">
+  <meta name="twitter:title" content="Newsletter &amp; Substack Revenue Calculator">
+  <meta name="twitter:description" content="Model subscriptions, sponsorships, referrals, fees, and costs using your own newsletter records.">
   <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="newsletter-calculator.css">
@@ -26,8 +26,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Newsletter Revenue Scenario Calculator",
-    "description": "A browser-based worksheet that adds user-supplied newsletter subscription, completed sponsorship, and confirmed referral revenue, then subtracts user-supplied fees and costs.",
+    "name": "Newsletter & Substack Revenue Calculator",
+    "description": "A browser-based worksheet that adds user-supplied Substack or newsletter subscription, completed sponsorship, and confirmed referral revenue, then subtracts user-supplied fees and costs.",
     "url": "https://creatorrevenuecalculator.com/tools/newsletter-revenue/",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
@@ -38,7 +38,7 @@
       "name": "Creator Revenue Calculator",
       "url": "https://creatorrevenuecalculator.com/"
     },
-    "dateModified": "2026-08-02"
+    "dateModified": "2026-08-09"
   }
   </script>
   <script type="application/ld+json">
@@ -48,10 +48,18 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "How do I use this calculator for Substack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the paid-subscriber count, subscription price, and fee percentage shown in your current Substack dashboard, agreement, or billing records. This calculator does not auto-fill a Substack fee because plans, payment processing, taxes, and terms can change."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Which platform fee should I enter?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter the percentage shown in your current platform agreement or billing records. The calculator does not supply a platform fee because plans and terms can change."
+          "text": "Enter the percentage shown in your current platform agreement or billing records. Plans and terms can change, so this tool does not supply a fee."
         }
       },
       {
@@ -75,7 +83,7 @@
         "name": "Does this calculator predict newsletter income?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. It performs arithmetic on the values entered and does not predict audience growth, conversion, sponsorship demand, referral acceptance, or future platform terms."
+          "text": "No. It performs arithmetic on entered values and does not predict growth, conversion, sponsorship demand, referral acceptance, or future platform terms."
         }
       }
     ]
@@ -87,7 +95,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://creatorrevenuecalculator.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Newsletter Revenue Scenario Calculator", "item": "https://creatorrevenuecalculator.com/tools/newsletter-revenue/"}
+      {"@type": "ListItem", "position": 2, "name": "Newsletter & Substack Revenue Calculator", "item": "https://creatorrevenuecalculator.com/tools/newsletter-revenue/"}
     ]
   }
   </script>
@@ -118,13 +126,13 @@
           <div class="answer-block-item"><span class="answer-block-label">What it avoids</span><p class="answer-block-text">No platform fee, conversion rate, CPM, sponsor price, referral bounty, or income target is supplied.</p></div>
           <div class="answer-block-item"><span class="answer-block-label">Best source</span><p class="answer-block-text">Use dashboard, invoice, contract, payout, and billing records from the same reporting period.</p></div>
         </div>
-        <time datetime="2026-08-02" class="answer-block-updated">Last reviewed: August 2, 2026</time>
+        <time datetime="2026-08-09" class="answer-block-updated">Last reviewed: August 9, 2026</time>
       </div>
     </section>
 
     <section class="hero">
       <div class="container">
-        <h1>Newsletter Revenue Scenario Calculator</h1>
+        <h1>Newsletter &amp; Substack Revenue Calculator</h1>
         <p class="subtitle">Build a monthly scenario from your own subscriber, pricing, fee, completed-work, referral, and cost figures.</p>
         <div class="hero-stats">
           <div class="stat"><div class="stat-number">$0</div><div class="stat-label">Supplied revenue defaults</div></div>
@@ -153,26 +161,26 @@
             </div>
             <div class="input-group conditional visible" id="directSubscriberGroup">
               <label for="paidSubscribers">Active paid subscribers</label>
-              <input type="number" id="paidSubscribers" min="0" max="1000000000" step="1" value="0" inputmode="numeric">
+              <input type="number" id="paidSubscribers" min="0" max="1000000000" step="1" value="0" inputmode="numeric" required>
             </div>
             <div class="conditional" id="derivedSubscriberGroup">
               <div class="input-group">
                 <label for="listSize">Total opted-in subscribers</label>
-                <input type="number" id="listSize" min="0" max="1000000000" step="1" value="0" inputmode="numeric">
+                <input type="number" id="listSize" min="0" max="1000000000" step="1" value="0" inputmode="numeric" required>
               </div>
               <div class="input-group">
                 <label for="conversionRate">Your paid-conversion assumption (%)</label>
-                <input type="number" id="conversionRate" min="0" max="100" step="0.01" value="0" inputmode="decimal">
+                <input type="number" id="conversionRate" min="0" max="100" step="0.01" value="0" inputmode="decimal" required>
                 <div class="input-hint">The site does not provide a benchmark. Label this value as an assumption unless it comes from your own cohort data.</div>
               </div>
             </div>
             <div class="input-group">
               <label for="monthlyPrice">Monthly subscription price per paid subscriber (USD)</label>
-              <input type="number" id="monthlyPrice" min="0" max="1000000" step="0.01" value="0" inputmode="decimal">
+              <input type="number" id="monthlyPrice" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" required>
             </div>
             <div class="input-group">
               <label for="platformFeePercent">Current platform fee (%)</label>
-              <input type="number" id="platformFeePercent" min="0" max="100" step="0.01" value="0" inputmode="decimal">
+              <input type="number" id="platformFeePercent" min="0" max="100" step="0.01" value="0" inputmode="decimal" required>
               <div class="input-hint">Enter the percentage from your current agreement or billing record.</div>
             </div>
 
@@ -180,11 +188,11 @@
             <div class="input-section-label"><i class="fas fa-handshake" aria-hidden="true"></i> Completed sponsorships</div>
             <div class="input-group">
               <label for="completedSponsorships">Completed sponsorship placements</label>
-              <input type="number" id="completedSponsorships" min="0" max="1000000" step="1" value="0" inputmode="numeric">
+              <input type="number" id="completedSponsorships" min="0" max="1000000" step="1" value="0" inputmode="numeric" required>
             </div>
             <div class="input-group">
               <label for="netPerSponsorship">Net revenue per completed placement (USD)</label>
-              <input type="number" id="netPerSponsorship" min="0" max="100000000" step="0.01" value="0" inputmode="decimal">
+              <input type="number" id="netPerSponsorship" min="0" max="100000000" step="0.01" value="0" inputmode="decimal" required>
               <div class="input-hint">Exclude unsigned offers and speculative CPM-based prices.</div>
             </div>
 
@@ -192,22 +200,23 @@
             <div class="input-section-label"><i class="fas fa-link" aria-hidden="true"></i> Confirmed referrals</div>
             <div class="input-group">
               <label for="confirmedReferrals">Confirmed or approved referrals</label>
-              <input type="number" id="confirmedReferrals" min="0" max="100000000" step="1" value="0" inputmode="numeric">
+              <input type="number" id="confirmedReferrals" min="0" max="100000000" step="1" value="0" inputmode="numeric" required>
             </div>
             <div class="input-group">
               <label for="netPerReferral">Net revenue per confirmed referral (USD)</label>
-              <input type="number" id="netPerReferral" min="0" max="1000000" step="0.01" value="0" inputmode="decimal">
+              <input type="number" id="netPerReferral" min="0" max="1000000" step="0.01" value="0" inputmode="decimal" required>
             </div>
 
             <hr class="input-divider">
             <div class="input-section-label"><i class="fas fa-receipt" aria-hidden="true"></i> Other known costs</div>
             <div class="input-group">
               <label for="otherMonthlyCosts">Other monthly processing, software, refund, and operating costs (USD)</label>
-              <input type="number" id="otherMonthlyCosts" min="0" max="100000000" step="0.01" value="0" inputmode="decimal">
+              <input type="number" id="otherMonthlyCosts" min="0" max="100000000" step="0.01" value="0" inputmode="decimal" required>
               <div class="input-hint">Do not enter a cost already included in a net sponsorship or referral amount.</div>
             </div>
 
             <button id="calculateBtn" class="btn btn-primary" type="button"><i class="fas fa-calculator" aria-hidden="true"></i> Calculate scenario</button>
+            <p id="newsletterFormStatus" class="input-hint" role="status" aria-live="polite"></p>
           </div>
 
           <div class="results-panel">
@@ -230,6 +239,7 @@
                 <div class="breakdown-row total"><span class="label"><strong>Total:</strong></span><span class="value net" id="breakdownTotal">$0.00</span></div>
               </div>
               <button class="copy-result" id="copyResult" type="button"><i class="fas fa-copy" aria-hidden="true"></i> Copy scenario</button>
+              <p id="newsletterCopyStatus" class="input-hint" role="status" aria-live="polite"></p>
               <div class="disclaimer"><i class="fas fa-info-circle" aria-hidden="true"></i> This is arithmetic from user-supplied figures, not an income forecast, platform comparison, or financial recommendation.</div>
             </div>
           </div>
@@ -262,10 +272,11 @@
       <div class="container">
         <div class="section-header"><h2>Newsletter scenario questions</h2><p class="subtitle">The calculator deliberately avoids unstable platform tables and public income benchmarks.</p></div>
         <div class="faq-container">
-          <div class="faq-item"><button class="faq-question" type="button"><span>Which platform fee should I enter?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer"><p>Enter the percentage shown in your current platform agreement or billing records. Plans and terms can change, so this tool does not supply a fee.</p></div></div>
-          <div class="faq-item"><button class="faq-question" type="button"><span>Should I enter paid subscribers directly or use a conversion rate?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer"><p>Use the direct paid-subscriber count when your dashboard provides it. Use list size and a user-supplied conversion rate only for an explicitly labeled scenario.</p></div></div>
-          <div class="faq-item"><button class="faq-question" type="button"><span>What counts as sponsorship or referral revenue?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer"><p>Use completed sponsorship placements and confirmed or approved referrals from the same reporting period. Do not include an unsigned offer or an unverified projection.</p></div></div>
-          <div class="faq-item"><button class="faq-question" type="button"><span>Does this calculator predict newsletter income?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer"><p>No. It performs arithmetic on entered values and does not predict growth, conversion, sponsorship demand, referral acceptance, or future platform terms.</p></div></div>
+          <div class="faq-item"><button class="faq-question" type="button" aria-controls="newsletter-faq-answer-1"><span>How do I use this calculator for Substack?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer" id="newsletter-faq-answer-1"><p>Use the paid-subscriber count, subscription price, and fee percentage shown in your current Substack dashboard, agreement, or billing records. This calculator does not auto-fill a Substack fee because plans, payment processing, taxes, and terms can change.</p></div></div>
+          <div class="faq-item"><button class="faq-question" type="button" aria-controls="newsletter-faq-answer-2"><span>Which platform fee should I enter?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer" id="newsletter-faq-answer-2"><p>Enter the percentage shown in your current platform agreement or billing records. Plans and terms can change, so this tool does not supply a fee.</p></div></div>
+          <div class="faq-item"><button class="faq-question" type="button" aria-controls="newsletter-faq-answer-3"><span>Should I enter paid subscribers directly or use a conversion rate?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer" id="newsletter-faq-answer-3"><p>Use the direct paid-subscriber count when your dashboard provides it. Use list size and a user-supplied conversion rate only for an explicitly labeled scenario.</p></div></div>
+          <div class="faq-item"><button class="faq-question" type="button" aria-controls="newsletter-faq-answer-4"><span>What counts as sponsorship or referral revenue?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer" id="newsletter-faq-answer-4"><p>Use completed sponsorship placements and confirmed or approved referrals from the same reporting period. Do not include an unsigned offer or an unverified projection.</p></div></div>
+          <div class="faq-item"><button class="faq-question" type="button" aria-controls="newsletter-faq-answer-5"><span>Does this calculator predict newsletter income?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><div class="faq-answer" id="newsletter-faq-answer-5"><p>No. It performs arithmetic on entered values and does not predict growth, conversion, sponsorship demand, referral acceptance, or future platform terms.</p></div></div>
         </div>
       </div>
     </section>

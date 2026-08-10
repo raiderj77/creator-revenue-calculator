@@ -4,8 +4,8 @@
  * Exit code 1 on failure, 0 on pass.
  */
 
-import { readFileSync, existsSync } from "fs";
-import { resolve, dirname } from "path";
+import { readFileSync, existsSync, readdirSync } from "fs";
+import { resolve, dirname, relative } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -25,6 +25,15 @@ function fail(msg) {
 function check(label, fn) {
   console.log(`\n🔍 ${label}`);
   fn();
+}
+
+function htmlFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if ([".git", "node_modules"].includes(entry.name)) return [];
+    const absolute = resolve(directory, entry.name);
+    if (entry.isDirectory()) return htmlFiles(absolute);
+    return entry.isFile() && entry.name.endsWith(".html") ? [absolute] : [];
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -130,7 +139,45 @@ check("Legal pages", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 5. Trust navigation
+// 5. Privacy-sensitive scripts and retired-source quarantine
+// ---------------------------------------------------------------------------
+check("Privacy-safe static output", () => {
+  const prohibitedHtmlPatterns = [
+    /<script\b[^>]*src=["'][^"']*googletagmanager\.com/i,
+    /\bgtag\s*\(\s*["']config["']/i,
+    /clarity\.ms|\bclarity\s*\(/i,
+    /Cookiebot/i,
+    /pagead2\.googlesyndication\.com|\badsbygoogle\b/i,
+  ];
+  const offenders = htmlFiles(ROOT).filter((file) => {
+    const content = readFileSync(file, "utf-8");
+    return prohibitedHtmlPatterns.some((pattern) => pattern.test(content));
+  });
+  if (offenders.length === 0) {
+    pass("No HTML file bypasses the shared consent manager or loads disabled ad/session-replay code");
+  } else {
+    offenders.forEach((file) => fail(`${relative(ROOT, file)} contains a prohibited direct tracking or advertising loader`));
+  }
+
+  const ignorePath = resolve(ROOT, ".vercelignore");
+  if (!existsSync(ignorePath)) {
+    fail(".vercelignore missing; retired source files could be uploaded");
+    return;
+  }
+  const ignored = readFileSync(ignorePath, "utf-8")
+    .split(/\r?\n/)
+    .map((line) => line.trim().replace(/\/$/, ""));
+  for (const retiredPath of ["blog", "content", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"]) {
+    if (ignored.includes(retiredPath)) {
+      pass(`${retiredPath} is excluded from deployable output`);
+    } else {
+      fail(`${retiredPath} must be listed in .vercelignore`);
+    }
+  }
+});
+
+// ---------------------------------------------------------------------------
+// 6. Trust navigation
 // ---------------------------------------------------------------------------
 check("Trust navigation", () => {
   let pageContent = "";
@@ -156,7 +203,7 @@ check("Trust navigation", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 6. Security headers
+// 7. Security headers
 // ---------------------------------------------------------------------------
 check("Security headers", () => {
   // Check next.config.* for Next.js sites, or vercel.json for static sites

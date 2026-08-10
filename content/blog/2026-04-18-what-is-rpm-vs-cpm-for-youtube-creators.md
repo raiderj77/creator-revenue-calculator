@@ -3,7 +3,7 @@ title: "What Is RPM vs CPM for YouTube Creators"
 date: "2026-04-18"
 slug: "what-is-rpm-vs-cpm-for-youtube-creators"
 description: "If you make videos on YouTube, you may have seen the terms RPM and CPM. These two metrics deal with ad money. Many creators find them confusing. This..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

@@ -4,22 +4,22 @@
     <meta name="robots" content="index, follow, max-snippet:-1">
     <script src="/assets/js/theme.js" defer></script>
 
-    <title>Patreon Revenue Calculator 2026 | Fees and Take-Home</title>
-    <meta name="description" content="Estimate Patreon take-home revenue using the current 10% standard plan or eligible legacy plans, with current USD payment-processing rates.">
+    <title>Patreon Revenue Calculator &amp; Income Tracker (2026)</title>
+    <meta name="description" content="Calculate a Patreon take-home scenario with current platform and USD processing fees, then download a blank CSV income tracker for actual payouts.">
     <meta name="author" content="Creator Revenue Calculator">
-    <meta name="keywords" content="patreon revenue calculator, patreon earnings calculator, how much does patreon take, patreon fee calculator, patreon income calculator, patreon take home pay">
+    <meta name="keywords" content="patreon revenue calculator, patreon income tracker, patreon payout tracker, patreon earnings calculator, how much does patreon take, patreon fee calculator, patreon take home pay">
 
     <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="Patreon Revenue Calculator 2026 | Fees and Take-Home">
-    <meta property="og:description" content="Free Patreon revenue calculator. Estimate monthly and annual earnings after platform fees and payment processing.">
+    <meta property="og:title" content="Patreon Revenue Calculator &amp; Income Tracker (2026)">
+    <meta property="og:description" content="Model Patreon fees from visible inputs and download a blank CSV tracker for actual payouts.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/patreon-revenue/">
     <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Patreon Revenue Calculator 2026 | Fees and Take-Home">
-    <meta name="twitter:description" content="Estimate Patreon earnings after current platform and USD payment-processing fees.">
+    <meta name="twitter:title" content="Patreon Revenue Calculator &amp; Income Tracker (2026)">
+    <meta name="twitter:description" content="Model Patreon fees from visible inputs and download a blank CSV tracker for actual payouts.">
     <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
     <!-- Canonical URL -->
@@ -33,8 +33,8 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Patreon Revenue Calculator",
-      "description": "Estimate Patreon monthly and annual take-home revenue using the current standard plan or an eligible legacy plan and current USD payment-processing rates.",
+      "name": "Patreon Revenue Calculator & Income Tracker",
+      "description": "A browser-based Patreon fee scenario calculator with a target take-home solver and a blank CSV template for tracking actual payouts.",
       "url": "https://creatorrevenuecalculator.com/tools/patreon-revenue/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
@@ -50,7 +50,7 @@
         "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2026-03-08",
-      "dateModified": "2026-08-02"
+      "dateModified": "2026-08-09"
     }
     </script>
 
@@ -62,10 +62,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is Patreon's current platform fee?",
+          "name": "How much does Patreon take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Creators who publish after August 4, 2025 use Patreon's standard 10% platform plan. Eligible continuously published legacy creators may remain on a 5% Founders, 8% Pro, or 11% Pro + Merch plan."
+            "text": "For creator pages published after August 4, 2025, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this as a Patreon income tracker?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but keep scenarios and actual payouts separate. Use the calculator for fee scenarios, then use the blank CSV to record each reporting period, gross membership revenue, fees, adjustments, and the net payout shown in your Patreon records. The page does not store, import, or verify tracker data."
           }
         },
         {
@@ -73,7 +81,7 @@
           "name": "What payment-processing rate does this calculator use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For USD payouts, the standard plan uses 2.9% plus $0.30 for cards, Apple Pay, and US PayPal or Venmo, or 3.9% plus $0.30 for non-US PayPal or Venmo. Eligible legacy plans use micropayment rates for payments of $3 or less."
+            "text": "For USD payouts, the selected plan and payment method determine the processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change."
           }
         },
         {
@@ -81,7 +89,15 @@
           "name": "Does the estimate include every Patreon fee?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. The estimate includes the selected platform fee and USD payment processing. Currency conversion, payout fees, taxes, refunds, and iOS in-app purchase fees are not included."
+            "text": "No. It includes the selected platform fee and modeled USD payment processing. Currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees are excluded because they depend on circumstances not entered here."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the target take-home solver work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It divides the gap between your entered target and current modeled net revenue by the current weighted net revenue per patron, then rounds up to a whole patron. It assumes the same entered tier mix, plan, and payment profile; it does not supply a growth, conversion, or churn forecast."
           }
         }
       ]
@@ -103,7 +119,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Patreon Revenue Calculator",
+          "name": "Patreon Revenue Calculator & Income Tracker",
           "item": "https://creatorrevenuecalculator.com/tools/patreon-revenue/"
         }
       ]
@@ -150,25 +166,25 @@
         <section class="answer-block" aria-label="Quick Answer" style="max-width:1200px;margin:1.5rem auto;padding-left:1.5rem;padding-right:1.5rem;">
       <div class="answer-block-grid">
         <div class="answer-block-item">
-          <span class="answer-block-label">What is this?</span>
-          <p class="answer-block-text">A free calculator that estimates Patreon earnings after platform fees based on patron count, tier pricing, and payment processing.</p>
+          <span class="answer-block-label">What does it calculate?</span>
+          <p class="answer-block-text">A Patreon fee scenario from your plan, USD payment method, tier prices, patron counts, and optional target take-home.</p>
         </div>
         <div class="answer-block-item">
-          <span class="answer-block-label">Who needs it?</span>
-          <p class="answer-block-text">Creators comparing tier revenue, current or eligible legacy fees, processing profiles, and a user-supplied churn scenario.</p>
+          <span class="answer-block-label">How much does Patreon take?</span>
+          <p class="answer-block-text">New pages use the current 10% standard plan. Eligible continuously published legacy pages may retain 5%, 8%, or 11% platform pricing; processing and conditional fees are additional.</p>
         </div>
         <div class="answer-block-item">
-          <span class="answer-block-label">Bottom line</span>
-          <p class="answer-block-text">New creators use Patreon's 10% standard plan. Eligible legacy creators can select their retained plan and compare estimated USD processing costs.</p>
+          <span class="answer-block-label">Track actual payouts</span>
+          <p class="answer-block-text"><a href="#income-tracker">Download the blank CSV income tracker</a> and enter figures from Patreon records. Calculator inputs and tracker data are not stored by this page.</p>
         </div>
       </div>
-      <time datetime="2026-07-17" class="answer-block-updated">Fee model reviewed: July 17, 2026</time>
+      <time datetime="2026-08-09" class="answer-block-updated">Fee model reviewed against Patreon Help Center: August 9, 2026</time>
     </section>
 
     <section class="hero">
         <div class="container">
-            <h1>Patreon Revenue Calculator</h1>
-            <p class="subtitle">Estimate Patreon earnings after the current standard platform fee or an eligible legacy fee, plus USD payment processing. The result is an estimate, not a Patreon payout statement.</p>
+            <h1>Patreon Revenue Calculator &amp; Income Tracker</h1>
+            <p class="subtitle">Model Patreon platform and USD processing fees from visible inputs, solve for a user-entered monthly target using the current tier mix, and download a blank tracker for actual payouts.</p>
 
 
 
@@ -180,31 +196,33 @@
     <section id="calculator" class="calculator-section">
         <div class="container">
             <div class="section-header">
-                <h2><i class="fas fa-calculator"></i> Calculate Your Patreon Revenue</h2>
-                <p class="subtitle">Enter your plan, tier pricing, and patron counts to see your take-home pay</p>
+                <h2><i class="fas fa-calculator" aria-hidden="true"></i> Calculate a Patreon Revenue Scenario</h2>
+                <p class="subtitle">Every assumption is visible. Enter your current plan, USD payment method, tier pricing, and patron counts.</p>
             </div>
 
             <div class="calculator-wrapper">
                 <!-- Input Panel -->
-                <div class="input-panel">
+                <form class="input-panel" id="patreonCalculatorForm" novalidate>
                     <div class="input-group">
                         <label for="plan"><i class="fas fa-crown"></i> Patreon Plan</label>
-                        <select id="plan">
+                        <select id="plan" aria-describedby="planHint">
                             <option value="standard" selected="">Standard, 10% (new creators)</option>
-                            <option value="founders">Legacy Founders, 5%</option>
+                            <option value="founders">Legacy Founders, 5% (original USD processing)</option>
+                            <option value="founders-standard">Legacy Founders, 5% (standard processing)</option>
                             <option value="pro">Legacy Pro, 8%</option>
                             <option value="merch">Legacy Pro + Merch, 11%</option>
                         </select>
-                        <div class="input-hint">Check Patreon account settings if you do not know your plan. Legacy plans are unavailable to new creators.</div>
+                        <div class="input-hint" id="planHint">Check Patreon Plan details. Founders creators who changed payout currency retain the 5% platform fee but use standard processing rates; legacy plans are unavailable to new creators.</div>
                     </div>
 
                     <div class="input-group">
                         <label for="processingProfile"><i class="fas fa-credit-card"></i> USD Payment Method</label>
-                        <select id="processingProfile">
-                            <option value="us" selected="">Card, Apple Pay, or US PayPal/Venmo</option>
-                            <option value="nonus">Non-US PayPal/Venmo</option>
+                        <select id="processingProfile" aria-describedby="processingHint">
+                            <option value="card" selected="">Card or Apple Pay</option>
+                            <option value="us">US PayPal or Venmo</option>
+                            <option value="nonus">Non-US PayPal or Venmo</option>
                         </select>
-                        <div class="input-hint">Processing varies by payment method, member location, and payout currency. This calculator models USD payouts.</div>
+                        <div class="input-hint" id="processingHint">Processing varies by plan, payment method, member location, and payout currency. This calculator models USD payouts only.</div>
                     </div>
 
                     <!-- Tier Inputs -->
@@ -221,8 +239,8 @@
                             <div class="tier-card-header">Tier 1</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName1" aria-label="Tier 1 name" placeholder="e.g. Supporter" value="Supporter">
-                                <input type="number" id="tierPrice1" aria-label="Tier 1 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
-                                <input type="number" id="tierPatrons1" aria-label="Tier 1 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
+                                <input type="number" id="tierPrice1" aria-label="Tier 1 monthly price in dollars" aria-describedby="calculatorValidationStatus" min="0" max="10000" step="0.01" value="0" placeholder="$" inputmode="decimal">
+                                <input type="number" id="tierPatrons1" aria-label="Tier 1 patron count" aria-describedby="calculatorValidationStatus" min="0" max="100000" step="1" value="0" placeholder="#" inputmode="numeric">
                             </div>
                         </div>
 
@@ -230,8 +248,8 @@
                             <div class="tier-card-header">Tier 2</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName2" aria-label="Tier 2 name" placeholder="e.g. Member" value="Member">
-                                <input type="number" id="tierPrice2" aria-label="Tier 2 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
-                                <input type="number" id="tierPatrons2" aria-label="Tier 2 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
+                                <input type="number" id="tierPrice2" aria-label="Tier 2 monthly price in dollars" aria-describedby="calculatorValidationStatus" min="0" max="10000" step="0.01" value="0" placeholder="$" inputmode="decimal">
+                                <input type="number" id="tierPatrons2" aria-label="Tier 2 patron count" aria-describedby="calculatorValidationStatus" min="0" max="100000" step="1" value="0" placeholder="#" inputmode="numeric">
                             </div>
                         </div>
 
@@ -239,8 +257,8 @@
                             <div class="tier-card-header">Tier 3</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName3" aria-label="Tier 3 name" placeholder="e.g. VIP" value="VIP">
-                                <input type="number" id="tierPrice3" aria-label="Tier 3 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
-                                <input type="number" id="tierPatrons3" aria-label="Tier 3 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
+                                <input type="number" id="tierPrice3" aria-label="Tier 3 monthly price in dollars" aria-describedby="calculatorValidationStatus" min="0" max="10000" step="0.01" value="0" placeholder="$" inputmode="decimal">
+                                <input type="number" id="tierPatrons3" aria-label="Tier 3 patron count" aria-describedby="calculatorValidationStatus" min="0" max="100000" step="1" value="0" placeholder="#" inputmode="numeric">
                             </div>
                         </div>
 
@@ -248,8 +266,8 @@
                             <div class="tier-card-header">Tier 4 (optional)</div>
                             <div class="tier-card-fields">
                                 <input type="text" id="tierName4" aria-label="Tier 4 name" placeholder="e.g. Superfan" value="">
-                                <input type="number" id="tierPrice4" aria-label="Tier 4 monthly price in dollars" min="0" max="10000" step="1" value="0" placeholder="$">
-                                <input type="number" id="tierPatrons4" aria-label="Tier 4 patron count" min="0" max="100000" step="1" value="0" placeholder="#">
+                                <input type="number" id="tierPrice4" aria-label="Tier 4 monthly price in dollars" aria-describedby="calculatorValidationStatus" min="0" max="10000" step="0.01" value="0" placeholder="$" inputmode="decimal">
+                                <input type="number" id="tierPatrons4" aria-label="Tier 4 patron count" aria-describedby="calculatorValidationStatus" min="0" max="100000" step="1" value="0" placeholder="#" inputmode="numeric">
                             </div>
                         </div>
 
@@ -258,26 +276,34 @@
 
                     <div class="input-group">
                         <label for="churn"><i class="fas fa-user-minus"></i> Monthly Churn Rate (%)</label>
-                        <input type="number" id="churn" min="0" max="50" step="0.5" value="0">
-                        <div class="input-hint">Optional. Enter your own observed cancellation rate; this calculator does not assume an industry average.</div>
+                        <input type="number" id="churn" min="0" max="50" step="0.5" value="0" inputmode="decimal" aria-describedby="churnHint calculatorValidationStatus">
+                        <div class="input-hint" id="churnHint">Optional. Enter your own observed cancellation rate; this calculator does not assume an industry average.</div>
                     </div>
 
-                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" type="button">
-                        <i class="fas fa-calculator"></i> Calculate Revenue
+                    <div class="input-group">
+                        <label for="targetTakeHome"><i class="fas fa-bullseye" aria-hidden="true"></i> Target Monthly Take-Home ($)</label>
+                        <input type="number" id="targetTakeHome" min="0" max="100000000" step="0.01" value="0" inputmode="decimal" aria-describedby="targetTakeHomeHint calculatorValidationStatus">
+                        <div class="input-hint" id="targetTakeHomeHint">Optional. Enter your own target. The solver uses only the current entered tier mix and selected fee profile; it supplies no growth or conversion rate.</div>
+                    </div>
+
+                    <p id="calculatorValidationStatus" role="alert" aria-live="assertive" style="min-height:1.5rem;margin:0.5rem 0;color:#b91c1c;font-weight:600;"></p>
+
+                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" type="submit">
+                        <i class="fas fa-calculator" aria-hidden="true"></i> Calculate Scenario
                     </button>
-                </div>
+                </form>
 
                 <!-- Results Panel -->
                 <div class="results-panel">
-                    <div class="results-card" aria-live="polite">
-                        <h3><i class="fas fa-dollar-sign"></i> Your Patreon Revenue</h3>
+                    <div class="results-card" id="patreonResults" aria-live="polite" aria-atomic="true" tabindex="-1">
+                        <h3><i class="fas fa-dollar-sign" aria-hidden="true"></i> Patreon Revenue Scenario</h3>
 
                         <!-- Revenue Summary -->
                         <div class="revenue-summary">
                             <div class="net-monthly-value" id="netMonthly">$0.00</div>
-                            <div class="net-monthly-label">Net monthly take-home</div>
+                            <div class="net-monthly-label">Modeled net monthly take-home</div>
                             <div class="net-annual-row">
-                                <span class="label">Annual projection:</span>
+                                <span class="label">Annualized scenario (monthly × 12):</span>
                                 <span class="value" id="netAnnual">$0.00</span>
                             </div>
                         </div>
@@ -308,7 +334,7 @@
                                 <span class="value negative" id="totalFees">-$0.00</span>
                             </div>
                             <div class="keep-percent">
-                                You keep <span id="keepPercent">0.0%</span> of gross revenue
+                                Modeled remainder: <span id="keepPercent">0.0%</span> of gross revenue
                             </div>
                         </div>
 
@@ -318,17 +344,37 @@
                             <div class="churn-stats">
                                 <div class="churn-stat">
                                     <div class="churn-value" id="churnPatrons">0 patrons/month</div>
-                                    <div class="churn-label">Expected cancellations</div>
+                                    <div class="churn-label">Rounded cancellation scenario</div>
                                 </div>
                                 <div class="churn-stat">
                                     <div class="churn-value" id="churnRevenue">$0.00 at risk</div>
-                                    <div class="churn-label">Revenue at risk</div>
+                                    <div class="churn-label">Modeled net revenue affected</div>
                                 </div>
                             </div>
                         </div>
 
+                        <section class="churn-section" aria-labelledby="targetSolverHeading">
+                            <h4 id="targetSolverHeading"><i class="fas fa-bullseye" aria-hidden="true"></i> Target Take-Home Solver</h4>
+                            <div class="churn-stats">
+                                <div class="churn-stat">
+                                    <div class="churn-value" id="targetGap">$0.00</div>
+                                    <div class="churn-label">Gap from current modeled net</div>
+                                </div>
+                                <div class="churn-stat">
+                                    <div class="churn-value" id="netPerPatron">—</div>
+                                    <div class="churn-label">Current weighted net per patron</div>
+                                </div>
+                                <div class="churn-stat">
+                                    <div class="churn-value" id="additionalPatrons">—</div>
+                                    <div class="churn-label">Additional patrons at current mix</div>
+                                </div>
+                            </div>
+                            <p class="input-hint" id="targetSolverDetail">Enter a target and at least one paid tier to solve from the current entered tier mix.</p>
+                        </section>
+
                         <!-- Tier Breakdown Table -->
-                        <div class="tier-breakdown">
+                        <!-- [html-validate-disable-next prefer-native-element] -->
+                        <div class="tier-breakdown" role="region" aria-label="Patreon revenue by entered membership tier" tabindex="0">
                             <h4><i class="fas fa-table"></i> Revenue by Tier</h4>
                             <table>
                                 <thead>
@@ -345,16 +391,17 @@
                                     <tr><td colspan="6" style="text-align:center;color:#9ca3af;">Enter tier pricing and patron counts above</td></tr>
                                 </tbody>
                             </table>
-                            <p class="micro-note" id="microNote" style="display:none;">* Eligible legacy plans use a micropayment processing rate for payments of $3 or less. The standard 10% plan uses the same processing rate at every payment amount.</p>
+                            <p class="micro-note" id="microNote" style="display:none;">* Eligible Pro and Pro + Merch plans use a micropayment processing rate for payments of $3 or less. Standard and Founders processing schedules are described below.</p>
                         </div>
 
                         <!-- Copy Result -->
                         <button class="copy-result" id="copyResult" type="button">
-                            <i class="fas fa-copy"></i> Copy Result
+                            <i class="fas fa-copy" aria-hidden="true"></i> Copy Result
                         </button>
+                        <p id="copyStatus" aria-live="polite" style="min-height:1.5rem;margin:0.5rem 0 0;text-align:center;"></p>
 
                         <div class="disclaimer">
-                            <p><i class="fas fa-info-circle"></i> Includes the selected platform fee and USD processing profile. Excludes currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees. Verify the final amount in Patreon.</p>
+                            <p><i class="fas fa-info-circle" aria-hidden="true"></i> Includes the selected platform fee and modeled USD processing profile. Excludes currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees. Verify actual amounts in Patreon.</p>
                         </div>
                     </div>
                 </div>
@@ -371,14 +418,29 @@
 
     </section>
 
+    <section id="income-tracker" class="benchmark-section" aria-labelledby="trackerHeading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="trackerHeading"><i class="fas fa-file-csv" aria-hidden="true"></i> Patreon Income Tracker (CSV)</h2>
+                <p class="subtitle">Keep modeled scenarios separate from the actual payouts in your Patreon records.</p>
+            </div>
+            <div class="education-content">
+                <p>The download is a header-only CSV template for recording each reporting period, gross membership revenue, itemized fees and adjustments, patron changes, and the actual net payout shown by Patreon. This page does not upload, import, store, or verify tracker data.</p>
+                <p><a class="btn btn-primary" href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"><i class="fas fa-download" aria-hidden="true"></i> Download Blank Patreon Income Tracker</a></p>
+                <p class="input-hint">Open the file in your preferred spreadsheet app and add one row per reporting period. Check each row against Patreon's payout and earnings records.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Current Patreon fee reference -->
     <section id="plans" class="benchmark-section">
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-table"></i> Patreon Fees Used by This Calculator</h2>
-                <p class="subtitle">Reviewed against Patreon's official creator-fee documentation on July 17, 2026</p>
+                <p class="subtitle">Reviewed August 9, 2026 against Patreon's creator-fee documentation, updated July 19, 2026</p>
             </div>
-            <div class="benchmark-table-container" tabindex="0" aria-label="Patreon platform fee reference table">
+            <!-- [html-validate-disable-next prefer-native-element] -->
+            <div class="benchmark-table-container" role="region" tabindex="0" aria-label="Patreon platform fee reference table">
                 <table class="benchmark-table">
                     <thead><tr><th>Plan</th><th>Platform fee</th><th>Who can use it</th></tr></thead>
                     <tbody>
@@ -391,10 +453,12 @@
             </div>
             <div class="education-content">
                 <h3>How the estimate works</h3>
-                <p>The calculator multiplies each tier's price by its patron count, then subtracts the selected platform fee and an estimated payment-processing fee for each payment. For USD payouts on the standard plan, Patreon lists 2.9% + $0.30 for cards, Apple Pay, and US PayPal or Venmo, and 3.9% + $0.30 for non-US PayPal or Venmo.</p>
-                <p>For eligible legacy plans, payments of $3 or less use Patreon's published micropayment rate: 5% + $0.10 for cards, Apple Pay, and US PayPal or Venmo, or 6% + $0.10 for non-US PayPal or Venmo. Payments over $3 use the standard rate. The current 10% plan uses the same processing rate at every payment amount.</p>
+                <p>The calculator multiplies each entered tier price by its entered patron count, then subtracts the selected platform fee and a modeled processing fee for every payment. For USD payouts on the standard plan, Patreon lists 2.9% + $0.30 for cards, Apple Pay, and US PayPal or Venmo, and 3.9% + $0.30 for non-US PayPal or Venmo.</p>
+                <p>Eligible legacy Pro and Pro + Merch plans use Patreon's published micropayment rate at $3 or less: 5% + $0.10 for cards, Apple Pay, and US PayPal or Venmo, or 6% + $0.10 for non-US PayPal or Venmo. Payments over $3 use the standard rate.</p>
+                <p>Eligible Founders creators on original USD processing use 1.6% + $0.30 for cards or Apple Pay and 2.65% + $0.28 for PayPal or Venmo. Patreon says a Founders creator who changed payout currency retains the 5% platform fee but becomes subject to standard processing rates, so the calculator provides separate Founders selections.</p>
+                <p>The annualized result is the modeled monthly net multiplied by 12. The churn scenario rounds patrons &times; the entered churn percentage to a whole patron. The target solver divides the gap between the entered target and current modeled net by the current weighted net per patron, then rounds up; it adds no growth, conversion, or churn benchmark. Calculations use the exact validated inputs, while displayed currency is rounded to cents.</p>
                 <p>The estimate does not include currency conversion, payout fees, taxes on creator fees, refunds, shared payments, or iOS in-app purchase fees. Patreon says a 2.5% currency-conversion fee may apply when a member pays in a currency different from the creator's payout currency.</p>
-                <p><a href="https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview" rel="noopener noreferrer">Source: Patreon Creator fees overview</a>. Confirm your own plan in Patreon Account Settings under Monetization.</p>
+                <p>Official sources: <a href="https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview" rel="noopener noreferrer">Patreon Creator fees overview</a> and <a href="https://support.patreon.com/hc/en-us/articles/15458893135501-How-payments-reach-you" rel="noopener noreferrer">How payments reach you</a>. Confirm your own plan and actual payout records in Patreon.</p>
             </div>
         </div>
     </section>
@@ -403,21 +467,29 @@
     <section id="faq" class="faq-section">
         <div class="container">
             <div class="section-header">
-                <h2><i class="fas fa-question-circle"></i> Patreon Revenue Calculator FAQ</h2>
+                <h2><i class="fas fa-question-circle" aria-hidden="true"></i> Patreon Revenue Calculator &amp; Income Tracker FAQ</h2>
                 <p class="subtitle">Answers limited to what this calculator can support</p>
             </div>
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question" type="button"><span>What is Patreon's current platform fee?</span><i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>Creators who publish after August 4, 2025 use Patreon's standard 10% platform plan. Eligible creators who kept a legacy page continuously published may remain on a 5% Founders, 8% Pro, or 11% Pro + Merch plan.</p></div>
+                    <button class="faq-question" type="button" aria-controls="faq-answer-1"><span>How much does Patreon take?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-1"><p>For creator pages published after August 4, 2025, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" type="button"><span>What payment-processing rate does the calculator use?</span><i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>For USD payouts, choose either cards, Apple Pay, and US PayPal or Venmo, or non-US PayPal or Venmo. The selected plan determines whether the legacy micropayment rate can apply to payments of $3 or less.</p></div>
+                    <button class="faq-question" type="button" aria-controls="faq-answer-2"><span>Can I use this as a Patreon income tracker?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-2"><p>Yes, but keep scenarios and actual payouts separate. Use the calculator for fee scenarios, then use the blank CSV to record each reporting period, gross membership revenue, fees, adjustments, and the net payout shown in your Patreon records. The page does not store, import, or verify tracker data.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" type="button"><span>Does the estimate include every Patreon fee?</span><i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer"><p>No. It includes the selected platform fee and USD payment-processing profile. Currency conversion, payout fees, taxes, refunds, shared payments, and iOS in-app purchase fees are excluded because they depend on circumstances not captured here.</p></div>
+                    <button class="faq-question" type="button" aria-controls="faq-answer-3"><span>What payment-processing rate does this calculator use?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-3"><p>For USD payouts, the selected plan and payment method determine the processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-controls="faq-answer-4"><span>Does the estimate include every Patreon fee?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-4"><p>No. It includes the selected platform fee and modeled USD payment processing. Currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees are excluded because they depend on circumstances not entered here.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-controls="faq-answer-5"><span>How does the target take-home solver work?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-5"><p>It divides the gap between your entered target and current modeled net revenue by the current weighted net revenue per patron, then rounds up to a whole patron. It assumes the same entered tier mix, plan, and payment profile; it does not supply a growth, conversion, or churn forecast.</p></div>
                 </div>
             </div>
         </div>
@@ -489,6 +561,7 @@
 
                 <div class="footer-section">
                     <h3 class="footer-title">Resources</h3>
+                    <a href="#income-tracker" class="footer-link">Patreon Income Tracker</a>
                     <a href="#plans" class="footer-link">Patreon Fee Reference</a>
                     <a href="#faq" class="footer-link">Patreon FAQ</a>
                     <a href="/about.html" class="footer-link">About</a>

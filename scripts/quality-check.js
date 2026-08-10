@@ -21,12 +21,23 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entr
   const absolute = path.join(dir, entry.name);
   return entry.isDirectory() ? walk(absolute) : [absolute];
 });
+const walkRepository = (dir) => {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    if ([".git", "node_modules"].includes(entry.name)) return [];
+    const absolute = path.join(dir, entry.name);
+    return entry.isDirectory() ? walkRepository(absolute) : [absolute];
+  });
+};
 
 const publicFiles = [
   ...walk(root).filter((file) => /\.(html|js|css)$/.test(file)),
   path.join(root, "vercel.json"),
 ];
 const publicText = publicFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n");
+const allHtmlFiles = walkRepository(root).filter((file) => file.endsWith(".html"));
+const retiredHtmlFiles = allHtmlFiles.filter((file) => path.relative(root, file).startsWith(`blog${path.sep}`));
+const retiredContentFiles = walkRepository(path.join(root, "content", "blog")).filter((file) => /\.mdx?$/.test(file));
 const sitemap = read("sitemap.xml");
 const llmsText = read("llms.txt");
 const privacy = read("privacy.html");
@@ -34,6 +45,7 @@ const cookies = read("cookies.html");
 const affiliateDisclosure = read("affiliate-disclosure.html");
 const vercel = read("vercel.json");
 const vercelConfig = JSON.parse(vercel);
+const vercelIgnore = read(".vercelignore");
 const siteStyles = read("assets/css/style.css");
 const accessibilityStyles = read("assets/css/accessibility-audit-fixes.css");
 const mobileStyles = siteStyles.slice(
@@ -43,11 +55,8 @@ const mobileStyles = siteStyles.slice(
 const themeScript = read("assets/js/theme.js");
 const printStyles = read("assets/css/print-results.css");
 const home = read("index.html");
-const guidePage = read("guide/index.html");
-const retiredToolPages = new Map([
-  ["tools/finance-youtube-revenue/index.html", read("tools/finance-youtube-revenue/index.html")],
-  ["tools/gaming-youtube-revenue/index.html", read("tools/gaming-youtube-revenue/index.html")],
-]);
+const notFoundPage = read("404.html");
+const creatorMixScript = read("assets/js/creator-mix-calculator.js");
 const mainScript = read("assets/js/main.js");
 const aboutPage = read("about.html");
 const contactPage = read("contact.html");
@@ -61,6 +70,7 @@ const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
+const patreonTracker = read("downloads/patreon-income-tracker.csv");
 const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const ugcPage = read("tools/ugc-rate/index.html");
@@ -101,7 +111,32 @@ const maintainedToolPages = new Map([
 ]);
 const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages]);
 
-pass(!/(adsbygoogle|adsense-container|googlesyndication|clarity\.ms|Cookiebot|G-144KWSY4TP)/i.test(publicText), "unapproved ads, legacy analytics, and session replay are absent from public product pages");
+pass(
+  [newsletterPage, patreonPage, sponsorshipPage, ugcPage].every(faqSchemaMatchesVisibleContent),
+  "priority-page FAQ structured data exactly matches visible questions and answers",
+);
+
+const prohibitedDirectHtmlScript = /<script\b[^>]*src=["'][^"']*googletagmanager\.com|\bgtag\s*\(\s*["']config["']|clarity\.ms|\bclarity\s*\(|Cookiebot|pagead2\.googlesyndication\.com|\badsbygoogle\b/i;
+pass(
+  allHtmlFiles.every((file) => !prohibitedDirectHtmlScript.test(fs.readFileSync(file, "utf8"))),
+  "every tracked HTML file avoids direct analytics, session replay, secondary consent, and advertising loaders",
+);
+pass(
+  retiredHtmlFiles.length === 0 || retiredHtmlFiles.length === 81,
+  "the retired HTML archive is either absent from deployable source or fully present for repository checks",
+);
+pass(
+  retiredContentFiles.length === 0 || retiredContentFiles.every((file) => {
+    const content = fs.readFileSync(file, "utf8");
+    return (content.match(/^status:\s*retired\s*$/gm) || []).length === 1 && !/^status:\s*published\s*$/m.test(content);
+  }),
+  "every retained article source is explicitly retired when repository sources are present",
+);
+const ignoredDeployPaths = vercelIgnore.split(/\r?\n/).map((line) => line.trim().replace(/\/$/, ""));
+pass(
+  ["blog", "content", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"].every((entry) => ignoredDeployPaths.includes(entry)),
+  "retired articles, source drafts, guide, and benchmark tools are excluded from deployable output",
+);
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
 pass(
   themeScript.includes("navigator.globalPrivacyControl === true")
@@ -111,6 +146,12 @@ pass(
 );
 pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
+pass(
+  ["calculator_completed", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
+    && themeScript.includes("window.location.origin + window.location.pathname")
+    && themeScript.includes("injectedScript.remove()"),
+  "consent-gated action measurement is allowlisted, path-only, and removable on withdrawal",
+);
 pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
 pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunctional email collection UI is absent");
@@ -120,7 +161,6 @@ pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync
 pass((sitemap.match(/<url>/g) || []).length === 19, "sitemap contains the 11 maintained calculators and eight current core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
-pass(/<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(guidePage), "retired guide remains explicitly noindex even outside the production redirect layer");
 pass(
   ["/tools/finance-youtube-revenue/", "/tools/gaming-youtube-revenue/"]
     .every((route) => !sitemap.includes(route)),
@@ -128,6 +168,12 @@ pass(
 );
 pass(sitemap.includes("/tools/ugc-rate/"), "restored UGC quote worksheet is publicly discoverable");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
+pass(
+  /<meta\s+name="robots"\s+content="noindex, follow">/i.test(notFoundPage)
+    && notFoundPage.includes('href="/#creator-calculator"')
+    && notFoundPage.includes('href="/tools/patreon-revenue/"'),
+  "custom 404 remains non-indexable and routes visitors to maintained high-intent tools",
+);
 const legacyGscRedirects = {
   "/about": "/about.html",
   "/contact": "/contact.html",
@@ -136,9 +182,9 @@ const legacyGscRedirects = {
   "/cookies": "/cookies.html",
   "/accessibility": "/accessibility.html",
   "/affiliate-disclosure": "/affiliate-disclosure.html",
-  "/tools/creator-calculator": "/#tools",
-  "/calculator": "/#tools",
-  "/calculator/": "/#tools",
+  "/tools/creator-calculator": "/#creator-calculator",
+  "/calculator": "/#creator-calculator",
+  "/calculator/": "/#creator-calculator",
   "/calculator/instagram": "/tools/instagram-revenue/",
 };
 for (const [source, destination] of Object.entries(legacyGscRedirects)) {
@@ -151,32 +197,31 @@ for (const [source, destination] of Object.entries(legacyGscRedirects)) {
     `${source} permanently redirects to its current canonical destination`,
   );
 }
-pass(
-  vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/blog") && redirect.destination === "/#tools").length === 4,
-  "retired article routes with and without trailing slashes permanently redirect to calculators",
-);
-pass(
-  vercelConfig.redirects?.some((redirect) => (
-    redirect.source === "/blog/:path*"
-      && redirect.destination === "/#tools"
-      && redirect.permanent === true
-  )),
-  "every descendant of the legacy article archive is covered by a permanent wildcard redirect",
-);
 const searchIntentRedirects = {
   "/blog/how-much-do-patreon-creators-make-2026": "/tools/patreon-revenue/",
+  "/blog/how-much-does-patreon-take": "/tools/patreon-revenue/",
+  "/blog/patreon-revenue": "/tools/patreon-revenue/",
   "/blog/how-much-do-youtubers-with-100k-subscribers-make.html": "/tools/youtube-ad-revenue/",
+  "/blog/youtube-monetization-requirements-and-rpm-2026": "/tools/youtube-ad-revenue/",
   "/blog/how-much-do-newsletter-writers-make": "/tools/newsletter-revenue/",
+  "/blog/how-much-do-substack-writers-make-2026": "/tools/newsletter-revenue/",
   "/blog/how-much-do-tiktok-creators-make-2026": "/tools/tiktok-revenue/",
+  "/blog/how-much-do-ugc-creators-make": "/tools/ugc-rate/",
+  "/blog/ugc-rates": "/tools/ugc-rate/",
+  "/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier": "/tools/sponsorship-rate/",
 };
 for (const [source, destination] of Object.entries(searchIntentRedirects)) {
   const redirectIndex = vercelConfig.redirects?.findIndex((redirect) => redirect.source === source && redirect.destination === destination && redirect.permanent === true) ?? -1;
-  const fallbackIndex = vercelConfig.redirects?.findIndex((redirect) => redirect.source === "/blog/:path*") ?? -1;
-  pass(redirectIndex >= 0 && redirectIndex < fallbackIndex, `${source} permanently redirects to its maintained calculator before the generic blog fallback`);
+  pass(redirectIndex >= 0, `${source} permanently redirects to its clear maintained replacement`);
 }
 pass(
-  vercelConfig.redirects?.filter((redirect) => redirect.source.startsWith("/guide") && redirect.destination === "/#tools").length === 3,
-  "unverified paid guide routes permanently redirect to the free calculators",
+  !vercelConfig.redirects?.some((redirect) => (
+    redirect.source === "/blog"
+      || redirect.source === "/blog/"
+      || redirect.source.includes(":path*")
+      || redirect.source.startsWith("/guide")
+  )),
+  "retired URLs without a clear replacement can return a real 404 instead of an irrelevant homepage redirect",
 );
 for (const [base, destination] of Object.entries({
   "/tools/finance-youtube-revenue": "/tools/youtube-ad-revenue/",
@@ -189,10 +234,6 @@ for (const [base, destination] of Object.entries({
     );
   }
 }
-pass(
-  [...retiredToolPages.values()].every((page) => /<meta\s+name="robots"\s+content="noindex, nofollow">/i.test(page)),
-  "retired YouTube tool files remain noindex if served outside the production redirect layer",
-);
 pass(
   !vercelConfig.redirects?.some((redirect) => redirect.source.startsWith("/tools/ugc-rate")),
   "UGC quote routes are no longer redirected to the sponsorship worksheet",
@@ -221,6 +262,12 @@ pass(
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");
 pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/script is not downloaded/i.test(cookies), "cookie notice accurately states denied-consent behavior");
+pass(
+  privacy.includes("generic calculator-completed, result-copied, and result-printed action names")
+    && cookies.includes("generic calculator-completed, result-copied, and result-printed actions")
+    && [privacy, cookies].every((page) => page.includes("copied summaries") && page.includes("URL query strings")),
+  "privacy and cookie notices disclose generic action measurement and its input/result/query exclusions",
+);
 const requiredAmazonStatement = "As an Amazon Associate I earn from qualifying purchases";
 pass(affiliateDisclosure.includes(requiredAmazonStatement), "Amazon Associates relationship uses the required site disclosure");
 for (const [file, page] of [
@@ -261,7 +308,8 @@ pass(
 );
 pass(
   sponsorshipPage.includes("This tool does not supply a market rate")
-    && sponsorshipPage.includes("based only on your entries, not a market-rate recommendation"),
+    && sponsorshipPage.includes("This worksheet uses only the values you enter")
+    && sponsorshipPage.includes("This worksheet totals user-supplied assumptions"),
   "sponsorship worksheet clearly labels results as user-supplied scenarios",
 );
 pass(sponsorshipPage.includes('id="baseFee" min="0" max="1000000" step="25" value="0"'), "sponsorship worksheet supplies no default base fee");
@@ -277,6 +325,16 @@ pass(
   sponsorshipScript.includes("contentSubtotal = baseFee * deliverables")
     && sponsorshipScript.includes("quoteTotal = contentSubtotal + addOns"),
   "sponsorship quote total is calculated only from visible user inputs",
+);
+pass(
+  sponsorshipScript.includes("input.value.trim() !== ''")
+    && sponsorshipScript.includes("Number.isFinite(Number(input.value))")
+    && sponsorshipScript.includes("input.checkValidity()")
+    && sponsorshipScript.includes("invalidateResults()")
+    && sponsorshipScript.includes("copyBtn.disabled = true")
+    && sponsorshipScript.includes("firstInvalid.focus()")
+    && !/Math\.floor|Math\.max\(|function readNumber|\|\|\s*[01]/.test(sponsorshipScript),
+  "sponsorship inputs reject invalid values and clear stale results without fallback, clamping, or flooring",
 );
 const ugcInputIds = [
   "baseFee",
@@ -358,7 +416,7 @@ pass(
 pass(
   ugcPage.includes("Quote worksheet, not a market-rate recommendation, guarantee, or contract; it does not provide legal, tax, or financial advice.")
     && ugcPage.includes("What the Result Excludes")
-    && ugcPage.includes('datetime="2026-08-03"'),
+    && ugcPage.includes('datetime="2026-08-09"'),
   "UGC worksheet displays its review date, exclusions, and decision-use limitations",
 );
 pass(
@@ -494,7 +552,17 @@ pass(
   "newsletter result is calculated only from visible user inputs",
 );
 pass(
-  !/Substack|Beehiiv|ConvertKit|Ghost|platformData|Free Forever|full.?time|target\s*=\s*5000|\$5,?000\s+(?:monthly|per month)|\$50,?000\s*(?:-|to)\s*\$500,?000|\$25\s*(?:-|to)\s*\$75|2\s*(?:-|to)\s*5%/i.test(newsletterPage + newsletterScript),
+  newsletterScript.includes("input.value.trim() !== ''")
+    && newsletterScript.includes("Number.isFinite(Number(input.value))")
+    && newsletterScript.includes("input.checkValidity()")
+    && newsletterScript.includes("invalidateResults()")
+    && newsletterScript.includes("copy.disabled = true")
+    && newsletterScript.includes("firstInvalid.focus()")
+    && !/Math\.min|Math\.floor|Number\.parseFloat|\|\|\s*0/.test(newsletterScript),
+  "newsletter inputs reject invalid values and clear stale results without fallback, clamping, or flooring",
+);
+pass(
+  !/Beehiiv|ConvertKit|Ghost|platformData|Free Forever|full.?time|target\s*=\s*5000|\$5,?000\s+(?:monthly|per month)|\$50,?000\s*(?:-|to)\s*\$500,?000|\$25\s*(?:-|to)\s*\$75|2\s*(?:-|to)\s*5%/i.test(newsletterPage + newsletterScript),
   "newsletter page and script contain no platform table, income target, or supplied conversion and sponsorship benchmarks",
 );
 pass(!fs.existsSync(path.join(root, "tools/newsletter-revenue/slider-sync.js")), "newsletter tool contains no obsolete duplicate slider code");
@@ -558,19 +626,36 @@ pass(
   "shared accessibility styles keep calculator grids, panels, and long email links inside phone viewports",
 );
 pass(
+  accessibilityStyles.includes('input[aria-invalid="true"]')
+    && accessibilityStyles.includes(".copy-result:disabled")
+    && accessibilityStyles.includes(".copy-rate-card:disabled"),
+  "shared styles visibly distinguish invalid fields and disabled copy actions",
+);
+pass(
   /html\[data-theme="dark"\]\s+body\.calculator-page/.test(accessibilityStyles)
     && /html\[data-theme="dark"\][\s\S]*?\.input-panel[\s\S]*?background:\s*#1e293b\s*!important/.test(accessibilityStyles)
     && /html\[data-theme="dark"\][\s\S]*?input[\s\S]*?background:\s*#0f172a\s*!important/.test(accessibilityStyles),
   "shared accessibility styles provide dark calculator surfaces and form controls",
 );
-const resultCards = [...publicText.matchAll(/<div\s+class="results-card"[^>]*>/g)].map((match) => match[0]);
+const resultCards = [...publicText.matchAll(/<div\b[^>]*class="[^"]*\bresults-card\b[^"]*"[^>]*>/g)].map((match) => match[0]);
 pass(
-  resultCards.length === 11 && resultCards.every((card) => /aria-live="polite"/.test(card)),
-  "all 11 maintained calculator result cards remain present and announce updates politely",
+  resultCards.length === 12 && resultCards.every((card) => /aria-live="polite"/.test(card)),
+  "the homepage worksheet and all 11 specialized calculator result cards announce updates politely",
 );
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
 pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
-pass(printStyles.includes(".copy-result") && printStyles.includes(".share-buttons"), "print output excludes copy and sharing controls");
+pass(
+  themeScript.includes("navigator.share({ title: document.title, url: url })")
+    && themeScript.includes("return parsed.origin + parsed.pathname")
+    && !/dataset\.(?:result|summary)|input\.value/.test(themeScript.slice(themeScript.indexOf("function canonicalToolUrl"), themeScript.indexOf("(function() {", themeScript.indexOf("function canonicalToolUrl")))),
+  "share controls use only the canonical tool URL and cannot read calculator inputs or result summaries",
+);
+pass(
+  printStyles.includes(".copy-result")
+    && printStyles.includes(".share-tool-button")
+    && printStyles.includes(".share-tool-status"),
+  "print output excludes copy and sharing controls",
+);
 pass(!mainScript.includes("card.style.opacity = '0'"), "homepage calculator cards remain visible without scroll-triggered JavaScript");
 pass(
   !/Free, accurate revenue calculators|real 2026 data from actual creators|Always free|Free Forever|Based on actual creator reports and industry benchmarks|TikTok Creator Fund|Reels Play/.test(home),
@@ -579,9 +664,34 @@ pass(
 const homeApplicationSchema = jsonLdDocuments(home).find((document) => document["@type"] === "WebApplication");
 pass(
   homeApplicationSchema?.name === "Creator Revenue Calculator"
-    && homeApplicationSchema?.description === "A collection of browser-based creator revenue scenario calculators that use visible, user-supplied platform, contract, payout, fee, and cost inputs."
+    && homeApplicationSchema?.description === "A browser-based creator revenue calculator that adds user-supplied platform, membership, sponsorship, affiliate, product, and newsletter revenue, then subtracts user-supplied costs and a reserve."
     && !/Free YouTube Income Estimator|Estimate earnings, CPM rates, and monetization potential/.test(home),
-  "homepage WebApplication schema describes the full explicit-input calculator collection",
+  "homepage WebApplication schema exactly describes the visible multi-stream calculator",
+);
+const mixInputIds = ["mixAds", "mixMemberships", "mixSponsorships", "mixAffiliates", "mixProducts", "mixNewsletter", "mixCosts", "mixReserve", "mixTarget"];
+pass(
+  home.includes('id="creatorRevenueForm"')
+    && mixInputIds.every((id) => home.includes(`id="${id}"`) && new RegExp(`id="${id}"[^>]*value="0"`).test(home))
+    && home.includes('id="mixCalculatorError"')
+    && home.includes('id="mixResults"'),
+  "homepage revenue-mix worksheet exposes zero-default revenue, cost, reserve, and target inputs with accessible state",
+);
+pass(
+  creatorMixScript.includes("gross - costs - reserve")
+    && creatorMixScript.includes("plannedNet * 12")
+    && creatorMixScript.includes("values[field.id] / gross * 100")
+    && creatorMixScript.includes("value >= minimum && value <= maximum && matchesStep")
+    && !/benchmark|defaultRate|industryRate|followerMultiplier|nicheMultiplier/i.test(creatorMixScript),
+  "homepage revenue-mix arithmetic uses only visible validated inputs and no hidden rate or audience benchmark",
+);
+pass(
+  creatorMixScript.includes("form.addEventListener('submit'")
+    && creatorMixScript.includes("errors[0].input.focus()")
+    && creatorMixScript.includes("copyButton.disabled = true")
+    && creatorMixScript.includes("fallbackCopy")
+    && creatorMixScript.includes("crcTrackEvent('calculator_completed')")
+    && creatorMixScript.includes("crcTrackEvent('result_copied')"),
+  "homepage calculation, invalid focus, copy fallback, and consent-gated generic actions have explicit controls",
 );
 const maintainedNonAuthorPages = [
   home,
@@ -735,6 +845,40 @@ for (let tier = 1; tier <= 4; tier += 1) {
     `Patreon tier ${tier} price and patron count start at zero`,
   );
 }
+pass(
+  patreonPage.includes('id="patreonCalculatorForm"')
+    && patreonPage.includes('id="targetTakeHome" min="0" max="100000000" step="0.01" value="0"')
+    && patreonPage.includes('id="targetGap"')
+    && patreonPage.includes('id="additionalPatrons"')
+    && (patreonPage.match(/role="region"/g) || []).length >= 2,
+  "Patreon calculator provides form semantics, a zero-default take-home target, and named scrollable regions",
+);
+pass(
+  patreonScript.includes("rawValue === '' || !Number.isFinite(value)")
+    && patreonScript.includes("rule.whole && !Number.isInteger(value)")
+    && patreonScript.includes("!isStepAligned(value, rule.min, rule.step)")
+    && patreonScript.includes("copyBtn.disabled = true")
+    && patreonScript.includes("validation.firstInvalid.focus()")
+    && !/parseFloat\([^)]*\)\s*\|\||parseInt\([^)]*\)\s*\|\||Math\.max\(0/.test(patreonScript),
+  "Patreon inputs reject blank, range, whole-number, and step errors without silent fallback or clamping",
+);
+pass(
+  patreonScript.includes("Math.ceil(gap / netPerPatron)")
+    && patreonScript.includes("Assumes the same entered tier mix and fee profile")
+    && patreonScript.includes("trackEvent('calculator_completed')")
+    && patreonScript.includes("trackEvent('result_copied')")
+    && !patreonScript.includes("gtag("),
+  "Patreon target solving is explicit and its only measurement calls use the shared generic-event hook",
+);
+const trackerLines = patreonTracker.trim().split(/\r?\n/);
+pass(
+  trackerLines.length === 1
+    && trackerLines[0].includes("gross_membership_revenue")
+    && trackerLines[0].includes("actual_net_payout")
+    && trackerLines[0].includes("refunds_and_chargebacks")
+    && patreonPage.includes('href="/downloads/patreon-income-tracker.csv"'),
+  "Patreon income tracker is a linked header-only template with no fabricated earnings rows",
+);
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
@@ -798,4 +942,18 @@ function jsonLdDocuments(html) {
       try { return JSON.parse(match[1]); } catch { return null; }
     })
     .filter(Boolean);
+}
+
+function faqSchemaMatchesVisibleContent(html) {
+  const faq = jsonLdDocuments(html).find((document) => document["@type"] === "FAQPage");
+  if (!faq || !Array.isArray(faq.mainEntity)) return false;
+  const visibleHtml = html.replace(/<script[^>]+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, "");
+  return faq.mainEntity.every((entity) => {
+    const question = entity?.name;
+    const answer = entity?.acceptedAnswer?.text;
+    return typeof question === "string"
+      && typeof answer === "string"
+      && visibleHtml.includes(question)
+      && visibleHtml.includes(answer);
+  });
 }

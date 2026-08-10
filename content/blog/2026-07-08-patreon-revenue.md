@@ -3,7 +3,7 @@ title: "Patreon Revenue"
 date: "2026-07-08"
 slug: "patreon-revenue"
 description: "Patreon revenue depends on three things: how many fans you have, how much you charge, and Patreon's cut. A creator with 200 paying fans at $5 a month makes $1,0"
-status: published
+status: retired
 author: "Creatorrevenuecalculator"
 ---
 

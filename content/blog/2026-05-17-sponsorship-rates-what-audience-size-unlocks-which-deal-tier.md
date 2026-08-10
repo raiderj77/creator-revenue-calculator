@@ -3,7 +3,7 @@ title: "Sponsorship rates: what audience size unlocks which deal tier"
 date: "2026-05-17"
 slug: "sponsorship-rates-what-audience-size-unlocks-which-deal-tier"
 description: "The short answer: Most brand deals follow a loose tier system based on subscriber or follower count. But raw numbers matter less than niche, engagement..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

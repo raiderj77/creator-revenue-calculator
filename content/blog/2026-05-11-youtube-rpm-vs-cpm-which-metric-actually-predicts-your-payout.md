@@ -3,7 +3,7 @@ title: "YouTube RPM vs CPM: which metric actually predicts your payout"
 date: "2026-05-11"
 slug: "youtube-rpm-vs-cpm-which-metric-actually-predicts-your-payout"
 description: "The short answer: RPM predicts your payout. CPM measures what advertisers pay per thousand ad impressions. RPM measures what you actually earn per thousand..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

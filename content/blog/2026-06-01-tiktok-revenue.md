@@ -3,7 +3,7 @@ title: "Tiktok Revenue"
 date: "2026-06-01"
 slug: "tiktok-revenue"
 description: "The short answer: Most TikTok creators earn between $0.02 and $0.04 per 1,000 views through TikTok's native monetization programs. That makes TikTok one of..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

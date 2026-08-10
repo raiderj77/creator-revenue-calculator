@@ -3,7 +3,7 @@ title: "Deep-Diving CPM Trends for Instagram Reels Creators in 2026"
 date: "2026-05-11"
 slug: "deep-diving-cpm-trends-for-instagram-reels-creators-in-2026"
 description: "Instagram Reels CPMs in 2026 are projected to remain dynamic, influenced by audience demographics, niche content, and evolving ad market strategies...."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

@@ -3,7 +3,7 @@ title: "Youtube Monetization Requirements And Rpm 2026"
 date: "2026-06-21"
 slug: "youtube-monetization-requirements-and-rpm-2026"
 description: "The short version: To join the YouTube Partner Program in 2026, you need either 1,000 subscribers plus 4,000 watch hours in the past 12 months, or 1,000..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

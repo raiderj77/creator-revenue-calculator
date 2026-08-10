@@ -4,7 +4,7 @@ date: "2026-04-30"
 slug: "youtube-cpm-rates-by-niche-2026"
 description: "YouTube CPM in 2026 ranges from $1 to $50 depending on niche. Finance pays the most. Gaming pays the least. See the full breakdown."
 keywords: "YouTube CPM rates 2026, YouTube CPM by niche, YouTube RPM 2026, how much does YouTube pay"
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

@@ -3,7 +3,7 @@ title: "Advertising Revenue Youtube"
 date: "2026-05-18"
 slug: "advertising-revenue-youtube"
 description: "The short answer: Most YouTube channels earn between $1 and $5 per 1,000 views (CPM) after YouTube takes its 45% cut. Your actual pay depends on your niche,..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

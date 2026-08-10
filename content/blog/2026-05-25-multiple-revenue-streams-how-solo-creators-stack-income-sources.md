@@ -3,7 +3,7 @@ title: "Multiple revenue streams: how solo creators stack income sources"
 date: "2026-05-25"
 slug: "multiple-revenue-streams-how-solo-creators-stack-income-sources"
 description: "The short answer: Most solo creators who earn a full-time income combine three to five revenue streams, not one. A realistic mid-tier stack might look like:..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

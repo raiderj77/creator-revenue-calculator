@@ -3,7 +3,7 @@ title: "How much do ugc creators make?"
 date: "2026-06-17"
 slug: "how-much-do-ugc-creators-make"
 description: "UGC (user-generated content) creators typically earn $150 to $500 per piece of content at the beginner-to-mid level. Experienced creators often charge $500..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 
