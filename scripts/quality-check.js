@@ -947,7 +947,9 @@ function jsonLdDocuments(html) {
 function faqSchemaMatchesVisibleContent(html) {
   const faq = jsonLdDocuments(html).find((document) => document["@type"] === "FAQPage");
   if (!faq || !Array.isArray(faq.mainEntity)) return false;
-  const visibleHtml = html.replace(/<script[^>]+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, "");
+  const bodyStart = html.search(/<body(?:\s|>)/i);
+  if (bodyStart === -1) return false;
+  const visibleHtml = html.slice(bodyStart);
   return faq.mainEntity.every((entity) => {
     const question = entity?.name;
     const answer = entity?.acceptedAnswer?.text;
