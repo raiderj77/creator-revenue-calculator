@@ -24,4 +24,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: python -m pip install --disable-pip-version-check -r requirements-fonts.txt
+      - run: npm run assets:fontawesome:check
       - run: npm run build

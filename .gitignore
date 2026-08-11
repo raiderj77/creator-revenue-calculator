@@ -7,3 +7,5 @@ content/drafts/
 content/review-required/
 node_modules/
 .vercel
+__pycache__/
+*.pyc

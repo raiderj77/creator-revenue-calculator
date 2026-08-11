@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var printStyles = document.createElement('link');
   printStyles.rel = 'stylesheet';
   printStyles.href = '/assets/css/print-results.css';
+  printStyles.media = 'print';
   document.head.appendChild(printStyles);
 
   function canonicalToolUrl() {
@@ -143,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function initializeAnalytics() {
+    if (analyticsEnabled) return;
     analyticsEnabled = true;
     setDisabled(false);
     window.dataLayer = window.dataLayer || [];
@@ -218,6 +220,12 @@ document.addEventListener('DOMContentLoaded', function() {
     return button;
   }
 
+  function focusOnNextFrame(target) {
+    window.requestAnimationFrame(function() {
+      if (target && target.isConnected) target.focus();
+    });
+  }
+
   function showChoices(launcher) {
     if (document.getElementById('crc-analytics-choices')) return;
     if (launcher) launcher.remove();
@@ -247,12 +255,12 @@ document.addEventListener('DOMContentLoaded', function() {
     deny.addEventListener('click', function() {
       saveChoice('denied');
       dialog.remove();
-      showLauncher();
+      focusOnNextFrame(showLauncher());
     });
     allow.addEventListener('click', function() {
       saveChoice('granted');
       dialog.remove();
-      showLauncher();
+      focusOnNextFrame(showLauncher());
     });
 
     actions.appendChild(deny);
@@ -262,22 +270,20 @@ document.addEventListener('DOMContentLoaded', function() {
     dialog.appendChild(copy);
     dialog.appendChild(actions);
     document.body.appendChild(dialog);
-    deny.focus();
+    focusOnNextFrame(deny);
   }
 
   function showLauncher() {
-    if (document.getElementById('crc-privacy-choices')) return;
+    var existing = document.getElementById('crc-privacy-choices');
+    if (existing) return existing;
     var launcher = makeButton('Privacy choices', 'crc-privacy-launcher');
     launcher.id = 'crc-privacy-choices';
     launcher.addEventListener('click', function() { showChoices(launcher); });
     document.body.appendChild(launcher);
+    return launcher;
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    var style = document.createElement('style');
-    style.textContent = '.crc-analytics-dialog{position:fixed;z-index:10000;left:1rem;right:1rem;bottom:1rem;max-width:42rem;margin:auto;padding:1.25rem;border:1px solid #cbd5e1;border-radius:1rem;background:#fff;color:#111827;box-shadow:0 20px 50px rgba(15,23,42,.28);font:16px/1.5 system-ui,sans-serif}.crc-analytics-dialog p{margin:.5rem 0 0;color:#374151}.crc-analytics-actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-top:1rem}.crc-analytics-actions button,.crc-privacy-launcher{min-height:44px;border-radius:.6rem;padding:.65rem 1rem;font-weight:700;cursor:pointer}.crc-analytics-primary{border:1px solid #4f46e5;background:#4f46e5;color:#fff}.crc-analytics-secondary{border:1px solid #6b7280;background:#fff;color:#111827}.crc-analytics-actions a{color:#3730a3;font-weight:700;text-decoration:underline}.crc-privacy-launcher{position:fixed;z-index:9999;left:1rem;bottom:1rem;border:1px solid #cbd5e1;background:#fff;color:#111827;box-shadow:0 8px 24px rgba(15,23,42,.18)}[data-theme="dark"] .crc-analytics-dialog,[data-theme="dark"] .crc-privacy-launcher{border-color:#475569;background:#0f172a;color:#f8fafc}[data-theme="dark"] .crc-analytics-dialog p{color:#cbd5e1}[data-theme="dark"] .crc-analytics-secondary{border-color:#64748b;background:#0f172a;color:#f8fafc}[data-theme="dark"] .crc-analytics-actions a{color:#c7d2fe}';
-    document.head.appendChild(style);
-
     var choice = null;
     try { choice = window.localStorage.getItem(storageKey); } catch (error) {}
     if (globalPrivacyControlIsActive()) {

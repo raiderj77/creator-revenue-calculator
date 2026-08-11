@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const root = path.resolve(import.meta.dirname, "..");
 let failures = 0;
@@ -54,6 +55,11 @@ const mobileStyles = siteStyles.slice(
 );
 const themeScript = read("assets/js/theme.js");
 const printStyles = read("assets/css/print-results.css");
+const fontSubsetStyles = read("assets/vendor/fontawesome/css/subset.css");
+const fontSubsetManifest = JSON.parse(read("assets/vendor/fontawesome/subset-manifest.json"));
+const fontAwesomeLicense = read("assets/vendor/fontawesome/LICENSE.txt");
+const packageConfig = JSON.parse(read("package.json"));
+const qualityWorkflow = read(".github/workflows/quality.yml");
 const home = read("index.html");
 const notFoundPage = read("404.html");
 const creatorMixScript = read("assets/js/creator-mix-calculator.js");
@@ -111,6 +117,21 @@ const maintainedToolPages = new Map([
   ["tools/youtube-ad-revenue/index.html", youtubePage],
 ]);
 const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages]);
+const maintainedIconPages = new Map([...maintainedPages, ["404.html", notFoundPage]]);
+const maintainedLinkedScripts = new Map();
+for (const [pagePath, page] of maintainedIconPages) {
+  for (const match of page.matchAll(/<script\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1[^>]*>/gi)) {
+    const source = match[2].split(/[?#]/, 1)[0];
+    if (!source || /^(?:https?:)?\/\//i.test(source)) continue;
+    const relative = source.startsWith("/")
+      ? source.slice(1)
+      : path.posix.normalize(path.posix.join(path.posix.dirname(pagePath), source));
+    maintainedLinkedScripts.set(relative, read(relative));
+  }
+}
+const maintainedIconSources = new Map([...maintainedIconPages, ...maintainedLinkedScripts]);
+const sameSortedValues = (left, right) => JSON.stringify([...left].sort()) === JSON.stringify([...right].sort());
+const fileSha256 = (relative) => crypto.createHash("sha256").update(fs.readFileSync(path.join(root, relative))).digest("hex");
 
 pass(
   [newsletterPage, patreonPage, sponsorshipPage, tiktokPage, ugcPage].every(faqSchemaMatchesVisibleContent),
@@ -140,10 +161,32 @@ pass(
 );
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
 pass(
+  themeScript.includes("function initializeAnalytics() {\n    if (analyticsEnabled) return;")
+    && themeScript.includes("analyticsEnabled = false"),
+  "analytics initialization is idempotent and remains re-enableable after withdrawal",
+);
+pass(
   themeScript.includes("navigator.globalPrivacyControl === true")
     && themeScript.includes("if (globalPrivacyControlIsActive()) choice = 'denied'")
     && themeScript.includes("if (!gpcActive) actions.appendChild(allow)"),
   "Global Privacy Control overrides saved analytics consent and removes the allow action",
+);
+pass(
+  accessibilityStyles.includes(".crc-analytics-dialog")
+    && accessibilityStyles.includes(".crc-privacy-launcher")
+    && accessibilityStyles.includes(".crc-analytics-actions button:focus-visible")
+    && accessibilityStyles.includes("outline: 3px solid #92400e")
+    && accessibilityStyles.includes("outline-color: #fbbf24")
+    && !themeScript.includes("document.createElement('style')")
+    && !themeScript.includes("style.textContent"),
+  "consent presentation is static, keyboard-visible CSS instead of runtime style injection",
+);
+pass(
+  themeScript.includes("function focusOnNextFrame(target)")
+    && themeScript.includes("target && target.isConnected")
+    && themeScript.includes("focusOnNextFrame(deny)")
+    && themeScript.includes("focusOnNextFrame(showLauncher())"),
+  "consent dialog focus and explicit-action focus restoration wait for a connected frame",
 );
 pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
@@ -169,6 +212,69 @@ pass(
 );
 pass(sitemap.includes("/tools/ugc-rate/"), "restored UGC quote worksheet is publicly discoverable");
 pass(sitemap.includes("/affiliate-disclosure.html"), "affiliate disclosure is publicly discoverable");
+pass(
+  [...maintainedPages.values()].every((page) => page.includes('/assets/css/accessibility-audit-fixes.css') && page.includes('/assets/js/theme.js')),
+  "every maintained page loads the static consent styles and shared consent controller",
+);
+
+const maintainedIconClasses = [...new Set(
+  [...maintainedIconSources.values()].flatMap((source) => [...source.matchAll(/\bfa-[a-z0-9-]+\b/g)].map((match) => match[0])),
+)];
+const manifestIconClasses = [
+  ...fontSubsetManifest.families.solid.classes,
+  ...fontSubsetManifest.families.brands.classes,
+];
+pass(
+  packageConfig.devDependencies?.["@fortawesome/fontawesome-free"] === "6.7.2"
+    && fontSubsetManifest.source.version === "6.7.2"
+    && fontSubsetManifest.source.fontTools === "4.62.1"
+    && /SIL Open Font License|SIL OFL/i.test(fontAwesomeLicense),
+  "Font Awesome subset inputs and license are pinned and retained",
+);
+pass(
+  sameSortedValues(maintainedIconClasses, manifestIconClasses)
+    && sameSortedValues(maintainedIconPages.keys(), fontSubsetManifest.pages)
+    && sameSortedValues(maintainedLinkedScripts.keys(), fontSubsetManifest.scripts)
+    && maintainedIconClasses.every((iconClass) => new RegExp(`\\.${iconClass}(?:,|\\{)`).test(fontSubsetStyles)),
+  "Font Awesome CSS and manifest cover every icon class in maintained pages, linked scripts, and the 404",
+);
+pass(
+  fontSubsetManifest.families.solid.classes.length === 65
+    && fontSubsetManifest.families.brands.classes.length === 7
+    && fontSubsetManifest.families.solid.unicodes.length === 63
+    && fontSubsetManifest.families.brands.unicodes.length === 7
+    && fontSubsetStyles.includes('.fa-check{--fa:"\\f00c"}'),
+  "Font Awesome subset includes the linked-script check icon and exact reviewed glyph sets",
+);
+const subsetFontEntries = Object.values(fontSubsetManifest.families);
+pass(
+  subsetFontEntries.every((entry) => {
+    const absolute = path.join(root, entry.file);
+    return fs.statSync(absolute).size === entry.bytes && fileSha256(entry.file) === entry.sha256;
+  })
+    && fs.statSync(path.join(root, fontSubsetManifest.styles.file)).size === fontSubsetManifest.styles.bytes
+    && fileSha256(fontSubsetManifest.styles.file) === fontSubsetManifest.styles.sha256
+    && fs.statSync(path.join(root, fontSubsetManifest.licenseFile.file)).size === fontSubsetManifest.licenseFile.bytes
+    && fileSha256(fontSubsetManifest.licenseFile.file) === fontSubsetManifest.licenseFile.sha256
+    && fontSubsetManifest.totalFontBytes === subsetFontEntries.reduce((total, entry) => total + entry.bytes, 0)
+    && fontSubsetManifest.totalFontBytes < 16000
+    && fontSubsetStyles.includes("font-display:swap"),
+  "tracked Font Awesome subsets match their manifest and keep the critical font payload bounded",
+);
+pass(
+  !fs.existsSync(path.join(root, "assets/vendor/fontawesome/css/all.min.css"))
+    && !fs.existsSync(path.join(root, "assets/vendor/fontawesome/webfonts/fa-solid-900.woff2"))
+    && !fs.existsSync(path.join(root, "assets/vendor/fontawesome/webfonts/fa-brands-400.woff2"))
+    && fontSubsetStyles.includes('font-family:"CRC Creator Icons Solid"')
+    && fontSubsetStyles.includes('font-family:"CRC Creator Icons Brands"'),
+  "deployable icon assets use only renamed modified fonts and no obsolete full bundle",
+);
+pass(
+  packageConfig.scripts?.["assets:fontawesome:check"] === "python scripts/subset-fontawesome.py --check"
+    && qualityWorkflow.includes("npm run assets:fontawesome:check")
+    && qualityWorkflow.includes("requirements-fonts.txt"),
+  "CI regenerates and byte-checks the pinned Font Awesome subset",
+);
 pass(
   /<meta\s+name="robots"\s+content="noindex, follow">/i.test(notFoundPage)
     && notFoundPage.includes('href="/#creator-calculator"')
@@ -735,6 +841,24 @@ pass(
   "the homepage worksheet and all 11 specialized calculator result cards announce updates politely",
 );
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
+pass(
+  themeScript.indexOf("printStyles.media = 'print'") > themeScript.indexOf("printStyles.href")
+    && themeScript.indexOf("printStyles.media = 'print'") < themeScript.indexOf("document.head.appendChild(printStyles)"),
+  "calculator print CSS is marked print-only before its conditional request",
+);
+pass(
+  accessibilityStyles.includes(".print-results-button")
+    && accessibilityStyles.includes(".share-tool-button")
+    && accessibilityStyles.includes(".share-tool-status")
+    && /@media \(max-width: 480px\)[\s\S]*?\.print-results-button/.test(accessibilityStyles),
+  "screen and mobile result-action styles live in the shared static stylesheet",
+);
+pass(
+  printStyles.trimStart().startsWith("@media print {")
+    && (printStyles.match(/@media/g) || []).length === 1
+    && !printStyles.includes(":hover"),
+  "the conditional result stylesheet contains print behavior only",
+);
 pass(themeScript.includes("data-printable-results") && printStyles.includes("body:has([data-printable-results]) *"), "print output is isolated to calculator results");
 pass(
   themeScript.includes("navigator.share({ title: document.title, url: url })")
