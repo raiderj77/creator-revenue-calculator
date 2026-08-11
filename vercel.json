@@ -49,6 +49,8 @@
     { "source": "/blog/newsletter-sponsorship-cpms-niche-specific-2026-benchmarks/", "destination": "/tools/newsletter-revenue/", "permanent": true },
     { "source": "/blog/how-much-do-tiktok-creators-make-2026", "destination": "/tools/tiktok-revenue/", "permanent": true },
     { "source": "/blog/how-much-do-tiktok-creators-make-2026/", "destination": "/tools/tiktok-revenue/", "permanent": true },
+    { "source": "/blog/tiktok-revenue", "destination": "/tools/tiktok-revenue/", "permanent": true },
+    { "source": "/blog/tiktok-revenue/", "destination": "/tools/tiktok-revenue/", "permanent": true },
     { "source": "/blog/how-much-do-ugc-creators-make", "destination": "/tools/ugc-rate/", "permanent": true },
     { "source": "/blog/how-much-do-ugc-creators-make/", "destination": "/tools/ugc-rate/", "permanent": true },
     { "source": "/blog/how-much-do-ugc-creators-make-2026", "destination": "/tools/ugc-rate/", "permanent": true },

@@ -82,6 +82,7 @@ const twitchPage = read("tools/twitch-revenue/index.html");
 const twitchScript = read("tools/twitch-revenue/twitch-calculator.js");
 const tiktokPage = read("tools/tiktok-revenue/index.html");
 const tiktokScript = read("tools/tiktok-revenue/tiktok-calculator.js");
+const tiktokStyles = read("tools/tiktok-revenue/tiktok-calculator.css");
 const instagramPage = read("tools/instagram-revenue/index.html");
 const instagramScript = read("tools/instagram-revenue/instagram-calculator.js");
 const engagementPage = read("tools/engagement-rate/index.html");
@@ -112,7 +113,7 @@ const maintainedToolPages = new Map([
 const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages]);
 
 pass(
-  [newsletterPage, patreonPage, sponsorshipPage, ugcPage].every(faqSchemaMatchesVisibleContent),
+  [newsletterPage, patreonPage, sponsorshipPage, tiktokPage, ugcPage].every(faqSchemaMatchesVisibleContent),
   "priority-page FAQ structured data exactly matches visible questions and answers",
 );
 
@@ -206,6 +207,7 @@ const searchIntentRedirects = {
   "/blog/how-much-do-newsletter-writers-make": "/tools/newsletter-revenue/",
   "/blog/how-much-do-substack-writers-make-2026": "/tools/newsletter-revenue/",
   "/blog/how-much-do-tiktok-creators-make-2026": "/tools/tiktok-revenue/",
+  "/blog/tiktok-revenue": "/tools/tiktok-revenue/",
   "/blog/how-much-do-ugc-creators-make": "/tools/ugc-rate/",
   "/blog/ugc-rates": "/tools/ugc-rate/",
   "/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier": "/tools/sponsorship-rate/",
@@ -581,17 +583,107 @@ pass(
   "Twitch calculation uses whole-count inputs, the published Bits baseline, and no viewer, niche, ad, or sponsor multipliers",
 );
 pass(
-  tiktokPage.includes('id="qualifiedViews"')
-    && tiktokPage.includes('id="rewardPerThousand"')
-    && tiktokPage.includes('id="netBrandDealFee"'),
-  "TikTok scenario asks for qualified-view, dashboard, and completed-deal values",
+  tiktokPage.includes("<title>TikTok Revenue Calculator | Rewards, LIVE &amp; Deals</title>")
+    && tiktokPage.includes("<h1>TikTok Revenue Calculator</h1>")
+    && tiktokPage.includes('datetime="2026-08-10"')
+    && tiktokPage.includes('"dateModified": "2026-08-10"'),
+  "TikTok metadata and visible heading target current calculator intent",
+);
+const tiktokNumberInputs = [...tiktokPage.matchAll(/<input\s+type="number"[^>]*>/gi)].map((match) => match[0]);
+pass(
+  tiktokNumberInputs.length === 7 && tiktokNumberInputs.every((input) => /\bvalue="0"/.test(input)),
+  "TikTok gives every numeric input an explicit zero default",
 );
 pass(
-  !/Creator Fund|creatorFundRates|cpmRates|brandDealRates|liveGiftMultipliers|engagementMultiplier/i.test(tiktokScript)
-    && tiktokScript.includes("qualifiedViews = count('qualifiedViews')")
-    && tiktokScript.includes("brandDealsCount = count('brandDealsCount')")
-    && tiktokScript.includes("qualifiedViews / 1000 * rewardPerThousand"),
-  "TikTok calculation uses whole-count inputs and no former-fund, follower, niche, engagement, or gift multipliers",
+  tiktokPage.includes('id="rewardsModeDirect" name="rewardsMode" value="direct" checked')
+    && tiktokPage.includes('id="rewardsModeDerived" name="rewardsMode" value="derived"')
+    && tiktokPage.includes('id="creatorRewardsAmount"')
+    && tiktokPage.includes('id="qualifiedViews"')
+    && tiktokPage.includes('id="rewardPerThousand"')
+    && tiktokScript.includes("inputs.creatorRewardsAmount.disabled = !direct")
+    && tiktokScript.includes("inputs.qualifiedViews.disabled = direct")
+    && tiktokScript.includes("inputs.rewardPerThousand.disabled = direct"),
+  "TikTok supports isolated direct-dashboard and qualified-view rewards modes",
+);
+pass(
+  tiktokScript.includes("values.creatorRewardsAmount")
+    && tiktokScript.includes("BigInt(values.qualifiedViews) * toCents(values.rewardPerThousand)")
+    && tiktokScript.includes("BigInt(values.brandDealsCount) * toCents(values.netBrandDealFee)")
+    && tiktokScript.includes("creatorRewardsCents + brandRevenueCents + liveRevenueCents + otherRevenueCents")
+    && tiktokScript.includes("totalMonthlyCents * 12n"),
+  "TikTok arithmetic uses only the seven visible user inputs",
+);
+const tiktokTestToCents = (value) => BigInt(Math.round(value * 100));
+const tiktokTestDivideAndRound = (numerator, denominator) => (numerator + denominator / 2n) / denominator;
+const tiktokHalfCentBoundary = tiktokTestDivideAndRound(68500n * tiktokTestToCents(0.03), 1000n);
+pass(
+  tiktokScript.includes("return BigInt(Math.round(value * 100))")
+    && tiktokScript.includes("return (numerator + denominator / 2n) / denominator")
+    && tiktokHalfCentBoundary === 206n
+    && tiktokHalfCentBoundary * 12n === 2472n
+    && tiktokTestToCents(-0) === 0n
+    && tiktokScript.includes("Object.is(value, -0)"),
+  "TikTok uses integer cents for half-cent rounding, annualization, and negative-zero normalization",
+);
+pass(
+  tiktokScript.includes("rawValue === ''")
+    && tiktokScript.includes("Number.isFinite(value)")
+    && tiktokScript.includes("Number.isInteger(value)")
+    && tiktokScript.includes("isStepAligned")
+    && tiktokScript.includes("hasViews !== hasRpm")
+    && tiktokScript.includes("hasDeals !== hasDealFee")
+    && !/Math\.min|Math\.max|Math\.floor|Number\.parseFloat|\|\|\s*0/.test(tiktokScript),
+  "TikTok rejects blank, nonfinite, out-of-range, fractional-count, sub-step, and unmatched paired inputs",
+);
+pass(
+  tiktokScript.includes("clearInvalidResults()")
+    && tiktokScript.includes("copyButton.disabled = true")
+    && tiktokScript.includes("invalidInputs[0].focus()")
+    && tiktokScript.includes("resultsCard.focus()")
+    && tiktokStyles.includes('input[aria-invalid="true"]'),
+  "TikTok clears stale results, disables copying, and exposes accessible invalid and focus states",
+);
+pass(
+  tiktokScript.includes("fallbackCopy")
+    && tiktokScript.includes("navigator.clipboard")
+    && tiktokScript.includes("track('calculator_completed')")
+    && tiktokScript.includes("track('result_copied')")
+    && !/crcTrackEvent\([^)]*,|gtag\(|dataLayer|input\.value[^\n]*track/i.test(tiktokScript),
+  "TikTok copy fallback and consent-gated generic actions cannot send calculator values",
+);
+pass(
+  /@media\s+print[\s\S]*?\.copy-summary[\s\S]*?\.copy-status\s*\{\s*display:\s*none\s*!important;\s*\}/.test(tiktokStyles),
+  "TikTok print output excludes its page-specific copy controls",
+);
+const tiktokJsonLd = jsonLdDocuments(tiktokPage);
+pass(
+  ["WebApplication", "BreadcrumbList", "FAQPage"].every((type) => tiktokJsonLd.some((document) => document["@type"] === type))
+    && faqSchemaMatchesVisibleContent(tiktokPage),
+  "TikTok provides WebApplication, breadcrumb, and visible-matched FAQ structured data",
+);
+pass(
+  [
+    "/creator-rewards-program/how-rewards-work",
+    "/creator-rewards-program/creator-rewards-program",
+    "/tiktok-creator-fund-us/tiktok-creator-fund-update-us",
+    "/live-gifts-wallet/tiktok-live/live-gifts-on-tiktok",
+  ].every((sourcePath) => tiktokPage.includes(sourcePath)),
+  "TikTok methodology links current first-party program and dashboard sources",
+);
+pass(
+  tiktokPage.includes('/tools/sponsorship-rate/')
+    && tiktokPage.includes('/tools/affiliate-calculator/')
+    && !/creatorFundRates|cpmRates|brandDealRates|liveGiftMultipliers|engagementMultiplier|followerMultiplier|nicheMultiplier|geographyMultiplier/i.test(tiktokPage + tiktokScript)
+    && !/\$\d+(?:\.\d+)?\s*(?:-|–|to)\s*\$\d+/i.test(tiktokPage),
+  "TikTok adds relevant commercial discovery without supplied payout or audience benchmarks",
+);
+pass(
+  ["/blog/tiktok-revenue", "/blog/tiktok-revenue/"].every((source) => vercelConfig.redirects?.some((redirect) => (
+    redirect.source === source
+      && redirect.destination === "/tools/tiktok-revenue/"
+      && redirect.permanent === true
+  ))),
+  "both retired TikTok revenue article variants redirect to the maintained calculator",
 );
 pass(
   instagramPage.includes('id="netBrandDealFee"')
