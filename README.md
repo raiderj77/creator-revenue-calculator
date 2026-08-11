@@ -49,6 +49,7 @@ The former finance and gaming YouTube benchmark pages permanently redirect to th
 - `scripts/predeploy-check.js`: deployment configuration checks
 - `scripts/content-lint.js`: content checks
 - `scripts/quality-check.js`: product and regression checks
+- `scripts/subset-fontawesome.py`: reproducible maintained-page icon CSS and WOFF2 generator
 
 ## Local verification
 
@@ -60,6 +61,19 @@ git diff --check
 ```
 
 `npm run build` runs the predeploy checks, content lint, HTML validation, and product-quality suite.
+
+### Regenerating icon assets
+
+Font Awesome is pinned as a development dependency and its license is retained with the generated assets. Regenerate the maintained-page subset after adding or removing an icon class:
+
+```bash
+npm ci
+python -m pip install -r requirements-fonts.txt
+npm run assets:fontawesome
+npm run assets:fontawesome:check
+```
+
+The check rebuilds the CSS, solid font, brands font, and manifest in a temporary directory and requires byte-for-byte equality with the tracked output. GitHub's Quality workflow runs the same check.
 
 ## Monetization safeguards
 

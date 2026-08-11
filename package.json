@@ -4,6 +4,8 @@
   "description": "Transparent browser-based creator revenue scenario calculators",
   "type": "module",
   "scripts": {
+    "assets:fontawesome": "python scripts/subset-fontawesome.py",
+    "assets:fontawesome:check": "python scripts/subset-fontawesome.py --check",
     "lint:content": "node scripts/content-lint.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "lint:html": "html-validate index.html 404.html about.html contact.html privacy.html cookies.html terms.html accessibility.html affiliate-disclosure.html \"tools/*/index.html\"",
@@ -12,6 +14,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "6.7.2",
     "html-validate": "11.6.2"
   }
 }
