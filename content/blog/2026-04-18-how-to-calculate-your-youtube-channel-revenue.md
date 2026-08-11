@@ -3,7 +3,7 @@ title: "How to Calculate Your YouTube Channel Revenue"
 date: "2026-04-18"
 slug: "how-to-calculate-your-youtube-channel-revenue"
 description: "You can estimate your YouTube channel's revenue. To do it, you need to understand ad pricing, ad views, and audience engagement. You will need to find your..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

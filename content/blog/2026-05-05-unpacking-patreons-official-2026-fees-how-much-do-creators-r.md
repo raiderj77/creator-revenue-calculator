@@ -3,7 +3,7 @@ title: "Unpacking Patreon's Official 2026 Fees: How Much Do Creators Really Pay?
 date: "2026-05-05"
 slug: "unpacking-patreons-official-2026-fees-how-much-do-creators-r"
 description: "Patreon's 2026 fee structure will likely continue to feature tiered percentages (e.g., 8-12%) plus payment processing charges (around 2.9% + $0.30 per..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"

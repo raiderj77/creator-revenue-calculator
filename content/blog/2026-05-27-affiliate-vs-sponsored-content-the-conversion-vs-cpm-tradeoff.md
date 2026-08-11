@@ -3,7 +3,7 @@ title: "Affiliate vs sponsored content: the conversion vs CPM tradeoff"
 date: "2026-05-27"
 slug: "affiliate-vs-sponsored-content-the-conversion-vs-cpm-tradeoff"
 description: "Short answer: Sponsored content pays a flat fee upfront no matter what your audience does. Affiliate income depends entirely on clicks and purchases...."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

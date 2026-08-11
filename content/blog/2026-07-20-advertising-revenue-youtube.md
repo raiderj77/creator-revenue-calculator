@@ -3,7 +3,7 @@ title: "Advertising Revenue Youtube"
 date: "2026-07-20"
 slug: "advertising-revenue-youtube"
 description: "Your dashboard shows a $12 CPM. You do the math and expect a real payday. Then the actual deposit lands and it's a fraction of that number. This happens because"
-status: published
+status: retired
 author: "Creatorrevenuecalculator"
 ---
 

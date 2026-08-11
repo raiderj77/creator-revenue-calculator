@@ -3,7 +3,7 @@ title: "Ad revenue floor: what 10,000 monthly views actually pays in 2026"
 date: "2026-05-24"
 slug: "ad-revenue-floor-what-10000-monthly-views-actually-pays-in-2026"
 description: "The short answer: 10,000 monthly YouTube views will likely earn you between $9 and $50 in ad revenue. It depends on your niche, where your audience lives,..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

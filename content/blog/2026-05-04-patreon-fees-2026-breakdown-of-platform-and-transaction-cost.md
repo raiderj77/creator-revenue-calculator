@@ -3,7 +3,7 @@ title: "Patreon Fees 2026: Breakdown of Platform and Transaction Costs for Creat
 date: "2026-05-04"
 slug: "patreon-fees-2026-breakdown-of-platform-and-transaction-cost"
 description: "Understanding Patreon's fee structure in 2026 is important for planning your income as a creator. Platform fees stay tiered at 5-12%. Payment processing..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"

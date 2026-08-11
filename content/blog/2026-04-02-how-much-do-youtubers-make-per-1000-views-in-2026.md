@@ -3,7 +3,7 @@ title: "How Much Do YouTubers Make Per 1000 Views in 2026"
 date: "2026-04-02"
 slug: "how-much-do-youtubers-make-per-1000-views-in-2026"
 description: "As of early 2026, there is no single answer to how much YouTubers make per 1000 views. It depends on things like your niche, how your audience engages, and..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

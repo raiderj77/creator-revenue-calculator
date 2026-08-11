@@ -3,7 +3,7 @@ title: "Patreon Income Tracker"
 date: "2026-07-15"
 slug: "patreon-income-tracker"
 description: "Most Patreon income trackers fail for one reason: creators track the wrong number. They track gross pledges, not what actually lands in the bank. Patreon takes "
-status: published
+status: retired
 author: "Creatorrevenuecalculator"
 ---
 

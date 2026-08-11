@@ -3,7 +3,7 @@ title: "YouTube Ad Revenue by Niche Which Topics Pay Most"
 date: "2026-04-14"
 slug: "youtube-ad-revenue-by-niche-which-topics-pay-most"
 description: "Many creators ask the same question: 'What niche should I focus on to make the most money from YouTube ads?' YouTube's own data shows that some topics earn..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

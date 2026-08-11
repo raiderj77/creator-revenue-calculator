@@ -3,7 +3,7 @@ title: "How Much Do TikTok Creators Make in 2026"
 date: "2026-04-16"
 slug: "how-much-do-tiktok-creators-make-in-2026"
 description: "TikTok creators can earn between $200 and $10,000 per month from the platform. How much you earn depends on your niche, following, engagement, and how you..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

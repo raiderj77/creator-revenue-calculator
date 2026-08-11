@@ -3,7 +3,7 @@ title: "How Much Do Twitch Streamers Make in 2026"
 date: "2026-04-20"
 slug: "how-much-do-twitch-streamers-make-in-2026"
 description: "Twitch streamers can earn anywhere from a few hundred dollars to over $100,000 per month. Top streamers can make more than $500,000 per year. But that takes..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

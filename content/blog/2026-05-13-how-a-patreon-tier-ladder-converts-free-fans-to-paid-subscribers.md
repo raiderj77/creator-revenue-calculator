@@ -3,7 +3,7 @@ title: "How a Patreon tier ladder converts free fans to paid subscribers"
 date: "2026-05-13"
 slug: "how-a-patreon-tier-ladder-converts-free-fans-to-paid-subscribers"
 description: "The short answer: A tier ladder works by giving free fans an easy first step, usually $1-$5/month. Then it uses value gaps between tiers to pull a small..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

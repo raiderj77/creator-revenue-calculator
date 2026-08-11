@@ -3,7 +3,7 @@ title: "Instagram Reels Pay Per 1000 Views"
 date: "2026-05-22"
 slug: "instagram-reels-pay-per-1000-views"
 description: "Instagram Reels does not pay most creators a steady CPM the way YouTube does. The Reels Play bonus program once paid per view, but it has been shut down for..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

@@ -1,20 +1,21 @@
 # Creator Revenue Calculator
 
-Creator Revenue Calculator provides 11 free, browser-based scenario and calculation tools for creators. Calculator inputs stay in the visitor's browser. Results are arithmetic scenarios, not guarantees or financial advice.
+Creator Revenue Calculator provides a free multi-stream monthly revenue worksheet plus 11 specialized browser-based tools for creators. Calculator inputs stay in the visitor's browser. Results are arithmetic scenarios, not guarantees or financial advice.
 
 ## Calculators
 
+- Multi-stream creator revenue mix: https://creatorrevenuecalculator.com/#creator-calculator
 - YouTube ad revenue: https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/
 - TikTok revenue: https://creatorrevenuecalculator.com/tools/tiktok-revenue/
 - Twitch revenue: https://creatorrevenuecalculator.com/tools/twitch-revenue/
 - Instagram revenue: https://creatorrevenuecalculator.com/tools/instagram-revenue/
 - Podcast revenue: https://creatorrevenuecalculator.com/tools/podcast-revenue/
 - Affiliate revenue: https://creatorrevenuecalculator.com/tools/affiliate-calculator/
-- Sponsorship rates: https://creatorrevenuecalculator.com/tools/sponsorship-rate/
+- Sponsorship rate and quote: https://creatorrevenuecalculator.com/tools/sponsorship-rate/
 - UGC quote: https://creatorrevenuecalculator.com/tools/ugc-rate/
 - Engagement rate: https://creatorrevenuecalculator.com/tools/engagement-rate/
-- Newsletter revenue: https://creatorrevenuecalculator.com/tools/newsletter-revenue/
-- Patreon revenue: https://creatorrevenuecalculator.com/tools/patreon-revenue/
+- Newsletter and Substack revenue: https://creatorrevenuecalculator.com/tools/newsletter-revenue/
+- Patreon revenue and income tracker: https://creatorrevenuecalculator.com/tools/patreon-revenue/
 
 ## Trust and limitations
 
@@ -23,7 +24,7 @@ Creator Revenue Calculator provides 11 free, browser-based scenario and calculat
 - Privacy: https://creatorrevenuecalculator.com/privacy.html
 - Affiliate disclosure: https://creatorrevenuecalculator.com/affiliate-disclosure.html
 - Material revenue rates start at zero or come from visible user-selected inputs; actual earnings can vary materially.
-- Google AdSense and Microsoft Clarity are not enabled. Privacy-limited Google Analytics loads only after explicit opt-in.
-- The former article archive is retired from public discovery pending individual editorial review.
+- Google AdSense and Microsoft Clarity are not enabled. Privacy-limited Google Analytics loads only after explicit opt-in and receives sanitized page context plus generic calculate, copy, and print actions, never entered values or results.
+- The former article archive and source drafts are retired and excluded from deployable output. Old URLs redirect only when a clear maintained replacement exists; unmatched retired URLs return 404.
 - The former gaming and finance niche calculators redirect to the maintained YouTube scenario calculator.
 - The UGC quote worksheet uses only visible, user-supplied monetary inputs and does not provide a market rate.

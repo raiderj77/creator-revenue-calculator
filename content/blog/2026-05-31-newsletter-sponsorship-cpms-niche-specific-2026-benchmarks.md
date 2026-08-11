@@ -3,7 +3,7 @@ title: "Newsletter sponsorship CPMs: niche-specific 2026 benchmarks"
 date: "2026-05-31"
 slug: "newsletter-sponsorship-cpms-niche-specific-2026-benchmarks"
 description: "The short answer: Newsletter sponsorship CPMs in 2026 range from roughly $20 to $80 per thousand subscribers. Your niche, audience income level, and..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

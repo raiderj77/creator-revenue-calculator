@@ -3,7 +3,7 @@ title: "Understanding Patreon's 2026 Fee Structure and Its Impact on Creator Rev
 date: "2026-05-11"
 slug: "understanding-patreons-2026-fee-structure-and-its-impact-on-"
 description: "Patreon's expected 2026 fee changes may lower how much creators take home. Public platform data and industry trends suggest creators could face higher base..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"

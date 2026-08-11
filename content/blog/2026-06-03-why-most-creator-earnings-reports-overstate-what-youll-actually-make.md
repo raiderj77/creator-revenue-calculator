@@ -3,7 +3,7 @@ title: "Why most creator earnings reports overstate what you'll actually make"
 date: "2026-06-03"
 slug: "why-most-creator-earnings-reports-overstate-what-youll-actually-make"
 description: "The short answer: Headline creator income figures almost always show gross revenue. That means before platform cuts, taxes, and business costs. They also..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

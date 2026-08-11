@@ -3,7 +3,7 @@ title: "How to Make Money on YouTube Without Adsense"
 date: "2026-04-15"
 slug: "how-to-make-money-on-youtube-without-adsense"
 description: "Are you a YouTube creator who has hit the AdSense limit? Are you having trouble making money from ads? Maybe you are new to YouTube and want to find other..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

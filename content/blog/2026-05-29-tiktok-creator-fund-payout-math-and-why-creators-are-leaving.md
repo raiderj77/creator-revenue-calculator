@@ -3,7 +3,7 @@ title: "TikTok Creator Fund payout math and why creators are leaving"
 date: "2026-05-29"
 slug: "tiktok-creator-fund-payout-math-and-why-creators-are-leaving"
 description: "The short answer: The TikTok Creator Fund pays most creators between $0.02 and $0.04 per 1,000 views. That works out to $20-$40 per million views. That rate..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

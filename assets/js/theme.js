@@ -30,19 +30,83 @@ document.addEventListener('DOMContentLoaded', function() {
   printStyles.href = '/assets/css/print-results.css';
   document.head.appendChild(printStyles);
 
+  function canonicalToolUrl() {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    try {
+      var parsed = new URL(canonical ? canonical.href : window.location.href, window.location.origin);
+      return parsed.origin + parsed.pathname;
+    } catch (error) {
+      return window.location.origin + window.location.pathname;
+    }
+  }
+
+  function fallbackCopy(value) {
+    var textarea = document.createElement('textarea');
+    textarea.value = value;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    var copied = false;
+    try { copied = document.execCommand('copy'); } catch (error) {}
+    textarea.remove();
+    return copied;
+  }
+
+  function copyToolUrl(value) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(value).then(function() { return true; }).catch(function() { return fallbackCopy(value); });
+    }
+    return Promise.resolve(fallbackCopy(value));
+  }
+
   resultCards.forEach(function(card) {
     card.setAttribute('data-printable-results', '');
-    if (card.querySelector('.print-results-button')) return;
+    if (!card.querySelector('.print-results-button')) {
+      var printButton = document.createElement('button');
+      printButton.type = 'button';
+      printButton.className = 'print-results-button';
+      printButton.textContent = 'Print Results';
+      printButton.title = 'Print these results or save them as a PDF';
+      printButton.addEventListener('click', function() {
+        if (typeof window.crcTrackEvent === 'function') window.crcTrackEvent('result_printed');
+        window.print();
+      });
+      card.appendChild(printButton);
+    }
 
-    var printButton = document.createElement('button');
-    printButton.type = 'button';
-    printButton.className = 'print-results-button';
-    printButton.textContent = 'Print Results';
-    printButton.title = 'Print these results or save them as a PDF';
-    printButton.addEventListener('click', function() {
-      window.print();
-    });
-    card.appendChild(printButton);
+    if (!card.querySelector('.share-tool-button')) {
+      var shareButton = document.createElement('button');
+      var shareStatus = document.createElement('span');
+      shareButton.type = 'button';
+      shareButton.className = 'share-tool-button';
+      shareButton.textContent = 'Share Tool';
+      shareButton.title = 'Share or copy this tool link; result values are not included';
+      shareStatus.className = 'share-tool-status';
+      shareStatus.setAttribute('role', 'status');
+      shareStatus.setAttribute('aria-live', 'polite');
+      shareButton.addEventListener('click', function() {
+        var url = canonicalToolUrl();
+        shareStatus.textContent = '';
+        if (navigator.share) {
+          navigator.share({ title: document.title, url: url }).then(function() {
+            shareStatus.textContent = 'Tool link shared.';
+          }).catch(function(error) {
+            if (error && error.name === 'AbortError') return;
+            copyToolUrl(url).then(function(copied) {
+              shareStatus.textContent = copied ? 'Tool link copied.' : 'Sharing is unavailable. Copy the page address from your browser.';
+            });
+          });
+        } else {
+          copyToolUrl(url).then(function(copied) {
+            shareStatus.textContent = copied ? 'Tool link copied.' : 'Sharing is unavailable. Copy the page address from your browser.';
+          });
+        }
+      });
+      card.appendChild(shareButton);
+      card.appendChild(shareStatus);
+    }
   });
 });
 
@@ -50,6 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
   var measurementId = 'G-EVYCWFNNP5';
   var storageKey = 'creatorrevenuecalculator:analytics-consent';
   var scriptId = 'creatorrevenuecalculator-google-analytics';
+  var analyticsEnabled = false;
+  var permittedEvents = {
+    calculator_completed: true,
+    result_copied: true,
+    result_printed: true
+  };
 
   function globalPrivacyControlIsActive() {
     try {
@@ -73,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function initializeAnalytics() {
+    analyticsEnabled = true;
     setDisabled(false);
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
@@ -107,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function disableAnalytics() {
+    analyticsEnabled = false;
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', {
         analytics_storage: 'denied',
@@ -116,8 +188,20 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     setDisabled(true);
+    var injectedScript = document.getElementById(scriptId);
+    if (injectedScript) injectedScript.remove();
     clearAnalyticsCookies();
   }
+
+  window.crcTrackEvent = function(eventName) {
+    if (!analyticsEnabled || !permittedEvents[eventName] || typeof window.gtag !== 'function') return false;
+    window.gtag('event', eventName, {
+      page_location: window.location.origin + window.location.pathname,
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
+    return true;
+  };
 
   function saveChoice(choice) {
     if (globalPrivacyControlIsActive()) choice = 'denied';
@@ -151,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var copy = document.createElement('p');
     copy.textContent = gpcActive
       ? 'Your browser sent a Global Privacy Control signal, so optional analytics remain off.'
-      : 'If allowed, Google Analytics receives only this page title and path after the URL query string is removed. Calculator inputs and results are never sent.';
+      : 'If allowed, Google Analytics receives this page title and path plus generic calculate, copy, and print actions. URL queries, calculator inputs, and results are never sent.';
     var actions = document.createElement('div');
     actions.className = 'crc-analytics-actions';
     var deny = makeButton(gpcActive ? 'Close privacy choices' : 'Continue without analytics', 'crc-analytics-secondary');

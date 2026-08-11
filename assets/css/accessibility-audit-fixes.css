@@ -90,6 +90,18 @@ td[style*="#ef4444"] {
     color: #ffffff !important;
 }
 
+body.calculator-page input[aria-invalid="true"],
+body.calculator-page select[aria-invalid="true"] {
+    border-color: #b91c1c !important;
+    box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.18) !important;
+}
+
+body.calculator-page .copy-result:disabled,
+body.calculator-page .copy-rate-card:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.55 !important;
+}
+
 .skip-nav {
     color: #111827 !important;
     position: fixed;

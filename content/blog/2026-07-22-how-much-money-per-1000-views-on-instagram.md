@@ -3,7 +3,7 @@ title: "How much money per 1000 views on instagram?"
 date: "2026-07-22"
 slug: "how-much-money-per-1000-views-on-instagram"
 description: "Instagram does not pay you per view the way YouTube does. There is no flat rate per 1000 views. Most creators make money through brand deals, not ad revenue. A "
-status: published
+status: retired
 author: "Creatorrevenuecalculator"
 ---
 

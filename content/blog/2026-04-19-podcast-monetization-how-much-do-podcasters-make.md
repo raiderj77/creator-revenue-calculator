@@ -3,7 +3,7 @@ title: "Podcast Monetization How Much Do Podcasters Make"
 date: "2026-04-19"
 slug: "podcast-monetization-how-much-do-podcasters-make"
 description: "Podcasters can earn between $10,000 and $1 million or more per year through advertising, sponsorships, and listener support."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

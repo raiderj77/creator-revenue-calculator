@@ -3,7 +3,7 @@ title: "What Creators Need to Know About Patreon's Fees Increase in 2026"
 date: "2026-04-28"
 slug: "what-creators-need-to-know-about-patreons-fees-increase-in-2"
 description: "Patreon's upcoming fee changes in 2026 will set platform fees at 10% for all plans. Creators will also pay a new 1.5% payment processing surcharge. Most..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"

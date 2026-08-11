@@ -3,7 +3,7 @@ title: "YouTube Shorts Monetization How It Works"
 date: "2026-04-21"
 slug: "youtube-shorts-monetization-how-it-works"
 description: "YouTube Shorts monetization lets eligible creators earn money from short videos on the platform. It is part of the YouTube Partner Program (YPP). It lets..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

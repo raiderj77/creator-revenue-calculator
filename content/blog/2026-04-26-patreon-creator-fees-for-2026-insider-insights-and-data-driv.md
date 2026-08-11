@@ -3,7 +3,7 @@ title: "Patreon Creator Fees for 2026: Insider Insights and Data-Driven Analysis
 date: "2026-04-26"
 slug: "patreon-creator-fees-for-2026-insider-insights-and-data-driv"
 description: "Creator fees affect how much money creators keep on Patreon. There are different fee plans and estimated CPM rates for 2026. Knowing how these fees work can..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 canonical: "https://creatorrevenuecalculator.com/blog/how-much-does-patreon-take/"

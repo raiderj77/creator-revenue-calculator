@@ -3,7 +3,7 @@ title: "How much does patreon take?"
 date: "2026-06-19"
 slug: "how-much-does-patreon-take"
 description: "The short answer: Patreon takes between 5% and 12% of your monthly earnings depending on your plan. On top of that, you pay payment processing fees. Those..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

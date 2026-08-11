@@ -3,7 +3,7 @@ title: "Creator Revenue Tracking"
 date: "2026-06-15"
 slug: "creator-revenue-tracking"
 description: "The short answer: Most creators earn from 3-6 income streams at the same time. Without one tracking system, they almost always overestimate good months and..."
-status: published
+status: retired
 author: "Jason Ramirez"
 ---
 

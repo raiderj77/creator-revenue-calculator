@@ -3,7 +3,7 @@ title: "Substack revenue math: how many subs at $5 beats one at $50"
 date: "2026-05-15"
 slug: "substack-revenue-math-how-many-subs-at-5-beats-one-at-50"
 description: "Short answer: One $50/month paid subscriber equals 10 subscribers at $5/month in gross revenue. After Substack's 10% cut, both options net you the same..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

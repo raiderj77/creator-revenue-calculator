@@ -21,10 +21,105 @@ document.addEventListener('DOMContentLoaded', function () {
     var perDeliverable = document.getElementById('monthlyEstimate');
     var perDeliverableDetail = document.getElementById('monthlyDetail');
     var copyBtn = document.getElementById('copyRateCard');
+    var formStatus = document.getElementById('sponsorshipFormStatus');
+    var copyStatus = document.getElementById('sponsorshipCopyStatus');
 
-    function readNumber(input, fallback) {
-        var value = Number(input && input.value);
-        return Number.isFinite(value) && value >= 0 ? value : fallback;
+    function setStatus(element, message) {
+        if (element) element.textContent = message;
+    }
+
+    function track(eventName) {
+        if (typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent(eventName);
+        }
+    }
+
+    function inputIsValid(input) {
+        return input.value.trim() !== '' && Number.isFinite(Number(input.value)) && input.checkValidity();
+    }
+
+    function inputsAreValid() {
+        return Object.keys(inputs).every(function (key) {
+            return inputIsValid(inputs[key]);
+        });
+    }
+
+    function invalidateResults(message) {
+        rateLow.textContent = '—';
+        rateRecommended.textContent = '—';
+        ratePremium.textContent = '—';
+        factorsContainer.textContent = 'Enter valid values to see the itemized inputs.';
+        tierBadge.textContent = 'Needs input';
+        tierBadge.className = 'tier-badge';
+        tierBenchmarkText.textContent = 'No quote is calculated while an input is empty or invalid.';
+        negotiationText.textContent = 'Complete every visible field before using the quote scenario.';
+        perDeliverable.textContent = '—';
+        perDeliverableDetail.textContent = 'Complete every visible field to calculate an average.';
+        copyBtn.dataset.summary = '';
+        copyBtn.disabled = true;
+        copyBtn.title = 'Complete every input before copying.';
+        setStatus(copyStatus, '');
+        setStatus(formStatus, message || 'Results cleared. Enter a number in every field within the displayed range and increment.');
+    }
+
+    function validateInputs(shouldFocus) {
+        var firstInvalid = null;
+
+        Object.keys(inputs).forEach(function (key) {
+            var input = inputs[key];
+            if (!inputIsValid(input)) {
+                input.setAttribute('aria-invalid', 'true');
+                if (!firstInvalid) firstInvalid = input;
+            } else {
+                input.removeAttribute('aria-invalid');
+            }
+        });
+
+        if (firstInvalid) {
+            var label = document.querySelector('label[for="' + firstInvalid.id + '"]');
+            setStatus(formStatus, 'Review ' + (label ? label.textContent.trim() : 'the highlighted field') + '. Use a value within the displayed range and increment.');
+            if (shouldFocus) firstInvalid.focus();
+            return false;
+        }
+
+        setStatus(formStatus, '');
+        return true;
+    }
+
+    function fallbackCopy(text) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        var copied = false;
+        try {
+            copied = document.execCommand('copy');
+        } finally {
+            document.body.removeChild(textarea);
+        }
+        return copied;
+    }
+
+    function copyText(text) {
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            return navigator.clipboard.writeText(text).catch(function () {
+                if (fallbackCopy(text)) return;
+                throw new Error('Copy command was not accepted.');
+            });
+        }
+
+        return new Promise(function (resolve, reject) {
+            try {
+                if (fallbackCopy(text)) resolve();
+                else reject(new Error('Copy command was not accepted.'));
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 
     function formatMoney(value) {
@@ -54,12 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function calculate() {
-        var baseFee = readNumber(inputs.baseFee, 0);
-        var deliverables = Math.max(1, Math.floor(readNumber(inputs.deliverables, 1)));
-        var productionCosts = readNumber(inputs.productionCosts, 0);
-        var usageRightsPct = readNumber(inputs.usageRightsPct, 0);
-        var exclusivityPct = readNumber(inputs.exclusivityPct, 0);
-        var rushPct = readNumber(inputs.rushPct, 0);
+        var baseFee = Number(inputs.baseFee.value);
+        var deliverables = Number(inputs.deliverables.value);
+        var productionCosts = Number(inputs.productionCosts.value);
+        var usageRightsPct = Number(inputs.usageRightsPct.value);
+        var exclusivityPct = Number(inputs.exclusivityPct.value);
+        var rushPct = Number(inputs.rushPct.value);
 
         var contentSubtotal = baseFee * deliverables;
         var usageRights = contentSubtotal * usageRightsPct / 100;
@@ -98,35 +193,62 @@ document.addEventListener('DOMContentLoaded', function () {
             'Total: ' + formatMoney(quoteTotal),
             'Based on user-supplied assumptions; not a market-rate recommendation.'
         ].join('\n');
+        copyBtn.disabled = false;
+        copyBtn.removeAttribute('title');
+        setStatus(copyStatus, '');
     }
 
     Object.keys(inputs).forEach(function (key) {
-        inputs[key].addEventListener('input', calculate);
-        inputs[key].addEventListener('change', calculate);
+        inputs[key].addEventListener('input', function () {
+            if (inputIsValid(this)) this.removeAttribute('aria-invalid');
+            else this.setAttribute('aria-invalid', 'true');
+            if (inputsAreValid()) {
+                setStatus(formStatus, '');
+                calculate();
+            } else {
+                invalidateResults();
+            }
+        });
+        inputs[key].addEventListener('change', function () {
+            if (inputIsValid(this)) this.removeAttribute('aria-invalid');
+            else this.setAttribute('aria-invalid', 'true');
+            if (inputsAreValid()) {
+                setStatus(formStatus, '');
+                calculate();
+            } else {
+                invalidateResults();
+            }
+        });
     });
 
-    calculateBtn.addEventListener('click', calculate);
+    calculateBtn.addEventListener('click', function () {
+        if (!validateInputs(true)) return;
+        calculate();
+        setStatus(formStatus, 'Quote scenario updated from your entries.');
+        track('calculator_completed');
+    });
 
     copyBtn.addEventListener('click', function () {
         var text = this.dataset.summary || '';
         var button = this;
 
-        navigator.clipboard.writeText(text).then(function () {
+        if (!text) {
+            setStatus(copyStatus, 'Calculate a quote before copying.');
+            return;
+        }
+
+        setStatus(copyStatus, '');
+        copyText(text).then(function () {
             button.classList.add('copied');
-            button.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard';
+            button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied to Clipboard';
+            setStatus(copyStatus, 'Quote summary copied to the clipboard.');
+            track('result_copied');
             window.setTimeout(function () {
                 button.classList.remove('copied');
-                button.innerHTML = '<i class="fas fa-copy"></i> Copy Quote Summary';
+                button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy Quote Summary';
             }, 2000);
         }).catch(function () {
-            var textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+            setStatus(copyStatus, 'Copy failed. Select the visible results and copy them manually.');
         });
     });
 

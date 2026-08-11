@@ -3,7 +3,7 @@ title: "What Is CPM and Why It Matters for Creators"
 date: "2026-04-13"
 slug: "what-is-cpm-and-why-it-matters-for-creators"
 description: "CPM demystified: unlocking the secrets of YouTube ad revenue"
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

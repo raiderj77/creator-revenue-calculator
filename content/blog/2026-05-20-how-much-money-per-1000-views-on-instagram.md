@@ -3,7 +3,7 @@ title: "How much money per 1000 views on instagram?"
 date: "2026-05-20"
 slug: "how-much-money-per-1000-views-on-instagram"
 description: "The short answer: Instagram does not pay creators directly per view the way YouTube does. Most creators earn $0 from Instagram views alone. Monetization..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---

@@ -3,7 +3,7 @@ title: "How to Make Money as a Small YouTube Channel"
 date: "2026-04-19"
 slug: "how-to-make-money-as-a-small-youtube-channel"
 description: "Can you make money on YouTube with a small channel? Yes, you can. But it takes a lot of work, patience, and effort. Millions of hours of video are uploaded..."
-status: published
+status: retired
 author: "Jason Ramirez"
 reviewer: "Jason Ramirez"
 ---
