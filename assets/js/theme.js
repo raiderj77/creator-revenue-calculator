@@ -116,17 +116,34 @@ document.addEventListener('DOMContentLoaded', function() {
   var storageKey = 'creatorrevenuecalculator:analytics-consent';
   var scriptId = 'creatorrevenuecalculator-google-analytics';
   var analyticsEnabled = false;
+  var analyticsConfigured = false;
+  var manualPageViewSent = false;
+  var analyticsScriptLoaded = false;
+  var consentStorageAvailable = true;
   var permittedEvents = {
     calculator_completed: true,
     result_copied: true,
     result_printed: true
   };
 
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+  window.gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    personalization_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+
   function globalPrivacyControlIsActive() {
     try {
       return navigator.globalPrivacyControl === true;
     } catch (error) {
-      return false;
+      return true;
     }
   }
 
@@ -134,23 +151,37 @@ document.addEventListener('DOMContentLoaded', function() {
     window['ga-disable-' + measurementId] = disabled;
   }
 
-  function clearAnalyticsCookies() {
-    document.cookie.split(';').forEach(function(cookie) {
-      var name = cookie.split('=')[0].trim();
-      if (name !== '_ga' && name.indexOf('_ga_') !== 0) return;
-      document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax';
-      document.cookie = name + '=; Max-Age=0; Path=/; Domain=.' + window.location.hostname + '; SameSite=Lax';
-    });
+  setDisabled(true);
+
+  function sanitizedPageLocation() {
+    try {
+      return window.location.origin + window.location.pathname;
+    } catch (error) {
+      return '';
+    }
   }
 
-  function initializeAnalytics() {
-    if (analyticsEnabled) return;
-    analyticsEnabled = true;
-    setDisabled(false);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
-    window.gtag('consent', 'default', {
-      analytics_storage: 'granted',
+  function sanitizedPageReferrer() {
+    var rawReferrer;
+    try {
+      rawReferrer = document.referrer;
+    } catch (error) {
+      return '';
+    }
+    if (!rawReferrer) return '';
+    try {
+      var parsed = new URL(rawReferrer, window.location.href);
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return '';
+      if (parsed.origin === window.location.origin) return parsed.origin + parsed.pathname;
+      return parsed.origin;
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function updateConsent(analyticsStorage) {
+    window.gtag('consent', 'update', {
+      analytics_storage: analyticsStorage,
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied',
@@ -158,58 +189,99 @@ document.addEventListener('DOMContentLoaded', function() {
       functionality_storage: 'granted',
       security_storage: 'granted'
     });
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, {
-      send_page_view: false,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false
-    });
-    window.gtag('event', 'page_view', {
-      page_location: window.location.origin + window.location.pathname,
-      page_path: window.location.pathname,
-      page_title: document.title
-    });
+  }
 
-    if (!document.getElementById(scriptId)) {
-      var script = document.createElement('script');
-      script.id = scriptId;
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-      document.head.appendChild(script);
+  function clearAnalyticsCookies() {
+    try {
+      document.cookie.split(';').forEach(function(cookie) {
+        var name = cookie.split('=')[0].trim();
+        if (name !== '_ga' && name.indexOf('_ga_') !== 0) return;
+        document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax';
+        document.cookie = name + '=; Max-Age=0; Path=/; Domain=.' + window.location.hostname + '; SameSite=Lax';
+      });
+    } catch (error) {}
+  }
+
+  function ensureAnalyticsScript() {
+    if (document.getElementById(scriptId)) return;
+    var script = document.createElement('script');
+    script.id = scriptId;
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    script.addEventListener('load', function() {
+      if (document.getElementById(scriptId) !== script) return;
+      analyticsScriptLoaded = true;
+    });
+    script.addEventListener('error', function() {
+      if (document.getElementById(scriptId) !== script) return;
+      analyticsEnabled = false;
+      updateConsent('denied');
+      setDisabled(true);
+      if (script.isConnected) script.remove();
+    });
+    document.head.appendChild(script);
+  }
+
+  function initializeAnalytics() {
+    if (analyticsEnabled) return;
+    updateConsent('granted');
+    setDisabled(false);
+    try {
+      if (!analyticsConfigured) {
+        window.gtag('js', new Date());
+        window.gtag('set', {
+          page_location: sanitizedPageLocation(),
+          page_referrer: sanitizedPageReferrer(),
+          page_title: document.title
+        });
+        window.gtag('config', measurementId, {
+          send_page_view: false,
+          allow_google_signals: false,
+          allow_ad_personalization_signals: false
+        });
+        analyticsConfigured = true;
+      }
+      if (!manualPageViewSent) {
+        window.gtag('event', 'page_view');
+        manualPageViewSent = true;
+      }
+      ensureAnalyticsScript();
+      analyticsEnabled = true;
+    } catch (error) {
+      analyticsEnabled = false;
+      updateConsent('denied');
+      setDisabled(true);
     }
   }
 
   function disableAnalytics() {
-    analyticsEnabled = false;
     if (typeof window.gtag === 'function') {
-      window.gtag('consent', 'update', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
+      updateConsent('denied');
     }
+    analyticsEnabled = false;
     setDisabled(true);
     var injectedScript = document.getElementById(scriptId);
-    if (injectedScript) injectedScript.remove();
+    if (injectedScript && !analyticsScriptLoaded) injectedScript.remove();
     clearAnalyticsCookies();
   }
 
   window.crcTrackEvent = function(eventName) {
-    if (!analyticsEnabled || !permittedEvents[eventName] || typeof window.gtag !== 'function') return false;
-    window.gtag('event', eventName, {
-      page_location: window.location.origin + window.location.pathname,
-      page_path: window.location.pathname,
-      page_title: document.title
-    });
+    if (arguments.length !== 1 || typeof eventName !== 'string' || !Object.prototype.hasOwnProperty.call(permittedEvents, eventName) || !analyticsEnabled || typeof window.gtag !== 'function') return false;
+    window.gtag('event', eventName);
     return true;
   };
 
   function saveChoice(choice) {
-    if (globalPrivacyControlIsActive()) choice = 'denied';
-    try { window.localStorage.setItem(storageKey, choice); } catch (error) {}
+    if (globalPrivacyControlIsActive() || !consentStorageAvailable) choice = 'denied';
+    try {
+      window.localStorage.setItem(storageKey, choice);
+    } catch (error) {
+      consentStorageAvailable = false;
+      choice = 'denied';
+    }
     if (choice === 'granted') initializeAnalytics();
     else disableAnalytics();
+    return choice;
   }
 
   function makeButton(label, className) {
@@ -231,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (launcher) launcher.remove();
 
     var gpcActive = globalPrivacyControlIsActive();
+    var grantingBlocked = gpcActive || !consentStorageAvailable;
 
     var dialog = document.createElement('div');
     dialog.id = 'crc-analytics-choices';
@@ -243,10 +316,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var copy = document.createElement('p');
     copy.textContent = gpcActive
       ? 'Your browser sent a Global Privacy Control signal, so optional analytics remain off.'
-      : 'If allowed, Google Analytics receives this page title and path plus generic calculate, copy, and print actions. URL queries, calculator inputs, and results are never sent.';
+      : !consentStorageAvailable
+        ? 'Your browser could not save an analytics choice, so optional analytics remain off.'
+      : 'If allowed, Google Analytics receives a query-free page URL, limited referrer, page title, device and browser details, approximate location, standard engagement and enhanced-measurement interactions, plus generic calculate, copy, and print actions. We do not intentionally send calculator inputs, results, or URL queries.';
     var actions = document.createElement('div');
     actions.className = 'crc-analytics-actions';
-    var deny = makeButton(gpcActive ? 'Close privacy choices' : 'Continue without analytics', 'crc-analytics-secondary');
+    var deny = makeButton(grantingBlocked ? 'Close privacy choices' : 'Continue without analytics', 'crc-analytics-secondary');
     var allow = makeButton('Allow analytics', 'crc-analytics-primary');
     var details = document.createElement('a');
     details.href = '/privacy.html';
@@ -264,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     actions.appendChild(deny);
-    if (!gpcActive) actions.appendChild(allow);
+    if (!grantingBlocked) actions.appendChild(allow);
     actions.appendChild(details);
     dialog.appendChild(heading);
     dialog.appendChild(copy);
@@ -285,9 +360,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.addEventListener('DOMContentLoaded', function() {
     var choice = null;
-    try { choice = window.localStorage.getItem(storageKey); } catch (error) {}
+    try {
+      choice = window.localStorage.getItem(storageKey);
+    } catch (error) {
+      consentStorageAvailable = false;
+      choice = 'denied';
+    }
     if (globalPrivacyControlIsActive()) {
       saveChoice('denied');
+      showLauncher();
+      return;
+    }
+    if (!consentStorageAvailable) {
+      disableAnalytics();
       showLauncher();
       return;
     }

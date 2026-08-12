@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!validation.valid) {
             clearInvalidResults();
             if (focusFirstInvalid) validation.invalidInputs[0].focus();
-            return;
+            return false;
         }
 
         var baseFee = validation.values.baseFee;
@@ -187,6 +187,10 @@ document.addEventListener('DOMContentLoaded', function () {
             'Quote total: ' + currency(quoteTotal),
             'User-supplied scenario; not a market-rate recommendation, contract, or guarantee.'
         ].join('\n');
+        if (focusFirstInvalid && typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('calculator_completed');
+        }
+        return true;
     }
 
     function copySummary() {
@@ -196,6 +200,9 @@ document.addEventListener('DOMContentLoaded', function () {
         function showCopiedStatus() {
             copyStatus.textContent = 'Quote summary copied.';
             copyButton.textContent = 'Copied';
+            if (typeof window.crcTrackEvent === 'function') {
+                window.crcTrackEvent('result_copied');
+            }
             copyResetTimer = window.setTimeout(function () {
                 copyButton.textContent = 'Copy Quote Summary';
                 copyStatus.textContent = '';

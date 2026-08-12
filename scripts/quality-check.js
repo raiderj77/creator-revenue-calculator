@@ -168,9 +168,9 @@ pass(
 );
 pass(
   themeScript.includes("navigator.globalPrivacyControl === true")
-    && themeScript.includes("if (globalPrivacyControlIsActive()) choice = 'denied'")
-    && themeScript.includes("if (!gpcActive) actions.appendChild(allow)"),
-  "Global Privacy Control overrides saved analytics consent and removes the allow action",
+    && themeScript.includes("if (globalPrivacyControlIsActive() || !consentStorageAvailable) choice = 'denied'")
+    && themeScript.includes("if (!grantingBlocked) actions.appendChild(allow)"),
+  "Global Privacy Control and unavailable consent storage override saved consent and remove the allow action",
 );
 pass(
   accessibilityStyles.includes(".crc-analytics-dialog")
@@ -189,13 +189,21 @@ pass(
     && themeScript.includes("focusOnNextFrame(showLauncher())"),
   "consent dialog focus and explicit-action focus restoration wait for a connected frame",
 );
-pass(themeScript.includes("window.location.pathname") && !themeScript.includes("window.location.search"), "analytics page views exclude URL query strings");
+pass(
+  themeScript.includes("page_location: sanitizedPageLocation()")
+    && themeScript.includes("page_referrer: sanitizedPageReferrer()")
+    && themeScript.includes("page_title: document.title")
+    && !themeScript.includes("window.location.search"),
+  "analytics sets query-free page, referrer, and title context before collection",
+);
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
 pass(
   ["calculator_completed", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
-    && themeScript.includes("window.location.origin + window.location.pathname")
-    && themeScript.includes("injectedScript.remove()"),
-  "consent-gated action measurement is allowlisted, path-only, and removable on withdrawal",
+    && themeScript.includes("arguments.length !== 1")
+    && themeScript.includes("Object.prototype.hasOwnProperty.call(permittedEvents, eventName)")
+    && themeScript.includes("window.gtag('event', eventName)")
+    && themeScript.includes("updateConsent('denied')"),
+  "consent-gated action measurement is one-argument, allowlisted, and blocked on withdrawal",
 );
 pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
@@ -372,10 +380,17 @@ pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice a
 pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
 pass(/script is not downloaded/i.test(cookies), "cookie notice accurately states denied-consent behavior");
 pass(
-  privacy.includes("generic calculator-completed, result-copied, and result-printed action names")
-    && cookies.includes("generic calculator-completed, result-copied, and result-printed actions")
-    && [privacy, cookies].every((page) => page.includes("copied summaries") && page.includes("URL query strings")),
-  "privacy and cookie notices disclose generic action measurement and its input/result/query exclusions",
+  [privacy, cookies].every((page) => (
+    page.includes("generic calculator-completed and result-copied action names after those actions succeed")
+      && page.includes("a result-printed action name when the browser print dialog is opened")
+      && page.includes("cannot determine whether you complete or cancel printing")
+      && page.includes("pseudonymous client ID")
+      && page.includes("Enhanced Measurement is active")
+      && page.includes("copied summaries")
+      && page.includes("URL query values")
+      && page.includes("site code does not intentionally add")
+  )),
+  "privacy and cookie notices disclose standard analytics, automatic measurement, and site-code exclusions",
 );
 const requiredAmazonStatement = "As an Amazon Associate I earn from qualifying purchases";
 pass(affiliateDisclosure.includes(requiredAmazonStatement), "Amazon Associates relationship uses the required site disclosure");

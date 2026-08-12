@@ -33,6 +33,13 @@
     if (element) element.textContent = value;
   }
 
+  function inputsAreValid() {
+    return ids.every(function (id) {
+      var element = document.getElementById(id);
+      return element && element.value.trim() !== '' && element.checkValidity();
+    });
+  }
+
   function calculate() {
     var brandDealsCount = count('brandDealsCount');
     var netBrandDealFee = number('netBrandDealFee');
@@ -67,7 +74,14 @@
       if (element) element.addEventListener('input', calculate);
     });
     var button = document.getElementById('calculateBtn');
-    if (button) button.addEventListener('click', calculate);
+    if (button) {
+      button.addEventListener('click', function () {
+        calculate();
+        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
+          window.crcTrackEvent('calculator_completed');
+        }
+      });
+    }
     calculate();
   });
 })();
