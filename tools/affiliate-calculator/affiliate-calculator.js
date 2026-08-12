@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const commissionRateInput = document.getElementById('commissionRate');
     const affiliateProgramsInput = document.getElementById('affiliatePrograms');
     const calculateBtn = document.getElementById('calculateBtn');
+    const calculatorInputs = [monthlyTrafficInput, conversionRateInput, averageOrderValueInput, commissionRateInput, affiliateProgramsInput];
 
     // Result elements
     const dailyEarningsResult = document.getElementById('dailyEarnings');
@@ -31,10 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initFAQ();
 
     // Set up event listeners
-    calculateBtn.addEventListener('click', calculate);
+    calculateBtn.addEventListener('click', function() {
+        calculate();
+        const inputsAreValid = calculatorInputs.every(input => input.value.trim() !== '' && input.checkValidity());
+        if (inputsAreValid && typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('calculator_completed');
+        }
+    });
 
     // Calculate on input changes
-    [monthlyTrafficInput, conversionRateInput, averageOrderValueInput, commissionRateInput, affiliateProgramsInput].forEach(input => {
+    calculatorInputs.forEach(input => {
         input.addEventListener('input', calculate);
         input.addEventListener('change', calculate);
     });

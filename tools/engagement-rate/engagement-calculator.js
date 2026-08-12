@@ -22,6 +22,13 @@
     return value === null ? 'Not available' : value.toFixed(2) + '%';
   }
 
+  function inputsAreValid() {
+    return ids.every(function (id) {
+      var element = document.getElementById(id);
+      return element && element.value.trim() !== '' && element.checkValidity();
+    });
+  }
+
   function calculate() {
     var followers = number('followers');
     var views = number('views');
@@ -53,7 +60,14 @@
       if (element) element.addEventListener(element.tagName === 'SELECT' ? 'change' : 'input', calculate);
     });
     var button = document.getElementById('calculateBtn');
-    if (button) button.addEventListener('click', calculate);
+    if (button) {
+      button.addEventListener('click', function () {
+        calculate();
+        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
+          window.crcTrackEvent('calculator_completed');
+        }
+      });
+    }
     var copyButton = document.getElementById('copyResult');
     if (copyButton) {
       copyButton.addEventListener('click', function () {
@@ -61,6 +75,9 @@
         navigator.clipboard.writeText(copyButton.dataset.result).then(function () {
           var previous = copyButton.textContent;
           copyButton.textContent = 'Copied';
+          if (typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('result_copied');
+          }
           window.setTimeout(function () { copyButton.textContent = previous; }, 1500);
         }).catch(function () {});
       });

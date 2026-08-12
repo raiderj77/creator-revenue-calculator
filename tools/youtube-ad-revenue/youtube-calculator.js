@@ -36,6 +36,12 @@
         });
     }
 
+    function inputsAreValid() {
+        return [viewsInput, rateInput].every(function (input) {
+            return input && input.value.trim() !== '' && input.checkValidity();
+        });
+    }
+
     function calculate() {
         var monthlyViews = readNonNegativeNumber(viewsInput);
         var postShareRevenuePerThousand = readNonNegativeNumber(rateInput);
@@ -64,7 +70,12 @@
         input.addEventListener('change', calculate);
     });
 
-    calculateButton.addEventListener('click', calculate);
+    calculateButton.addEventListener('click', function () {
+        calculate();
+        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('calculator_completed');
+        }
+    });
     resetButton.addEventListener('click', reset);
 
     var faqQuestions = document.querySelectorAll('.faq-question');

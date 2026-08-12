@@ -9,8 +9,9 @@
     "lint:content": "node scripts/content-lint.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "lint:html": "html-validate index.html 404.html about.html contact.html privacy.html cookies.html terms.html accessibility.html affiliate-disclosure.html \"tools/*/index.html\"",
+    "test:analytics": "node scripts/analytics-integrity-check.js",
     "test:quality": "node scripts/quality-check.js",
-    "build": "npm run lint:predeploy && npm run lint:content && npm run lint:html && npm run test:quality"
+    "build": "npm run lint:predeploy && npm run lint:content && npm run lint:html && npm run test:analytics && npm run test:quality"
   },
   "private": true,
   "devDependencies": {
