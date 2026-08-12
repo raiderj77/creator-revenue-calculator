@@ -136,15 +136,6 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 }
 .input-group input[type="number"]:focus,
 .input-group select:focus { outline: none; border-color: var(--red); }
-.input-with-slider { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.input-with-slider input[type="number"] { width: 120px; flex-shrink: 0; }
-.input-with-slider input[type="range"] {
-    flex: 1;
-    accent-color: var(--red);
-    height: 4px;
-    min-width: 100px;
-}
-.percent { font-weight: 600; color: var(--gray); }
 .input-hint { font-size: 0.8rem; color: var(--gray); margin-top: 0.35rem; }
 .input-section .btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
 .input-section .btn + .btn { margin-top: 0.75rem; }
@@ -206,6 +197,60 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 }
 .disclaimer p { margin: 0; }
 .disclaimer i { color: var(--red); }
+
+/* --- Explicit-input calculator states --- */
+.input-group input[aria-invalid="true"] { border-color: #b91c1c; }
+.field-error {
+    min-height: 1.25rem;
+    margin-top: 0.25rem;
+    color: #b91c1c;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+.form-status {
+    min-height: 1.5rem;
+    margin: 0 0 0.65rem;
+    color: #9f1239;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+.calculate-button { width: 100%; justify-content: center; }
+.formula-detail {
+    margin: -0.25rem 0 0.55rem;
+    color: var(--gray);
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+}
+.copy-summary { width: 100%; justify-content: center; margin-top: var(--spacing-md); }
+.copy-summary.copied { background: var(--success); color: var(--white); }
+.copy-summary:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+.copy-status {
+    min-height: 1.5rem;
+    margin-top: 0.4rem;
+    color: var(--gray);
+    font-size: 0.85rem;
+    text-align: center;
+}
+.results-card.has-invalid-inputs .result-value { color: #b91c1c; }
+.input-group input[type="number"]:focus-visible,
+.results-card:focus-visible,
+.copy-summary:focus-visible {
+    outline: 3px solid #9a3412;
+    outline-offset: 3px;
+}
+
+html[data-theme="dark"] body.calculator-page .field-error,
+html[data-theme="dark"] body.calculator-page .form-status,
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .result-value { color: #fda4af; }
+html[data-theme="dark"] body.calculator-page .copy-summary {
+    background: #334155;
+    border-color: #64748b;
+    color: #f8fafc;
+}
+html[data-theme="dark"] body.calculator-page .copy-summary.copied { background: #166534; }
+html[data-theme="dark"] body.calculator-page .input-group input[type="number"]:focus-visible,
+html[data-theme="dark"] body.calculator-page .results-card:focus-visible,
+html[data-theme="dark"] body.calculator-page .copy-summary:focus-visible { outline-color: #fbbf24; }
 
 /* --- Sharing --- */
 .sharing { margin-top: var(--spacing-md); }
@@ -278,24 +323,6 @@ section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: va
 .cpm-notes h3 { color: var(--dark); margin-bottom: var(--spacing-sm); display: flex; align-items: center; gap: 0.4rem; }
 .cpm-notes h3 i { color: var(--red); }
 .cpm-notes li { color: var(--gray); font-size: 0.95rem; }
-
-/* --- FAQ --- */
-.faq-section { background: var(--white); }
-.faq-container { max-width: 800px; margin: 0 auto; }
-.faq-item { border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 0.75rem; overflow: hidden; }
-.faq-question {
-    width: 100%; background: var(--white); border: none; cursor: pointer;
-    padding: 1.1rem var(--spacing-md);
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 1rem; font-weight: 600; color: var(--dark); text-align: left;
-    transition: background 0.2s;
-}
-.faq-question:hover { background: var(--light); }
-.faq-question i { color: var(--red); transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
-.faq-answer { padding: 0 var(--spacing-md) var(--spacing-md); color: var(--gray); font-size: 0.95rem; display: none; }
-.faq-answer.open { display: block; }
-.faq-answer p { margin-bottom: 0.5rem; }
-.faq-answer ul, .faq-answer ol { margin: 0.5rem 0; }
 
 /* --- Guide Section --- */
 .guide-section { background: var(--light); }
@@ -381,4 +408,11 @@ footer { background: var(--dark); color: rgba(255,255,255,0.8); padding: var(--s
     .gear-grid { grid-template-columns: 1fr; }
     .share-buttons { flex-direction: column; }
     .calculator-container { gap: var(--spacing-md); }
+    .result-row { align-items: flex-start; gap: 1rem; }
+    .result-value { text-align: right; overflow-wrap: anywhere; }
+}
+
+@media print {
+    .copy-summary,
+    .copy-status { display: none !important; }
 }

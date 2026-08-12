@@ -74,6 +74,7 @@ const newsletterPage = read("tools/newsletter-revenue/index.html");
 const newsletterScript = read("tools/newsletter-revenue/newsletter-calculator.js");
 const podcastPage = read("tools/podcast-revenue/index.html");
 const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
+const podcastStyles = read("tools/podcast-revenue/podcast-calculator.css");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
 const patreonTracker = read("downloads/patreon-income-tracker.csv");
@@ -161,7 +162,7 @@ pass(
 );
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
 pass(
-  themeScript.includes("function initializeAnalytics() {\n    if (analyticsEnabled) return;")
+  /function initializeAnalytics\(\) \{\r?\n\s+if \(analyticsEnabled\) return;/.test(themeScript)
     && themeScript.includes("analyticsEnabled = false"),
   "analytics initialization is idempotent and remains re-enableable after withdrawal",
 );
@@ -1047,20 +1048,143 @@ pass(
   !/fibertools\.app|mindchecktools\.com|flipmycase\.com|contractextract\.com|medicalbillreader\.com|524tracker\.com/.test(publicText),
   "maintained public pages do not publish a template-wide portfolio link ring",
 );
-pass(podcastPage.includes('id="sponsorCpm"') && podcastPage.includes('value="0"'), "podcast calculator excludes direct sponsorship revenue by default");
-pass(podcastPage.includes('id="adCpm"') && podcastPage.includes('id="creatorShare"'), "podcast calculator asks for explicit contract CPM and creator share inputs");
 pass(
-  podcastPage.includes('id="adCpm" min="0" max="1000" step="0.01" value="0"')
-    && podcastPage.includes('id="creatorShare" min="0" max="100" step="0.1" value="0"'),
-  "podcast variable contract and creator-share rates start at zero",
+  podcastPage.includes("<title>Podcast Revenue Calculator | CPM &amp; Sponsor Scenario</title>")
+    && podcastPage.includes("<h1>Podcast Revenue Calculator</h1>")
+    && podcastPage.includes('datetime="2026-08-10"')
+    && podcastPage.includes('"dateModified": "2026-08-10"'),
+  "podcast metadata and visible heading target current calculator intent",
+);
+const podcastNumberInputs = [...podcastPage.matchAll(/<input\s+type="number"[^>]*>/gi)].map((match) => match[0]);
+pass(
+  podcastNumberInputs.length === 8 && podcastNumberInputs.every((input) => /\bvalue="0"/.test(input)),
+  "podcast gives every numeric input an explicit zero default",
 );
 pass(
-  !/nicheRates|placementMultipliers|updateRevenueSplitVisualization/.test(podcastScript)
-    && podcastScript.includes("downloadsPerEpisode = wholeValue(downloadsInput)")
-    && podcastScript.includes("return (downloadsPerEpisode / 1000) * cpm * adCount * creatorShare * episodesPerMonth"),
-  "podcast calculator uses whole-count inputs and no niche, placement, or missing-chart multipliers",
+  podcastPage.includes('id="podcastForm"')
+    && podcastPage.includes('id="directSponsorRevenue"')
+    && podcastPage.includes('id="podcastFormStatus" class="form-status" role="alert" aria-live="assertive"')
+    && podcastPage.includes('id="podcastResults" tabindex="-1" aria-live="polite" aria-labelledby="podcastResultsHeading"')
+    && podcastPage.includes('id="copyStatus" class="copy-status" role="status" aria-live="polite"')
+    && Object.keys({
+      downloadsPerEpisode: true,
+      episodesPerMonth: true,
+      adCpm: true,
+      creatorShare: true,
+      directSponsorRevenue: true,
+      preRollAds: true,
+      midRollAds: true,
+      postRollAds: true,
+    }).every((id) => podcastPage.includes(`id="${id}Error" class="field-error" aria-live="polite"`)),
+  "podcast uses a form, described field errors, assertive status, and a focusable labelled result",
 );
-pass(podcastScript.includes("monthlyAdSlots = slotsPerEpisode * episodesPerMonth"), "podcast per-slot output uses the monthly number of ad placements");
+pass(
+  !podcastPage.includes('type="range"')
+    && !podcastPage.includes('src="slider-sync.js"')
+    && !fs.existsSync(path.join(root, "tools/podcast-revenue/slider-sync.js"))
+    && !podcastPage.includes('id="sponsorCpm"')
+    && !podcastScript.includes("sponsorCpm"),
+  "podcast removes the auto-seeded slider assets and implicit sponsor-CPM model",
+);
+pass(
+  podcastScript.includes("var sponsorCents = values.directSponsorRevenue")
+    && podcastScript.includes("placementRevenueCents(values.downloadsPerEpisode, values.episodesPerMonth, values.preRollAds, values.adCpm, shareBasisPoints)")
+    && podcastScript.includes("var totalAdCents = preRollCents + midRollCents + postRollCents")
+    && podcastScript.includes("var totalRevenueCents = totalAdCents + sponsorCents")
+    && podcastScript.includes("var annualRevenueCents = totalRevenueCents * 12n")
+    && podcastScript.includes("var monthlyAdSlots = (values.preRollAds + values.midRollAds + values.postRollAds) * values.episodesPerMonth"),
+  "podcast arithmetic uses only visible inventory inputs and the direct completed-sponsor amount",
+);
+const podcastTestRoundDivide = (numerator, denominator) => (numerator + denominator / 2n) / denominator;
+const podcastTestPlacementCents = (downloads, episodes, slots, cpmCents, shareBasisPoints) => (
+  podcastTestRoundDivide(downloads * episodes * slots * cpmCents * shareBasisPoints, 10000000n)
+);
+const podcastWorkedPlacement = podcastTestPlacementCents(5000n, 4n, 1n, 2500n, 7500n);
+const podcastHalfCentBoundary = podcastTestPlacementCents(500n, 1n, 1n, 1n, 10000n);
+const podcastPrecisionRegression = podcastTestPlacementCents(68500n, 1n, 1n, 3n, 10000n);
+const podcastPennyAnnualized = podcastHalfCentBoundary * 12n;
+const podcastPrecisionAnnualized = podcastPrecisionRegression * 12n;
+const podcastLargeNumberRegression = podcastTestPlacementCents(100000000n, 1000n, 100n, 10000000n, 10000n);
+pass(
+  podcastScript.includes("return (numerator + denominator / 2n) / denominator")
+    && podcastScript.includes("downloads * episodes * slots * cpmCents * shareBasisPoints, 10000000n")
+    && podcastWorkedPlacement === 37500n
+    && podcastWorkedPlacement * 2n === 75000n
+    && podcastHalfCentBoundary === 1n
+    && podcastPrecisionRegression === 206n
+    && podcastPennyAnnualized === 12n
+    && podcastPrecisionAnnualized === 2472n
+    && podcastLargeNumberRegression === 100000000000000000n
+    && BigInt("-0") === 0n
+    && podcastScript.includes("if (units === 0n) units = 0n"),
+  "podcast uses integer cents for half-up precision, large inputs, component totals, and negative-zero normalization",
+);
+pass(
+  podcastScript.includes("rawValue === ''")
+    && podcastScript.includes("normalized.length > 64")
+    && podcastScript.includes("parsed.stepMismatch")
+    && podcastScript.includes("parsed.units < rules.minUnits || parsed.units > rules.maxUnits")
+    && podcastScript.includes("hasDownloads !== hasEpisodes")
+    && podcastScript.includes("var hasAdScenario = values.adCpm > 0n || values.creatorShare > 0n || totalSlots > 0n")
+    && !/Math\.min|Math\.max|Math\.floor|Number\.parseFloat|parseFloat|parseInt|\|\|\s*0/.test(podcastScript),
+  "podcast rejects blank, malformed, out-of-range, fractional-count, sub-step, and partial ad inputs without flooring or clamping",
+);
+pass(
+  podcastScript.includes("clearInvalidResults()")
+    && podcastScript.includes("copyButton.disabled = true")
+    && podcastScript.includes("invalidInputs[0].focus()")
+    && podcastScript.includes("resultsCard.focus()")
+    && podcastStyles.includes('input[aria-invalid="true"]')
+    && podcastStyles.includes('.input-group input[type="number"]:focus-visible')
+    && podcastStyles.includes(".results-card:focus-visible")
+    && podcastStyles.includes("outline: 3px solid #9a3412")
+    && podcastStyles.includes("outline-color: #fbbf24"),
+  "podcast clears stale results, disables copying, and exposes high-contrast light and dark focus states",
+);
+pass(
+  podcastScript.includes("fallbackCopy")
+    && podcastScript.includes("navigator.clipboard")
+    && podcastScript.includes("track('calculator_completed')")
+    && podcastScript.includes("track('result_copied')")
+    && !/crcTrackEvent\([^)]*,|gtag\(|dataLayer|input\.value[^\n]*track/i.test(podcastScript),
+  "podcast copy fallback and consent-gated generic actions cannot send calculator values",
+);
+pass(
+  /@media\s+print[\s\S]*?\.copy-summary[\s\S]*?\.copy-status\s*\{\s*display:\s*none\s*!important;\s*\}/.test(podcastStyles),
+  "podcast print output excludes its page-specific copy controls",
+);
+const podcastJsonLd = jsonLdDocuments(podcastPage);
+const podcastApplicationSchema = podcastJsonLd.find((document) => document["@type"] === "WebApplication");
+const podcastSourceHrefs = new Set(
+  tagAttributes(podcastPage, "a").map((attributes) => attributes.href).filter(Boolean),
+);
+pass(
+  podcastJsonLd.some((document) => document["@type"] === "BreadcrumbList")
+    && podcastApplicationSchema?.description === "Model podcast ad inventory from explicit downloads, ad slots, contract CPM, creator share, and completed monthly net sponsor revenue."
+    && podcastPage.includes("completed monthly net direct-sponsor revenue")
+    && !podcastJsonLd.some((document) => document["@type"] === "FAQPage"),
+  "podcast WebApplication and breadcrumb schema exactly match visible sponsor treatment",
+);
+pass(
+  podcastSourceHrefs.has("https://iabtechlab.com/standards/podcast-measurement-guidelines/")
+    && podcastSourceHrefs.has("https://www.iab.com/insights/internet-advertising-revenue-report-full-year-2025/")
+    && !podcastPage.includes("IAB_2022_Podcast_Advertising_Revenue_Report_2023.pdf"),
+  "podcast replaces the dated IAB report with current primary measurement and market sources",
+);
+pass(
+  !podcastPage.includes('href="#faq"')
+    && !podcastPage.includes('href="#cpm-data"')
+    && !podcastPage.includes('href="#how-it-works"')
+    && !podcastScript.includes("initFAQ")
+    && !podcastScript.includes("faqQuestions")
+    && !podcastStyles.includes(".faq-question")
+    && !podcastStyles.includes("input-with-slider"),
+  "podcast removes dead FAQ code and broken footer fragments",
+);
+pass(
+  !/nicheRates|placementMultipliers|updateRevenueSplitVisualization|directSponsorCpm/i.test(podcastPage + podcastScript),
+  "podcast supplies no niche, placement, sponsor-CPM, or missing-chart multiplier",
+);
 pass(patreonPage.includes('<option value="standard" selected="">Standard, 10% (new creators)</option>'), "Patreon calculator defaults new creators to the current 10% standard plan");
 pass(!/Starter|Premium|12% platform fee|15% platform fee/.test(patreonPage), "Patreon page does not present discontinued plan tiers as current");
 pass(patreonScript.includes("standard: { label: 'Standard', rate: 0.10, legacy: false }") && patreonScript.includes("price <= 3"), "Patreon calculator distinguishes standard and eligible legacy fee models");
