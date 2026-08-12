@@ -39,7 +39,6 @@
     "tools/patreon-revenue/patreon-calculator.js",
     "tools/patreon-revenue/slider-sync.js",
     "tools/podcast-revenue/podcast-calculator.js",
-    "tools/podcast-revenue/slider-sync.js",
     "tools/sponsorship-rate/sponsorship-calculator.js",
     "tools/tiktok-revenue/tiktok-calculator.js",
     "tools/twitch-revenue/twitch-calculator.js",

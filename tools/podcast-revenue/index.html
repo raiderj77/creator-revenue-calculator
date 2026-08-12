@@ -5,17 +5,17 @@
     <link rel="canonical" href="https://creatorrevenuecalculator.com/tools/podcast-revenue/">
     <script src="/assets/js/theme.js" defer></script>
 
-    <title>Podcast Revenue Calculator 2026 | Free</title>
-    <meta name="description" content="Free podcast revenue scenario calculator. Enter downloads, ad slots, contract CPM, creator share, and an optional signed-sponsor CPM. No signup required.">
+    <title>Podcast Revenue Calculator | CPM &amp; Sponsor Scenario</title>
+    <meta name="description" content="Model podcast ad inventory from your downloads, ad slots, contract CPM, creator share, and completed monthly net sponsor revenue. No supplied rates.">
     <meta name="author" content="Creator Revenue Calculator">
     <meta property="og:title" content="Podcast Revenue Calculator">
-    <meta property="og:description" content="Model podcast ad inventory with your downloads, contract CPM, creator share, and optional signed-sponsor rate.">
+    <meta property="og:description" content="Model podcast ad inventory and completed sponsor revenue from explicit values you enter.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/podcast-revenue/">
     <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Podcast Revenue Calculator">
-    <meta name="twitter:description" content="Model podcast ad inventory from your own downloads, contract terms, and ad slots.">
+    <meta name="twitter:description" content="Model podcast ad inventory and completed sponsor revenue from your own records.">
     <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
     <!-- Schema.org Structured Data -->
@@ -24,7 +24,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Podcast Revenue Calculator",
-      "description": "Model podcast ad inventory with explicit downloads, contract CPM, creator share, and optional signed-sponsor inputs.",
+      "description": "Model podcast ad inventory from explicit downloads, ad slots, contract CPM, creator share, and completed monthly net sponsor revenue.",
       "url": "https://creatorrevenuecalculator.com/tools/podcast-revenue/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
@@ -40,7 +40,7 @@
         "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2025-01-01",
-      "dateModified": "2026-08-02"
+      "dateModified": "2026-08-10"
     }
     </script>
 
@@ -135,24 +135,24 @@
       <div class="answer-block-grid">
         <div class="answer-block-item">
           <span class="answer-block-label">What is this?</span>
-          <p class="answer-block-text">A free scenario calculator for podcast ad inventory and an optional signed direct-sponsor rate.</p>
+          <p class="answer-block-text">A free scenario calculator for podcast ad inventory and completed monthly net direct-sponsor revenue.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Who needs it?</span>
-          <p class="answer-block-text">Podcasters who have a CPM quote or contract share and want to model the monthly math.</p>
+          <p class="answer-block-text">Podcasters with a CPM quote, contract share, or completed sponsor payment who want to model monthly arithmetic.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Bottom line</span>
-          <p class="answer-block-text">Use your own offer terms. The calculator does not invent a niche CPM or assume that a sponsor is booked.</p>
+          <p class="answer-block-text">Every dollar comes from a visible entry. No niche CPM, placement premium, or booked sponsor is supplied.</p>
         </div>
       </div>
-      <time datetime="2026-08-02" class="answer-block-updated">Last reviewed: August 2, 2026</time>
+      <time datetime="2026-08-10" class="answer-block-updated">Last reviewed: August 10, 2026</time>
     </section>
 
     <section class="hero">
         <div class="container">
             <h1>Podcast Revenue Calculator</h1>
-            <p class="subtitle">Model ad inventory with your downloads, CPM, contract share, and optional signed-sponsor rate.</p>
+            <p class="subtitle">Model ad inventory and completed sponsor revenue from explicit figures you enter.</p>
             <div class="hero-stats">
                 <div class="stat"><div class="stat-number">Your</div><div class="stat-label">Contract CPM</div></div>
                 <div class="stat"><div class="stat-number">Your</div><div class="stat-label">Ad Inventory</div></div>
@@ -167,91 +167,105 @@
     <section id="calculator" class="calculator-section">
         <div class="container">
             <div class="section-header">
-                <h2><i class="fas fa-calculator"></i> Calculate Your Earnings</h2>
-                <p class="subtitle">Enter your details to estimate your revenue</p>
+                <h2><i class="fas fa-calculator" aria-hidden="true"></i> Build a monthly revenue scenario</h2>
+                <p class="subtitle">Enter one consistent reporting period. Every numeric field starts at zero.</p>
             </div>
 
             <div class="calculator-wrapper">
-                <div class="input-panel">
+                <form id="podcastForm" class="input-panel" novalidate>
                     <div class="input-group">
-                        <label for="downloadsPerEpisode"><i class="fas fa-download"></i> Downloads Per Episode</label>
-                        <div class="input-with-slider">
-                            <input type="number" id="downloadsPerEpisode" min="100" max="1000000" step="100" value="5000">
-                            <input type="range" id="downloadsPerEpisode-slider" min="100" max="1000000" step="100" value="5000" aria-label="Downloads Per Episode slider">
-                        </div>
-                        <div class="input-hint">Average downloads in first 30 days</div>
+                        <label for="downloadsPerEpisode"><i class="fas fa-download" aria-hidden="true"></i> Downloads per episode</label>
+                        <input type="number" id="downloadsPerEpisode" min="0" max="100000000" step="1" value="0" inputmode="numeric" required aria-describedby="downloadsPerEpisodeHint downloadsPerEpisodeError">
+                        <div id="downloadsPerEpisodeHint" class="input-hint">Use the eligible download count and measurement window in the same report or agreement as your CPM.</div>
+                        <div id="downloadsPerEpisodeError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="episodesPerMonth"><i class="fas fa-microphone"></i> Episodes Per Month</label>
-                        <input type="number" id="episodesPerMonth" min="1" max="30" value="4">
+                        <label for="episodesPerMonth"><i class="fas fa-microphone" aria-hidden="true"></i> Episodes per month</label>
+                        <input type="number" id="episodesPerMonth" min="0" max="1000" step="1" value="0" inputmode="numeric" required aria-describedby="episodesPerMonthHint episodesPerMonthError">
+                        <div id="episodesPerMonthHint" class="input-hint">Count only episodes included in this monthly scenario.</div>
+                        <div id="episodesPerMonthError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="adCpm"><i class="fas fa-file-contract"></i> Contract or Blended Ad CPM ($)</label>
-                        <input type="number" id="adCpm" min="0" max="1000" step="0.01" value="0">
-                        <div class="input-hint">Enter the value from a real insertion order, marketplace offer, or deliberate scenario. The same entered CPM applies to every selected ad slot.</div>
+                        <label for="adCpm"><i class="fas fa-file-contract" aria-hidden="true"></i> Contract or blended ad CPM (USD)</label>
+                        <input type="number" id="adCpm" min="0" max="100000" step="0.01" value="0" inputmode="decimal" required aria-describedby="adCpmHint adCpmError">
+                        <div id="adCpmHint" class="input-hint">Use a documented CPM or a deliberate scenario. The same entered CPM applies to each selected ad slot.</div>
+                        <div id="adCpmError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="creatorShare"><i class="fas fa-percentage"></i> Creator Share After Fees (%)</label>
-                        <input type="number" id="creatorShare" min="0" max="100" step="0.1" value="0">
-                        <div class="input-hint">Use the share in your hosting, network, or sales agreement.</div>
+                        <label for="creatorShare"><i class="fas fa-percentage" aria-hidden="true"></i> Creator share after fees (%)</label>
+                        <input type="number" id="creatorShare" min="0" max="100" step="0.1" value="0" inputmode="decimal" required aria-describedby="creatorShareHint creatorShareError">
+                        <div id="creatorShareHint" class="input-hint">Use the retained share in your hosting, network, or sales agreement.</div>
+                        <div id="creatorShareError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="sponsorCpm"><i class="fas fa-handshake"></i> Net Direct-Sponsor CPM ($, optional)</label>
-                        <input type="number" id="sponsorCpm" min="0" max="1000" step="0.01" value="0">
-                        <div class="input-hint">Leave at zero unless a direct sponsor is actually included in your scenario.</div>
+                        <label for="directSponsorRevenue"><i class="fas fa-handshake" aria-hidden="true"></i> Completed net direct-sponsor revenue for the month (USD)</label>
+                        <input type="number" id="directSponsorRevenue" min="0" max="100000000" step="0.01" value="0" inputmode="decimal" required aria-describedby="directSponsorRevenueHint directSponsorRevenueError">
+                        <div id="directSponsorRevenueHint" class="input-hint">Enter the net amount for completed sponsor work in this reporting period, using your usual accounting basis consistently. Do not also include the same placement in the ad-inventory lines.</div>
+                        <div id="directSponsorRevenueError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="preRollAds"><i class="fas fa-ad"></i> Pre-Roll Ads Per Episode</label>
-                        <input type="number" id="preRollAds" min="0" max="5" value="1">
+                        <label for="preRollAds"><i class="fas fa-ad" aria-hidden="true"></i> Pre-roll ad slots per episode</label>
+                        <input type="number" id="preRollAds" min="0" max="100" step="1" value="0" inputmode="numeric" required aria-describedby="preRollAdsError">
+                        <div id="preRollAdsError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="midRollAds"><i class="fas fa-ad"></i> Mid-Roll Ads Per Episode</label>
-                        <input type="number" id="midRollAds" min="0" max="5" value="1">
+                        <label for="midRollAds"><i class="fas fa-ad" aria-hidden="true"></i> Mid-roll ad slots per episode</label>
+                        <input type="number" id="midRollAds" min="0" max="100" step="1" value="0" inputmode="numeric" required aria-describedby="midRollAdsError">
+                        <div id="midRollAdsError" class="field-error" aria-live="polite"></div>
                     </div>
                     <div class="input-group">
-                        <label for="postRollAds"><i class="fas fa-ad"></i> Post-Roll Ads Per Episode</label>
-                        <input type="number" id="postRollAds" min="0" max="5" value="0">
+                        <label for="postRollAds"><i class="fas fa-ad" aria-hidden="true"></i> Post-roll ad slots per episode</label>
+                        <input type="number" id="postRollAds" min="0" max="100" step="1" value="0" inputmode="numeric" required aria-describedby="postRollAdsError">
+                        <div id="postRollAdsError" class="field-error" aria-live="polite"></div>
                     </div>
-                    <button id="calculateBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1rem;" type="button">
-                        <i class="fas fa-calculator"></i> Calculate Earnings
+                    <div id="podcastFormStatus" class="form-status" role="alert" aria-live="assertive"></div>
+                    <button id="calculateBtn" class="btn btn-primary calculate-button" type="submit">
+                        <i class="fas fa-calculator" aria-hidden="true"></i> Calculate revenue
                     </button>
-                </div>
+                </form>
                 <div class="results-panel">
-                    <div class="results-card" aria-live="polite">
-                        <h3><i class="fas fa-dollar-sign"></i> Estimated Monthly Earnings</h3>
+                    <div class="results-card" id="podcastResults" tabindex="-1" aria-live="polite" aria-labelledby="podcastResultsHeading">
+                        <h3 id="podcastResultsHeading"><i class="fas fa-dollar-sign" aria-hidden="true"></i> Revenue scenario results</h3>
                         <div class="result-row">
-                            <div class="result-label">Pre-Roll Revenue:</div>
+                            <div class="result-label">Pre-roll ad inventory:</div>
                             <div class="result-value" id="preRollRevenue">$0.00</div>
                         </div>
-                        <div id="preRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div id="preRollDetail" class="formula-detail">0 downloads &divide; 1,000 &times; $0.00 &times; 0 slots &times; 0 episodes &times; 0.0% = $0.00.</div>
                         <div class="result-row">
-                            <div class="result-label">Mid-Roll Revenue:</div>
+                            <div class="result-label">Mid-roll ad inventory:</div>
                             <div class="result-value" id="midRollRevenue">$0.00</div>
                         </div>
-                        <div id="midRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div id="midRollDetail" class="formula-detail">0 downloads &divide; 1,000 &times; $0.00 &times; 0 slots &times; 0 episodes &times; 0.0% = $0.00.</div>
                         <div class="result-row">
-                            <div class="result-label">Post-Roll Revenue:</div>
+                            <div class="result-label">Post-roll ad inventory:</div>
                             <div class="result-value" id="postRollRevenue">$0.00</div>
                         </div>
-                        <div id="postRollDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div id="postRollDetail" class="formula-detail">0 downloads &divide; 1,000 &times; $0.00 &times; 0 slots &times; 0 episodes &times; 0.0% = $0.00.</div>
                         <div class="result-row">
-                            <div class="result-label">Sponsorships:</div>
+                            <div class="result-label">Completed net direct sponsorship:</div>
                             <div class="result-value" id="sponsorships">$0.00</div>
                         </div>
-                        <div id="sponsorshipsDetail" class="input-hint" style="margin-bottom:0.5rem;"></div>
+                        <div id="sponsorshipsDetail" class="formula-detail">$0.00 entered directly; no sponsor placement is assumed.</div>
                         <div class="result-row highlight">
-                            <div class="result-label">Total Monthly:</div>
+                            <div class="result-label">Total monthly:</div>
                             <div class="result-value" id="totalEarnings">$0.00</div>
                         </div>
-                        <div id="totalDetail" class="input-hint"></div>
+                        <div id="totalDetail" class="formula-detail">$0.00 + $0.00 + $0.00 + $0.00 = $0.00.</div>
+                        <div class="result-row">
+                            <div class="result-label">Annualized scenario:</div>
+                            <div class="result-value" id="annualEarnings">$0.00</div>
+                        </div>
+                        <div id="annualDetail" class="formula-detail">$0.00 monthly &times; 12 = $0.00.</div>
                         <div class="breakdown">
-                            <h4>Per Metric</h4>
-                            <div class="breakdown-item"><div class="breakdown-label">Per episode:</div><div class="breakdown-value" id="perEpisode">$0.00</div></div>
-                            <div class="breakdown-item"><div class="breakdown-label">Per 1,000 downloads:</div><div class="breakdown-value" id="per1000Downloads">$0.00</div></div>
-                            <div class="breakdown-item"><div class="breakdown-label">Per ad slot:</div><div class="breakdown-value" id="perAdSlot">$0.00</div></div>
+                            <h4>Scenario checks</h4>
+                            <div class="breakdown-item"><div class="breakdown-label">Revenue per episode:</div><div class="breakdown-value" id="perEpisode">Not available</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Revenue per 1,000 downloads:</div><div class="breakdown-value" id="per1000Downloads">Not available</div></div>
+                            <div class="breakdown-item"><div class="breakdown-label">Ad revenue per placed slot:</div><div class="breakdown-value" id="perAdSlot">Not available</div></div>
                             <div class="breakdown-item"><div class="breakdown-label">Monthly downloads:</div><div class="breakdown-value" id="monthlyDownloads">0</div></div>
                         </div>
-                        <div class="disclaimer"><p><i class="fas fa-info-circle"></i> This is a planning scenario, not a forecast. Variable revenue rates start at zero; use your actual agreement terms whenever available.</p></div>
+                        <button id="copySummary" class="btn btn-secondary copy-summary" type="button" disabled aria-disabled="true">Copy revenue summary</button>
+                        <div id="copyStatus" class="copy-status" role="status" aria-live="polite"></div>
+                        <div class="disclaimer"><p><i class="fas fa-info-circle" aria-hidden="true"></i> This is arithmetic from your entries, not a payout forecast, contract, tax calculation, or guarantee.</p></div>
                     </div>
                 </div>
             </div>
@@ -271,13 +285,13 @@
     <section id="methodology" class="info-section">
         <div class="container">
             <h2>How the podcast revenue scenario works</h2>
-            <p>Podcast advertising is often planned from downloads per episode rather than total lifetime downloads. This calculator reports pre-roll, mid-roll, and post-roll inventory separately but applies the same CPM you enter to each selected slot. The advertising formula is <strong>downloads per episode ÷ 1,000 × your CPM × ad slots × episodes per month × your creator share</strong>. A direct-sponsor line is added only when you enter a nonzero net sponsor CPM.</p>
+            <p>Podcast advertising is often planned from eligible downloads per episode rather than total lifetime downloads. This calculator reports pre-roll, mid-roll, and post-roll inventory separately but applies the same CPM you enter to each selected slot. Each advertising line uses <strong>downloads per episode &divide; 1,000 &times; your CPM &times; that placement's slots &times; episodes per month &times; your creator share</strong>. Completed net direct-sponsor revenue is entered as a monthly amount and added directly.</p>
 
             <h3>No hidden placement multiplier</h3>
-            <p>The calculator does not assign a premium or discount to pre-roll, mid-roll, or post-roll inventory. If your agreement sets different prices by placement, run separate scenarios or enter a documented blended CPM. The CPM and creator share start at zero. The optional sponsor input is a net CPM after any costs you expect to pay.</p>
+            <p>The calculator does not assign a premium or discount to pre-roll, mid-roll, or post-roll inventory. If your agreement sets different prices by placement, run separate scenarios or enter a documented blended CPM. Every quantity and rate starts at zero. The completed sponsor line does not infer placements from downloads or CPM.</p>
 
             <h3>Worked example</h3>
-            <p>A show with 5,000 downloads per episode and four episodes per month enters a $25 blended CPM, a 75% creator share, one pre-roll, and one mid-roll. The modeled monthly ad inventory is <strong>$750</strong>: 5 × $25 × 2 slots × 4 episodes × 0.75. With the sponsor CPM left at zero, the calculator adds no sponsorship revenue.</p>
+            <p>A show with 5,000 eligible downloads per episode and four episodes per month enters a $25 blended CPM, a 75% creator share, one pre-roll, and one mid-roll. The modeled monthly ad inventory is <strong>$750</strong>: 5 &times; $25 &times; 2 slots &times; 4 episodes &times; 0.75. With completed direct-sponsor revenue left at zero, the calculator adds no sponsorship revenue.</p>
 
             <h3>How much do podcasts make per 1,000 downloads?</h3>
             <p>There is no single podcast RPM. Placement, format, audience geography, niche, campaign targeting, host endorsement, sell-through, make-goods, and whether the sale is direct or programmatic all change the result. Use the CPM from an actual insertion order or marketplace offer when available.</p>
@@ -288,15 +302,16 @@
             <h3>How do podcasters make money besides ads?</h3>
             <p>Common alternatives include paid subscriptions, listener memberships, premium feeds, affiliate relationships, courses, consulting, merchandise, and live events. Track each stream separately so recurring subscription revenue is not confused with one-time sponsorship or affiliate income.</p>
 
-            <h3>Sources</h3>
+            <h3 id="sources">Primary sources</h3>
             <ul>
                 <li><a href="https://support.spotify.com/pg/creators/article/monetizing-your-show-with-spotify-for-creators/" rel="nofollow noopener noreferrer">Spotify for Creators monetization options and eligibility</a>.</li>
                 <li><a href="https://support.spotify.com/st-en/creators/article/fee-schedule-and-cashing-out/" rel="nofollow noopener noreferrer">Spotify for Creators fee schedule</a>.</li>
-                <li><a href="https://www.iab.com/wp-content/uploads/2023/05/IAB_2022_Podcast_Advertising_Revenue_Report_2023.pdf" rel="nofollow noopener noreferrer">IAB U.S. Podcast Advertising Revenue Study</a> for industry context, not a guaranteed CPM.</li>
+                <li><a href="https://iabtechlab.com/standards/podcast-measurement-guidelines/" rel="nofollow noopener noreferrer">IAB Tech Lab Podcast Measurement Technical Guidelines</a> for current download, audience, and ad-delivery measurement context.</li>
+                <li><a href="https://www.iab.com/insights/internet-advertising-revenue-report-full-year-2025/" rel="nofollow noopener noreferrer">IAB/PwC Internet Advertising Revenue Report: Full Year 2025</a> for market context, not a supplied CPM or creator forecast.</li>
             </ul>
 
             <h3>Limitations</h3>
-            <p>The output does not predict sell-through, dynamic insertion eligibility, skipped ads, make-goods, regional pricing, taxes, refunds, payment processing, exclusivity, production cost, or contract minimums. It does not include a sponsor unless you enter one. Use this as a scenario builder and compare a potential host-read deal with the <a href="/tools/sponsorship-rate/">sponsorship rate calculator</a>.</p>
+            <p>The output does not predict sell-through, dynamic insertion eligibility, skipped ads, make-goods, regional pricing, taxes, refunds, payment processing, exclusivity, production cost, or contract minimums. It includes only the completed sponsor amount you enter and cannot detect duplicate revenue entered in two lines. Use this as a scenario builder and compare a potential host-read deal with the <a href="/tools/sponsorship-rate/">sponsorship rate calculator</a>.</p>
         </div>
     </section>
 
@@ -418,9 +433,9 @@
 
                 <div class="footer-section">
                     <h3 class="footer-title">Resources</h3>
-                    <a href="#faq" class="footer-link">Podcast FAQ</a>
-                    <a href="#cpm-data" class="footer-link">CPM Data</a>
-                    <a href="#how-it-works" class="footer-link">Monetization Guide</a>
+                    <a href="#methodology" class="footer-link">Calculation Method</a>
+                    <a href="#sources" class="footer-link">Primary Sources</a>
+                    <a href="/tools/sponsorship-rate/" class="footer-link">Sponsorship Calculator</a>
                     <a href="#resources" class="footer-link">Podcasting Gear</a>
                 </div>
 
@@ -451,7 +466,6 @@
 
     <!-- JavaScript -->
     <!-- Main Site JS -->
-    <script src="slider-sync.js"></script>
     <script src="/assets/js/main.js" defer=""></script>
     <!-- Podcast Calculator Specific JS -->
     <script src="podcast-calculator.js"></script>
