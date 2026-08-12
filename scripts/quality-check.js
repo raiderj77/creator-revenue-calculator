@@ -1140,6 +1140,9 @@ pass(
 );
 const podcastJsonLd = jsonLdDocuments(podcastPage);
 const podcastApplicationSchema = podcastJsonLd.find((document) => document["@type"] === "WebApplication");
+const podcastSourceHrefs = new Set(
+  tagAttributes(podcastPage, "a").map((attributes) => attributes.href).filter(Boolean),
+);
 pass(
   podcastJsonLd.some((document) => document["@type"] === "BreadcrumbList")
     && podcastApplicationSchema?.description === "Model podcast ad inventory from explicit downloads, ad slots, contract CPM, creator share, and completed monthly net sponsor revenue."
@@ -1148,8 +1151,8 @@ pass(
   "podcast WebApplication and breadcrumb schema exactly match visible sponsor treatment",
 );
 pass(
-  podcastPage.includes("https://iabtechlab.com/standards/podcast-measurement-guidelines/")
-    && podcastPage.includes("https://www.iab.com/insights/internet-advertising-revenue-report-full-year-2025/")
+  podcastSourceHrefs.has("https://iabtechlab.com/standards/podcast-measurement-guidelines/")
+    && podcastSourceHrefs.has("https://www.iab.com/insights/internet-advertising-revenue-report-full-year-2025/")
     && !podcastPage.includes("IAB_2022_Podcast_Advertising_Revenue_Report_2023.pdf"),
   "podcast replaces the dated IAB report with current primary measurement and market sources",
 );
