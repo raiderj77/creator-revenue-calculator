@@ -22,14 +22,49 @@
     return value === null ? 'Not available' : value.toFixed(2) + '%';
   }
 
-  function inputsAreValid() {
-    return ids.every(function (id) {
-      var element = document.getElementById(id);
-      return element && element.value.trim() !== '' && element.checkValidity();
-    });
+  function inputIsValid(input) {
+    if (!input || input.value.trim() === '' || !input.checkValidity()) return false;
+    return input.tagName === 'SELECT' || Number.isFinite(Number(input.value));
   }
 
-  function calculate() {
+  function validateInputs(shouldFocus) {
+    var firstInvalid = null;
+    ids.forEach(function (id) {
+      var input = document.getElementById(id);
+      if (inputIsValid(input)) {
+        input.removeAttribute('aria-invalid');
+      } else {
+        input.setAttribute('aria-invalid', 'true');
+        if (!firstInvalid) firstInvalid = input;
+      }
+    });
+
+    if (!firstInvalid) return true;
+
+    var label = document.querySelector('label[for="' + firstInvalid.id + '"]');
+    text('engagementFormStatus', 'Review ' + (label ? label.textContent.trim() : 'the highlighted field') + '. Use a value within the displayed range and increment.');
+    if (shouldFocus) firstInvalid.focus();
+    return false;
+  }
+
+  function clearResults() {
+    ['engagementRate', 'viewBasedRate', 'totalEngagements', 'followerCount', 'formulaDisplay'].forEach(function (id) {
+      text(id, '—');
+    });
+    var copyButton = document.getElementById('copyResult');
+    if (copyButton) {
+      copyButton.dataset.result = '';
+      copyButton.disabled = true;
+    }
+    document.getElementById('engagementResults').classList.add('has-invalid-inputs');
+  }
+
+  function calculate(shouldFocus) {
+    if (!validateInputs(Boolean(shouldFocus))) {
+      clearResults();
+      return false;
+    }
+
     var followers = number('followers');
     var views = number('views');
     var likes = number('likes');
@@ -51,20 +86,26 @@
     var copyButton = document.getElementById('copyResult');
     if (copyButton) {
       copyButton.dataset.result = 'Follower-based engagement rate: ' + formatRate(followerRate) + '; view-based engagement rate: ' + formatRate(viewRate) + '; selected engagements: ' + Math.round(total).toLocaleString('en-US') + '.';
+      copyButton.disabled = false;
     }
+    document.getElementById('engagementResults').classList.remove('has-invalid-inputs');
+    text('engagementFormStatus', shouldFocus ? 'Rates updated from your entries.' : '');
+    return true;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     ids.forEach(function (id) {
       var element = document.getElementById(id);
-      if (element) element.addEventListener(element.tagName === 'SELECT' ? 'change' : 'input', calculate);
+      if (element) element.addEventListener(element.tagName === 'SELECT' ? 'change' : 'input', function () { calculate(false); });
     });
     var button = document.getElementById('calculateBtn');
     if (button) {
       button.addEventListener('click', function () {
-        calculate();
-        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
-          window.crcTrackEvent('calculator_completed');
+        if (calculate(true)) {
+          document.getElementById('engagementResults').focus();
+          if (typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('calculator_completed');
+          }
         }
       });
     }
@@ -82,6 +123,6 @@
         }).catch(function () {});
       });
     }
-    calculate();
+    calculate(false);
   });
 })();

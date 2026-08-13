@@ -129,11 +129,12 @@
               <div class="input-hint">Include booked or completed work only, not an assumed offer based on viewer count.</div>
             </div>
             <button id="calculateBtn" class="btn btn-primary" type="button"><i class="fas fa-calculator" aria-hidden="true"></i> Calculate scenario</button>
+            <p id="twitchFormStatus" class="calculator-form-status" role="status" aria-live="polite"></p>
           </div>
 
           <div class="results-panel">
-            <div class="results-card" aria-live="polite">
-              <h3><i class="fas fa-dollar-sign" aria-hidden="true"></i> Monthly scenario</h3>
+            <div class="results-card" id="twitchResults" tabindex="-1" aria-live="polite" aria-labelledby="twitchResultsHeading">
+              <h3 id="twitchResultsHeading"><i class="fas fa-dollar-sign" aria-hidden="true"></i> Monthly scenario</h3>
               <div class="result-row"><div class="result-label">Subscriptions:</div><div class="result-value" id="subscriptions">$0.00</div></div>
               <div id="subscriptionsDetail" class="input-hint"></div>
               <div class="result-row"><div class="result-label">Bits:</div><div class="result-value" id="bits">$0.00</div></div>

@@ -102,6 +102,20 @@ body.calculator-page .copy-rate-card:disabled {
     opacity: 0.55 !important;
 }
 
+body.calculator-page .calculator-form-status {
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+body.calculator-page .results-card.has-invalid-inputs .result-value,
+body.calculator-page .results-card.has-invalid-inputs .breakdown-value,
+body.calculator-page .results-card.has-invalid-inputs .engagement-rate-value,
+body.calculator-page .results-card.has-invalid-inputs .view-rate {
+    color: #b91c1c !important;
+}
+
 .skip-nav {
     color: #111827 !important;
     position: fixed;
@@ -553,6 +567,131 @@ html[data-theme="dark"] body.calculator-page table,
 html[data-theme="dark"] body.calculator-page th,
 html[data-theme="dark"] body.calculator-page td {
     border-color: #475569 !important;
+}
+
+/* Keep nested calculator cards dark when tool-level styles use fixed light colors. */
+html[data-theme="dark"] body.calculator-page .rate-tier,
+html[data-theme="dark"] body.calculator-page .input-section,
+html[data-theme="dark"] body.calculator-page .factor-item.positive,
+html[data-theme="dark"] body.calculator-page .factor-item.negative,
+html[data-theme="dark"] body.calculator-page .negotiation-tip,
+html[data-theme="dark"] body.calculator-page .monthly-estimate,
+html[data-theme="dark"] body.calculator-page .education-content,
+html[data-theme="dark"] body.calculator-page .gear-disclaimer,
+html[data-theme="dark"] body.calculator-page .formula-text,
+html[data-theme="dark"] body.calculator-page .cpm-notes,
+html[data-theme="dark"] body.calculator-page .result-row.highlight,
+html[data-theme="dark"] body.calculator-page .myth,
+html[data-theme="dark"] body.calculator-page .keep-percent,
+html[data-theme="dark"] body.calculator-page .churn-section,
+html[data-theme="dark"] body.calculator-page .sponsorship-impact,
+html[data-theme="dark"] body.calculator-page .stream-breakdown,
+html[data-theme="dark"] body.calculator-page .benchmark-table,
+html[data-theme="dark"] body.calculator-page .cpm-table,
+html[data-theme="dark"] body.calculator-page .tier-breakdown table {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .rate-tier,
+html[data-theme="dark"] body.calculator-page .result-row.highlight {
+    background: #0f172a !important;
+}
+
+html[data-theme="dark"] body.calculator-page .rate-tier.recommended {
+    border-color: #fbbf24 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .rate-tier-label,
+html[data-theme="dark"] body.calculator-page .input-section-label,
+html[data-theme="dark"] body.calculator-page .negotiation-tip h4,
+html[data-theme="dark"] body.calculator-page .sponsorship-impact h4,
+html[data-theme="dark"] body.calculator-page .gear-category,
+html[data-theme="dark"] body.calculator-page .tier-card-header,
+html[data-theme="dark"] body.calculator-page .formula-text,
+html[data-theme="dark"] body.calculator-page .guide-step em {
+    color: #fbbf24 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .rate-tier-value,
+html[data-theme="dark"] body.calculator-page .estimate-value,
+html[data-theme="dark"] body.calculator-page .view-rate,
+html[data-theme="dark"] body.calculator-page .engagement-rate-value {
+    color: #86efac !important;
+}
+
+html[data-theme="dark"] body.calculator-page .rate-tier-note,
+html[data-theme="dark"] body.calculator-page .factor-label,
+html[data-theme="dark"] body.calculator-page .negotiation-tip p,
+html[data-theme="dark"] body.calculator-page .monthly-estimate .estimate-detail,
+html[data-theme="dark"] body.calculator-page .education-content p,
+html[data-theme="dark"] body.calculator-page .education-content li,
+html[data-theme="dark"] body.calculator-page .education-content strong,
+html[data-theme="dark"] body.calculator-page .cpm-notes li,
+html[data-theme="dark"] body.calculator-page .sponsorship-impact p,
+html[data-theme="dark"] body.calculator-page .engagement-rate-label,
+html[data-theme="dark"] body.calculator-page .view-based-row,
+html[data-theme="dark"] body.calculator-page .affiliate-disclosure,
+html[data-theme="dark"] body.calculator-page .affiliate-disclosure strong {
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .factor-item.positive .factor-value,
+html[data-theme="dark"] body.calculator-page .keep-percent {
+    color: #86efac !important;
+}
+
+html[data-theme="dark"] body.calculator-page .factor-item.negative .factor-value,
+html[data-theme="dark"] body.calculator-page .fee-row .value.negative,
+html[data-theme="dark"] body.calculator-page .breakdown-row .value.negative,
+html[data-theme="dark"] body.calculator-page .value.negative,
+html[data-theme="dark"] body.calculator-page .churn-section h4,
+html[data-theme="dark"] body.calculator-page .churn-stat .churn-value,
+html[data-theme="dark"] body.calculator-page .churn-stat .churn-label,
+html[data-theme="dark"] body.calculator-page .churn-value,
+html[data-theme="dark"] body.calculator-page .churn-label,
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .rate-tier-value {
+    color: #fca5a5 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .calculator-form-status {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .result-value,
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .breakdown-value,
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .engagement-rate-value,
+html[data-theme="dark"] body.calculator-page .results-card.has-invalid-inputs .view-rate {
+    color: #fca5a5 !important;
+}
+
+html[data-theme="dark"] body.calculator-page table thead,
+html[data-theme="dark"] body.calculator-page table th {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] body.calculator-page table tbody tr:hover {
+    background: #334155 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .stream-bar-container {
+    background: #475569 !important;
+}
+
+html[data-theme="dark"] body.calculator-page .step-number {
+    background: #92400e !important;
+    color: #ffffff !important;
+}
+
+body.calculator-page .results-card[tabindex="-1"]:focus {
+    outline: 3px solid #92400e;
+    outline-offset: 3px;
+}
+
+html[data-theme="dark"] body.calculator-page .results-card[tabindex="-1"]:focus {
+    outline-color: #fbbf24;
 }
 
 /* Trust and discovery pages also need dark surfaces when the shared toggle is active. */

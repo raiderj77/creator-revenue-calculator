@@ -9,15 +9,16 @@
     'liveBadgeNet',
     'platformBonusNet'
   ];
+  var resultsCard;
+  var formStatus;
 
   function number(id) {
     var element = document.getElementById(id);
-    var parsed = element ? Number.parseFloat(element.value) : 0;
-    return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+    return element ? Number(element.value) || 0 : 0;
   }
 
   function count(id) {
-    return Math.floor(number(id));
+    return number(id);
   }
 
   function money(value) {
@@ -33,14 +34,46 @@
     if (element) element.textContent = value;
   }
 
-  function inputsAreValid() {
-    return ids.every(function (id) {
-      var element = document.getElementById(id);
-      return element && element.value.trim() !== '' && element.checkValidity();
-    });
+  function inputIsValid(input) {
+    return input && input.value.trim() !== '' && Number.isFinite(Number(input.value)) && input.checkValidity();
   }
 
-  function calculate() {
+  function validateInputs(shouldFocus) {
+    var firstInvalid = null;
+    ids.forEach(function (id) {
+      var input = document.getElementById(id);
+      if (inputIsValid(input)) {
+        input.removeAttribute('aria-invalid');
+      } else {
+        input.setAttribute('aria-invalid', 'true');
+        if (!firstInvalid) firstInvalid = input;
+      }
+    });
+
+    if (!firstInvalid) return true;
+
+    var label = document.querySelector('label[for="' + firstInvalid.id + '"]');
+    formStatus.textContent = 'Review ' + (label ? label.textContent.trim() : 'the highlighted field') + '. Use a value within the displayed range and increment.';
+    if (shouldFocus) firstInvalid.focus();
+    return false;
+  }
+
+  function clearResults() {
+    [
+      'brandDeals', 'brandDealsDetail', 'affiliateRevenue', 'affiliateDetail',
+      'badgeIncome', 'badgeDetail', 'reelsBonus', 'reelsBonusDetail',
+      'totalEarnings', 'totalDetail', 'perPost', 'perReel', 'perFollower',
+      'engagementMultiplier'
+    ].forEach(function (id) { text(id, '—'); });
+    resultsCard.classList.add('has-invalid-inputs');
+  }
+
+  function calculate(shouldFocus) {
+    if (!validateInputs(Boolean(shouldFocus))) {
+      clearResults();
+      return false;
+    }
+
     var brandDealsCount = count('brandDealsCount');
     var netBrandDealFee = number('netBrandDealFee');
     var affiliateSales = count('affiliateSales');
@@ -66,22 +99,29 @@
     text('perReel', money(netCommissionPerSale));
     text('perFollower', money(0));
     text('engagementMultiplier', '0×');
+    resultsCard.classList.remove('has-invalid-inputs');
+    formStatus.textContent = shouldFocus ? 'Scenario updated from your entries.' : '';
+    return true;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    resultsCard = document.getElementById('instagramResults');
+    formStatus = document.getElementById('instagramFormStatus');
     ids.forEach(function (id) {
       var element = document.getElementById(id);
-      if (element) element.addEventListener('input', calculate);
+      if (element) element.addEventListener('input', function () { calculate(false); });
     });
     var button = document.getElementById('calculateBtn');
     if (button) {
       button.addEventListener('click', function () {
-        calculate();
-        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
-          window.crcTrackEvent('calculator_completed');
+        if (calculate(true)) {
+          document.getElementById('instagramResults').focus();
+          if (typeof window.crcTrackEvent === 'function') {
+            window.crcTrackEvent('calculator_completed');
+          }
         }
       });
     }
-    calculate();
+    calculate(false);
   });
 })();

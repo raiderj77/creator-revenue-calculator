@@ -277,6 +277,7 @@
         calculate();
         text('newsletterFormStatus', 'Scenario updated from your entries.');
         track('calculator_completed');
+        document.getElementById('newsletterResults').focus();
       });
     }
 
