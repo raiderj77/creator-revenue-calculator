@@ -14,6 +14,7 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entr
     ".git",
     "blog",
     "content",
+    "dist",
     "node_modules",
     "scripts",
     "finance-youtube-revenue",
@@ -25,7 +26,7 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entr
 const walkRepository = (dir) => {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    if ([".git", "node_modules"].includes(entry.name)) return [];
+    if ([".git", "dist", "node_modules"].includes(entry.name)) return [];
     const absolute = path.join(dir, entry.name);
     return entry.isDirectory() ? walkRepository(absolute) : [absolute];
   });
@@ -60,6 +61,7 @@ const fontSubsetManifest = JSON.parse(read("assets/vendor/fontawesome/subset-man
 const fontAwesomeLicense = read("assets/vendor/fontawesome/LICENSE.txt");
 const packageConfig = JSON.parse(read("package.json"));
 const qualityWorkflow = read(".github/workflows/quality.yml");
+const distBuilder = read("scripts/build-dist.js");
 const home = read("index.html");
 const notFoundPage = read("404.html");
 const creatorMixScript = read("assets/js/creator-mix-calculator.js");
@@ -355,7 +357,16 @@ pass(
   !vercelConfig.redirects?.some((redirect) => redirect.source.startsWith("/tools/ugc-rate")),
   "UGC quote routes are no longer redirected to the sponsorship worksheet",
 );
-pass(vercelConfig.outputDirectory === ".", "Vercel publishes the static site root instead of the verification-files directory");
+pass(vercelConfig.outputDirectory === "dist", "Vercel publishes only the generated fail-closed public directory");
+pass(
+  packageConfig.scripts?.["build:dist"] === "node scripts/build-dist.js"
+    && packageConfig.scripts?.["test:dist"] === "node scripts/build-dist.js --check"
+    && packageConfig.scripts?.build?.endsWith("npm run build:dist && npm run test:dist")
+    && vercelConfig.buildCommand === "npm run build"
+    && distBuilder.includes('const DIST_DIRECTORY_NAME = "dist"')
+    && distBuilder.includes("verifyDist()"),
+  "the production build creates and verifies the explicit public-file allowlist",
+);
 pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
 const frameHeaders = (vercelConfig.headers || [])
   .flatMap((rule) => rule.headers || [])

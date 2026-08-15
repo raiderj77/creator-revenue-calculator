@@ -49,6 +49,7 @@ The former finance and gaming YouTube benchmark pages permanently redirect to th
 - `scripts/predeploy-check.js`: deployment configuration checks
 - `scripts/content-lint.js`: content checks
 - `scripts/quality-check.js`: product and regression checks
+- `scripts/build-dist.js`: fail-closed public-file allowlist builder and integrity check
 - `scripts/subset-fontawesome.py`: reproducible maintained-page icon CSS and WOFF2 generator
 
 ## Local verification
@@ -60,7 +61,7 @@ npm audit --omit=dev
 git diff --check
 ```
 
-`npm run build` runs the predeploy checks, content lint, HTML validation, and product-quality suite.
+`npm run build` runs the predeploy checks, content lint, HTML validation, analytics and product-quality suites, then creates and verifies the ignored `dist/` deployment directory from an explicit public-file allowlist. Repository documentation, workflows, build scripts, source notes, and retired pages are never copied into that directory.
 
 ### Regenerating icon assets
 
@@ -85,4 +86,4 @@ The check rebuilds the CSS, solid font, brands font, and manifest in a temporary
 
 ## Deployment
 
-The configured production branch is `main`. Do not deploy or add ad code until the build passes and the applicable account-side approval and consent gates are verified.
+The configured production branch is `main`, and Vercel serves only the generated `dist/` directory. Do not deploy or add ad code until the build passes and the applicable account-side approval and consent gates are verified.

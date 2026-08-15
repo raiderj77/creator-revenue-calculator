@@ -6,6 +6,7 @@ data_sources/cache/
 content/drafts/
 content/review-required/
 node_modules/
+dist/
 .vercel
 __pycache__/
 *.pyc
