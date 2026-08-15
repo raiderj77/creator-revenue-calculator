@@ -126,11 +126,12 @@
               <div class="input-hint">Enter only an offer and amount shown in your professional dashboard; otherwise leave zero.</div>
             </div>
             <button id="calculateBtn" class="btn btn-primary" type="button"><i class="fas fa-calculator" aria-hidden="true"></i> Calculate scenario</button>
+            <p id="instagramFormStatus" class="calculator-form-status" role="status" aria-live="polite"></p>
           </div>
 
           <div class="results-panel">
-            <div class="results-card" aria-live="polite">
-              <h3><i class="fas fa-dollar-sign" aria-hidden="true"></i> Monthly scenario</h3>
+            <div class="results-card" id="instagramResults" tabindex="-1" aria-live="polite" aria-labelledby="instagramResultsHeading">
+              <h3 id="instagramResultsHeading"><i class="fas fa-dollar-sign" aria-hidden="true"></i> Monthly scenario</h3>
               <div class="result-row"><div class="result-label">Brand work:</div><div class="result-value" id="brandDeals">$0.00</div></div>
               <div id="brandDealsDetail" class="input-hint"></div>
               <div class="result-row"><div class="result-label">Affiliate commission:</div><div class="result-value" id="affiliateRevenue">$0.00</div></div>

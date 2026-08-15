@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (focusFirstInvalid && typeof window.crcTrackEvent === 'function') {
             window.crcTrackEvent('calculator_completed');
         }
+        if (focusFirstInvalid) resultsCard.focus();
         return true;
     }
 

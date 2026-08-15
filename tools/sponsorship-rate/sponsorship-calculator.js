@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
         calculate();
         setStatus(formStatus, 'Quote scenario updated from your entries.');
         track('calculator_completed');
+        document.getElementById('sponsorshipResults').focus();
     });
 
     copyBtn.addEventListener('click', function () {

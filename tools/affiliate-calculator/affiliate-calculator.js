@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const affiliateProgramsInput = document.getElementById('affiliatePrograms');
     const calculateBtn = document.getElementById('calculateBtn');
     const calculatorInputs = [monthlyTrafficInput, conversionRateInput, averageOrderValueInput, commissionRateInput, affiliateProgramsInput];
+    const resultsCard = document.getElementById('affiliateResults');
+    const formStatus = document.getElementById('affiliateFormStatus');
 
     // Result elements
     const dailyEarningsResult = document.getElementById('dailyEarnings');
@@ -33,32 +35,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set up event listeners
     calculateBtn.addEventListener('click', function() {
-        calculate();
-        const inputsAreValid = calculatorInputs.every(input => input.value.trim() !== '' && input.checkValidity());
-        if (inputsAreValid && typeof window.crcTrackEvent === 'function') {
-            window.crcTrackEvent('calculator_completed');
+        if (calculate(true)) {
+            document.getElementById('affiliateResults').focus();
+            if (typeof window.crcTrackEvent === 'function') {
+                window.crcTrackEvent('calculator_completed');
+            }
         }
     });
 
     // Calculate on input changes
     calculatorInputs.forEach(input => {
-        input.addEventListener('input', calculate);
-        input.addEventListener('change', calculate);
+        input.addEventListener('input', function () { calculate(false); });
+        input.addEventListener('change', function () { calculate(false); });
     });
 
     // Initial calculation
-    calculate();
+    calculate(false);
+
+    function inputIsValid(input) {
+        return input.value.trim() !== '' && Number.isFinite(Number(input.value)) && input.checkValidity();
+    }
+
+    function validateInputs(shouldFocus) {
+        let firstInvalid = null;
+        calculatorInputs.forEach(input => {
+            if (inputIsValid(input)) {
+                input.removeAttribute('aria-invalid');
+            } else {
+                input.setAttribute('aria-invalid', 'true');
+                if (!firstInvalid) firstInvalid = input;
+            }
+        });
+
+        if (!firstInvalid) return true;
+
+        const label = document.querySelector(`label[for="${firstInvalid.id}"]`);
+        formStatus.textContent = `Review ${label ? label.textContent.trim() : 'the highlighted field'}. Use a value within the displayed range and increment.`;
+        if (shouldFocus) firstInvalid.focus();
+        return false;
+    }
+
+    function clearResults() {
+        [
+            dailyEarningsResult,
+            weeklyEarningsResult,
+            monthlyEarningsResult,
+            yearlyEarningsResult,
+            totalCommissionsResult,
+            monthlySalesResult,
+            perSaleResult,
+            perVisitorResult,
+            commissionDisplayResult
+        ].forEach(element => { element.textContent = '—'; });
+        [dailyDetail, weeklyDetail, monthlyDetail, yearlyDetail, totalDetail].forEach(element => { element.textContent = ''; });
+        resultsCard.classList.add('has-invalid-inputs');
+        updateRevenueSplitVisualization(null);
+    }
 
     // Main calculation function
-    function calculate() {
+    function calculate(shouldFocus) {
+        if (!validateInputs(Boolean(shouldFocus))) {
+            clearResults();
+            return false;
+        }
+
         // Get input values
-        const monthlyTraffic = parseInt(monthlyTrafficInput.value) || 0;
-        const conversionRate = parseFloat(conversionRateInput.value) || 0;
-        const averageOrderValue = parseFloat(averageOrderValueInput.value) || 0;
-        const commissionRate = parseFloat(commissionRateInput.value) || 0;
-        // Validate inputs
-        const validatedConversionRate = Math.min(Math.max(conversionRate, 0), 100);
-        const validatedCommissionRate = Math.min(Math.max(commissionRate, 0), 100);
+        const monthlyTraffic = Number(monthlyTrafficInput.value) || 0;
+        const averageOrderValue = Number(averageOrderValueInput.value) || 0;
+        const validatedConversionRate = Number(conversionRateInput.value) || 0;
+        const validatedCommissionRate = Number(commissionRateInput.value) || 0;
 
         // 1. Calculate monthly sales
         const monthlySales = monthlyTraffic * (validatedConversionRate / 100);
@@ -89,6 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update revenue split visualization
         updateRevenueSplitVisualization(validatedCommissionRate);
+        resultsCard.classList.remove('has-invalid-inputs');
+        formStatus.textContent = shouldFocus ? 'Scenario updated from your entries.' : '';
+        return true;
     }
 
     function updateResults(dailyCommissions, weeklyCommissions, monthlyCommissions, yearlyCommissions, totalCommissions) {
@@ -136,6 +184,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateRevenueSplitVisualization(commissionRate) {
+        if (commissionRate === null) {
+            const affiliateBar = document.querySelector('.split-affiliate');
+            const merchantBar = document.querySelector('.split-merchant');
+            if (affiliateBar) {
+                affiliateBar.style.width = '0%';
+                affiliateBar.querySelector('span').textContent = 'Affiliate: —';
+            }
+            if (merchantBar) {
+                merchantBar.style.width = '0%';
+                merchantBar.querySelector('span').textContent = 'Merchant: —';
+            }
+            return;
+        }
+
         // Calculate revenue split (affiliate vs merchant)
         const affiliateShare = commissionRate;
         const merchantShare = 100 - commissionRate;

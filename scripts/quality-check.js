@@ -565,7 +565,7 @@ pass(
   "UGC visible FAQ questions and answers exactly match the FAQ schema",
 );
 pass(
-  ugcPage.includes('class="results-card" aria-live="polite" aria-atomic="true"')
+  ugcPage.includes('id="ugcResults" tabindex="-1" aria-live="polite" aria-atomic="true" aria-labelledby="ugcResultsHeading"')
     && ugcPage.includes('id="copyQuote"')
     && ugcScript.includes("navigator.clipboard.writeText")
     && ugcScript.includes("event.key === 'Enter' || event.key === ' '")
@@ -585,9 +585,10 @@ pass(
 pass(hasOfficialEarningsOverview(), "homepage links the official YouTube earnings authority");
 pass(
   youtubePage.includes('id="views"')
+    && youtubePage.includes('id="views" min="0" max="1000000000" step="1000" value="0"')
     && youtubePage.includes('id="ad-revenue-per-thousand"')
     && youtubePage.includes('id="ad-revenue-per-thousand" min="0" max="100000" step="0.01" value="0"'),
-  "YouTube calculator requires explicit views and a zero-default post-share revenue assumption",
+  "YouTube calculator requires explicit zero-default views and post-share revenue assumptions",
 );
 pass(
   youtubePage.includes("The calculator does not supply a CPM, RPM, niche rate, or forecast")
@@ -635,6 +636,18 @@ pass(
   ["monthlyTraffic", "conversionRate", "averageOrderValue", "commissionRate"]
     .every((id) => affiliatePage.includes(`id="${id}"`) && new RegExp(`id="${id}"[^>]*value="0"`).test(affiliatePage)),
   "affiliate scenario exposes its four arithmetic inputs with zero defaults",
+);
+pass(
+  affiliateScript.includes("inputIsValid(input)")
+    && affiliateScript.includes("Number.isFinite(Number(input.value))")
+    && affiliateScript.includes("input.checkValidity()")
+    && affiliateScript.includes("clearResults()")
+    && affiliateScript.includes("firstInvalid.focus()")
+    && affiliateScript.includes("calculate(false)")
+    && affiliateScript.includes("element.textContent = '—'")
+    && !/[ÃÂâ][\u0080-\uFFFF]/.test(affiliateScript)
+    && !/parseInt\(monthlyTrafficInput\.value\)\s*\|\||Math\.min\(Math\.max\(conversionRate/.test(affiliateScript),
+  "affiliate invalid inputs fail closed, clear stale results, and focus only after an explicit calculation",
 );
 pass(
   !/2026 data|commission data included|2026 affiliate data|Avg Conversion Rate|industryBenchmarks|Amazon\s*~?\s*4%|\$50\s*(?:-|to)\s*\$200/i.test(affiliatePage + affiliateScript),
@@ -831,6 +844,22 @@ pass(
     && !/benchmarkData|sponsorshipImpact|modifier|tier|Ã/i.test(engagementScript),
   "engagement calculation is transparent arithmetic with no hidden benchmark data",
 );
+pass(
+  [youtubeScript, twitchScript, instagramScript, engagementScript].every((script) => (
+    (script.includes("Number.isFinite(Number(input.value))") || script.includes("input.tagName === 'SELECT' || Number.isFinite(Number(input.value))"))
+      && script.includes("input.checkValidity()")
+      && script.includes("clearResults()")
+      && script.includes("firstInvalid.focus()")
+      && script.includes("calculate(false)")
+  ))
+    && engagementScript.includes("input.tagName === 'SELECT' || Number.isFinite(Number(input.value))")
+    && affiliateScript.includes("Number(monthlyTrafficInput.value) || 0")
+    && youtubeScript.includes("Number(viewsInput.value) || 0")
+    && twitchScript.includes("Number(element.value) || 0")
+    && instagramScript.includes("Number(element.value) || 0")
+    && youtubeScript.includes("viewsInput.value = '0'"),
+  "older calculator inputs fail closed, clear stale results, normalize negative zero, and preserve zero-default resets",
+);
 pass(/\.about-stats\s*{\s*grid-template-columns:\s*1fr;\s*}/.test(mobileStyles), "homepage trust statistics collapse to one column on phones");
 pass(/\.stat-content\s*{[^}]*min-width:\s*0;/s.test(siteStyles), "homepage statistic text can shrink without forcing horizontal scrolling");
 pass(
@@ -848,8 +877,36 @@ pass(
 pass(
   /html\[data-theme="dark"\]\s+body\.calculator-page/.test(accessibilityStyles)
     && /html\[data-theme="dark"\][\s\S]*?\.input-panel[\s\S]*?background:\s*#1e293b\s*!important/.test(accessibilityStyles)
-    && /html\[data-theme="dark"\][\s\S]*?input[\s\S]*?background:\s*#0f172a\s*!important/.test(accessibilityStyles),
-  "shared accessibility styles provide dark calculator surfaces and form controls",
+    && /html\[data-theme="dark"\][\s\S]*?input[\s\S]*?background:\s*#0f172a\s*!important/.test(accessibilityStyles)
+    && accessibilityStyles.includes('body.calculator-page .rate-tier')
+    && accessibilityStyles.includes('body.calculator-page table th')
+    && accessibilityStyles.includes('body.calculator-page .education-content')
+    && accessibilityStyles.includes('body.calculator-page .result-row.highlight')
+    && accessibilityStyles.includes('body.calculator-page .results-card[tabindex="-1"]:focus'),
+  "shared accessibility styles provide readable dark calculator surfaces, nested cards, tables, and result focus",
+);
+pass(
+  newsletterPage.includes('id="newsletterResults" tabindex="-1" aria-live="polite" aria-labelledby="newsletterResultsHeading"')
+    && newsletterScript.includes("document.getElementById('newsletterResults').focus()")
+    && sponsorshipPage.includes('id="sponsorshipResults" tabindex="-1" aria-live="polite" aria-labelledby="sponsorshipResultsHeading"')
+    && sponsorshipScript.includes("document.getElementById('sponsorshipResults').focus()")
+    && ugcPage.includes('id="ugcResults" tabindex="-1" aria-live="polite" aria-atomic="true" aria-labelledby="ugcResultsHeading"')
+    && ugcScript.includes("if (focusFirstInvalid) resultsCard.focus()")
+    && engagementPage.includes('id="engagementResults" tabindex="-1" aria-live="polite" aria-labelledby="engagementResultsHeading"')
+    && engagementScript.includes("document.getElementById('engagementResults').focus()")
+    && youtubePage.includes('id="youtubeResults" tabindex="-1" aria-live="polite" aria-labelledby="youtubeResultsHeading"')
+    && youtubeScript.includes("document.getElementById('youtubeResults').focus()")
+    && twitchPage.includes('id="twitchResults" tabindex="-1" aria-live="polite" aria-labelledby="twitchResultsHeading"')
+    && twitchScript.includes("document.getElementById('twitchResults').focus()")
+    && instagramPage.includes('id="instagramResults" tabindex="-1" aria-live="polite" aria-labelledby="instagramResultsHeading"')
+    && instagramScript.includes("document.getElementById('instagramResults').focus()")
+    && affiliatePage.includes('id="affiliateResults" tabindex="-1" aria-live="polite" aria-labelledby="affiliateResultsHeading"')
+    && affiliateScript.includes("document.getElementById('affiliateResults').focus()"),
+  "every previously inconsistent explicit calculator action moves focus to labelled results",
+);
+pass(
+  sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/</loc><lastmod>2026-08-10</lastmod>'),
+  "podcast sitemap freshness matches its visible and structured review date",
 );
 const resultCards = [...publicText.matchAll(/<div\b[^>]*class="[^"]*\bresults-card\b[^"]*"[^>]*>/g)].map((match) => match[0]);
 pass(

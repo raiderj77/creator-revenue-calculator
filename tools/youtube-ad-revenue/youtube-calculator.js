@@ -5,6 +5,8 @@
     var rateInput = document.getElementById('ad-revenue-per-thousand');
     var calculateButton = document.getElementById('calculate-btn');
     var resetButton = document.getElementById('reset-btn');
+    var resultsCard = document.getElementById('youtubeResults');
+    var formStatus = document.getElementById('youtubeFormStatus');
 
     var output = {
         views: document.getElementById('result-views'),
@@ -15,11 +17,6 @@
         daily: document.getElementById('daily'),
         formula: document.getElementById('formula-summary')
     };
-
-    function readNonNegativeNumber(input) {
-        var value = Number(input && input.value);
-        return Number.isFinite(value) && value >= 0 ? value : 0;
-    }
 
     function formatMoney(value) {
         return value.toLocaleString('en-US', {
@@ -36,15 +33,42 @@
         });
     }
 
-    function inputsAreValid() {
-        return [viewsInput, rateInput].every(function (input) {
-            return input && input.value.trim() !== '' && input.checkValidity();
-        });
+    function inputIsValid(input) {
+        return input && input.value.trim() !== '' && Number.isFinite(Number(input.value)) && input.checkValidity();
     }
 
-    function calculate() {
-        var monthlyViews = readNonNegativeNumber(viewsInput);
-        var postShareRevenuePerThousand = readNonNegativeNumber(rateInput);
+    function validateInputs(shouldFocus) {
+        var firstInvalid = null;
+        [viewsInput, rateInput].forEach(function (input) {
+            if (inputIsValid(input)) {
+                input.removeAttribute('aria-invalid');
+            } else {
+                input.setAttribute('aria-invalid', 'true');
+                if (!firstInvalid) firstInvalid = input;
+            }
+        });
+
+        if (!firstInvalid) return true;
+
+        var label = document.querySelector('label[for="' + firstInvalid.id + '"]');
+        formStatus.textContent = 'Review ' + (label ? label.textContent.trim() : 'the highlighted field') + '. Use a value within the displayed range and increment.';
+        if (shouldFocus) firstInvalid.focus();
+        return false;
+    }
+
+    function clearResults() {
+        Object.keys(output).forEach(function (key) { output[key].textContent = '—'; });
+        resultsCard.classList.add('has-invalid-inputs');
+    }
+
+    function calculate(shouldFocus) {
+        if (!validateInputs(Boolean(shouldFocus))) {
+            clearResults();
+            return false;
+        }
+
+        var monthlyViews = Number(viewsInput.value) || 0;
+        var postShareRevenuePerThousand = Number(rateInput.value) || 0;
         var monthlyRevenue = monthlyViews / 1000 * postShareRevenuePerThousand;
         var annualRevenue = monthlyRevenue * 12;
         var perViewRevenue = postShareRevenuePerThousand / 1000;
@@ -57,23 +81,28 @@
         output.perView.textContent = '$' + perViewRevenue.toFixed(4);
         output.daily.textContent = formatMoney(dailyAverage);
         output.formula.textContent = '(' + formatNumber(monthlyViews) + ' ÷ 1,000) × ' + formatMoney(postShareRevenuePerThousand);
+        resultsCard.classList.remove('has-invalid-inputs');
+        formStatus.textContent = shouldFocus ? 'Scenario updated from your entries.' : '';
+        return true;
     }
 
     function reset() {
-        viewsInput.value = '10000';
+        viewsInput.value = '0';
         rateInput.value = '0';
-        calculate();
+        calculate(false);
     }
 
     [viewsInput, rateInput].forEach(function (input) {
-        input.addEventListener('input', calculate);
-        input.addEventListener('change', calculate);
+        input.addEventListener('input', function () { calculate(false); });
+        input.addEventListener('change', function () { calculate(false); });
     });
 
     calculateButton.addEventListener('click', function () {
-        calculate();
-        if (inputsAreValid() && typeof window.crcTrackEvent === 'function') {
-            window.crcTrackEvent('calculator_completed');
+        if (calculate(true)) {
+            document.getElementById('youtubeResults').focus();
+            if (typeof window.crcTrackEvent === 'function') {
+                window.crcTrackEvent('calculator_completed');
+            }
         }
     });
     resetButton.addEventListener('click', reset);
@@ -105,5 +134,5 @@
         faqQuestions[0].click();
     }
 
-    calculate();
+    calculate(false);
 })();
