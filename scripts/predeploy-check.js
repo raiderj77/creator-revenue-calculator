@@ -29,7 +29,7 @@ function check(label, fn) {
 
 function htmlFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if ([".git", "node_modules"].includes(entry.name)) return [];
+    if ([".git", "dist", "node_modules"].includes(entry.name)) return [];
     const absolute = resolve(directory, entry.name);
     if (entry.isDirectory()) return htmlFiles(absolute);
     return entry.isFile() && entry.name.endsWith(".html") ? [absolute] : [];

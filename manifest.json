@@ -9,9 +9,9 @@
   "categories": ["business", "utilities"],
   "icons": [
     {
-      "src": "/assets/images/favicon.ico",
+      "src": "/assets/images/favicon.svg",
       "sizes": "any",
-      "type": "image/x-icon"
+      "type": "image/svg+xml"
     }
   ]
 }
