@@ -958,6 +958,18 @@ pass(
 );
 pass(!mainScript.includes("card.style.opacity = '0'"), "homepage calculator cards remain visible without scroll-triggered JavaScript");
 pass(
+  home.includes("Model podcast ad inventory from your downloads, ad slots, contract CPM, creator share, and completed net sponsor revenue.")
+    && ["Ad Inventory", "Contract CPM", "Sponsor Revenue"].every((label) => home.includes(`<span class="feature-tag">${label}</span>`))
+    && !/Podcast Revenue Calculator[\s\S]{0,500}(?:subscriptions|listener support)/i.test(home),
+  "homepage Podcast card matches the maintained explicit-input calculator",
+);
+pass(
+  sponsorshipPage.includes("Add completed brand work, attributed affiliate commission, Live badges, and confirmed dashboard bonuses.")
+    && sponsorshipPage.includes("Model Creator Rewards, completed brand deals, LIVE revenue, and other confirmed revenue from your own records.")
+    && !/Creator Fund earnings|Reels, brand deals, and badges/.test(sponsorshipPage),
+  "sponsorship related-tool cards match the current Instagram and TikTok calculators",
+);
+pass(
   !/Free, accurate revenue calculators|real 2026 data from actual creators|Always free|Free Forever|Based on actual creator reports and industry benchmarks|TikTok Creator Fund|Reels Play/.test(home),
   "homepage avoids unsupported accuracy, sourcing, historical-program, and future-price claims",
 );
@@ -1098,6 +1110,12 @@ pass(
   "skip navigation remains hidden until keyboard focus",
 );
 pass(/\.hero \.subtitle\s*\{[^}]*#e5e7eb/s.test(accessibilityStyles), "hero supporting copy keeps readable contrast on dark backgrounds");
+pass(
+  /\.hero-trust-item\s*\{[^}]*color:\s*var\(--gray\);/s.test(siteStyles)
+    && /@media \(prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{[^}]*--gray:\s*#94a3b8;/s.test(siteStyles)
+    && /\[data-theme="dark"\]\s*\{[^}]*--gray:\s*#94a3b8;/s.test(siteStyles),
+  "homepage trust-strip text uses the readable theme-aware gray in both dark modes",
+);
 pass(
   /@media \(prefers-reduced-motion: reduce\)/.test(accessibilityStyles)
     && /animation-duration:\s*0\.01ms !important/.test(accessibilityStyles)

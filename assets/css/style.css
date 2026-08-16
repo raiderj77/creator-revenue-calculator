@@ -579,7 +579,7 @@ p {
 
 .hero-trust-item {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--gray);
   display: flex;
   align-items: center;
   gap: 0.35rem;
