@@ -80,6 +80,7 @@ const podcastStyles = read("tools/podcast-revenue/podcast-calculator.css");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
 const patreonTracker = read("downloads/patreon-income-tracker.csv");
+const creatorTracker = fs.readFileSync(path.join(root, "downloads/creator-revenue-tracker.xlsx"));
 const sponsorshipPage = read("tools/sponsorship-rate/index.html");
 const sponsorshipScript = read("tools/sponsorship-rate/sponsorship-calculator.js");
 const ugcPage = read("tools/ugc-rate/index.html");
@@ -1271,7 +1272,7 @@ pass(
   !/nicheRates|placementMultipliers|updateRevenueSplitVisualization|directSponsorCpm/i.test(podcastPage + podcastScript),
   "podcast supplies no niche, placement, sponsor-CPM, or missing-chart multiplier",
 );
-pass(patreonPage.includes('<option value="standard" selected="">Standard, 10% (new creators)</option>'), "Patreon calculator defaults new creators to the current 10% standard plan");
+pass(patreonPage.includes('<option value="standard" selected="">Standard, 10%</option>'), "Patreon calculator defaults to the current 10% standard plan without understating republication rules");
 pass(!/Starter|Premium|12% platform fee|15% platform fee/.test(patreonPage), "Patreon page does not present discontinued plan tiers as current");
 pass(patreonScript.includes("standard: { label: 'Standard', rate: 0.10, legacy: false }") && patreonScript.includes("price <= 3"), "Patreon calculator distinguishes standard and eligible legacy fee models");
 pass(patreonScript.includes("standardRate: 0.029") && patreonScript.includes("standardRate: 0.039"), "Patreon calculator models documented USD processing profiles");
@@ -1319,6 +1320,65 @@ pass(
     && trackerLines[0].includes("refunds_and_chargebacks")
     && patreonPage.includes('href="/downloads/patreon-income-tracker.csv"'),
   "Patreon income tracker is a linked header-only template with no fabricated earnings rows",
+);
+pass(
+  creatorTracker.subarray(0, 4).toString("hex") === "504b0304"
+    && creatorTracker.length === 13133
+    && crypto.createHash("sha256").update(creatorTracker).digest("hex") === "d2777909b86b296412b3beaf5d38137e71cc1c944af4c1ff20f5a9486c07798e",
+  "Creator Revenue Tracker is the reviewed macro-free workbook artifact with frozen headers and stop-style amount validation",
+);
+pass(
+  home.includes('id="creatorTrackerNextStep"')
+    && home.includes('href="/downloads/creator-revenue-tracker.xlsx" download="creator-revenue-tracker.xlsx"')
+    && home.includes("blank input rows, visible formulas, source-mix totals, and no supplied earnings data")
+    && home.includes("does not upload, read, or store what you enter; your device or spreadsheet app controls storage and syncing")
+    && home.indexOf('id="creatorTrackerNextStep"') > home.indexOf('id="mixResults"'),
+  "homepage places the ungated tracker immediately after its result workflow",
+);
+pass(
+  patreonPage.includes('id="patreonTrackerNextStep"')
+    && patreonPage.includes('href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"')
+    && patreonPage.includes('href="#income-tracker"')
+    && patreonPage.includes("updated August 3, 2026")
+    && patreonPage.includes('"dateModified": "2026-08-18"')
+    && patreonPage.includes("does not verify legacy-plan eligibility")
+    && patreonPage.includes("Actual payouts may contain a mix of member payment methods and locations")
+    && patreonPage.indexOf('id="patreonTrackerNextStep"') > patreonPage.indexOf('id="patreonResults"'),
+  "Patreon results surface the existing payout tracker and current source date",
+);
+pass(
+  sponsorshipPage.includes('id="sponsorshipNextStep"')
+    && sponsorshipPage.includes('href="/tools/ugc-rate/"')
+    && sponsorshipPage.includes('href="/#creator-calculator"')
+    && sponsorshipPage.includes("Open Revenue Mix Worksheet")
+    && sponsorshipPage.includes("only after it is completed or reported")
+    && ugcPage.includes('id="ugcNextStep"')
+    && ugcPage.includes('href="/tools/sponsorship-rate/"')
+    && ugcPage.includes('href="/#creator-calculator"')
+    && ugcPage.includes("Open Revenue Mix Worksheet")
+    && ugcPage.includes("only after it is completed or reported"),
+  "Sponsorship and UGC results provide truthful cross-workflow next steps",
+);
+pass(
+  home.includes('"@type": "WebApplication"')
+    && home.includes('"dateModified": "2026-08-18"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-08-18</lastmod>')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-08-18</lastmod>'),
+  "substantive homepage and Patreon resource changes have matching structured and sitemap freshness",
+);
+pass(
+  accessibilityStyles.includes(".growth-next-step-actions .btn:focus-visible")
+    && accessibilityStyles.includes('html[data-theme="dark"] .growth-next-step')
+    && accessibilityStyles.includes(".growth-next-step-actions .btn,")
+    && accessibilityStyles.includes("min-height: 2.75rem")
+    && accessibilityStyles.includes("width: 100%"),
+  "result-adjacent growth links have keyboard, dark-theme, touch-target, and mobile coverage",
+);
+pass(
+  !themeScript.includes("resource_downloaded")
+    && !themeScript.includes("next_step_opened")
+    && !themeScript.includes("tool_shared"),
+  "growth resources do not expand analytics before end-to-end delivery is proven",
 );
 
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {

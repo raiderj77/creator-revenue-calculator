@@ -50,7 +50,7 @@
         "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2026-03-08",
-      "dateModified": "2026-08-09"
+      "dateModified": "2026-08-18"
     }
     </script>
 
@@ -65,7 +65,7 @@
           "name": "How much does Patreon take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For creator pages published after August 4, 2025, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout."
+            "text": "For creator pages published after August 4, 2025, and legacy pages republished after that date, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout."
           }
         },
         {
@@ -81,7 +81,7 @@
           "name": "What payment-processing rate does this calculator use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For USD payouts, the selected plan and payment method determine the processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change."
+            "text": "For USD payouts, the selected plan and one member payment-method/location profile determine the modeled processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change. Actual payouts may contain a mix of member payment methods and locations, and Patreon says processing can be calculated on the total payment including applicable sales tax or VAT; those tax effects are not modeled here."
           }
         },
         {
@@ -171,7 +171,7 @@
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">How much does Patreon take?</span>
-          <p class="answer-block-text">New pages use the current 10% standard plan. Eligible continuously published legacy pages may retain 5%, 8%, or 11% platform pricing; processing and conditional fees are additional.</p>
+          <p class="answer-block-text">Pages first published, or legacy pages republished, after August 4, 2025 use the current 10% standard plan. Eligible continuously published legacy pages may retain 5%, 8%, or 11% platform pricing; processing and conditional fees are additional.</p>
         </div>
         <div class="answer-block-item">
           <span class="answer-block-label">Track actual payouts</span>
@@ -206,13 +206,13 @@
                     <div class="input-group">
                         <label for="plan"><i class="fas fa-crown"></i> Patreon Plan</label>
                         <select id="plan" aria-describedby="planHint">
-                            <option value="standard" selected="">Standard, 10% (new creators)</option>
+                            <option value="standard" selected="">Standard, 10%</option>
                             <option value="founders">Legacy Founders, 5% (original USD processing)</option>
                             <option value="founders-standard">Legacy Founders, 5% (standard processing)</option>
                             <option value="pro">Legacy Pro, 8%</option>
                             <option value="merch">Legacy Pro + Merch, 11%</option>
                         </select>
-                        <div class="input-hint" id="planHint">Check Patreon Plan details. Founders creators who changed payout currency retain the 5% platform fee but use standard processing rates; legacy plans are unavailable to new creators.</div>
+                        <div class="input-hint" id="planHint">Check Patreon Plan details; this calculator does not verify legacy-plan eligibility. Founders creators who changed payout currency retain the 5% platform fee but use standard processing rates; legacy plans are unavailable to new creators.</div>
                     </div>
 
                     <div class="input-group">
@@ -401,9 +401,21 @@
                         <p id="copyStatus" aria-live="polite" style="min-height:1.5rem;margin:0.5rem 0 0;text-align:center;"></p>
 
                         <div class="disclaimer">
-                            <p><i class="fas fa-info-circle" aria-hidden="true"></i> Includes the selected platform fee and modeled USD processing profile. Excludes currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees. Verify actual amounts in Patreon.</p>
+                            <p><i class="fas fa-info-circle" aria-hidden="true"></i> Includes the selected platform fee and applies one modeled USD member payment-method/location profile to all entered patrons. Actual payments may use a mix, and processing on applicable sales tax or VAT is not modeled. Excludes currency conversion, payout fees, taxes on creator fees, refunds, shared payments, and iOS in-app purchase fees. Verify actual amounts in Patreon.</p>
                         </div>
                     </div>
+
+                    <aside class="growth-next-step growth-next-step--compact" id="patreonTrackerNextStep" aria-labelledby="patreonTrackerNextStepHeading">
+                        <div>
+                            <p class="growth-next-step-kicker">Actual payout record</p>
+                            <h3 id="patreonTrackerNextStepHeading">Keep modeled scenarios separate from Patreon records</h3>
+                            <p>Download the blank CSV, then enter actual reporting-period figures from Patreon. This page does not upload, store, import, or verify the file.</p>
+                        </div>
+                        <div class="growth-next-step-actions">
+                            <a class="btn btn-primary" href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"><i class="fas fa-download" aria-hidden="true"></i> Download Blank CSV</a>
+                            <a class="growth-next-step-link" href="#income-tracker">See what the tracker records</a>
+                        </div>
+                    </aside>
                 </div>
             </div>
 
@@ -437,14 +449,14 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-table"></i> Patreon Fees Used by This Calculator</h2>
-                <p class="subtitle">Reviewed August 9, 2026 against Patreon's creator-fee documentation, updated July 19, 2026</p>
+                <p class="subtitle">Reviewed August 9, 2026 against Patreon's creator-fee documentation, updated August 3, 2026</p>
             </div>
             <!-- [html-validate-disable-next prefer-native-element] -->
             <div class="benchmark-table-container" role="region" tabindex="0" aria-label="Patreon platform fee reference table">
                 <table class="benchmark-table">
                     <thead><tr><th>Plan</th><th>Platform fee</th><th>Who can use it</th></tr></thead>
                     <tbody>
-                        <tr><td><strong>Standard</strong></td><td>10%</td><td>Creators who publish after August 4, 2025</td></tr>
+                        <tr><td><strong>Standard</strong></td><td>10%</td><td>Pages published or republished after August 4, 2025</td></tr>
                         <tr><td><strong>Founders</strong></td><td>5%</td><td>Eligible continuously published legacy creators</td></tr>
                         <tr><td><strong>Pro</strong></td><td>8%</td><td>Eligible continuously published legacy creators</td></tr>
                         <tr><td><strong>Pro + Merch</strong></td><td>11%</td><td>Eligible continuously published legacy creators</td></tr>
@@ -473,7 +485,7 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <button class="faq-question" type="button" aria-controls="faq-answer-1"><span>How much does Patreon take?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-                    <div class="faq-answer" id="faq-answer-1"><p>For creator pages published after August 4, 2025, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout.</p></div>
+                    <div class="faq-answer" id="faq-answer-1"><p>For creator pages published after August 4, 2025, and legacy pages republished after that date, Patreon currently lists a 10% standard platform fee. Eligible continuously published legacy pages may retain 5% Founders, 8% Pro, or 11% Pro + Merch pricing. Payment processing and conditional currency-conversion, payout, tax, refund, shared-payment, and iOS fees can change the actual payout.</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" type="button" aria-controls="faq-answer-2"><span>Can I use this as a Patreon income tracker?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
@@ -481,7 +493,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" type="button" aria-controls="faq-answer-3"><span>What payment-processing rate does this calculator use?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-                    <div class="faq-answer" id="faq-answer-3"><p>For USD payouts, the selected plan and payment method determine the processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change.</p></div>
+                    <div class="faq-answer" id="faq-answer-3"><p>For USD payouts, the selected plan and one member payment-method/location profile determine the modeled processing schedule. The standard plan uses the published standard rates; eligible Pro and Pro + Merch plans use legacy micropayment rates at $3 or less; and eligible Founders creators can select original Founders USD processing or standard processing after a payout-currency change. Actual payouts may contain a mix of member payment methods and locations, and Patreon says processing can be calculated on the total payment including applicable sales tax or VAT; those tax effects are not modeled here.</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" type="button" aria-controls="faq-answer-4"><span>Does the estimate include every Patreon fee?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>

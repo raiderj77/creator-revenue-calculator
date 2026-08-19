@@ -37,6 +37,7 @@ const PUBLIC_FILES = [
   "assets/vendor/fontawesome/css/subset.css",
   "assets/vendor/fontawesome/webfonts/crc-icons-brands.woff2",
   "assets/vendor/fontawesome/webfonts/crc-icons-solid.woff2",
+  "downloads/creator-revenue-tracker.xlsx",
   "downloads/patreon-income-tracker.csv",
   "tools/affiliate-calculator/index.html",
   "tools/affiliate-calculator/affiliate-calculator.css",

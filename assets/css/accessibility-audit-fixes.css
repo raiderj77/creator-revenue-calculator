@@ -694,6 +694,108 @@ html[data-theme="dark"] body.calculator-page .results-card[tabindex="-1"]:focus 
     outline-color: #fbbf24;
 }
 
+/* Result-adjacent resource links stay outside live/printable result regions. */
+.growth-next-step {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd6fe;
+    border-radius: 0.75rem;
+    background: #faf5ff;
+    color: #111827;
+}
+
+.growth-next-step--compact {
+    padding: 0.85rem;
+}
+
+.growth-next-step h3,
+.growth-next-step p {
+    margin: 0;
+}
+
+.growth-next-step h3 {
+    color: #111827;
+    font-size: 1.05rem;
+    line-height: 1.35;
+}
+
+.growth-next-step p:not(.growth-next-step-kicker) {
+    margin-top: 0.4rem;
+    color: #374151;
+    line-height: 1.55;
+}
+
+.growth-next-step-kicker {
+    color: #5b21b6;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.growth-next-step-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.growth-next-step-actions .btn,
+.growth-next-step-link {
+    min-height: 2.75rem;
+}
+
+.growth-next-step-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.25rem;
+    color: #5b21b6;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+}
+
+.growth-next-step-link:hover {
+    color: #4c1d95;
+}
+
+.growth-next-step-actions .btn:focus-visible,
+.growth-next-step-link:focus-visible {
+    outline: 3px solid #92400e;
+    outline-offset: 3px;
+}
+
+html[data-theme="dark"] .growth-next-step {
+    border-color: #6d28d9;
+    background: #1e1b4b;
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .growth-next-step h3 {
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .growth-next-step p:not(.growth-next-step-kicker) {
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .growth-next-step-kicker,
+html[data-theme="dark"] .growth-next-step-link {
+    color: #c4b5fd;
+}
+
+html[data-theme="dark"] .growth-next-step-link:hover {
+    color: #ddd6fe;
+}
+
+html[data-theme="dark"] .growth-next-step-actions .btn:focus-visible,
+html[data-theme="dark"] .growth-next-step-link:focus-visible {
+    outline-color: #fbbf24;
+}
+
 /* Trust and discovery pages also need dark surfaces when the shared toggle is active. */
 html[data-theme="dark"] .geo-content,
 html[data-theme="dark"] .contact-card {
@@ -780,6 +882,18 @@ html[data-theme="dark"] .contact-card a {
     .share-tool-button {
         width: 100%;
         margin-left: 0;
+    }
+
+    .growth-next-step-actions,
+    .growth-next-step-actions .btn,
+    .growth-next-step-link {
+        width: 100%;
+    }
+
+    .growth-next-step-actions .btn,
+    .growth-next-step-link {
+        justify-content: center;
+        text-align: center;
     }
 }
 
