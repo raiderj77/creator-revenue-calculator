@@ -1336,6 +1336,15 @@ pass(
   "homepage places the ungated tracker immediately after its result workflow",
 );
 pass(
+  newsletterPage.includes('id="newsletterTrackerNextStep" aria-labelledby="newsletterTrackerNextStepHeading"')
+    && newsletterPage.includes('href="/downloads/creator-revenue-tracker.xlsx" download="creator-revenue-tracker.xlsx"')
+    && newsletterPage.includes("record confirmed newsletter revenue alongside other income sources")
+    && newsletterPage.includes("visible formulas and no supplied earnings data")
+    && newsletterPage.includes("does not upload, read, or store what you enter; your device or spreadsheet app controls storage and syncing")
+    && newsletterPage.indexOf('id="newsletterTrackerNextStep"') > newsletterPage.indexOf('id="newsletterResults"'),
+  "newsletter places the reviewed offline tracker after its result workflow",
+);
+pass(
   patreonPage.includes('id="patreonTrackerNextStep"')
     && patreonPage.includes('href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"')
     && patreonPage.includes('href="#income-tracker"')
