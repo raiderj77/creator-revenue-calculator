@@ -718,6 +718,11 @@ pass(
   "cross-platform results invalidate after edits and support accessible updates, copying, printing, and narrow-screen reflow",
 );
 pass(
+  socialEstimatorStyles.includes('html[data-theme="dark"] .scenario-row legend, html[data-theme="dark"] .btn-text { color: #c7d2fe; }')
+    && !/html\[data-theme="dark"\][^{]*\{[^}]*--brand-dark\s*:/.test(socialEstimatorStyles),
+  "cross-platform dark mode gives the scenario legend and Reset action targeted high-contrast text without changing the shared brand color",
+);
+pass(
   youtubeEstimatorPage.includes('<meta name="robots" content="noindex, nofollow">')
     && youtubeEstimatorPage.includes('<body class="calculator-page" data-api-enabled="false">')
     && /id="lookupChannel"[^>]*disabled/.test(youtubeEstimatorPage)
