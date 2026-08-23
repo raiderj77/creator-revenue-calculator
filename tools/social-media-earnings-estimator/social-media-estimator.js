@@ -1,4 +1,42 @@
-(function () {
+export const SOCIAL_SCENARIO_LABELS = Object.freeze([
+  'YouTube',
+  'Instagram',
+  'TikTok',
+  'Twitch',
+  'X',
+  'Facebook',
+  'Patreon',
+  'Newsletter',
+  'Affiliate',
+  'Sponsorship',
+  'Products'
+]);
+
+const PLATFORM_LABELS = Object.freeze(SOCIAL_SCENARIO_LABELS.slice(0, 6));
+const SPONSORSHIP_LABELS = Object.freeze(PLATFORM_LABELS.concat(['Newsletter', 'Sponsorship']));
+
+export function isCompatibleScenario(label, type) {
+  if (!SOCIAL_SCENARIO_LABELS.includes(label)) return false;
+  if (type === 'direct') return true;
+  if (type === 'platform') return PLATFORM_LABELS.includes(label);
+  if (type === 'sponsorship') return SPONSORSHIP_LABELS.includes(label);
+  return false;
+}
+
+export function compatibilityHelp(type) {
+  if (type === 'platform') {
+    return 'Choose YouTube, Instagram, TikTok, Twitch, X, or Facebook. This formula uses quantity ÷ 1,000 × your rate.';
+  }
+  if (type === 'sponsorship') {
+    return 'Choose a platform, Newsletter, or Sponsorship. This formula uses sponsored quantity ÷ 1,000 × your rate.';
+  }
+  if (type === 'direct') {
+    return 'Any listed label is available. Enter an attributable monthly amount from your records or a deliberate plan.';
+  }
+  return 'Choose both fields. Each formula is available only for labels it can describe clearly.';
+}
+
+if (typeof document !== 'undefined') (function () {
   'use strict';
 
   var rowsContainer = document.getElementById('scenarioRows');
@@ -39,10 +77,22 @@
   }
 
   function updateMode(row) {
-    var direct = row.querySelector('.scenario-type').value === 'direct';
-    row.querySelector('.quantity-field').hidden = direct;
-    row.querySelector('.rate-field').hidden = direct;
+    var type = row.querySelector('.scenario-type').value;
+    var direct = type === 'direct';
+    var rateBased = type === 'platform' || type === 'sponsorship';
+    row.querySelector('.quantity-field').hidden = !rateBased;
+    row.querySelector('.rate-field').hidden = !rateBased;
     row.querySelector('.direct-field').hidden = !direct;
+  }
+
+  function updateAllowedLabels(row) {
+    var platformSelect = row.querySelector('.scenario-platform');
+    var type = row.querySelector('.scenario-type').value;
+    platformSelect.querySelectorAll('option').forEach(function (option) {
+      if (!option.value) return;
+      option.disabled = Boolean(type) && !isCompatibleScenario(option.value, type);
+    });
+    row.querySelector('.scenario-compatibility-help').textContent = compatibilityHelp(type);
   }
 
   function addScenario(shouldFocus, preserveResult) {
@@ -50,13 +100,21 @@
     var fragment = template.content.cloneNode(true);
     var row = fragment.querySelector('.scenario-row');
     row.dataset.rowNumber = String(nextRowNumber);
+    var compatibilityDescription = row.querySelector('.scenario-compatibility-help');
+    compatibilityDescription.id = 'scenarioCompatibilityHelp' + nextRowNumber;
+    row.querySelectorAll('select').forEach(function (select) {
+      select.setAttribute('aria-describedby', compatibilityDescription.id);
+    });
     row.querySelector('.scenario-type').addEventListener('change', function () {
       updateMode(row);
+      updateAllowedLabels(row);
     });
     row.addEventListener('input', function () {
+      clearInvalid(row);
       clearCurrentResult('Inputs changed. Calculate again to update the total.');
     });
     row.addEventListener('change', function () {
+      clearInvalid(row);
       clearCurrentResult('Scenario changed. Calculate again to update the total.');
     });
     row.querySelector('.remove-scenario').addEventListener('click', function () {
@@ -70,6 +128,7 @@
     });
     rowsContainer.appendChild(fragment);
     updateMode(row);
+    updateAllowedLabels(row);
     updateRowNumbers();
     if (!preserveResult) {
       clearCurrentResult('Scenario added. Calculate again to update the total.');
@@ -78,8 +137,8 @@
   }
 
   function clearInvalid(row) {
-    row.querySelectorAll('input').forEach(function (input) {
-      input.removeAttribute('aria-invalid');
+    row.querySelectorAll('input, select').forEach(function (control) {
+      control.removeAttribute('aria-invalid');
     });
   }
 
@@ -89,8 +148,27 @@
 
   function readScenario(row) {
     clearInvalid(row);
-    var platform = row.querySelector('.scenario-platform').value;
-    var type = row.querySelector('.scenario-type').value;
+    var platformSelect = row.querySelector('.scenario-platform');
+    var typeSelect = row.querySelector('.scenario-type');
+    var platform = platformSelect.value;
+    var type = typeSelect.value;
+    if (!platform) {
+      platformSelect.setAttribute('aria-invalid', 'true');
+      return { valid: false, firstInvalid: platformSelect, message: 'Choose a platform or revenue stream for every scenario.' };
+    }
+    if (!type) {
+      typeSelect.setAttribute('aria-invalid', 'true');
+      return { valid: false, firstInvalid: typeSelect, message: 'Choose a formula for every scenario.' };
+    }
+    if (!isCompatibleScenario(platform, type)) {
+      platformSelect.setAttribute('aria-invalid', 'true');
+      typeSelect.setAttribute('aria-invalid', 'true');
+      return {
+        valid: false,
+        firstInvalid: platformSelect,
+        message: 'Choose a label and formula that describe the same scenario. ' + compatibilityHelp(type)
+      };
+    }
     var inputs = type === 'direct'
       ? [row.querySelector('.scenario-direct')]
       : [row.querySelector('.scenario-quantity'), row.querySelector('.scenario-rate')];
@@ -138,7 +216,7 @@
     var values = rows.map(readScenario);
     var invalid = values.find(function (value) { return !value.valid; });
     if (invalid) {
-      clearCurrentResult('Review the highlighted value. Enter zero or a positive number within the displayed limit.');
+      clearCurrentResult(invalid.message || 'Review the highlighted value. Enter zero or a positive number within the displayed limit.');
       invalid.firstInvalid.focus();
       return false;
     }

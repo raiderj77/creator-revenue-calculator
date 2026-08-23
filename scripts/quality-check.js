@@ -664,6 +664,21 @@ pass(
     && /<option value="connected" disabled>Connected-account result \(not available\)<\/option>/.test(socialEstimatorPage),
   "cross-platform estimator offers three manual modes and keeps connected-account mode disabled",
 );
+pass(
+  socialEstimatorPage.includes('<option value="" selected>Choose a platform or stream</option>')
+    && socialEstimatorPage.includes('<option value="" selected>Choose a formula</option>')
+    && socialEstimatorPage.includes('<optgroup label="Platforms">')
+    && socialEstimatorPage.includes('<optgroup label="Revenue streams">')
+    && socialEstimatorPage.includes('class="scenario-compatibility-help" aria-live="polite"')
+    && socialEstimatorScript.includes("export function isCompatibleScenario(label, type)")
+    && socialEstimatorScript.includes("if (type === 'platform') return PLATFORM_LABELS.includes(label)")
+    && socialEstimatorScript.includes("if (type === 'sponsorship') return SPONSORSHIP_LABELS.includes(label)")
+    && socialEstimatorScript.includes("if (type === 'direct') return true")
+    && socialEstimatorScript.includes("option.disabled = Boolean(type) && !isCompatibleScenario(option.value, type)")
+    && !socialEstimatorScript.includes("platformSelect.value = ''")
+    && socialEstimatorScript.includes("message: 'Choose a label and formula that describe the same scenario."),
+  "cross-platform estimator requires explicit compatible labels and formulas before calculation",
+);
 const socialNumberInputs = [...socialEstimatorPage.matchAll(/<input\b[^>]*type="number"[^>]*>/g)].map((match) => match[0]);
 pass(
   socialNumberInputs.length === 3 && socialNumberInputs.every((input) => /\bvalue="0"/.test(input)),
