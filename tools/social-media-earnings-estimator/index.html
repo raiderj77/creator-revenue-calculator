@@ -135,19 +135,19 @@
     <section class="method-section" id="how-it-works">
       <div class="container">
         <h2>How does the social media earnings estimator work?</h2>
-        <p>Choose a platform or revenue stream and a scenario type. For platform-payout and sponsorship-value scenarios, the tool divides your entered quantity by 1,000 and multiplies it by your entered rate. For user-entered revenue, it uses the monthly amount you provide.</p>
+        <p>Choose a platform or revenue stream and a compatible formula. For platform-payout and sponsorship-value scenarios, the tool divides your entered quantity by 1,000 and multiplies it by your entered rate. For user-entered revenue, it uses the monthly amount you provide.</p>
         <div class="method-grid">
           <article>
             <h3>Platform payout scenario</h3>
-            <p>Enter a comparable monthly quantity and your own revenue per 1,000 units. The tool does not supply or infer a platform rate.</p>
+            <p>For YouTube, Instagram, TikTok, Twitch, X, or Facebook, enter a comparable monthly quantity and your own revenue per 1,000 units. The tool does not supply or infer a platform rate.</p>
           </article>
           <article>
             <h3>Sponsorship-value scenario</h3>
-            <p>Enter the sponsored quantity and the rate you deliberately want to quote or test. This is not a market benchmark.</p>
+            <p>For a platform, newsletter, or sponsorship label, enter the sponsored quantity and the rate you deliberately want to quote or test. This is not a market benchmark.</p>
           </article>
           <article>
             <h3>User-entered revenue</h3>
-            <p>Enter an attributable monthly amount from your records or a deliberate plan. Keep unlike revenue definitions in separate rows.</p>
+            <p>For any available label, enter an attributable monthly amount from your records or a deliberate plan. Keep unlike revenue definitions in separate rows.</p>
           </article>
           <article>
             <h3>Connected-account result</h3>
@@ -156,7 +156,7 @@
         </div>
 
         <h2>Which platforms and creator income streams are supported?</h2>
-        <p>The platform label never changes the formula. The estimator supports manual scenarios for YouTube, Instagram, TikTok, Twitch, X, Facebook, Patreon, newsletter revenue, affiliate revenue, sponsorships, and products.</p>
+        <p>The label never changes the arithmetic, and incompatible label-and-formula pairs remain unavailable. The estimator supports manual scenarios for YouTube, Instagram, TikTok, Twitch, X, Facebook, Patreon, newsletter revenue, affiliate revenue, sponsorships, and products.</p>
         <ul class="platform-list" aria-label="Supported scenario labels">
           <li>YouTube</li><li>Instagram</li><li>TikTok</li><li>Twitch</li><li>X</li><li>Facebook</li><li>Patreon</li><li>Newsletter</li><li>Affiliate</li><li>Sponsorship</li><li>Products</li>
         </ul>
@@ -172,27 +172,34 @@
       <legend>Scenario</legend>
       <div class="scenario-grid">
         <label><span>Platform or revenue stream</span>
-          <select class="scenario-platform">
-            <option value="YouTube">YouTube</option>
-            <option value="Instagram">Instagram</option>
-            <option value="TikTok">TikTok</option>
-            <option value="Twitch">Twitch</option>
-            <option value="X">X</option>
-            <option value="Facebook">Facebook</option>
-            <option value="Patreon">Patreon</option>
-            <option value="Newsletter">Newsletter</option>
-            <option value="Affiliate">Affiliate</option>
-            <option value="Sponsorship">Sponsorship</option>
-            <option value="Products">Products</option>
+          <select class="scenario-platform" required>
+            <option value="" selected>Choose a platform or stream</option>
+            <optgroup label="Platforms">
+              <option value="YouTube">YouTube</option>
+              <option value="Instagram">Instagram</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Twitch">Twitch</option>
+              <option value="X">X</option>
+              <option value="Facebook">Facebook</option>
+            </optgroup>
+            <optgroup label="Revenue streams">
+              <option value="Patreon">Patreon</option>
+              <option value="Newsletter">Newsletter</option>
+              <option value="Affiliate">Affiliate</option>
+              <option value="Sponsorship">Sponsorship</option>
+              <option value="Products">Products</option>
+            </optgroup>
           </select>
         </label>
-        <label><span>Scenario type</span>
-          <select class="scenario-type">
+        <label><span>Formula</span>
+          <select class="scenario-type" required>
+            <option value="" selected>Choose a formula</option>
             <option value="platform">Platform payout scenario</option>
             <option value="sponsorship">Sponsorship-value scenario</option>
             <option value="direct">User-entered revenue</option>
             <option value="connected" disabled>Connected-account result (not available)</option>
           </select>
+          <small class="scenario-compatibility-help" aria-live="polite">Choose both fields. Each formula is available only for labels it can describe clearly.</small>
         </label>
         <label class="quantity-field"><span>Monthly quantity</span>
           <input class="scenario-quantity" type="number" inputmode="decimal" min="0" max="1000000000000" step="1" value="0">
@@ -222,6 +229,6 @@
     </div>
   </footer>
   <script src="/assets/js/main.js" defer></script>
-  <script src="social-media-estimator.js" defer></script>
+  <script src="social-media-estimator.js" type="module"></script>
 </body>
 </html>
