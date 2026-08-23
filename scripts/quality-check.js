@@ -12,13 +12,17 @@ const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
   if ([
     ".git",
+    "api",
     "blog",
     "content",
+    "docs",
     "dist",
     "node_modules",
     "scripts",
+    "tests",
     "finance-youtube-revenue",
     "gaming-youtube-revenue",
+    "youtube-channel-earnings-estimator",
   ].includes(entry.name)) return [];
   const absolute = path.join(dir, entry.name);
   return entry.isDirectory() ? walk(absolute) : [absolute];
@@ -88,6 +92,15 @@ const ugcScript = read("tools/ugc-rate/ugc-calculator.js");
 const ugcStyles = read("tools/ugc-rate/ugc-calculator.css");
 const youtubePage = read("tools/youtube-ad-revenue/index.html");
 const youtubeScript = read("tools/youtube-ad-revenue/youtube-calculator.js");
+const socialEstimatorPage = read("tools/social-media-earnings-estimator/index.html");
+const socialEstimatorScript = read("tools/social-media-earnings-estimator/social-media-estimator.js");
+const socialEstimatorStyles = read("tools/social-media-earnings-estimator/social-media-estimator.css");
+const youtubeEstimatorPage = read("tools/youtube-channel-earnings-estimator/index.html");
+const youtubeEstimatorScript = read("tools/youtube-channel-earnings-estimator/youtube-channel-estimator.js");
+const youtubeEstimatorCore = read("api/_youtube-estimator-core.js");
+const youtubeEstimatorEndpoint = read("api/youtube-channel-estimator.js");
+const youtubeEstimatorArchitecture = read("docs/youtube-estimator-architecture.md");
+const gitignore = read(".gitignore");
 const twitchPage = read("tools/twitch-revenue/index.html");
 const twitchScript = read("tools/twitch-revenue/twitch-calculator.js");
 const tiktokPage = read("tools/tiktok-revenue/index.html");
@@ -115,6 +128,7 @@ const maintainedToolPages = new Map([
   ["tools/patreon-revenue/index.html", patreonPage],
   ["tools/podcast-revenue/index.html", podcastPage],
   ["tools/sponsorship-rate/index.html", sponsorshipPage],
+  ["tools/social-media-earnings-estimator/index.html", socialEstimatorPage],
   ["tools/ugc-rate/index.html", ugcPage],
   ["tools/tiktok-revenue/index.html", tiktokPage],
   ["tools/twitch-revenue/index.html", twitchPage],
@@ -214,7 +228,7 @@ pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunc
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
-pass((sitemap.match(/<url>/g) || []).length === 19, "sitemap contains the 11 maintained calculators and eight current core pages");
+pass((sitemap.match(/<url>/g) || []).length === 20, "sitemap contains the 12 maintained calculators and eight current core pages");
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
 pass(
@@ -359,6 +373,10 @@ pass(
   "UGC quote routes are no longer redirected to the sponsorship worksheet",
 );
 pass(vercelConfig.outputDirectory === "dist", "Vercel publishes only the generated fail-closed public directory");
+pass(
+  vercelConfig.functions?.["api/youtube-channel-estimator.js"]?.maxDuration === 10,
+  "the gated YouTube function has a bounded Vercel execution duration",
+);
 pass(
   packageConfig.scripts?.["build:dist"] === "node scripts/build-dist.js"
     && packageConfig.scripts?.["test:dist"] === "node scripts/build-dist.js --check"
@@ -634,6 +652,134 @@ pass(
     && !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/submissions-log.md"))
     && !fs.existsSync(path.join(root, "tools/youtube-ad-revenue/slider-sync.js")),
   "obsolete YouTube benchmark content, submission copy, and duplicate slider code are removed",
+);
+const socialPlatforms = [...socialEstimatorPage.matchAll(/<option value="(YouTube|Instagram|TikTok|Twitch|X|Facebook|Patreon|Newsletter|Affiliate|Sponsorship|Products)">/g)]
+  .map((match) => match[1]);
+pass(
+  sameSortedValues(socialPlatforms, ["YouTube", "Instagram", "TikTok", "Twitch", "X", "Facebook", "Patreon", "Newsletter", "Affiliate", "Sponsorship", "Products"]),
+  "cross-platform estimator exposes exactly the 11 approved manual labels",
+);
+pass(
+  ["Platform payout scenario", "Sponsorship-value scenario", "User-entered revenue"].every((label) => socialEstimatorPage.includes(label))
+    && /<option value="connected" disabled>Connected-account result \(not available\)<\/option>/.test(socialEstimatorPage),
+  "cross-platform estimator offers three manual modes and keeps connected-account mode disabled",
+);
+const socialNumberInputs = [...socialEstimatorPage.matchAll(/<input\b[^>]*type="number"[^>]*>/g)].map((match) => match[0]);
+pass(
+  socialNumberInputs.length === 3 && socialNumberInputs.every((input) => /\bvalue="0"/.test(input)),
+  "cross-platform estimator supplies no nonzero quantity, rate, or revenue assumption",
+);
+pass(
+  socialEstimatorScript.includes("monthly: quantity / 1000 * rate")
+    && socialEstimatorScript.includes("monthly: Number(inputs[0].value)")
+    && !/benchmark|defaultRate|platformRate|followerMultiplier|subscriberMultiplier|nicheMultiplier/i.test(socialEstimatorScript),
+  "cross-platform arithmetic uses only the visible active-row values",
+);
+pass(
+  !/\bfetch\s*\(|XMLHttpRequest|WebSocket|localStorage|sessionStorage|URLSearchParams|location\.search|platform SDK/i.test(socialEstimatorScript)
+    && !/instagram\.com|tiktok\.com|twitch\.tv|x\.com|facebook\.com/i.test(socialEstimatorScript),
+  "cross-platform estimator performs no network lookup, account connection, storage, or platform scraping",
+);
+pass(
+  socialEstimatorPage.includes("Manual scenario—not an actual platform payout")
+    && socialEstimatorPage.includes("They are not verified revenue, forecasts, guarantees, or actual payouts")
+    && socialEstimatorPage.includes("Inputs and results stay in this browser tab")
+    && /crcTrackEvent\('calculator_completed'\)/.test(socialEstimatorScript)
+    && !/crcTrackEvent\([^)]*,|\bgtag\s*\(|dataLayer|input\.value[^\n]*track/i.test(socialEstimatorScript),
+  "cross-platform result and privacy copy remain explicit while analytics stays payload-free",
+);
+pass(
+  socialEstimatorPage.includes('id="scenarioResults" tabindex="-1" aria-live="polite" aria-labelledby="scenarioResultsHeading"')
+    && socialEstimatorScript.includes("results.focus()")
+    && socialEstimatorScript.includes("navigator.clipboard.writeText(lastSummary)")
+    && socialEstimatorScript.includes("window.print()")
+    && socialEstimatorScript.includes("row.addEventListener('input'")
+    && socialEstimatorScript.includes("row.addEventListener('change'")
+    && socialEstimatorScript.includes("clearCurrentResult('Scenario added.")
+    && socialEstimatorScript.includes("copyButton.disabled = true")
+    && socialEstimatorScript.includes("printButton.disabled = true")
+    && /@media \(max-width: 420px\)/.test(socialEstimatorStyles)
+    && /@media print/.test(socialEstimatorStyles),
+  "cross-platform results invalidate after edits and support accessible updates, copying, printing, and narrow-screen reflow",
+);
+pass(
+  youtubeEstimatorPage.includes('<meta name="robots" content="noindex, nofollow">')
+    && youtubeEstimatorPage.includes('<body class="calculator-page" data-api-enabled="false">')
+    && /id="lookupChannel"[^>]*disabled/.test(youtubeEstimatorPage)
+    && !home.includes("/tools/youtube-channel-earnings-estimator/")
+    && !sitemap.includes("/tools/youtube-channel-earnings-estimator/")
+    && !llmsText.includes("/tools/youtube-channel-earnings-estimator/")
+    && distBuilder.includes('"tools/youtube-channel-earnings-estimator/"'),
+  "API-backed YouTube page stays disabled and outside production discovery and the public allowlist",
+);
+pass(
+  youtubeEstimatorScript.includes("var currentPayload = null")
+    && youtubeEstimatorScript.includes("function refreshVisibleAssumptions()")
+    && youtubeEstimatorScript.includes("clearEstimate()")
+    && youtubeEstimatorScript.includes("control.addEventListener('input', refreshVisibleAssumptions)")
+    && youtubeEstimatorScript.includes("control.addEventListener('change', refreshVisibleAssumptions)")
+    && youtubeEstimatorScript.includes("Revenue is not modeled with the current selection"),
+  "gated YouTube results cannot remain stale after visible assumptions change",
+);
+pass(
+  JSON.stringify(vercelConfig).includes("img-src 'self' data:")
+    && youtubeEstimatorArchitecture.includes("narrowly scoped thumbnail delivery path")
+    && youtubeEstimatorArchitecture.includes("do not add a broad Google image-host wildcard"),
+  "YouTube thumbnail delivery stays blocked until a narrow CSP-compatible activation design is tested",
+);
+pass(
+  ["YOUTUBE PUBLIC DATA", "CREATOR REVENUE CALCULATOR ASSUMPTIONS", "THIRD-PARTY ESTIMATE"].every((heading) => youtubeEstimatorPage.includes(heading))
+    && youtubeEstimatorPage.includes("This is a third-party estimate from Creator Revenue Calculator. It is not YouTube-published, YouTube-approved, verified revenue, or an actual payout. Public data does not confirm whether a channel or view is monetized.")
+    && youtubeEstimatorPage.includes("The estimate itself is not supplied by YouTube and is not approved or verified by Google or YouTube"),
+  "YouTube scaffold separates public data, visible assumptions, and the independently generated estimate",
+);
+pass(
+  ["longLow", "longMiddle", "longHigh", "shortsLow", "shortsMiddle", "shortsHigh", "unknownLow", "unknownMiddle", "unknownHigh"]
+    .every((id) => youtubeEstimatorPage.includes(`id="${id}"`) && new RegExp(`id="${id}"[^>]*value="0"`).test(youtubeEstimatorPage))
+    && youtubeEstimatorPage.includes('id="longFormPercent"')
+    && youtubeEstimatorPage.includes("The Shorts share is 100% minus this visible value"),
+  "YouTube scaffold keeps all long-form, Shorts, unknown, and mixed-split assumptions visible",
+);
+const estimatorRevenueFunction = youtubeEstimatorCore.slice(
+  youtubeEstimatorCore.indexOf("export function estimateRevenueFromVisibleAssumptions"),
+  youtubeEstimatorCore.indexOf("export function trackedWindowAvailability"),
+);
+pass(
+  !/subscriber/i.test(estimatorRevenueFunction)
+    && estimatorRevenueFunction.includes("modeledViews / 1_000 * applied.low")
+    && estimatorRevenueFunction.includes("monthly.middle * 12")
+    && youtubeEstimatorPage.includes("Do not model revenue"),
+  "YouTube estimator revenue math uses visible views and RPM values without a subscriber multiplier or monetization claim",
+);
+const youtubeBrowserSource = `${youtubeEstimatorPage}\n${youtubeEstimatorScript}`;
+pass(
+  !/YOUTUBE_DATA_API_KEY|YOUTUBE_ESTIMATOR_APPROVAL_DATE|YOUTUBE_ESTIMATOR_POLICY_VERSION|ENABLE_YOUTUBE_PUBLIC_ESTIMATOR|AIza[0-9A-Za-z_-]{30,}/.test(youtubeBrowserSource)
+    && !/location\.search|URLSearchParams|\bgtag\s*\(|dataLayer|crcTrackEvent\([^)]*,/i.test(youtubeBrowserSource),
+  "YouTube browser source contains no server configuration, credential, query-state, or analytics payload path",
+);
+pass(
+  youtubeEstimatorCore.includes('"x-goog-api-key": options.apiKey')
+    && !/[?&]key=/.test(youtubeEstimatorCore + youtubeEstimatorEndpoint)
+    && ["channels", "playlistItems", "videos"].every((resource) => youtubeEstimatorCore.includes(`"${resource}"`))
+    && !/search\.list|\/youtube\/v3\/search|youtube\.com\/watch|youtube\.com\/playlist/i.test(youtubeEstimatorCore + youtubeEstimatorEndpoint)
+    && youtubeEstimatorCore.includes("const API_TIMEOUT_MS = 8_000"),
+  "server client uses a header-only key, fixed YouTube resources, no search or scraping, and a bounded timeout",
+);
+pass(
+  youtubeEstimatorEndpoint.indexOf("launchGatesSatisfied") < youtubeEstimatorEndpoint.indexOf("readBody(request)")
+    && youtubeEstimatorEndpoint.includes("productionActivationLocked(environment)")
+    && youtubeEstimatorEndpoint.includes("const productionService = null")
+    && youtubeEstimatorCore.includes("if (!runtimeGuards?.productionReady)")
+    && youtubeEstimatorCore.includes("if (!await runtimeGuards.reserveQuota(3))")
+    && youtubeEstimatorCore.includes("runtimeGuards.coalesce"),
+  "YouTube endpoint fails before body parsing and cannot activate without production-ready shared guards",
+);
+pass(
+  gitignore.includes(".env")
+    && gitignore.includes(".env.*")
+    && packageConfig.scripts?.["test:youtube-estimator"] === "node --test tests/youtube-estimator.test.js"
+    && packageConfig.scripts?.build?.includes("npm run test:youtube-estimator"),
+  "environment files are ignored and the focused YouTube safety suite is part of every build",
 );
 pass(["favicon.svg", "logo.png", "og-image.png"].every((file) => fs.existsSync(path.join(root, "assets/images", file))), "favicon, logo, and social sharing artwork exist");
 pass(affiliateScript.includes("adjustedMonthlyCommissions = monthlyCommissions"), "affiliate revenue is not multiplied by the number of programs");
@@ -1015,6 +1161,7 @@ const maintainedNonAuthorPages = [
   newsletterPage,
   patreonPage,
   sponsorshipPage,
+  socialEstimatorPage,
   youtubePage,
 ].join("\n");
 pass(
@@ -1034,11 +1181,11 @@ pass(
   "About metadata, schema, and copy omit the author's exact location and private company identity",
 );
 pass(
-  [affiliatePage, engagementPage, instagramPage, newsletterPage, patreonPage, podcastPage, sponsorshipPage, ugcPage, tiktokPage, twitchPage, youtubePage].every((page) => (
+  [affiliatePage, engagementPage, instagramPage, newsletterPage, patreonPage, podcastPage, socialEstimatorPage, sponsorshipPage, ugcPage, tiktokPage, twitchPage, youtubePage].every((page) => (
     page.includes('<meta name="author" content="Creator Revenue Calculator">')
       && /"author"\s*:\s*\{\s*"@type"\s*:\s*"Organization",\s*"name"\s*:\s*"Creator Revenue Calculator",\s*"url"\s*:\s*"https:\/\/creatorrevenuecalculator\.com\/"/s.test(page)
   )),
-  "all 11 maintained tools use site-level author metadata and Organization schema",
+  "all 12 maintained tools use site-level author metadata and Organization schema",
 );
 pass(!/Built by a digital marketing professional/i.test(publicText), "generic invented author credentials are absent from public pages");
 pass(
@@ -1068,7 +1215,7 @@ for (const [file, html] of maintainedPages) {
 }
 pass(
   [...maintainedToolPages.values()].every((page) => /<body\b[^>]*\bclass="[^"]*\bcalculator-page\b[^"]*"/i.test(page)),
-  "all 11 maintained calculators opt into the shared mobile and dark-mode contract",
+  "all 12 maintained calculators opt into the shared mobile and dark-mode contract",
 );
 const maintainedProductPages = [
   home,
@@ -1078,6 +1225,7 @@ const maintainedProductPages = [
   newsletterPage,
   patreonPage,
   podcastPage,
+  socialEstimatorPage,
   sponsorshipPage,
   ugcPage,
   tiktokPage,
@@ -1370,10 +1518,12 @@ pass(
 );
 pass(
   home.includes('"@type": "WebApplication"')
-    && home.includes('"dateModified": "2026-08-18"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-08-18</lastmod>')
+    && home.includes('"dateModified": "2026-08-23"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-08-23</lastmod>')
+    && socialEstimatorPage.includes('"dateModified": "2026-08-23"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-08-23</lastmod>')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-08-18</lastmod>'),
-  "substantive homepage and Patreon resource changes have matching structured and sitemap freshness",
+  "substantive homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
 );
 pass(
   accessibilityStyles.includes(".growth-next-step-actions .btn:focus-visible")

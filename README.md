@@ -4,7 +4,7 @@ Static, browser-based scenario calculators for creator revenue planning at https
 
 ## Current product
 
-The production site contains 11 maintained tools:
+The production site contains 12 maintained tools:
 
 - YouTube ad revenue scenario
 - Twitch revenue scenario
@@ -17,6 +17,7 @@ The production site contains 11 maintained tools:
 - Patreon revenue scenario
 - Newsletter revenue scenario
 - Affiliate marketing scenario
+- Cross-platform manual earnings scenarios
 
 The former finance and gaming YouTube benchmark pages permanently redirect to the maintained YouTube tool. The UGC route now serves an explicit-input quote worksheet with no supplied market rates.
 
@@ -31,10 +32,12 @@ The former finance and gaming YouTube benchmark pages permanently redirect to th
 
 ## Stack and hosting
 
-- Static HTML, CSS, and vanilla JavaScript
+- Static HTML, CSS, and vanilla JavaScript for public pages
 - Vercel deployment configured by `vercel.json`
 - Local Chart.js and Font Awesome assets where still required
-- No application server, account system, or database
+- One production-locked Vercel function scaffold for the proposed public YouTube channel estimator; no account system or database
+
+The API-backed Channel Earnings Estimator for YouTube remains excluded from `dist/`, navigation, sitemap, and assistant discovery. Its server route is production-locked and has no shared abuse-control adapter. It cannot call YouTube in production until the documented Google/YouTube policy, privacy, quota, infrastructure, and owner gates are complete.
 
 ## Important files
 

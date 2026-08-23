@@ -1,6 +1,6 @@
 # Creator Revenue Calculator
 
-Creator Revenue Calculator provides a free multi-stream monthly revenue worksheet plus 11 specialized browser-based tools for creators. Calculator inputs stay in the visitor's browser. Results are arithmetic scenarios, not guarantees or financial advice.
+Creator Revenue Calculator provides a free multi-stream monthly revenue worksheet plus 12 specialized browser-based tools for creators. Calculator inputs stay in the visitor's browser. Results are arithmetic scenarios, not guarantees or financial advice.
 
 ## Calculators
 
@@ -16,6 +16,7 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Engagement rate: https://creatorrevenuecalculator.com/tools/engagement-rate/
 - Newsletter and Substack revenue: https://creatorrevenuecalculator.com/tools/newsletter-revenue/
 - Patreon revenue and income tracker: https://creatorrevenuecalculator.com/tools/patreon-revenue/
+- Cross-platform manual earnings scenarios: https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/
 
 ## Trust and limitations
 

@@ -1,4 +1,7 @@
 *.broken-backup
+.env
+.env.*
+!.env.example
 
 # Empire SEO Machine
 data_sources/config/
