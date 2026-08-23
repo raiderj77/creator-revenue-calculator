@@ -65,6 +65,9 @@ const PUBLIC_FILES = [
   "tools/sponsorship-rate/index.html",
   "tools/sponsorship-rate/sponsorship-calculator.css",
   "tools/sponsorship-rate/sponsorship-calculator.js",
+  "tools/social-media-earnings-estimator/index.html",
+  "tools/social-media-earnings-estimator/social-media-estimator.css",
+  "tools/social-media-earnings-estimator/social-media-estimator.js",
   "tools/tiktok-revenue/index.html",
   "tools/tiktok-revenue/tiktok-calculator.css",
   "tools/tiktok-revenue/tiktok-calculator.js",
@@ -88,6 +91,7 @@ const REPOSITORY_ONLY_PREFIXES = [
   ".github/",
   ".claude/",
   ".githooks/",
+  "api/",
   "blog/",
   "content/",
   "context/",
@@ -98,6 +102,7 @@ const REPOSITORY_ONLY_PREFIXES = [
   "scripts/",
   "tools/finance-youtube-revenue/",
   "tools/gaming-youtube-revenue/",
+  "tools/youtube-channel-earnings-estimator/",
 ];
 const REPOSITORY_ONLY_EXTENSIONS = new Set([".md", ".py", ".sh", ".yaml", ".yml"]);
 
@@ -267,7 +272,7 @@ function verifySitemapAndRedirects(vercelConfig) {
   const sitemap = fs.readFileSync(path.join(DIST, "sitemap.xml"), "utf8");
   const sitemapUrls = [...sitemap.matchAll(/<loc>(https:\/\/creatorrevenuecalculator\.com[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
-  if (sitemapUrls.length !== 19) fail(`Expected 19 sitemap URLs, found ${sitemapUrls.length}`);
+  if (sitemapUrls.length !== 20) fail(`Expected 20 sitemap URLs, found ${sitemapUrls.length}`);
   for (const url of sitemapUrls) {
     const target = routeToFile(url.pathname);
     if (!EXPECTED_FILES.has(target)) fail(`Sitemap URL is absent from the public allowlist: ${url.href}`);

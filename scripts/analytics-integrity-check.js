@@ -491,6 +491,7 @@ function runCalculatorEventCoverageChecks() {
     ['newsletter', 'tools/newsletter-revenue/newsletter-calculator.js'],
     ['patreon', 'tools/patreon-revenue/patreon-calculator.js'],
     ['podcast', 'tools/podcast-revenue/podcast-calculator.js'],
+    ['social', 'tools/social-media-earnings-estimator/social-media-estimator.js'],
     ['sponsorship', 'tools/sponsorship-rate/sponsorship-calculator.js'],
     ['tiktok', 'tools/tiktok-revenue/tiktok-calculator.js'],
     ['twitch', 'tools/twitch-revenue/twitch-calculator.js'],
@@ -516,6 +517,14 @@ function runCalculatorEventCoverageChecks() {
     }
     ok(hasCompletion, `${name} calculator tracks only an explicit successful completion through the shared API`);
   }
+
+  const disabledYoutubePage = fs.readFileSync(path.join(root, 'tools/youtube-channel-earnings-estimator/index.html'), 'utf8');
+  const disabledYoutubeClient = fs.readFileSync(path.join(root, 'tools/youtube-channel-earnings-estimator/youtube-channel-estimator.js'), 'utf8');
+  ok(disabledYoutubePage.includes('data-api-enabled="false"'), 'API-backed YouTube browser client remains disabled');
+  ok(!/location\.search|URLSearchParams|\bgtag\b|dataLayer/.test(disabledYoutubeClient), 'API-backed YouTube client cannot read channel query strings or call analytics directly');
+  const youtubeCalls = [...disabledYoutubeClient.matchAll(/window\.crcTrackEvent\s*\(([^)]*)\)/g)];
+  ok(youtubeCalls.every((match) => !match[1].includes(',')), 'API-backed YouTube client can emit only payload-free generic events');
+  ok(!/crcTrackEvent\([^)]*(?:channel|platform|rpm|rate|revenue|view|result)/i.test(disabledYoutubeClient), 'API-backed YouTube client cannot place identifiers, assumptions, or results in analytics');
 
   for (const name of ['engagement', 'ugc']) {
     const source = sources.get(name);

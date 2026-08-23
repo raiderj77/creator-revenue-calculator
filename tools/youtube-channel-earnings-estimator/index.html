@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Channel Earnings Estimator for YouTube | Disabled Preview</title>
+  <meta name="description" content="Production-disabled preview of a channel earnings estimator that separates public YouTube data, visible creator assumptions, and third-party arithmetic.">
+  <meta name="author" content="Creator Revenue Calculator">
+  <link rel="canonical" href="https://creatorrevenuecalculator.com/tools/youtube-channel-earnings-estimator/">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="stylesheet" href="/assets/vendor/fontawesome/css/subset.css">
+  <link rel="stylesheet" href="youtube-channel-estimator.css">
+  <link rel="stylesheet" href="/assets/css/accessibility-audit-fixes.css">
+  <script src="/assets/js/theme.js" defer></script>
+</head>
+<body class="calculator-page" data-api-enabled="false">
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="container">
+      <a href="/" class="logo"><i class="fas fa-calculator" aria-hidden="true"></i> Creator Revenue Calculator</a>
+      <button id="theme-toggle" aria-label="Toggle dark mode" type="button">Theme</button>
+      <button class="hamburger mobile-menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button"><i class="fas fa-bars" aria-hidden="true"></i></button>
+      <div class="nav-links nav-menu" id="navLinks">
+        <a href="/tools/youtube-ad-revenue/">Manual YouTube scenario</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="gate-banner" role="status">
+      <div class="container">
+        <strong>Production-disabled preview.</strong> Public channel lookup is unavailable. Nothing entered here is sent to Creator Revenue Calculator, Google, or YouTube.
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Approval-gated acquisition feature</p>
+        <h1>Channel Earnings Estimator for YouTube</h1>
+        <p class="subtitle">A planned estimator that keeps official public channel statistics separate from your visible revenue assumptions and independently generated arithmetic.</p>
+      </div>
+    </section>
+
+    <section class="estimator-section">
+      <div class="container estimator-layout">
+        <aside class="estimator-controls" aria-labelledby="lookupHeading">
+          <h2 id="lookupHeading">Channel lookup</h2>
+          <p>When approved, enter one exact channel identifier. Ambiguous custom URLs and search-based matching will not be used.</p>
+          <label for="channelInput">YouTube handle, channel URL, or channel ID</label>
+          <input id="channelInput" type="text" maxlength="220" autocomplete="off" spellcheck="false" placeholder="@handle or UC… channel ID">
+          <p class="input-hint">Supported forms: @handle, youtube.com/@handle, youtube.com/channel/UC…, and supported legacy /user/ URLs.</p>
+
+          <fieldset class="mode-picker">
+            <legend>Estimation mode</legend>
+            <label><input type="radio" value="instant" checked> Instant mode</label>
+            <label><input type="radio" value="tracked" disabled> Tracked mode (requires approved snapshots)</label>
+            <label><input type="radio" value="connected" disabled> Connected mode (future architecture only)</label>
+          </fieldset>
+
+          <label for="lookbackDays">Recent-upload lookback</label>
+          <select id="lookbackDays">
+            <option value="30">30 days</option>
+            <option value="60">60 days</option>
+            <option value="90">90 days</option>
+          </select>
+          <p class="input-hint">This would count currently visible views on public videos published inside the selected window and exclude older-catalog activity.</p>
+
+          <label class="privacy-agreement"><input id="privacyAccepted" type="checkbox"> <span>I agree to the <a href="/privacy.html">API-client privacy notice</a> and understand that an activated lookup would send this public channel identifier to Creator Revenue Calculator and YouTube API Services.</span></label>
+          <label class="honeypot" aria-hidden="true">Website<input id="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <button id="lookupChannel" class="primary-button" type="button" disabled>Public lookup is not available</button>
+          <p id="lookupStatus" class="form-status" role="alert" aria-live="assertive">Activation requires policy approval, owner approval, a restricted server key, privacy completion, and production-grade abuse controls.</p>
+        </aside>
+
+        <div class="estimator-results" id="estimatorResults" tabindex="-1" aria-live="polite">
+          <section class="data-panel public-data" aria-labelledby="publicDataHeading">
+            <div class="panel-heading">
+              <p class="panel-kicker">YOUTUBE PUBLIC DATA</p>
+              <h2 id="publicDataHeading">Public data from YouTube</h2>
+            </div>
+            <div class="source-attribution"><a href="https://www.youtube.com/" rel="nofollow noopener noreferrer">YouTube</a> is the planned public-data source. Approved YouTube attribution must be added before activation.</div>
+            <div class="public-identity">
+              <img id="channelThumbnail" src="/assets/images/logo.png" alt="" hidden>
+              <div><strong id="channelName">No channel requested</strong><span id="channelId">—</span></div>
+            </div>
+            <dl class="metric-grid">
+              <div><dt>Subscribers</dt><dd id="subscriberCount">—</dd></div>
+              <div><dt>YouTube-reported channel views</dt><dd id="channelViewCount">—</dd></div>
+              <div><dt>Public videos</dt><dd id="publicVideoCount">—</dd></div>
+              <div><dt>Recent public uploads sampled</dt><dd id="recentUploadCount">—</dd></div>
+              <div><dt>Current data retrieval date</dt><dd id="retrievalDate">—</dd></div>
+            </dl>
+            <p class="definition-note">YouTube reports rounded public subscriber totals when they are visible. Its channel view count and public-video count follow YouTube's current definitions; they do not reveal private watch time or monetized playbacks.</p>
+          </section>
+
+          <section class="data-panel assumptions" aria-labelledby="assumptionsHeading">
+            <div class="panel-heading">
+              <p class="panel-kicker">CREATOR REVENUE CALCULATOR ASSUMPTIONS</p>
+              <h2 id="assumptionsHeading">Assumptions entered by you</h2>
+            </div>
+            <label for="contentMix">Content mix</label>
+            <select id="contentMix">
+              <option value="mostly-long-form">Mostly long-form</option>
+              <option value="mostly-shorts">Mostly Shorts</option>
+              <option value="mixed">Mixed</option>
+              <option value="unknown" selected>Unknown</option>
+            </select>
+            <label for="longFormPercent">Long-form share for mixed content (%)</label>
+            <input id="longFormPercent" type="number" inputmode="decimal" min="0" max="100" step="1" value="">
+            <p class="input-hint">Required only for Mixed. The Shorts share is 100% minus this visible value.</p>
+
+            <div class="rpm-groups">
+              <fieldset>
+                <legend>Long-form RPM assumptions ($ per 1,000 modeled views)</legend>
+                <div class="rate-grid">
+                  <label>Low<input id="longLow" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>Middle<input id="longMiddle" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>High<input id="longHigh" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Shorts RPM assumptions ($ per 1,000 modeled views)</legend>
+                <div class="rate-grid">
+                  <label>Low<input id="shortsLow" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>Middle<input id="shortsMiddle" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>High<input id="shortsHigh" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Unknown-mix broad range ($ per 1,000 modeled views)</legend>
+                <div class="rate-grid">
+                  <label>Low<input id="unknownLow" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>Middle<input id="unknownMiddle" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                  <label>High<input id="unknownHigh" type="number" inputmode="decimal" min="0" max="100000" step="0.01" value="0"></label>
+                </div>
+                <p class="input-hint">When you also enter long-form or Shorts ranges, Unknown must cover the broadest displayed low-to-high envelope. Its middle remains your explicit assumption.</p>
+              </fieldset>
+            </div>
+
+            <label for="monetizationAssumption">Monetization assumption</label>
+            <select id="monetizationAssumption">
+              <option value="not-modeled" selected>Do not model revenue</option>
+              <option value="hypothetical-monetized-views">Assume modeled view activity is monetized for this hypothetical scenario</option>
+            </select>
+            <dl class="assumption-summary">
+              <div><dt>View-period method</dt><dd id="viewPeriodMethod">Recent public uploads; no result yet</dd></div>
+              <div><dt>Data-quality level</dt><dd id="dataQualityLevel">Coverage facts only; no accuracy score</dd></div>
+            </dl>
+          </section>
+
+          <section class="data-panel estimate" aria-labelledby="estimateHeading">
+            <div class="panel-heading">
+              <p class="panel-kicker">THIRD-PARTY ESTIMATE</p>
+              <h2 id="estimateHeading">Creator Revenue Calculator third-party estimate</h2>
+            </div>
+            <p class="instant-label">Instant estimate based on currently visible views for recently published videos.</p>
+            <dl class="metric-grid estimate-metrics">
+              <div><dt>Estimated daily view activity</dt><dd id="dailyActivity">—</dd></div>
+              <div><dt>Estimated monthly view activity</dt><dd id="monthlyActivity">—</dd></div>
+              <div><dt>Low monthly revenue</dt><dd id="lowMonthly">—</dd></div>
+              <div><dt>Middle monthly revenue</dt><dd id="middleMonthly">—</dd></div>
+              <div><dt>High monthly revenue</dt><dd id="highMonthly">—</dd></div>
+              <div><dt>Low annual revenue</dt><dd id="lowAnnual">—</dd></div>
+              <div><dt>Middle annual revenue</dt><dd id="middleAnnual">—</dd></div>
+              <div><dt>High annual revenue</dt><dd id="highAnnual">—</dd></div>
+            </dl>
+            <div class="required-disclosure">
+              “This is a third-party estimate from Creator Revenue Calculator. It is not YouTube-published, YouTube-approved, verified revenue, or an actual payout. Public data does not confirm whether a channel or view is monetized.”
+            </div>
+            <p>Creator Revenue Calculator would generate this estimate independently using YouTube API data and your visible assumptions. The estimate itself is not supplied by YouTube and is not approved or verified by Google or YouTube.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="mode-notes">
+      <div class="container">
+        <h2>What will each estimator mode mean?</h2>
+        <div class="notes-grid">
+          <article><h3>Instant mode</h3><p>Uses currently visible view counts on recent public uploads as a dated proxy. It excludes older-catalog activity and is never labeled actual monthly channel views.</p></article>
+          <article><h3>Tracked mode</h3><p>Remains unavailable until approved daily snapshot storage exists. A 30-day change will require at least 28 valid snapshots and at least a 30-calendar-day span, with missing-snapshot and refresh warnings.</p></article>
+          <article><h3>Connected mode</h3><p>Remains disabled. A future owner-approved release may use Google OAuth and YouTube Analytics, but this initial public-data design contains no OAuth code.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><div class="footer-logo">Creator Revenue Calculator</div><p class="footer-description">Transparent scenario tools using visible assumptions.</p></div>
+        <div class="footer-section"><h3 class="footer-title">Available tools</h3><a href="/tools/youtube-ad-revenue/" class="footer-link">Manual YouTube scenario</a><a href="/tools/social-media-earnings-estimator/" class="footer-link">Cross-platform scenarios</a></div>
+        <div class="footer-section"><h3 class="footer-title">Policies</h3><a href="/privacy.html" class="footer-link">Privacy</a><a href="/terms.html" class="footer-link">Terms</a><a href="/contact.html" class="footer-link">Contact and deletion requests</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Creator Revenue Calculator.</p><p>Disabled source preview. Not part of the production artifact.</p></div>
+    </div>
+  </footer>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="youtube-channel-estimator.js" defer></script>
+</body>
+</html>
