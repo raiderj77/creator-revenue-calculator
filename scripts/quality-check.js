@@ -1091,6 +1091,12 @@ pass(
   resultCards.length === 12 && resultCards.every((card) => /aria-live="polite"/.test(card)),
   "the homepage worksheet and all 11 specialized calculator result cards announce updates politely",
 );
+const homeToolCardCount = [...home.matchAll(/<div\b[^>]*class="[^"]*\btool-card\b[^"]*"[^>]*>/g)].length;
+const homeSpecializedToolCount = Number(home.match(/<div class="stat-number">(\d+)<\/div>\s*<div class="stat-label">Specialized Tools<\/div>/)?.[1]);
+pass(
+  homeToolCardCount > 0 && homeSpecializedToolCount === homeToolCardCount,
+  "homepage Specialized Tools total matches its visible tool cards",
+);
 pass(themeScript.includes("Print Results") && themeScript.includes("window.print()"), "calculator result cards expose browser printing");
 pass(
   themeScript.indexOf("printStyles.media = 'print'") > themeScript.indexOf("printStyles.href")
