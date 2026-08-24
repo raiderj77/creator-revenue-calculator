@@ -106,6 +106,7 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--da
 .footer-bottom p { margin: 0; }
 
 html[data-theme="dark"] body.calculator-page { --ink: #e5e7eb; --muted: #cbd5e1; --surface: #172033; --page: #0f172a; --border: #475569; }
+html[data-theme="dark"] .scenario-row legend, html[data-theme="dark"] .btn-text { color: #c7d2fe; }
 html[data-theme="dark"] .answer-block { color: #e5e7eb; background: #1e293b; border-color: #475569; }
 html[data-theme="dark"] .privacy-note { color: #a7f3d0; background: #064e3b; border-color: #059669; }
 html[data-theme="dark"] input, html[data-theme="dark"] select, html[data-theme="dark"] .btn-secondary, html[data-theme="dark"] .remove-scenario { color: #e5e7eb; background: #0f172a; }
