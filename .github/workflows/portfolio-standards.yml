@@ -1,0 +1,46 @@
+name: Portfolio standards
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 11 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-standards-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  security:
+    name: Portfolio / ${{ matrix.tool }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: ${{ fromJSON(github.event_name == 'schedule' && '["osv"]' || '["actionlint","zizmor","gitleaks","osv"]') }}
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Validate workflows
+        if: matrix.tool == 'actionlint'
+        run: python .portfolio-standards/scripts/tool.py actionlint -- -color
+      - name: Audit workflow security offline
+        if: matrix.tool == 'zizmor'
+        run: python .portfolio-standards/scripts/tool.py zizmor -- --offline --no-progress .github/workflows
+      - name: Scan Git history with redacted output
+        if: matrix.tool == 'gitleaks'
+        run: python .portfolio-standards/scripts/tool.py gitleaks -- git --redact=100 --no-banner .
+      - name: Scan the locked dependency inventory
+        if: matrix.tool == 'osv'
+        run: python .portfolio-standards/scripts/tool.py osv -- scan source --lockfile package-lock.json

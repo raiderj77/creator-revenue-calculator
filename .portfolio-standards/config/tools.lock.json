@@ -1,0 +1,82 @@
+{
+  "gitleaks": {
+    "repo": "gitleaks/gitleaks",
+    "assets": [
+      {
+        "name": "gitleaks_8.30.1_linux_x64.tar.gz",
+        "digest": "sha256:551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb",
+        "browser_download_url": "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz"
+      },
+      {
+        "name": "gitleaks_8.30.1_windows_x64.zip",
+        "digest": "sha256:d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e",
+        "browser_download_url": "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_windows_x64.zip"
+      }
+    ],
+    "version": "v8.30.1"
+  },
+  "pinact": {
+    "repo": "suzuki-shunsuke/pinact",
+    "assets": [
+      {
+        "name": "pinact_linux_amd64.tar.gz",
+        "digest": "sha256:d1cffebe5704b74e2e5f8a864efb9f7e54768972dc686188c008033fb1797841",
+        "browser_download_url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v4.1.1/pinact_linux_amd64.tar.gz"
+      },
+      {
+        "name": "pinact_windows_amd64.zip",
+        "digest": "sha256:88db480a3f8833d7233b482a72c97308df558ebceb0d3214775889239901f6a9",
+        "browser_download_url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v4.1.1/pinact_windows_amd64.zip"
+      }
+    ],
+    "version": "v4.1.1"
+  },
+  "actionlint": {
+    "repo": "rhysd/actionlint",
+    "assets": [
+      {
+        "name": "actionlint_1.7.12_linux_amd64.tar.gz",
+        "digest": "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8",
+        "browser_download_url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz"
+      },
+      {
+        "name": "actionlint_1.7.12_windows_amd64.zip",
+        "digest": "sha256:6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9",
+        "browser_download_url": "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_amd64.zip"
+      }
+    ],
+    "version": "v1.7.12"
+  },
+  "osv": {
+    "repo": "google/osv-scanner",
+    "assets": [
+      {
+        "name": "osv-scanner_linux_amd64",
+        "digest": "sha256:f9f25499a2c8cc367b3af45df2ea7eeca7fbccceab9c35079968f4b3652194be",
+        "browser_download_url": "https://github.com/google/osv-scanner/releases/download/v2.5.1/osv-scanner_linux_amd64"
+      },
+      {
+        "name": "osv-scanner_windows_amd64.exe",
+        "digest": "sha256:25e42f5ef6711fd8c0fb45390972205891dd44c6bd02ac93f0f63e8e98d9bfb6",
+        "browser_download_url": "https://github.com/google/osv-scanner/releases/download/v2.5.1/osv-scanner_windows_amd64.exe"
+      }
+    ],
+    "version": "v2.5.1"
+  },
+  "zizmor": {
+    "repo": "zizmorcore/zizmor",
+    "assets": [
+      {
+        "name": "zizmor-x86_64-pc-windows-msvc.zip",
+        "digest": "sha256:a2fcf298b84d3d8498a3d718bb63f0abe26823bf68a11f0f439620f8f2f878f0",
+        "browser_download_url": "https://github.com/zizmorcore/zizmor/releases/download/v1.30.0/zizmor-x86_64-pc-windows-msvc.zip"
+      },
+      {
+        "name": "zizmor-x86_64-unknown-linux-gnu.tar.gz",
+        "digest": "sha256:ec8c95cd800845abb9bbc5f377ec7c57d2eb8e2386a00a201d3a74ee4092e5ed",
+        "browser_download_url": "https://github.com/zizmorcore/zizmor/releases/download/v1.30.0/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+      }
+    ],
+    "version": "v1.30.0"
+  }
+}
