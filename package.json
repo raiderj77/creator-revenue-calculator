@@ -15,11 +15,16 @@
     "build:dist": "node scripts/build-dist.js",
     "test:dist": "node scripts/build-dist.js --check",
     "test:quality": "node scripts/quality-check.js",
-    "build": "npm run lint:predeploy && npm run lint:content && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run build:dist && npm run test:dist"
+    "build": "npm run lint:predeploy && npm run lint:content && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run build:dist && npm run test:dist",
+    "test:browser": "playwright test",
+    "lint:unused": "knip"
   },
   "private": true,
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "@fortawesome/fontawesome-free": "6.7.2",
-    "html-validate": "11.6.2"
+    "@playwright/test": "1.62.1",
+    "html-validate": "11.6.2",
+    "knip": "6.34.0"
   }
 }
