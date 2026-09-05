@@ -4,6 +4,23 @@ test.beforeEach(async ({ context }) => {
   await context.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
 for (const route of ['/tools/youtube-ad-revenue/', '/tools/patreon-revenue/', '/tools/newsletter-revenue/']) {
+  test(`delayed icon fonts preserve layout and the page stays small: ${route}`, async ({ page }) => {
+    await page.setViewportSize({width:412,height:823});
+    await page.route('http://127.0.0.1:4312/**/*.woff2', async route => {
+      await new Promise(resolve => setTimeout(resolve,400));
+      await route.continue();
+    });
+    await page.addInitScript(() => {
+      window.fixtureLayoutShift=0;
+      new PerformanceObserver(list => { for(const entry of list.getEntries()) if(!entry.hadRecentInput) window.fixtureLayoutShift+=entry.value; }).observe({type:'layout-shift',buffered:true});
+    });
+    await page.goto(route);
+    await page.evaluate(async () => { await document.fonts.ready; await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))); });
+    expect(await page.evaluate(()=>window.fixtureLayoutShift)).toBeLessThanOrEqual(0.1);
+    const bytes=await page.evaluate(()=>performance.getEntriesByType('resource').reduce((total,entry)=>total+entry.encodedBodySize,0));
+    expect(bytes).toBeLessThan(500000);
+    await expect(page.getByRole('button',{name:'Continue without analytics'})).toBeFocused();
+  });
   test(`mobile accessibility and readable disclosure: ${route}`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(route);
