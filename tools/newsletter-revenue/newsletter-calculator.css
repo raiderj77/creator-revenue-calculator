@@ -86,7 +86,7 @@ a:hover { color: var(--brand-dark); }
 }
 .answer-block-label {
     display: block;
-    color: var(--brand-dark);
+    color: #92400e;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.04em;
