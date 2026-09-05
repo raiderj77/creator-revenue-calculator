@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function focusOnNextFrame(target) {
     window.requestAnimationFrame(function() {
-      if (target && target.isConnected) target.focus();
+      if (target && target.isConnected) target.focus({ preventScroll: true });
     });
   }
 

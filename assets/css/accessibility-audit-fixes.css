@@ -180,6 +180,17 @@ body.calculator-page .results-card.has-invalid-inputs .view-rate {
     font-size: 1.15rem;
 }
 
+/* Reserve the same space before icon fonts and the theme label hydrate. */
+#theme-toggle {
+    width: 2.75rem;
+    flex: 0 0 2.75rem;
+}
+.fa, .fas, .fab {
+    width: 1.25em;
+    text-align: center;
+    flex-shrink: 0;
+}
+
 .hamburger {
     display: none;
 }
