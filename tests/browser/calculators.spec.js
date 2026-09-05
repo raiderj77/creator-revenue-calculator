@@ -17,7 +17,7 @@ for (const route of ['/tools/youtube-ad-revenue/', '/tools/patreon-revenue/', '/
     await page.goto(route);
     await page.evaluate(async () => { await document.fonts.ready; await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))); });
     expect(await page.evaluate(()=>window.fixtureLayoutShift)).toBeLessThanOrEqual(0.1);
-    const bytes=await page.evaluate(()=>performance.getEntriesByType('resource').reduce((total,entry)=>total+entry.encodedBodySize,0));
+    const bytes=await page.evaluate(()=>[...performance.getEntriesByType('navigation'),...performance.getEntriesByType('resource')].reduce((total,entry)=>total+entry.encodedBodySize,0));
     expect(bytes).toBeLessThan(500000);
     await expect(page.getByRole('button',{name:'Continue without analytics'})).toBeFocused();
   });
