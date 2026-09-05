@@ -3,6 +3,8 @@ name: Portfolio standards
 on:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '43 11 * * 1'
 
 permissions:
   contents: read
@@ -19,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [actionlint, zizmor, gitleaks, osv]
+        tool: ${{ fromJSON(github.event_name == 'schedule' && '["osv"]' || '["actionlint","zizmor","gitleaks","osv"]') }}
     steps:
       - name: Check out source without persisted credentials
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4

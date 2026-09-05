@@ -1,6 +1,6 @@
 {
   "files": {
-    ".github/workflows/portfolio-standards.yml": "b581c99a69cea517c76e680178097a4e4743ccb8d1e38adff2a072dd673d8614",
+    ".github/workflows/portfolio-standards.yml": "b83e1dfac5346999fcc37ed6d1ccdb21e2c8cd48f6e26a56fc8126a643bb7024",
     ".portfolio-standards/.gitignore": "5fe496a917a6009e370a0368f1f3bf898b3972513ffa0ba7bb8d4ff69c67fdf5",
     ".portfolio-standards/config/tools.lock.json": "1bf292efaba05bb4a5596f0e0b5349137d7559c49082ef6be51746766e342d04",
     ".portfolio-standards/scripts/tool.py": "0a484d089f122ca650dca1f57ce0b1c77a564632b6090e1aff5a3faec83d6b4d"
