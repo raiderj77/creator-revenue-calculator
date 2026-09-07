@@ -1,101 +1,26 @@
 # Research SERP Command
 
-Deep SERP analysis for a specific keyword to understand what Google wants.
+Inspect a live search-results page to understand current intent and eligibility without imitating competitors.
 
 ## Usage
-`/research-serp "keyword phrase"`
 
-## What This Command Does
+`/research-serp "query"`
 
-Analyzes the top 10 ranking results for a keyword to provide detailed content requirements:
-- Content type patterns (listicle, how-to, guide, etc.)
-- Average word count and recommended length
-- SERP features present (featured snippet, PAA, video, etc.)
-- Freshness requirements
-- Competitive difficulty
-- Search intent
-- Common content structure
+## Rules
 
-Generates comprehensive content brief for creating or updating content.
+Read `docs/editorial-publishing.md` first. This command is read-only. Record search date, locale, device/context, and personalization limitations. Results can change and do not reveal a guaranteed ranking formula.
 
-## Process
+Do not copy headings, prose, tables, examples, data, design, or feature implementations. Do not derive a required word count, keyword density, or page template from ranking pages. Do not use a paid API without fresh approval.
 
-Execute SERP analysis for a keyword:
-```bash
-python3 research_serp_analysis.py "your target keyword"
-```
+## Workflow
 
-This will:
-1. Fetch top 20 organic results from DataForSEO
-2. Analyze content patterns in top 10
-3. Detect content types from titles
-4. Fetch word counts for each result
-5. Identify SERP features
-6. Analyze search intent
-7. Assess competitive difficulty
-8. Generate content brief
-9. Create report: `content/content/research/serp-analysis-[keyword].md`
+1. Confirm the query has current Search Console or documented user/funnel evidence.
+2. Record visible result types, dominant user jobs, query ambiguity, snippets, videos/images, discussions, and official sources.
+3. Inspect a small relevant set of results. Summarize in original words what decision each helps complete, what evidence it cites, and what it leaves unresolved.
+4. Check first-party platform documentation for any policy, fee, eligibility, or calculation claim needed by the topic.
+5. Determine whether an existing calculator or page can satisfy the intent with a smaller update.
+6. Define an original contribution only if it is useful, sourceable, and linked to a maintained next action.
 
 ## Output
 
-The report includes:
-
-### Content Requirements
-- Recommended word count (based on top 10 average + 10%)
-- Dominant content type (what format works)
-- Content type distribution
-
-### SERP Features
-- Featured snippet opportunity
-- People Also Ask questions
-- Video/image requirements
-- Other SERP features present
-
-### Content Brief
-- Target specifications (word count, type, tone)
-- Must-have elements
-- Recommended structure
-- SERP features to target
-- Freshness requirements
-
-### Competitive Analysis
-- Domain authority mix
-- Difficulty assessment
-- Timeframe expectations
-
-### Action Plan
-Step-by-step process from research to publishing
-
-## Example Use Cases
-
-**Before creating new content**:
-```
-/research-serp "best project management tools"
-```
-Understand: Is this a listicle? How long should it be? What features to include?
-
-**Before updating existing content**:
-```
-/research-serp "how to choose the right software"
-```
-Check if SERP patterns have changed, update to match current expectations
-
-## Integration
-
-After running `/research-serp`:
-- Use the content brief to guide writing
-- Use `/write [keyword]` with insights from SERP analysis
-- Ensure content matches recommended structure and length
-
-## Time & Cost
-
-**Time:** 1-2 minutes per keyword
-**API Cost:** ~$0.02 per keyword (DataForSEO)
-**Cost:** Free for word count (if pages accessible)
-
-## When to Run
-
-- **Before creating any new content**: Know requirements upfront
-- **Before major content updates**: Check current SERP expectations
-- **When stuck on format**: See what type of content ranks
-- **For competitive research**: Understand difficulty before committing
+Return verified observations with URLs and capture date, inferences, unknowns, the intent fit, source requirements, cannibalization risk, and a recommendation to update, draft, defer, or reject. This report does not authorize writing or publication.

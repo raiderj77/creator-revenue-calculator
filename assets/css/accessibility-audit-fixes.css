@@ -860,6 +860,20 @@ html[data-theme="dark"] .contact-card a {
         padding: 0.65rem 0;
     }
 
+    .nav-menu {
+        width: 100%;
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 0.5rem;
+    }
+
+    .nav-menu a {
+        min-height: 2.75rem;
+        padding: 0.65rem 0;
+    }
+
     .tools-grid,
     .hero .container,
     .dashboard-preview,

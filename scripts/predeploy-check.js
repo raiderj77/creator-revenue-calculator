@@ -167,12 +167,17 @@ check("Privacy-safe static output", () => {
   const ignored = readFileSync(ignorePath, "utf-8")
     .split(/\r?\n/)
     .map((line) => line.trim().replace(/\/$/, ""));
-  for (const retiredPath of ["blog", "content", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"]) {
+  for (const retiredPath of ["blog", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"]) {
     if (ignored.includes(retiredPath)) {
       pass(`${retiredPath} is excluded from deployable output`);
     } else {
       fail(`${retiredPath} must be listed in .vercelignore`);
     }
+  }
+  if (ignored.includes("content/*") && ignored.includes("!content/published-articles.json")) {
+    pass("retired content sources stay excluded while the publication manifest remains available to the build");
+  } else {
+    fail(".vercelignore must exclude content sources and retain only content/published-articles.json for the build");
   }
 });
 

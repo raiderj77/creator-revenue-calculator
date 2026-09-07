@@ -1,61 +1,26 @@
 # Research Gaps Command
 
-Identify content gaps where competitors rank but you don't.
+Find evidence-backed gaps between creator questions, current site coverage, and useful competing resources.
 
 ## Usage
-`/research-gaps`
 
-## What This Command Does
+`/research-gaps [optional topic]`
 
-Analyzes 7 competitors to find keywords they rank for (top 20) that you don't rank for at all:
-- **Direct Competitors**: Configured in `config/competitors.json` or passed as arguments
-- **Content Competitors**: Industry blogs and media sites in your niche
+## Rules
 
-For each gap:
-- Filters out branded/irrelevant keywords
-- Scores opportunity based on volume, difficulty, and intent
-- Determines content type needed (listicle, how-to, guide)
-- Prioritizes by potential impact
+Read `docs/editorial-publishing.md` first. This command is read-only. A competitor gap is not, by itself, a reason to create a page.
 
-## Process
+Do not copy competitor wording, structure, data, design, or functionality. Do not use paid data providers without fresh spending approval. Label third-party volume or difficulty estimates by provider and capture date; never present them as Search Console facts.
 
-Execute the competitor gap analysis:
-```bash
-python3 research_competitor_gaps.py
-```
+## Workflow
 
-This will:
-1. Fetch your current ranking keywords from GSC
-2. Analyze each competitor's top 20 ranking keywords
-3. Identify gaps (they rank, you don't)
-4. Enrich with search volume, difficulty, SERP features
-5. Score and prioritize opportunities
-6. Generate report: `content/research/competitor-gaps-YYYY-MM-DD.md`
+1. Verify current Search Console queries and landing pages, including property, date range, capture date, clicks, impressions, CTR, and position.
+2. Inventory maintained calculators, trackers, published articles, and retired routes.
+3. Review current direct and adjacent results only to understand user intent, formats, source quality, and missing creator decisions.
+4. Identify gaps where the site can add an original tool-linked contribution supported by primary sources.
+5. Reject thin query variants, doorway concepts, unsupported benchmark pages, cannibalizing topics, and gaps unrelated to a maintained next action.
+6. Prefer an update to an impression-bearing page when it can satisfy the need.
 
 ## Output
 
-The report includes:
-- Top 20 content gap opportunities
-- Priority level (CRITICAL/HIGH/MEDIUM)
-- Competitor intel (who ranks, at what position)
-- Keyword metrics (volume, difficulty, CPC)
-- Search intent and content type needed
-- Specific action steps for each gap
-
-## Integration
-
-After running `/research-gaps`:
-- Use `/research-serp [keyword]` to analyze what ranks
-- Use `/write [keyword]` to create content brief
-- Focus on CRITICAL/HIGH priority gaps first
-
-## Time & Cost
-
-**Time:** 3-5 minutes
-**API Cost:** ~$1-3 (DataForSEO) - analyzes ~300-500 competitor keywords
-
-## When to Run
-
-- **Monthly**: Full competitive landscape review
-- **When entering new topic**: Find what's missing
-- **Before content planning**: Identify proven opportunities
+For each credible gap, report the verified query/page evidence, creator job, current coverage, competitor observation, original contribution, primary sources needed, best existing-page fit, risks, and unknowns. Rank qualitatively by evidence strength, usefulness, commercial relevance, effort, and risk. Select at most one next research candidate; do not draft or publish it.
