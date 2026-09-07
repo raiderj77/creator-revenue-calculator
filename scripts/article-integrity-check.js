@@ -47,17 +47,39 @@ function canonicalHref(html) {
   return "";
 }
 
-function stripTags(value) {
-  return value
-    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&nbsp;/g, " ")
+function textContent(value) {
+  let text = "";
+  let insideTag = false;
+  for (const character of value) {
+    if (character === "<") {
+      insideTag = true;
+      text += " ";
+    } else if (character === ">") {
+      insideTag = false;
+    } else if (!insideTag) {
+      text += character;
+    }
+  }
+  const entities = {
+    "&amp;": "&",
+    "&quot;": '"',
+    "&#39;": "'",
+    "&apos;": "'",
+    "&nbsp;": " ",
+  };
+  return text
+    .replace(/&(?:amp|quot|#39|apos|nbsp);/g, (entity) => entities[entity])
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function isExternalHttpsUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.origin !== SITE_ORIGIN && !url.username && !url.password;
+  } catch {
+    return false;
+  }
 }
 
 function flattenJsonLd(value) {
@@ -221,7 +243,7 @@ for (const article of manifest.articles) {
   if (article.opportunity?.type === "platform_change") {
     pass(
       validDate(article.opportunity.capturedOn)
-        && /^https:\/\//.test(article.opportunity.primarySourceUrl || "")
+        && isExternalHttpsUrl(article.opportunity.primarySourceUrl)
         && typeof article.opportunity.changeSummary === "string"
         && article.opportunity.changeSummary.length >= 60,
       `${prefix} records a dated primary-source platform change`,
@@ -248,7 +270,7 @@ for (const article of manifest.articles) {
     pass(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(source.id || "") && !sourceIds.has(source.id), `${prefix} source ${source.id || "(missing id)"} has a unique stable id`);
     sourceIds.add(source.id);
     pass(["primary", "secondary"].includes(source.kind), `${prefix} source ${source.id} declares its evidence class`);
-    pass(/^https:\/\//.test(source.url || "") && !source.url.includes(SITE_ORIGIN), `${prefix} source ${source.id} uses an external HTTPS URL`);
+    pass(isExternalHttpsUrl(source.url), `${prefix} source ${source.id} uses an external HTTPS URL`);
     pass(validOptionalDate(source.sourceUpdatedOn) && validDate(source.checkedOn), `${prefix} source ${source.id} records a checked date and any available update date`);
     pass(Array.isArray(source.claims) && source.claims.length > 0 && source.claims.every((claim) => typeof claim === "string" && claim.length >= 30), `${prefix} source ${source.id} names the claims it supports`);
   }
@@ -256,11 +278,11 @@ for (const article of manifest.articles) {
   pass(fs.existsSync(path.join(ROOT, ...article.path.split("/"))), `${prefix} HTML exists`);
   if (!fs.existsSync(path.join(ROOT, ...article.path.split("/")))) continue;
   const html = read(article.path);
-  const title = stripTags(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || "");
+  const title = textContent(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || "");
   const h1Matches = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)];
 
   pass(title === article.title, `${prefix} title matches the registry`);
-  pass(h1Matches.length === 1 && stripTags(h1Matches[0][1]) === article.title, `${prefix} has one registry-matched H1`);
+  pass(h1Matches.length === 1 && textContent(h1Matches[0][1]) === article.title, `${prefix} has one registry-matched H1`);
   pass(metaContent(html, "name", "description") === article.description, `${prefix} description matches the registry`);
   pass(metaContent(html, "name", "robots") === "index, follow, max-snippet:-1", `${prefix} permits normal indexing and snippets`);
   pass(metaContent(html, "name", "author") === "Creator Revenue Calculator", `${prefix} uses truthful organization attribution`);
@@ -305,7 +327,7 @@ for (const article of manifest.articles) {
   );
 
   const highRiskBlocks = [...html.matchAll(/<(p|li|td|dd)\b([^>]*)>([\s\S]*?)<\/\1>/gi)].filter((match) => {
-    const text = stripTags(match[3]);
+    const text = textContent(match[3]);
     if (/^(?:©\s*)?\d{4}\s+Creator Revenue Calculator/.test(text)) return false;
     if (/^(?:Published|Sources reviewed|Next scheduled review):/i.test(text)) return false;
     return /(?:[$€£]\s*\d|\b\d+(?:\.\d+)?\s*%|\b\d+\s*(?:-|–|to)\s*\d+\s+(?:business\s+)?(?:days?|hours?|months?|years?))/i.test(text);

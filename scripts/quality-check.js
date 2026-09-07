@@ -9,6 +9,13 @@ const pass = (condition, message) => {
   if (!condition) failures += 1;
 };
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
+const parsedHttpsUrls = (text) => [...text.matchAll(/https:\/\/[^\s<>"')]+/g)].flatMap((match) => {
+  try {
+    return [new URL(match[0])];
+  } catch {
+    return [];
+  }
+});
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
   if ([
     ".git",
@@ -51,6 +58,9 @@ const publishedArticlePages = new Map(articleManifest.articles
   .map((article) => [article.path, read(article.path)]));
 const sitemap = read("sitemap.xml");
 const llmsText = read("llms.txt");
+const sitemapUrlHrefs = new Set(parsedHttpsUrls(sitemap).map((url) => url.href));
+const llmsUrls = parsedHttpsUrls(llmsText);
+const llmsUrlHrefs = new Set(llmsUrls.map((url) => url.href));
 const privacy = read("privacy.html");
 const cookies = read("cookies.html");
 const affiliateDisclosure = read("affiliate-disclosure.html");
@@ -240,8 +250,8 @@ pass(
 );
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
 pass(
-  sitemap.includes("https://creatorrevenuecalculator.com/articles/")
-    && [...publishedArticlePages.keys()].every((file) => sitemap.includes(`https://creatorrevenuecalculator.com/${file.replace(/index\.html$/, "")}`)),
+  sitemapUrlHrefs.has("https://creatorrevenuecalculator.com/articles/")
+    && [...publishedArticlePages.keys()].every((file) => sitemapUrlHrefs.has(`https://creatorrevenuecalculator.com/${file.replace(/index\.html$/, "")}`)),
   "only the reviewed article registry is discoverable through the new article path",
 );
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
@@ -449,8 +459,8 @@ pass(
 );
 pass(
   !fs.existsSync(path.join(root, "llms-full.txt"))
-    && !llmsText.includes("https://creatorrevenuecalculator.com/blog/")
-    && llmsText.includes("https://creatorrevenuecalculator.com/articles/"),
+    && !llmsUrls.some((url) => url.origin === "https://creatorrevenuecalculator.com" && url.pathname.startsWith("/blog/"))
+    && llmsUrlHrefs.has("https://creatorrevenuecalculator.com/articles/"),
   "assistant discovery excludes the retired archive and lists only reviewed articles",
 );
 pass(!llmsText.includes("/guide/"), "AI discovery does not promote the retired paid guide");

@@ -73,6 +73,8 @@ test('Patreon visible USD fee assumptions reconcile gross, fees and annual amoun
 test('cross-platform results provide a privacy-safe blank tracker next step', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/tools/social-media-earnings-estimator/');
+  await page.getByRole('button', { name: 'Continue without analytics' }).click();
+  await expect(page.locator('#crc-analytics-choices')).toBeHidden();
   const tracker = page.getByRole('link', { name: 'Download the blank Creator Revenue Tracker' });
   await expect(tracker).toHaveAttribute('href', '/downloads/creator-revenue-tracker.xlsx');
   await expect(tracker).toHaveAttribute('download', 'creator-revenue-tracker.xlsx');
