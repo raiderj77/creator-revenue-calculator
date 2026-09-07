@@ -190,8 +190,10 @@ pass(
 );
 const ignoredDeployPaths = vercelIgnore.split(/\r?\n/).map((line) => line.trim().replace(/\/$/, ""));
 pass(
-  ["blog", "content", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"].every((entry) => ignoredDeployPaths.includes(entry)),
-  "retired articles, source drafts, guide, and benchmark tools are excluded from deployable output",
+  ["blog", "guide", "tools/finance-youtube-revenue", "tools/gaming-youtube-revenue"].every((entry) => ignoredDeployPaths.includes(entry))
+    && ignoredDeployPaths.includes("content/*")
+    && ignoredDeployPaths.includes("!content/published-articles.json"),
+  "retired articles and source drafts stay excluded while the publication manifest remains available to the build",
 );
 pass(themeScript.includes("analytics-consent") && themeScript.includes("send_page_view: false"), "Google Analytics is controlled by the shared opt-in manager");
 pass(

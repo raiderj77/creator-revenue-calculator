@@ -1,5 +1,6 @@
 blog/
-content/
+content/*
+!content/published-articles.json
 guide/
 tools/finance-youtube-revenue/
 tools/gaming-youtube-revenue/
