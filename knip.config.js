@@ -3,6 +3,7 @@ import path from 'node:path';
 // HTML script tags are actual runtime entrypoints in this static application.
 // Keep this mapping derived from source so Knip never calls those files unused.
 const html = fs.readdirSync('.').filter(name => name.endsWith('.html'));
+if (fs.existsSync('recommended-products/index.html')) html.push('recommended-products/index.html');
 for (const directory of fs.readdirSync('tools',{withFileTypes:true}).filter(entry => entry.isDirectory())) {
   const file=`tools/${directory.name}/index.html`;
   if (fs.existsSync(file)) html.push(file);

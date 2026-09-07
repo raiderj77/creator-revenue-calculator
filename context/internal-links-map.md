@@ -7,6 +7,7 @@ Last verified: 2026-09-07
 - `/` — homepage and all-tools directory
 - `/articles/` — evidence-first article library
 - `/articles/patreon-income-tracker/` — reviewed Patreon reconciliation guide
+- `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
 
