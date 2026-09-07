@@ -89,6 +89,7 @@ const aboutPage = read("about.html");
 const contactPage = read("contact.html");
 const accessibilityPage = read("accessibility.html");
 const termsPage = read("terms.html");
+const recommendedProductsPage = read("recommended-products/index.html");
 const affiliatePage = read("tools/affiliate-calculator/index.html");
 const affiliateScript = read("tools/affiliate-calculator/affiliate-calculator.js");
 const newsletterPage = read("tools/newsletter-revenue/index.html");
@@ -135,6 +136,7 @@ const maintainedCorePages = new Map([
   ["terms.html", termsPage],
   ["accessibility.html", accessibilityPage],
   ["affiliate-disclosure.html", affiliateDisclosure],
+  ["recommended-products/index.html", recommendedProductsPage],
 ]);
 const maintainedToolPages = new Map([
   ["tools/affiliate-calculator/index.html", affiliatePage],
@@ -165,6 +167,9 @@ for (const [pagePath, page] of maintainedIconPages) {
 }
 const maintainedIconSources = new Map([...maintainedIconPages, ...maintainedLinkedScripts]);
 const sameSortedValues = (left, right) => JSON.stringify([...left].sort()) === JSON.stringify([...right].sort());
+const maintainedSitemapUrlHrefs = new Set([...maintainedPages.keys()].map((file) => (
+  `https://creatorrevenuecalculator.com/${file === "index.html" ? "" : file.replace(/index\.html$/, "")}`
+)));
 const fileSha256 = (relative) => crypto.createHash("sha256").update(fs.readFileSync(path.join(root, relative))).digest("hex");
 
 pass(
@@ -247,7 +252,8 @@ pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is p
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
 pass(
-  (sitemap.match(/<url>/g) || []).length === 20 + 1 + publishedArticlePages.size,
+  (sitemap.match(/<url>/g) || []).length === maintainedPages.size
+    && sameSortedValues(sitemapUrlHrefs, maintainedSitemapUrlHrefs),
   "sitemap contains the maintained calculators, core pages, article hub, and reviewed articles",
 );
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
@@ -291,9 +297,9 @@ pass(
   "Font Awesome CSS and manifest cover every icon class in maintained pages, linked scripts, and the 404",
 );
 pass(
-  fontSubsetManifest.families.solid.classes.length === 65
+  fontSubsetManifest.families.solid.classes.length === 64
     && fontSubsetManifest.families.brands.classes.length === 7
-    && fontSubsetManifest.families.solid.unicodes.length === 63
+    && fontSubsetManifest.families.solid.unicodes.length === 62
     && fontSubsetManifest.families.brands.unicodes.length === 7
     && fontSubsetStyles.includes('.fa-check{--fa:"\\f00c"}'),
   "Font Awesome subset includes the linked-script check icon and exact reviewed glyph sets",
@@ -1162,8 +1168,20 @@ pass(
   "every previously inconsistent explicit calculator action moves focus to labelled results",
 );
 pass(
-  sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/</loc><lastmod>2026-08-10</lastmod>'),
+  sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/podcast-revenue/</loc><lastmod>2026-09-07</lastmod>'),
   "podcast sitemap freshness matches its visible and structured review date",
+);
+pass(
+  affiliatePage.includes('datetime="2026-09-07"')
+    && affiliatePage.includes('"dateModified": "2026-09-07"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/affiliate-calculator/</loc><lastmod>2026-09-07</lastmod>'),
+  "affiliate sitemap freshness matches its visible and structured review date",
+);
+pass(
+  youtubePage.includes('datetime="2026-09-07"')
+    && youtubePage.includes('"dateModified": "2026-09-07"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/</loc><lastmod>2026-09-07</lastmod>'),
+  "YouTube sitemap freshness matches its visible and structured review date",
 );
 const resultCards = [...publicText.matchAll(/<div\b[^>]*class="[^"]*\bresults-card\b[^"]*"[^>]*>/g)].map((match) => match[0]);
 pass(
@@ -1406,8 +1424,8 @@ pass(
 pass(
   podcastPage.includes("<title>Podcast Revenue Calculator | CPM &amp; Sponsor Scenario</title>")
     && podcastPage.includes("<h1>Podcast Revenue Calculator</h1>")
-    && podcastPage.includes('datetime="2026-08-10"')
-    && podcastPage.includes('"dateModified": "2026-08-10"'),
+    && podcastPage.includes('datetime="2026-09-07"')
+    && podcastPage.includes('"dateModified": "2026-09-07"'),
   "podcast metadata and visible heading target current calculator intent",
 );
 const podcastNumberInputs = [...podcastPage.matchAll(/<input\s+type="number"[^>]*>/gi)].map((match) => match[0]);
@@ -1638,8 +1656,8 @@ pass(
 );
 pass(
   home.includes('"@type": "WebApplication"')
-    && home.includes('"dateModified": "2026-09-06"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-06</lastmod>')
+    && home.includes('"dateModified": "2026-09-07"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-07</lastmod>')
     && socialEstimatorPage.includes('"dateModified": "2026-09-06"')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-09-06</lastmod>')
     && patreonPage.includes('"dateModified": "2026-09-06"')

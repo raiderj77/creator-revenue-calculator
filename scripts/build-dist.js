@@ -13,9 +13,9 @@ const ARTICLE_PUBLIC_FILES = [
     .filter((article) => article.status === "published")
     .map((article) => article.path),
 ];
-const BASE_SITEMAP_URL_COUNT = 20;
+const BASE_SITEMAP_URL_COUNT = 21;
 const BASE_REDIRECT_COUNT = 58;
-const CANONICAL_REDIRECT_COUNT = 15;
+const CANONICAL_REDIRECT_COUNT = 16;
 
 const CORE_PUBLIC_FILES = [
   "404.html",
@@ -26,6 +26,7 @@ const CORE_PUBLIC_FILES = [
   "contact.html",
   "cookies.html",
   "privacy.html",
+  "recommended-products/index.html",
   "terms.html",
   "4839d80770efc0e2a0d1233e321b2c43.txt",
   "ae01c4e060cc5f379845f7cdd6fe8d32.txt",
@@ -37,12 +38,14 @@ const CORE_PUBLIC_FILES = [
   "sitemap.xml",
   "assets/css/accessibility-audit-fixes.css",
   "assets/css/print-results.css",
+  "assets/css/recommended-products.css",
   "assets/css/style.css",
   "assets/images/favicon.svg",
   "assets/images/logo.png",
   "assets/images/og-image.png",
   "assets/js/creator-mix-calculator.js",
   "assets/js/main.js",
+  "assets/js/recommended-products.js",
   "assets/js/theme.js",
   "assets/vendor/fontawesome/LICENSE.txt",
   "assets/vendor/fontawesome/css/subset.css",

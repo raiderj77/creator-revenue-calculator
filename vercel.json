@@ -10,6 +10,7 @@
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/articles", "destination": "/articles/", "permanent": true },
     { "source": "/articles/:slug", "destination": "/articles/:slug/", "permanent": true },
+    { "source": "/recommended-products", "destination": "/recommended-products/", "permanent": true },
     { "source": "/tools/youtube-ad-revenue", "destination": "/tools/youtube-ad-revenue/", "permanent": true },
     { "source": "/tools/tiktok-revenue", "destination": "/tools/tiktok-revenue/", "permanent": true },
     { "source": "/tools/twitch-revenue", "destination": "/tools/twitch-revenue/", "permanent": true },

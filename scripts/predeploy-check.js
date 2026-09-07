@@ -174,10 +174,12 @@ check("Privacy-safe static output", () => {
       fail(`${retiredPath} must be listed in .vercelignore`);
     }
   }
-  if (ignored.includes("content/*") && ignored.includes("!content/published-articles.json")) {
-    pass("retired content sources stay excluded while the publication manifest remains available to the build");
+  if (ignored.includes("content/*")
+    && ignored.includes("!content/published-articles.json")
+    && ignored.includes("!content/recommended-products.json")) {
+    pass("retired content sources stay excluded while the reviewed publication and product registries remain available to the build");
   } else {
-    fail(".vercelignore must exclude content sources and retain only content/published-articles.json for the build");
+    fail(".vercelignore must exclude content sources and retain the reviewed publication and product registries for the build");
   }
 });
 

@@ -21,6 +21,7 @@
     "tools/social-media-earnings-estimator/index.html",
     "articles/index.html",
     "articles/patreon-income-tracker/index.html",
+    "recommended-products/index.html",
     "about.html",
     "contact.html",
     "privacy.html",
@@ -33,6 +34,7 @@
   "scripts": [
     "assets/js/creator-mix-calculator.js",
     "assets/js/main.js",
+    "assets/js/recommended-products.js",
     "assets/js/theme.js",
     "tools/affiliate-calculator/affiliate-calculator.js",
     "tools/affiliate-calculator/slider-sync.js",
@@ -56,8 +58,8 @@
   },
   "styles": {
     "file": "assets/vendor/fontawesome/css/subset.css",
-    "bytes": 3432,
-    "sha256": "edfc04d7d4dceb10e0b0d9204e96e9b4375620fc2a9d1e9e02c396452e844ad7"
+    "bytes": 3372,
+    "sha256": "0038ef52e49880f154efa647c3d4f46392981488b5d001919a09338b6399d3af"
   },
   "families": {
     "solid": {
@@ -87,7 +89,6 @@
         "fa-envelope",
         "fa-envelope-open-text",
         "fa-exclamation-circle",
-        "fa-external-link-alt",
         "fa-eye",
         "fa-file-contract",
         "fa-file-csv",
@@ -174,7 +175,6 @@
         "U+F201",
         "U+F2B5",
         "U+F2CE",
-        "U+F35D",
         "U+F3C1",
         "U+F3CD",
         "U+F3ED",
@@ -195,8 +195,8 @@
         "U+F87C"
       ],
       "cssFamily": "CRC Creator Icons Solid",
-      "bytes": 7800,
-      "sha256": "f83b269283de6c6aa8d7e395ee493bf76403d95dbbfdce5afb12aff078e1e05a"
+      "bytes": 7700,
+      "sha256": "4086fee9b3593c564e5596033e22209892ed746299dbdba40bfb411741dfc1db"
     },
     "brands": {
       "file": "assets/vendor/fontawesome/webfonts/crc-icons-brands.woff2",
@@ -223,5 +223,5 @@
       "sha256": "4445887c0e2a9a7721af86f1ca78b15264e0a132c5e0b41973d8135ffc543fe7"
     }
   },
-  "totalFontBytes": 9956
+  "totalFontBytes": 9856
 }

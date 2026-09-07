@@ -1,0 +1,339 @@
+{
+  "version": 1,
+  "lastReviewed": "2026-09-07",
+  "selectionPolicy": "Options must address a specific creator workflow, use original fit guidance, link to current first-party product evidence, disclose every commercial relationship, and avoid prices, ratings, copied reviews, or unverified hands-on claims.",
+  "items": [
+    {
+      "id": "blue-yeti-usb-microphone",
+      "name": "Blue Yeti USB microphone",
+      "kind": "hardware",
+      "categories": ["hardware", "audio", "youtube", "podcast"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B01LY6Z2M6?tag=creatorcalc-20",
+      "evidenceUrl": "https://www-gaming.logitech.com/en-us/shop/p/yeti-premium-usb-microphone.988-000100",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "logitech-c920x-webcam",
+      "name": "Logitech C920x webcam",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "youtube", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B085TFF7M1?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.logitech.com/assets/66173/c920x-pro.pdf",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "neewer-ring-light-kit",
+      "name": "NEEWER RL-18 18-inch ring light kit",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "lighting", "youtube"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B01LXDNNBW?tag=creatorcalc-20",
+      "evidenceUrl": "https://neewer.com/products/led-ring-lights-66600024",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "sandisk-extreme-pro-sd-card",
+      "name": "SanDisk Extreme PRO 128GB SD UHS-I card",
+      "kind": "hardware",
+      "categories": ["hardware", "storage", "video", "photography"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0GDQRNTF3?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.sandisk.com/products/memory-cards/sd-cards/sandisk-extreme-pro-sd-uhs-i?sku=SDSDXXJ-128G-GSCIN",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "sandisk-ultra-microsd-card",
+      "name": "SanDisk Ultra 32GB microSDHC UHS-I card",
+      "kind": "hardware",
+      "categories": ["hardware", "storage", "mobile", "action-camera"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B08GY9NYRM?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQUA4-032G-GN6MA",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "sony-mdr-7506-headphones",
+      "name": "Sony MDR-7506 headphones",
+      "kind": "hardware",
+      "categories": ["hardware", "audio", "podcast", "editing"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B000AJIF4E?tag=creatorcalc-20",
+      "evidenceUrl": "https://electronics.sony.com/audio/headphones/all-headphones/p/mdr7506",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "shure-mv7-plus-microphone",
+      "name": "Shure MV7+ microphone",
+      "kind": "hardware",
+      "categories": ["hardware", "audio", "youtube", "podcast", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0CTJ7PVN1?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.shure.com/en-US/docs/guide/MV7plus",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "rode-podmic-usb",
+      "name": "RØDE PodMic USB",
+      "kind": "hardware",
+      "categories": ["hardware", "audio", "podcast", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0BQM4TKF7?tag=creatorcalc-20",
+      "evidenceUrl": "https://rode.com/en-us/products/podmic-usb",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "audio-technica-ath-m50x-headphones",
+      "name": "Audio-Technica ATH-M50x headphones",
+      "kind": "hardware",
+      "categories": ["hardware", "audio", "podcast", "editing"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B00HVLUR86?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.audio-technica.com/en-us/ath-m50x",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "elgato-facecam-mk2",
+      "name": "Elgato Facecam MK.2",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "youtube", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0CW1S7XP5?tag=creatorcalc-20",
+      "evidenceUrl": "https://help.elgato.com/hc/en-us/articles/24162700661517-Elgato-Facecam-MK-2-Technical-Specifications",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "logitech-mx-brio-webcam",
+      "name": "Logitech MX Brio webcam",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "youtube", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0BFJ4CRKD?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.logitech.com/en-us/shop/p/mx-brio-4k-webcam",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "elgato-cam-link-4k",
+      "name": "Elgato Cam Link 4K",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "youtube", "streaming", "capture"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B07K3FN5MR?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.elgato.com/us/en/p/cam-link-4k",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "logitech-litra-glow",
+      "name": "Logitech G Litra Glow",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "lighting", "youtube", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B097QZGRCQ?tag=creatorcalc-20",
+      "evidenceUrl": "https://support.logi.com/hc/en-ch/articles/4418106727447-Specification-Litra-Glow",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "ulanzi-vl49-rgb-light",
+      "name": "Ulanzi VL49 RGB light",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "lighting", "mobile", "photography"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B08MDQ3CJY?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.ulanzi.com/products/ulanzi-vl49-rgb-light-2287",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "manfrotto-pixi-mini-tripod",
+      "name": "Manfrotto PIXI mini tripod",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "mounting", "mobile", "photography"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B00D76RNLS?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.manfrotto.com/global-en/pixi-mini-tripod-black-mtpixi-b/",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "elgato-master-mount-l",
+      "name": "Elgato Master Mount L",
+      "kind": "hardware",
+      "categories": ["hardware", "video", "audio", "lighting", "mounting", "youtube", "streaming"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B07X49967V?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.elgato.com/us/en/p/master-mount-l",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "samsung-t7-shield-2tb",
+      "name": "Samsung T7 Shield 2TB portable SSD",
+      "kind": "hardware",
+      "categories": ["hardware", "storage", "video", "editing", "mobile"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B09VLHR4JC?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.samsung.com/us/memory-storage/portable-ssd/portable-ssd-t7-shield-usb-3-2-2tb-black-sku-mu-pe2t0s-am/",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "wd-my-book-8tb",
+      "name": "WD My Book 8TB desktop hard drive",
+      "kind": "hardware",
+      "categories": ["hardware", "storage", "video", "editing", "archive"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B01LQQHLGC?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.westerndigital.com/products/external-drives/wd-my-book-usb-3-0-hdd?sku=WDBBGB0080HBK-NESN",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "anker-power-bank-a1695",
+      "name": "Anker 25K 165W power bank",
+      "kind": "hardware",
+      "categories": ["hardware", "power", "mobile", "video", "travel"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B0DMDJBCDP?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.anker.com/products/a1695-anker-power-bank-25000mah-165w",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "apc-back-ups-pro-br1500ms2",
+      "name": "APC Back-UPS Pro BR1500MS2",
+      "kind": "hardware",
+      "categories": ["hardware", "power", "studio", "editing", "podcast"],
+      "relationship": "amazon-associate",
+      "destinationUrl": "https://www.amazon.com/dp/B08GRY1W93?tag=creatorcalc-20",
+      "evidenceUrl": "https://www.se.com/us/en/product/BR1500MS2/apc-backups-pro-1500va-900w-tower-120v-10x-nema-515r-outlets-avr-usb-type-a-%2B-c-ports-lcd-user-replaceable-battery/",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "vidiq",
+      "name": "vidIQ",
+      "kind": "software",
+      "categories": ["software", "youtube", "research"],
+      "relationship": "saas-affiliate",
+      "destinationUrl": "https://vidiq.com/thelink",
+      "evidenceUrl": "https://vidiq.com/affiliate/",
+      "affiliateProgramStatus": "active-link-provided",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "descript",
+      "name": "Descript",
+      "kind": "software",
+      "categories": ["software", "audio", "video", "podcast", "editing"],
+      "relationship": "none",
+      "destinationUrl": "https://www.descript.com/",
+      "evidenceUrl": "https://www.descript.com/affiliate",
+      "affiliateProgramStatus": "application-pending-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "opusclip",
+      "name": "OpusClip",
+      "kind": "software",
+      "categories": ["software", "video", "youtube", "editing"],
+      "relationship": "none",
+      "destinationUrl": "https://www.opus.pro/",
+      "evidenceUrl": "https://www.opus.pro/affiliate",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "streamyard",
+      "name": "StreamYard",
+      "kind": "software",
+      "categories": ["software", "video", "youtube", "streaming"],
+      "relationship": "none",
+      "destinationUrl": "https://streamyard.com/",
+      "evidenceUrl": "https://support.streamyard.com/hc/en-us/articles/360043298772-Is-there-a-Referral-or-Affiliate-program",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "riverside",
+      "name": "Riverside",
+      "kind": "software",
+      "categories": ["software", "video", "podcast", "recording"],
+      "relationship": "none",
+      "destinationUrl": "https://riverside.com/",
+      "evidenceUrl": "https://riverside.com/affiliate-program",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "kit",
+      "name": "Kit",
+      "kind": "software",
+      "categories": ["software", "newsletter", "email"],
+      "relationship": "none",
+      "destinationUrl": "https://kit.com/",
+      "evidenceUrl": "https://kit.com/affiliate",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "beehiiv",
+      "name": "beehiiv",
+      "kind": "software",
+      "categories": ["software", "newsletter", "email"],
+      "relationship": "none",
+      "destinationUrl": "https://www.beehiiv.com/",
+      "evidenceUrl": "https://www.beehiiv.com/partners",
+      "affiliateProgramStatus": "available-to-active-plan-account-not-enrolled",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "circle",
+      "name": "Circle",
+      "kind": "software",
+      "categories": ["software", "community", "memberships", "courses"],
+      "relationship": "none",
+      "destinationUrl": "https://circle.so/",
+      "evidenceUrl": "https://circle.so/affiliate-program",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "skool",
+      "name": "Skool",
+      "kind": "software",
+      "categories": ["software", "community", "memberships", "courses"],
+      "relationship": "none",
+      "destinationUrl": "https://www.skool.com/",
+      "evidenceUrl": "https://www.skool.com/affiliate-program",
+      "affiliateProgramStatus": "available-through-account-not-enrolled",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "teachable",
+      "name": "Teachable",
+      "kind": "software",
+      "categories": ["software", "courses", "digital-products"],
+      "relationship": "none",
+      "destinationUrl": "https://www.teachable.com/",
+      "evidenceUrl": "https://www.teachable.com/partners",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "thinkific",
+      "name": "Thinkific",
+      "kind": "software",
+      "categories": ["software", "courses", "digital-products"],
+      "relationship": "none",
+      "destinationUrl": "https://www.thinkific.com/",
+      "evidenceUrl": "https://support.thinkific.com/hc/en-us/articles/360030718573-Become-a-Thinkific-Affiliate",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    },
+    {
+      "id": "podia",
+      "name": "Podia",
+      "kind": "software",
+      "categories": ["software", "courses", "digital-products", "email"],
+      "relationship": "none",
+      "destinationUrl": "https://www.podia.com/",
+      "evidenceUrl": "https://affiliates.podia.com/",
+      "affiliateProgramStatus": "application-available-account-not-approved",
+      "checkedOn": "2026-09-07"
+    }
+  ]
+}
