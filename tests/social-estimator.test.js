@@ -4,7 +4,8 @@ import test from 'node:test';
 import {
   SOCIAL_SCENARIO_LABELS,
   compatibilityHelp,
-  isCompatibleScenario
+  isCompatibleScenario,
+  syncRemoveScenarioButtonState
 } from '../tools/social-media-earnings-estimator/social-media-estimator.js';
 
 const platformLabels = ['YouTube', 'Instagram', 'TikTok', 'Twitch', 'X', 'Facebook'];
@@ -44,4 +45,19 @@ test('visible guidance describes each compatibility rule without a supplied rate
     [compatibilityHelp('platform'), compatibilityHelp('sponsorship'), compatibilityHelp('direct')].join(' '),
     /\$|benchmark|average rate/i
   );
+});
+
+test('the single social scenario explains why removal is unavailable and clears that title when enabled', () => {
+  const button = {
+    disabled: false,
+    removeAttribute(name) { delete this[name]; }
+  };
+
+  syncRemoveScenarioButtonState(button, 1);
+  assert.equal(button.disabled, true);
+  assert.equal(button.title, 'At least one scenario is required.');
+
+  syncRemoveScenarioButtonState(button, 2);
+  assert.equal(button.disabled, false);
+  assert.equal(Object.hasOwn(button, 'title'), false);
 });

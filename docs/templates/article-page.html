@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+  Safe article starting point. Replace every ALL_CAPS placeholder.
+  Repeat sourced claim and source-ledger blocks for every registered source.
+  Register the article in content/published-articles.json before publication.
+  Keep visible metadata and JSON-LD exactly aligned; run npm run test:articles.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1">
+    <script src="/assets/js/theme.js" defer></script>
+    <title>ARTICLE_TITLE</title>
+    <meta name="description" content="ARTICLE_DESCRIPTION">
+    <meta name="author" content="Creator Revenue Calculator">
+    <link rel="canonical" href="https://creatorrevenuecalculator.com/articles/ARTICLE_SLUG/">
+    <meta property="og:title" content="ARTICLE_TITLE">
+    <meta property="og:description" content="ARTICLE_DESCRIPTION">
+    <meta property="og:url" content="https://creatorrevenuecalculator.com/articles/ARTICLE_SLUG/">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
+    <meta property="article:published_time" content="DATE_PUBLISHED_ISO">
+    <meta property="article:modified_time" content="DATE_MODIFIED_ISO">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ARTICLE_TITLE">
+    <meta name="twitter:description" content="ARTICLE_DESCRIPTION">
+    <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/accessibility-audit-fixes.css">
+    <link rel="stylesheet" href="/assets/css/articles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "ARTICLE_TITLE",
+      "description": "ARTICLE_DESCRIPTION",
+      "datePublished": "DATE_PUBLISHED_ISO",
+      "dateModified": "DATE_MODIFIED_ISO",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://creatorrevenuecalculator.com/articles/ARTICLE_SLUG/"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Creator Revenue Calculator",
+        "url": "https://creatorrevenuecalculator.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Creator Revenue Calculator",
+        "url": "https://creatorrevenuecalculator.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://creatorrevenuecalculator.com/assets/images/logo.png"
+        }
+      },
+      "image": "https://creatorrevenuecalculator.com/assets/images/og-image.png",
+      "isAccessibleForFree": true
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://creatorrevenuecalculator.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://creatorrevenuecalculator.com/articles/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ARTICLE_TITLE",
+          "item": "https://creatorrevenuecalculator.com/articles/ARTICLE_SLUG/"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="article-page">
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+    <nav class="navbar" aria-label="Primary navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" class="logo"><span>Creator Revenue Calculator</span></a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#tools" class="nav-link">Tools</a>
+                <a href="/articles/" class="nav-link active">Articles</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="/contact.html" class="nav-link">Contact</a>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <header class="article-hero">
+            <div class="container">
+                <span class="article-kicker">ARTICLE_KICKER</span>
+                <h1>ARTICLE_TITLE</h1>
+                <p class="article-answer">DIRECT_ANSWER_OR_WORKFLOW</p>
+                <div class="article-actions">
+                    <a class="btn btn-primary" href="/downloads/RELEVANT_DOWNLOAD" download="RELEVANT_DOWNLOAD">DOWNLOAD_ACTION_LABEL</a>
+                    <a class="btn btn-secondary" href="/tools/RELEVANT_TOOL/">CALCULATOR_ACTION_LABEL</a>
+                </div>
+                <div class="article-meta">
+                    <span><strong>Published:</strong> <time datetime="DATE_PUBLISHED_ISO" data-published="DATE_PUBLISHED_ISO">DATE_PUBLISHED_DISPLAY</time></span>
+                    <span><strong>Sources reviewed:</strong> <time datetime="DATE_REVIEWED_ISO" data-reviewed="DATE_REVIEWED_ISO">DATE_REVIEWED_DISPLAY</time></span>
+                    <span><strong>Next scheduled review:</strong> <time datetime="DATE_NEXT_REVIEW_ISO" data-next-review="DATE_NEXT_REVIEW_ISO">DATE_NEXT_REVIEW_DISPLAY</time></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="container article-shell">
+            <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+                <ol><li><a href="/">Home</a></li><li><a href="/articles/">Articles</a></li><li aria-current="page">ARTICLE_SHORT_TITLE</li></ol>
+            </nav>
+
+            <article class="article-content">
+                <section aria-labelledby="decision-heading">
+                    <h2 id="decision-heading">DECISION_HEADING</h2>
+                    <p>ORIGINAL_DECISION_GUIDANCE</p>
+                </section>
+
+                <section aria-labelledby="method-heading">
+                    <h2 id="method-heading">METHOD_HEADING</h2>
+                    <p data-source-id="SOURCE_ID">SOURCED_CLAIM_WITH_INLINE_LINK_TO_THE_REGISTERED_PRIMARY_SOURCE</p>
+                    <div class="article-formula" role="note" aria-label="FORMULA_ACCESSIBLE_LABEL"><code>VISIBLE_FORMULA</code></div>
+                    <p data-synthetic-example="true"><strong>Synthetic arithmetic example, not a benchmark:</strong> SYNTHETIC_INPUTS_AND_RESULT. These values are invented only to demonstrate the calculation.</p>
+                </section>
+
+                <section aria-labelledby="limits-heading">
+                    <h2 id="limits-heading">Limits and privacy</h2>
+                    <p>LIMITATIONS_AND_BROWSER_LOCAL_PRIVACY_NOTES</p>
+                    <div class="article-actions">
+                        <a class="btn btn-primary" href="/downloads/RELEVANT_DOWNLOAD" download="RELEVANT_DOWNLOAD">DOWNLOAD_ACTION_LABEL</a>
+                        <a class="btn btn-secondary" href="/tools/RELEVANT_TOOL/">CALCULATOR_ACTION_LABEL</a>
+                    </div>
+                </section>
+
+                <section class="article-sources" id="sources" aria-labelledby="sources-heading">
+                    <h2 id="sources-heading">Primary sources and review ledger</h2>
+                    <p>Each source below was checked against the visible claims in this guide. A material source change triggers an earlier review than the scheduled date.</p>
+                    <ul>
+                        <li data-source-id="SOURCE_ID"><a href="PRIMARY_SOURCE_URL" rel="noopener noreferrer">SOURCE_TITLE</a>, SOURCE_PUBLISHER. SOURCE_UPDATE_DATE_STATEMENT; checked SOURCE_CHECKED_DISPLAY. Supports REGISTERED_CLAIM_SUMMARY.</li>
+                    </ul>
+                </section>
+
+                <aside class="article-disclaimer">
+                    <p><strong>Limits:</strong> Examples are synthetic and calculator outputs are arithmetic from visible inputs. This guide is informational and is not financial or tax advice. Verify material inputs against your own current records.</p>
+                </aside>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Creator Revenue Calculator. All rights reserved.</p>
+                <p><a href="/privacy.html" class="footer-link">Privacy</a> | <a href="/terms.html" class="footer-link">Terms</a> | <a href="/cookies.html" class="footer-link">Cookies</a> | <a href="/accessibility.html" class="footer-link">Accessibility</a> | <a href="/affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a></p>
+                <p class="disclaimer">Calculator outputs are arithmetic from visible inputs and are provided for informational purposes only. Not financial advice. Verify material inputs against your own current records.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

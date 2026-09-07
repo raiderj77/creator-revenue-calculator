@@ -18,6 +18,11 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Patreon revenue and income tracker: https://creatorrevenuecalculator.com/tools/patreon-revenue/
 - Cross-platform manual earnings scenarios: https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/
 
+## Evidence-first articles
+
+- Article library and publishing standard: https://creatorrevenuecalculator.com/articles/
+- Patreon income tracker reconciliation guide: https://creatorrevenuecalculator.com/articles/patreon-income-tracker/
+
 ## Trust and limitations
 
 - How the calculators work: https://creatorrevenuecalculator.com/#about
@@ -26,6 +31,6 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Affiliate disclosure: https://creatorrevenuecalculator.com/affiliate-disclosure.html
 - Material revenue rates start at zero or come from visible user-selected inputs; actual earnings can vary materially.
 - Google AdSense and Microsoft Clarity are not enabled. Privacy-limited Google Analytics loads only after explicit opt-in and receives sanitized page context plus generic calculate, copy, and print actions, never entered values or results.
-- The former article archive and source drafts are retired and excluded from deployable output. Old URLs redirect only when a clear maintained replacement exists; unmatched retired URLs return 404.
+- The former `/blog/` archive and its source drafts remain retired and excluded from deployable output. New `/articles/` pages are individually reviewed, source-ledgered, and explicitly allowlisted; no legacy page is republished automatically.
 - The former gaming and finance niche calculators redirect to the maintained YouTube scenario calculator.
 - The UGC quote worksheet uses only visible, user-supplied monetary inputs and does not provide a market rate.

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "hub": {
+    "path": "articles/index.html",
+    "canonical": "https://creatorrevenuecalculator.com/articles/",
+    "lastModified": "2026-09-07"
+  },
+  "articles": [
+    {
+      "slug": "patreon-income-tracker",
+      "status": "published",
+      "path": "articles/patreon-income-tracker/index.html",
+      "canonical": "https://creatorrevenuecalculator.com/articles/patreon-income-tracker/",
+      "title": "Patreon Income Tracker: A Monthly Reconciliation Guide",
+      "description": "Track actual Patreon gross revenue, fees, adjustments, and payouts month by month with a blank, privacy-conscious CSV and a clear reconciliation workflow.",
+      "datePublished": "2026-09-07",
+      "dateModified": "2026-09-07",
+      "reviewedOn": "2026-09-06",
+      "nextReviewOn": "2026-12-01",
+      "primaryQuery": "patreon income tracker",
+      "opportunity": {
+        "type": "search_console",
+        "property": "https://creatorrevenuecalculator.com/",
+        "periodStart": "2026-06-05",
+        "periodEnd": "2026-09-04",
+        "capturedOn": "2026-09-06",
+        "clicks": 1,
+        "impressions": 112,
+        "ctrPercent": 0.9,
+        "averagePosition": 28.9,
+        "decision": "The query already reaches the site, and the guide adds an actual-record workflow that the scenario calculator alone does not provide."
+      },
+      "calculatorPath": "/tools/patreon-revenue/",
+      "downloadPath": "/downloads/patreon-income-tracker.csv",
+      "discoveryPages": [
+        "tools/patreon-revenue/index.html"
+      ],
+      "sources": [
+        {
+          "id": "patreon-payouts-dashboard",
+          "kind": "primary",
+          "title": "Payouts Dashboard",
+          "publisher": "Patreon Help Center",
+          "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+          "sourceUpdatedOn": "2026-08-03",
+          "checkedOn": "2026-09-06",
+          "claims": [
+            "The Payouts Documents tab provides earnings, payout, transaction, refund, and tax CSV files."
+          ]
+        },
+        {
+          "id": "patreon-earnings-insights",
+          "kind": "primary",
+          "title": "Earnings Insights",
+          "publisher": "Patreon Help Center",
+          "url": "https://support.patreon.com/hc/en-us/articles/47114923757197-Earnings-Insights",
+          "sourceUpdatedOn": "2026-07-06",
+          "checkedOn": "2026-09-06",
+          "claims": [
+            "The Earnings page is Patreon's record of gross and net income by month.",
+            "Patreon's public overview is a trend estimate and is not an accurate record for a specific month."
+          ]
+        },
+        {
+          "id": "patreon-creator-fees",
+          "kind": "primary",
+          "title": "Creator fees overview",
+          "publisher": "Patreon Help Center",
+          "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+          "sourceUpdatedOn": "2026-08-03",
+          "checkedOn": "2026-09-06",
+          "claims": [
+            "Platform, payment processing, currency conversion, taxes on creator fees, and payout transaction fees can affect creator proceeds.",
+            "A creator's applicable platform plan depends on the creator's own account history and settings."
+          ]
+        },
+        {
+          "id": "patreon-relationship-manager",
+          "kind": "primary",
+          "title": "How to use your Relationship manager",
+          "publisher": "Patreon Help Center",
+          "url": "https://support.patreon.com/hc/en-us/articles/360045516212-How-to-use-your-Relationship-manager",
+          "sourceUpdatedOn": "2026-08-03",
+          "checkedOn": "2026-09-06",
+          "claims": [
+            "The Relationship Manager can export a filtered member CSV for membership-status reconciliation."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -36,6 +36,18 @@ export function compatibilityHelp(type) {
   return 'Choose both fields. Each formula is available only for labels it can describe clearly.';
 }
 
+const SINGLE_SCENARIO_REMOVE_TITLE = 'At least one scenario is required.';
+
+export function syncRemoveScenarioButtonState(button, scenarioCount) {
+  const isOnlyScenario = scenarioCount === 1;
+  button.disabled = isOnlyScenario;
+  if (isOnlyScenario) {
+    button.title = SINGLE_SCENARIO_REMOVE_TITLE;
+  } else if (button.title === SINGLE_SCENARIO_REMOVE_TITLE) {
+    button.removeAttribute('title');
+  }
+}
+
 if (typeof document !== 'undefined') (function () {
   'use strict';
 
@@ -70,9 +82,10 @@ if (typeof document !== 'undefined') (function () {
   }
 
   function updateRowNumbers() {
-    scenarioRows().forEach(function (row, index) {
+    var rows = scenarioRows();
+    rows.forEach(function (row, index) {
       row.querySelector('legend').textContent = 'Scenario ' + (index + 1);
-      row.querySelector('.remove-scenario').disabled = scenarioRows().length === 1;
+      syncRemoveScenarioButtonState(row.querySelector('.remove-scenario'), rows.length);
     });
   }
 

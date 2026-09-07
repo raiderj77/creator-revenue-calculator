@@ -72,7 +72,7 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--da
 .btn-text { border: 1px solid transparent; color: var(--brand-dark); background: transparent; }
 .btn:disabled { color: #64748b; border-color: #cbd5e1; background: #e2e8f0; cursor: not-allowed; }
 .form-status { min-height: 1.6rem; margin: 0.75rem 0 0; color: var(--danger); font-weight: 700; }
-.scenario-results { margin-top: 2rem; padding: clamp(1.1rem, 3vw, 2rem); border: 2px solid #818cf8; border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
+.scenario-results { margin-top: 2rem; padding: clamp(1.1rem, 3vw, 2rem); scroll-margin-top: 5.5rem; border: 2px solid #818cf8; border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
 .results-heading-row { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
 .results-kicker { margin: 0 0 0.25rem; color: var(--brand-dark); font-size: 0.8rem; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; }
 .scenario-results h2, .scenario-results h3 { margin: 0; }
@@ -86,6 +86,8 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--da
 .scenario-breakdown strong { white-space: nowrap; }
 .formula-summary { color: var(--muted); }
 .copy-status { min-height: 1.5rem; color: var(--success-ink); font-weight: 700; }
+.result-next-step { margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid #cbd5e1; color: var(--ink); }
+.result-next-step a { color: var(--brand-dark); font-weight: 800; text-underline-offset: 0.15em; }
 .result-disclosure { margin-top: 1rem; padding: 1rem; border-left: 4px solid #f59e0b; background: #fffbeb; }
 .method-section { background: #fff; }
 .method-section .container > p { max-width: 900px; color: var(--muted); }
@@ -113,6 +115,8 @@ html[data-theme="dark"] input, html[data-theme="dark"] select, html[data-theme="
 html[data-theme="dark"] .total-card, html[data-theme="dark"] .platform-list li, html[data-theme="dark"] .scenario-count { color: #e0e7ff; background: #312e81; }
 html[data-theme="dark"] .total-card strong { color: #fff; }
 html[data-theme="dark"] .method-section { background: #111827; }
+html[data-theme="dark"] .result-next-step { border-color: #475569; color: #e2e8f0; }
+html[data-theme="dark"] .result-next-step a { color: #c4b5fd; }
 html[data-theme="dark"] .result-disclosure { color: #fef3c7; background: #78350f; }
 
 @media (max-width: 760px) {
@@ -141,7 +145,7 @@ html[data-theme="dark"] .result-disclosure { color: #fef3c7; background: #78350f
 }
 
 @media print {
-  .navbar, .answer-block, .hero, .scenario-rows, .scenario-actions, .form-status, .privacy-note, .method-section, .footer, .result-actions, .copy-status { display: none !important; }
+  .navbar, .answer-block, .hero, .scenario-rows, .scenario-actions, .form-status, .privacy-note, .method-section, .footer, .result-actions, .copy-status, .result-next-step { display: none !important; }
   body { background: #fff; }
   .calculator-section { padding: 0; }
   .scenario-results { margin: 0; border: 1px solid #000; box-shadow: none; }

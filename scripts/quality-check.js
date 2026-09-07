@@ -44,6 +44,11 @@ const publicText = publicFiles.map((file) => fs.readFileSync(file, "utf8")).join
 const allHtmlFiles = walkRepository(root).filter((file) => file.endsWith(".html"));
 const retiredHtmlFiles = allHtmlFiles.filter((file) => path.relative(root, file).startsWith(`blog${path.sep}`));
 const retiredContentFiles = walkRepository(path.join(root, "content", "blog")).filter((file) => /\.mdx?$/.test(file));
+const articleManifest = JSON.parse(read("content/published-articles.json"));
+const articleHub = read(articleManifest.hub.path);
+const publishedArticlePages = new Map(articleManifest.articles
+  .filter((article) => article.status === "published")
+  .map((article) => [article.path, read(article.path)]));
 const sitemap = read("sitemap.xml");
 const llmsText = read("llms.txt");
 const privacy = read("privacy.html");
@@ -112,6 +117,7 @@ const engagementPage = read("tools/engagement-rate/index.html");
 const engagementScript = read("tools/engagement-rate/engagement-calculator.js");
 const maintainedCorePages = new Map([
   ["index.html", home],
+  [articleManifest.hub.path, articleHub],
   ["about.html", aboutPage],
   ["contact.html", contactPage],
   ["privacy.html", privacy],
@@ -134,7 +140,7 @@ const maintainedToolPages = new Map([
   ["tools/twitch-revenue/index.html", twitchPage],
   ["tools/youtube-ad-revenue/index.html", youtubePage],
 ]);
-const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages]);
+const maintainedPages = new Map([...maintainedCorePages, ...maintainedToolPages, ...publishedArticlePages]);
 const maintainedIconPages = new Map([...maintainedPages, ["404.html", notFoundPage]]);
 const maintainedLinkedScripts = new Map();
 for (const [pagePath, page] of maintainedIconPages) {
@@ -228,8 +234,16 @@ pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunc
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
-pass((sitemap.match(/<url>/g) || []).length === 20, "sitemap contains the 12 maintained calculators and eight current core pages");
+pass(
+  (sitemap.match(/<url>/g) || []).length === 20 + 1 + publishedArticlePages.size,
+  "sitemap contains the maintained calculators, core pages, article hub, and reviewed articles",
+);
 pass(!sitemap.includes("/blog/"), "retired articles are absent from the sitemap");
+pass(
+  sitemap.includes("https://creatorrevenuecalculator.com/articles/")
+    && [...publishedArticlePages.keys()].every((file) => sitemap.includes(`https://creatorrevenuecalculator.com/${file.replace(/index\.html$/, "")}`)),
+  "only the reviewed article registry is discoverable through the new article path",
+);
 pass(!sitemap.includes("/guide/"), "unverified paid guide is absent from the sitemap");
 pass(
   ["/tools/finance-youtube-revenue/", "/tools/gaming-youtube-revenue/"]
@@ -308,6 +322,7 @@ pass(
   "custom 404 remains non-indexable and routes visitors to maintained high-intent tools",
 );
 const legacyGscRedirects = {
+  "/index.html": "/",
   "/about": "/about.html",
   "/contact": "/contact.html",
   "/privacy": "/privacy.html",
@@ -368,9 +383,45 @@ for (const [base, destination] of Object.entries({
     );
   }
 }
+const canonicalSlashRoutes = [
+  "/articles",
+  "/tools/youtube-ad-revenue",
+  "/tools/tiktok-revenue",
+  "/tools/twitch-revenue",
+  "/tools/instagram-revenue",
+  "/tools/podcast-revenue",
+  "/tools/sponsorship-rate",
+  "/tools/affiliate-calculator",
+  "/tools/ugc-rate",
+  "/tools/engagement-rate",
+  "/tools/newsletter-revenue",
+  "/tools/patreon-revenue",
+  "/tools/social-media-earnings-estimator",
+];
+for (const source of canonicalSlashRoutes) {
+  pass(
+    vercelConfig.redirects?.some((redirect) => (
+      redirect.source === source
+        && redirect.destination === `${source}/`
+        && redirect.permanent === true
+    )),
+    `${source} permanently redirects to its trailing-slash canonical`,
+  );
+}
 pass(
-  !vercelConfig.redirects?.some((redirect) => redirect.source.startsWith("/tools/ugc-rate")),
-  "UGC quote routes are no longer redirected to the sponsorship worksheet",
+  vercelConfig.redirects?.some((redirect) => (
+    redirect.source === "/articles/:slug"
+      && redirect.destination === "/articles/:slug/"
+      && redirect.permanent === true
+  )),
+  "every one-segment article path redirects to its trailing-slash canonical",
+);
+pass(
+  !vercelConfig.redirects?.some((redirect) => (
+    redirect.source.startsWith("/tools/ugc-rate")
+      && redirect.destination === "/tools/sponsorship-rate/"
+  )),
+  "UGC quote routes are not redirected to the sponsorship worksheet",
 );
 pass(vercelConfig.outputDirectory === "dist", "Vercel publishes only the generated fail-closed public directory");
 pass(
@@ -380,6 +431,8 @@ pass(
 pass(
   packageConfig.scripts?.["build:dist"] === "node scripts/build-dist.js"
     && packageConfig.scripts?.["test:dist"] === "node scripts/build-dist.js --check"
+    && packageConfig.scripts?.["test:articles"] === "node scripts/article-integrity-check.js"
+    && packageConfig.scripts?.build?.includes("npm run test:articles")
     && packageConfig.scripts?.build?.endsWith("npm run build:dist && npm run test:dist")
     && vercelConfig.buildCommand === "npm run build"
     && distBuilder.includes('const DIST_DIRECTORY_NAME = "dist"')
@@ -394,17 +447,22 @@ pass(
   frameHeaders.length > 0 && frameHeaders.every((header) => String(header.value).toUpperCase() === "DENY"),
   "all production X-Frame-Options rules match the master DENY policy",
 );
-pass(!fs.existsSync(path.join(root, "llms-full.txt")) && !llmsText.includes("/blog/"), "AI discovery does not promote the retired article archive");
+pass(
+  !fs.existsSync(path.join(root, "llms-full.txt"))
+    && !llmsText.includes("https://creatorrevenuecalculator.com/blog/")
+    && llmsText.includes("https://creatorrevenuecalculator.com/articles/"),
+  "assistant discovery excludes the retired archive and lists only reviewed articles",
+);
 pass(!llmsText.includes("/guide/"), "AI discovery does not promote the retired paid guide");
 pass(
   [privacy, cookies, affiliateDisclosure].every((page) => !page.includes('href="/guide/"')),
   "trust and privacy navigation does not route visitors through the retired guide",
 );
 pass(
-  [home, aboutPage, contactPage, privacy, cookies, termsPage, accessibilityPage, affiliateDisclosure].every((page) => (
+  [...maintainedCorePages.values()].every((page) => (
     /<a\b(?=[^>]*\bclass="skip-nav")(?=[^>]*\bhref="#main-content")[^>]*>Skip to main content<\/a>/.test(page)
   )),
-  "all eight core pages provide a consistently styled skip link",
+  "all core and article-hub pages provide a consistently styled skip link",
 );
 pass(/has not been approved by Google AdSense/i.test(privacy), "privacy notice accurately states AdSense status");
 pass(/Google Analytics is optional and remains blocked until you explicitly allow it/i.test(privacy), "privacy notice accurately states analytics status");
@@ -702,6 +760,15 @@ pass(
     && /crcTrackEvent\('calculator_completed'\)/.test(socialEstimatorScript)
     && !/crcTrackEvent\([^)]*,|\bgtag\s*\(|dataLayer|input\.value[^\n]*track/i.test(socialEstimatorScript),
   "cross-platform result and privacy copy remain explicit while analytics stays payload-free",
+);
+pass(
+  socialEstimatorPage.includes('class="result-next-step"')
+    && socialEstimatorPage.includes('href="/downloads/creator-revenue-tracker.xlsx"')
+    && socialEstimatorPage.includes('download="creator-revenue-tracker.xlsx"')
+    && socialEstimatorPage.includes("Keep the scenario separate from actual income")
+    && socialEstimatorStyles.includes(".result-next-step")
+    && /@media print[^}]*[\s\S]*\.result-next-step\s*\{\s*display:\s*none\s*!important/.test(socialEstimatorStyles),
+  "cross-platform results offer the blank tracker without mixing scenario values into the download or printout",
 );
 pass(
   socialEstimatorPage.includes('id="scenarioResults" tabindex="-1" aria-live="polite" aria-labelledby="scenarioResultsHeading"')
@@ -1131,6 +1198,11 @@ pass(
 );
 pass(!mainScript.includes("card.style.opacity = '0'"), "homepage calculator cards remain visible without scroll-triggered JavaScript");
 pass(
+  !mainScript.includes("This tool is coming soon!")
+    && !mainScript.includes("querySelectorAll('button:disabled')"),
+  "global navigation script does not mislabel actionable disabled controls as coming soon",
+);
+pass(
   home.includes("Model podcast ad inventory from your downloads, ad slots, contract CPM, creator share, and completed net sponsor revenue.")
     && ["Ad Inventory", "Contract CPM", "Sponsor Revenue"].every((label) => home.includes(`<span class="feature-tag">${label}</span>`))
     && !/Podcast Revenue Calculator[\s\S]{0,500}(?:subscriptions|listener support)/i.test(home),
@@ -1152,6 +1224,16 @@ pass(
     && homeApplicationSchema?.description === "A browser-based creator revenue calculator that adds user-supplied platform, membership, sponsorship, affiliate, product, and newsletter revenue, then subtracts user-supplied costs and a reserve."
     && !/Free YouTube Income Estimator|Estimate earnings, CPM rates, and monetization potential/.test(home),
   "homepage WebApplication schema exactly describes the visible multi-stream calculator",
+);
+pass(
+  !jsonLdDocuments(home).some((document) => document["@type"] === "FAQPage")
+    && !jsonLdDocuments(youtubePage).some((document) => document["@type"] === "FAQPage")
+    && home.includes("How do YouTube revenue calculators work?")
+    && home.includes("What CPM should I use for my YouTube niche?")
+    && youtubePage.includes('<section id="faq" class="faq-section">')
+    && youtubePage.includes("What rate should I enter?")
+    && youtubePage.includes("How accurate is the result?"),
+  "homepage and YouTube keep visible question-and-answer content without FAQPage structured data",
 );
 const mixInputIds = ["mixAds", "mixMemberships", "mixSponsorships", "mixAffiliates", "mixProducts", "mixNewsletter", "mixCosts", "mixReserve", "mixTarget"];
 pass(
@@ -1523,7 +1605,7 @@ pass(
     && patreonPage.includes('href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"')
     && patreonPage.includes('href="#income-tracker"')
     && patreonPage.includes("updated August 3, 2026")
-    && patreonPage.includes('"dateModified": "2026-08-18"')
+    && patreonPage.includes('"dateModified": "2026-09-06"')
     && patreonPage.includes("does not verify legacy-plan eligibility")
     && patreonPage.includes("Actual payouts may contain a mix of member payment methods and locations")
     && patreonPage.indexOf('id="patreonTrackerNextStep"') > patreonPage.indexOf('id="patreonResults"'),
@@ -1544,12 +1626,13 @@ pass(
 );
 pass(
   home.includes('"@type": "WebApplication"')
-    && home.includes('"dateModified": "2026-08-23"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-08-23</lastmod>')
-    && socialEstimatorPage.includes('"dateModified": "2026-08-23"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-08-23</lastmod>')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-08-18</lastmod>'),
-  "substantive homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
+    && home.includes('"dateModified": "2026-09-06"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-06</lastmod>')
+    && socialEstimatorPage.includes('"dateModified": "2026-09-06"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-09-06</lastmod>')
+    && patreonPage.includes('"dateModified": "2026-09-06"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-09-06</lastmod>'),
+  "homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
 );
 pass(
   accessibilityStyles.includes(".growth-next-step-actions .btn:focus-visible")

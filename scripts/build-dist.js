@@ -5,8 +5,19 @@ import path from "node:path";
 const ROOT = path.resolve(import.meta.dirname, "..");
 const DIST_DIRECTORY_NAME = "dist";
 const DIST = path.resolve(ROOT, DIST_DIRECTORY_NAME);
+const ARTICLE_MANIFEST = JSON.parse(fs.readFileSync(path.join(ROOT, "content", "published-articles.json"), "utf8"));
+const ARTICLE_PUBLIC_FILES = [
+  "assets/css/articles.css",
+  ARTICLE_MANIFEST.hub.path,
+  ...ARTICLE_MANIFEST.articles
+    .filter((article) => article.status === "published")
+    .map((article) => article.path),
+];
+const BASE_SITEMAP_URL_COUNT = 20;
+const BASE_REDIRECT_COUNT = 58;
+const CANONICAL_REDIRECT_COUNT = 15;
 
-const PUBLIC_FILES = [
+const CORE_PUBLIC_FILES = [
   "404.html",
   "index.html",
   "about.html",
@@ -82,7 +93,8 @@ const PUBLIC_FILES = [
   "tools/youtube-ad-revenue/index.html",
   "tools/youtube-ad-revenue/youtube-calculator.css",
   "tools/youtube-ad-revenue/youtube-calculator.js",
-].sort();
+];
+const PUBLIC_FILES = [...CORE_PUBLIC_FILES, ...ARTICLE_PUBLIC_FILES].sort();
 
 const EXPECTED_FILES = new Set(PUBLIC_FILES);
 const CHECK_ONLY = process.argv.includes("--check");
@@ -272,18 +284,36 @@ function verifySitemapAndRedirects(vercelConfig) {
   const sitemap = fs.readFileSync(path.join(DIST, "sitemap.xml"), "utf8");
   const sitemapUrls = [...sitemap.matchAll(/<loc>(https:\/\/creatorrevenuecalculator\.com[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
-  if (sitemapUrls.length !== 20) fail(`Expected 20 sitemap URLs, found ${sitemapUrls.length}`);
+  const publishedArticles = ARTICLE_MANIFEST.articles.filter((article) => article.status === "published");
+  const expectedSitemapCount = BASE_SITEMAP_URL_COUNT + 1 + publishedArticles.length;
+  if (sitemapUrls.length !== expectedSitemapCount) {
+    fail(`Expected ${expectedSitemapCount} sitemap URLs, found ${sitemapUrls.length}`);
+  }
+  const expectedArticleUrls = new Set([
+    ARTICLE_MANIFEST.hub.canonical,
+    ...publishedArticles.map((article) => article.canonical),
+  ]);
+  for (const expectedUrl of expectedArticleUrls) {
+    if (!sitemapUrls.some((url) => url.href === expectedUrl)) fail(`Published article URL is absent from the sitemap: ${expectedUrl}`);
+  }
   for (const url of sitemapUrls) {
     const target = routeToFile(url.pathname);
     if (!EXPECTED_FILES.has(target)) fail(`Sitemap URL is absent from the public allowlist: ${url.href}`);
   }
 
-  if ((vercelConfig.redirects || []).length !== 58) {
-    fail(`Expected 58 configured redirects, found ${(vercelConfig.redirects || []).length}`);
+  const expectedRedirectCount = BASE_REDIRECT_COUNT + CANONICAL_REDIRECT_COUNT;
+  if ((vercelConfig.redirects || []).length !== expectedRedirectCount) {
+    fail(`Expected ${expectedRedirectCount} configured redirects, found ${(vercelConfig.redirects || []).length}`);
   }
 
   for (const redirect of vercelConfig.redirects || []) {
     if (!String(redirect.destination).startsWith("/")) continue;
+    if (String(redirect.destination).includes(":")) {
+      if (redirect.source !== "/articles/:slug" || redirect.destination !== "/articles/:slug/") {
+        fail(`Unexpected parameterized redirect: ${redirect.source} -> ${redirect.destination}`);
+      }
+      continue;
+    }
     const target = routeToFile(redirect.destination);
     if (!EXPECTED_FILES.has(target)) fail(`Redirect destination is absent from the public allowlist: ${redirect.destination}`);
   }

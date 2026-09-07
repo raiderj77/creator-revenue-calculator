@@ -109,16 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightElement.textContent = copyrightElement.textContent.replace('2024', currentYear);
     }
     
-    // Coming soon buttons tooltip
-    const comingSoonButtons = document.querySelectorAll('button:disabled');
-    comingSoonButtons.forEach(button => {
-        button.title = 'This tool is coming soon!';
-        
-        button.addEventListener('mouseenter', function() {
-            this.style.cursor = 'not-allowed';
-        });
-    });
-    
     // Add active class to current page in navigation
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
