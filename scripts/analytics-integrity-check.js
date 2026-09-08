@@ -349,6 +349,17 @@ function runRuntimeMatrix() {
   equal(config.allow_google_signals, false, 'Google signals are disabled');
   equal(config.allow_ad_personalization_signals, false, 'ad personalization signals are disabled');
   ok(allowed.loader(), 'saved grant requests the analytics loader');
+  const declaredTag = themeSource.match(/var measurementId = '(G-[A-Z0-9]+)'/);
+  ok(declaredTag && commands[configIndex][1] === declaredTag[1], 'configuration uses the single declared analytics tag');
+  const loaderUrl = new URL(allowed.loader().src);
+  ok(
+    declaredTag
+      && loaderUrl.origin === 'https://www.googletagmanager.com'
+      && loaderUrl.pathname === '/gtag/js'
+      && loaderUrl.searchParams.get('id') === declaredTag[1]
+      && [...loaderUrl.searchParams.keys()].length === 1,
+    'loader URL uses only the same declared analytics tag',
+  );
   const serializedCommands = JSON.stringify(commands);
   for (const secretFragment of ['private=1', 'account=1', '#hidden', '#fragment']) {
     ok(!serializedCommands.includes(secretFragment), `queued analytics commands exclude ${secretFragment}`);

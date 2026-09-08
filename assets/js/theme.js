@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 (function() {
-  var measurementId = 'G-EVYCWFNNP5';
+  var measurementId = 'G-144KWSY4TP';
   var storageKey = 'creatorrevenuecalculator:analytics-consent';
   var scriptId = 'creatorrevenuecalculator-google-analytics';
   var analyticsEnabled = false;
