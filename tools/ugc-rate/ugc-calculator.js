@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var copyStatus = document.getElementById('copyStatus');
     var resultsCard = document.querySelector('.results-card');
     var copyResetTimer;
+    var lastCalculationValid = false;
     var fieldRules = {
         baseFee: { label: 'Base creation fee', min: 0, max: 1000000, step: 0.01 },
         deliverables: { label: 'Number of deliverables', min: 1, max: 1000, step: 1, whole: true },
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function calculate(focusFirstInvalid) {
+        lastCalculationValid = false;
         var validation = validateAllInputs();
         if (!validation.valid) {
             clearInvalidResults();
@@ -191,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.crcTrackEvent('calculator_completed');
         }
         if (focusFirstInvalid) resultsCard.focus();
+        lastCalculationValid = true;
         return true;
     }
 
@@ -388,13 +391,16 @@ document.addEventListener('DOMContentLoaded', function () {
     catch (error) { kitOffer = { changed: function () {}, completed: function () {} }; }
 
     Object.keys(inputs).forEach(function (key) {
-        inputs[key].addEventListener('input', function (event) { kitOffer.changed(event); calculate(false); });
-        inputs[key].addEventListener('change', function (event) { kitOffer.changed(event); calculate(false); });
+        inputs[key].addEventListener('input', function () { calculate(false); });
+        inputs[key].addEventListener('change', function () { calculate(false); });
+        inputs[key].addEventListener('input', kitOffer.changed);
+        inputs[key].addEventListener('change', kitOffer.changed);
     });
 
+    // Keep the original calculation/focus handler independent of the optional offer.
+    calculateButton.addEventListener('click', function () { calculate(true); });
     calculateButton.addEventListener('click', function (event) {
-        var valid = calculate(true);
-        kitOffer.completed(event, valid);
+        kitOffer.completed(event, lastCalculationValid);
     });
     copyButton.addEventListener('click', copySummary);
 
