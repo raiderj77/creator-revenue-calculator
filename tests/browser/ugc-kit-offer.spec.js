@@ -161,14 +161,33 @@ test('invalid release records leave the offer unavailable', async ({ page, conte
   await complete(page);
   await expect(page.locator('#ugcKitOffer')).toHaveCount(0);
 });
-test('expiry revalidation prevents a stale store navigation', async ({ page, context }) => {
+test('expiry revalidation cancels a stale link activation', async ({ page, context }) => {
   await setup(page, context, { active: true, choice: 'granted' });
   await complete(page);
-  await page.locator('#ugcKitLink').scrollIntoViewIfNeeded();
-  await page.evaluate(() => { Date.now = () => Date.parse('2099-01-01T00:00:00Z'); });
-  await page.locator('#ugcKitLink').click();
+  await expect(page.locator('#ugcKitLink')).toBeVisible();
+  // Change the clock and dispatch within one task: the expiry observer cannot
+  // hide the link between these steps. This is an explicitly synthetic event,
+  // testing cancellation, not evidence of a native store navigation or purchase.
+  const cancelled = await page.locator('#ugcKitLink').evaluate(link => {
+    Date.now = () => Date.parse('2099-01-01T00:00:00Z');
+    return !link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  });
+  expect(cancelled).toBe(true);
   await expect(page.locator('#ugcKitOffer')).toBeHidden();
+  await expect(page.locator('#ugcKitLink')).not.toHaveAttribute('href');
   expect(page.url()).toContain('/tools/ugc-rate/');
+});
+test('resuming an expired page hides the offer without any link activation', async ({ page, context }) => {
+  await setup(page, context, { active: true, choice: 'denied' });
+  await complete(page);
+  await expect(page.locator('#ugcKitOffer')).toBeVisible();
+  await page.evaluate(() => {
+    Date.now = () => Date.parse('2099-01-01T00:00:00Z');
+    window.dispatchEvent(new Event('pageshow'));
+  });
+  await expect(page.locator('#ugcKitOffer')).toBeHidden();
+  await expect(page.locator('#ugcKitLink')).not.toHaveAttribute('href');
+  expect(await offerEvents(page)).toEqual([]);
 });
 test('absent visibility observer does not fabricate a passive view', async ({ page, context }) => {
   await setup(page, context, { active: true, choice: 'granted', noObserver: true });
