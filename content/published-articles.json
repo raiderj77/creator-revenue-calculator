@@ -3,7 +3,7 @@
   "hub": {
     "path": "articles/index.html",
     "canonical": "https://creatorrevenuecalculator.com/articles/",
-    "lastModified": "2026-09-07"
+    "lastModified": "2026-09-18"
   },
   "articles": [
     {
@@ -84,6 +84,77 @@
           "checkedOn": "2026-09-06",
           "claims": [
             "The Relationship Manager can export a filtered member CSV for membership-status reconciliation."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ugc-rates-guide",
+      "status": "published",
+      "path": "articles/ugc-rates-guide/index.html",
+      "canonical": "https://creatorrevenuecalculator.com/articles/ugc-rates-guide/",
+      "title": "UGC Rates: How to Scope and Price a Creator Project",
+      "description": "Build a defensible UGC quote from your own costs, deliverables, usage terms, and add-ons, with transparent math and primary-source disclosure and copyright guidance.",
+      "datePublished": "2026-09-18",
+      "dateModified": "2026-09-18",
+      "reviewedOn": "2026-09-18",
+      "nextReviewOn": "2026-12-15",
+      "primaryQuery": "ugc rates",
+      "opportunity": {
+        "type": "search_console",
+        "property": "https://creatorrevenuecalculator.com/",
+        "periodStart": "2026-06-17",
+        "periodEnd": "2026-09-16",
+        "capturedOn": "2026-09-18",
+        "clicks": 4,
+        "impressions": 479,
+        "ctrPercent": 0.8,
+        "averagePosition": 48.2,
+        "decision": "The UGC calculator already receives impressions for zero-click rate, pricing, and creator-income questions, while this guide adds a distinct scope-to-quote workflow and primary-source rights and disclosure guidance."
+      },
+      "calculatorPath": "/tools/ugc-rate/",
+      "downloadPath": "/downloads/ugc-quote-scope-checklist.csv",
+      "discoveryPages": [
+        "tools/ugc-rate/index.html"
+      ],
+      "sources": [
+        {
+          "id": "ftc-disclosures",
+          "kind": "primary",
+          "title": "Disclosures 101 for Social Media Influencers",
+          "publisher": "Federal Trade Commission",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-09-18",
+          "claims": [
+            "A material connection between an endorser and a brand should be disclosed clearly with the endorsement.",
+            "A video endorsement disclosure should appear in the video rather than only in its description."
+          ]
+        },
+        {
+          "id": "copyright-basics",
+          "kind": "primary",
+          "title": "Copyright Basics, Circular 1",
+          "publisher": "U.S. Copyright Office",
+          "url": "https://www.copyright.gov/circs/circ01.pdf",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-09-18",
+          "claims": [
+            "Copyright initially belongs to the author, subject to exceptions including qualifying works made for hire.",
+            "Owning a copy of a work does not itself transfer copyright ownership, and a copyright ownership transfer generally must be written and signed."
+          ]
+        },
+        {
+          "id": "works-made-for-hire",
+          "kind": "primary",
+          "title": "Works Made for Hire, Circular 30",
+          "publisher": "U.S. Copyright Office",
+          "url": "https://www.copyright.gov/circs/circ30.pdf",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-09-18",
+          "claims": [
+            "Work-made-for-hire status depends on the employment relationship or specific conditions for certain commissioned works.",
+            "The classification affects who is treated as the author and initial copyright owner."
           ]
         }
       ]
