@@ -53,6 +53,7 @@ const CORE_PUBLIC_FILES = [
   "assets/vendor/fontawesome/webfonts/crc-icons-solid.woff2",
   "downloads/creator-revenue-tracker.xlsx",
   "downloads/patreon-income-tracker.csv",
+  "downloads/ugc-quote-scope-checklist.csv",
   "tools/affiliate-calculator/index.html",
   "tools/affiliate-calculator/affiliate-calculator.css",
   "tools/affiliate-calculator/affiliate-calculator.js",

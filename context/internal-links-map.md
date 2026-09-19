@@ -1,15 +1,17 @@
 # Maintained internal-link map
 
-Last verified: 2026-09-07
+Last verified: 2026-09-18
 
 ## Primary discovery pages
 
 - `/` — homepage and all-tools directory
 - `/articles/` — evidence-first article library
 - `/articles/patreon-income-tracker/` — reviewed Patreon reconciliation guide
+- `/articles/ugc-rates-guide/` — reviewed UGC scope, rights, and quote guide
 - `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
+- `/downloads/ugc-quote-scope-checklist.csv` — blank UGC scope checklist download
 
 ## Calculators
 
