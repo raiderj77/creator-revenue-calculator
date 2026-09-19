@@ -63,8 +63,8 @@ raw footage or variants, and usage-rights add-ons in the free UGC worksheet.
 Check the arithmetic before sending a quote.
 
 Example only: a $100 creation fee for two deliverables gives a $200 content
-subtotal. Six entered add-ons of $20, $30, $40, $50, $60 and $70 add $270.
-The worksheet total is $470.
+subtotal. A $20 production cost plus five entered add-ons of $30, $40, $50, $60
+and $70 add $270. The worksheet total is $470.
 
 Those are demonstration inputs, not recommended fees. The worksheet does not
 judge whether a price or contract term is appropriate.
@@ -79,8 +79,8 @@ your own current records.
 Media brief: Original calculator demonstration with an on-screen "Example inputs,
 not market rates" label. Show all eight inputs, the breakdown and the copy/print
 controls. Do not imply the scenario is a customer's earnings or an accepted deal.
-Suggested alternative text: Worked UGC quote example with a $200 content subtotal
-and $270 of user-entered add-ons, producing a $470 scenario.
+Suggested alternative text: Worked UGC quote example with a $200 content subtotal,
+a $20 production cost, and five add-ons totaling $250, producing a $470 scenario.
 
 ## Measurement and owner review
 

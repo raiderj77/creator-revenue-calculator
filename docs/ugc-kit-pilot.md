@@ -1,7 +1,7 @@
 # UGC calculator-to-kit pilot
 
-Status: IMPLEMENTED FOR REVIEW, COMMERCIAL RELEASE BLOCKED.
-Preparation date: September 18, 2026.
+Status: IMPLEMENTED AND PRODUCT-INSPECTED FOR REVIEW, COMMERCIAL RELEASE BLOCKED.
+Preparation and product review date: September 18, 2026.
 Base: `c445c7c81f16866382afd61839b2ffdc8f17889f`.
 
 ## Scope
@@ -16,25 +16,51 @@ version creates no offer DOM and no offer tracking. A URL parameter, storage val
 or incoming message cannot activate it. This is a source-release gate, not a
 remote configuration service or a cryptographic authorization mechanism.
 
-## Product evidence and release blocker
+## Product evidence and remaining release blocker
 
-The proposed destination is Etsy listing 4549759149 in the owner-identified
-DevelopVault shop. This review did not retrieve the current listing or locate the
-actual paid deliverables in the accessible Library or website downloads. A plugin
-directory search found no Etsy integration. Prior descriptions of the kit and its
-price are not treated as current verified product evidence.
+Owner-approved seller access verified that Etsy listing 4549759149 is active in
+the DevelopVault shop, was listed August 4, 2026, is currently priced at $8.99,
+and uses manual renewal. Etsy currently shows these two customer attachments:
 
-Before enabling the offer, verify shop ownership, active listing/destination,
-actual downloadable files, formulas, blank and worked examples, PDF fillability
-where claimed, compatibility, instructions, license, advertised contents, support
-and refund information. Record the artifact version and hash in a private review
-record. Do not commit the paid files to this public repository. Do not purchase
-a copy from the owner's shop to simulate customer demand.
+- `ugc-quote-rate-card-kit.pdf` (73.43 KB in Etsy; matching local original is
+  73,434 bytes).
+- `ugc-quote-builder-workbook.zip` (13.59 KB in Etsy; matching local original is
+  13,599 bytes).
+
+The matching originals are in the approved local UGC product folder. The ZIP
+contains only `ugc-quote-builder.xlsx`, `START-HERE.txt`, and `LICENSE.txt`; each
+archived item matches its local original. No purchase was made, and no customer,
+order, payment, message, or unrelated seller information was inspected. Paid
+files, private evidence hashes, signed URLs, and seller screenshots stay outside
+this public repository.
+
+The workbook has four sheets (Quote Builder, Rate Card Planner, Scope Checklist,
+and Email Templates), 20 formula cells, and no detected macros, external links, or
+workbook connections. All four sheets rendered cleanly. The $470 worked example,
+all-zero monetary inputs, the 1,000-deliverable boundary, and a blank base-fee
+case recalculated as expected. The inspected validations require nonnegative
+decimal amounts no greater than 1,000,000 and a whole deliverable count from 1 to
+1,000. The separate six-page, US-letter PDF is an unencrypted fillable AcroForm
+with no JavaScript; its source render was visually clean. Application-specific
+spreadsheet/PDF behavior outside the inspected environment remains unverified.
+
+The listing states that instant downloads do not accept returns, exchanges, or
+cancellations and directs a buyer with an order problem to contact the seller. A
+Message seller control is present. This is not evidence of a response-time promise,
+warranty, or remedy beyond Etsy's displayed terms.
+
+One material content mismatch remains. The listing's visible quote formula ends
+with "+ other listed items," and the PDF includes an Other field, but the workbook's
+Quote Builder has no separate Other input or formula term. Before release, the
+owner must either correct the listing claim or update and fully retest the paid
+workbook and seller attachment. That account-side/product decision cannot be
+resolved by changing this website.
 
 The drafted offer deliberately omits a fixed price, file inventory, earnings
 promise and testimonial. It invites the visitor to inspect the current listing.
-Even this neutral copy requires ownership and destination verification before
-release. A syntactically valid evidence hash is not proof the review occurred.
+Keep `UGC_KIT_RELEASE` null while the listing/workbook mismatch remains and until
+the exact bounded release receives owner approval. A syntactically valid evidence
+hash is not proof that either gate was satisfied.
 
 ## Proposed display behavior
 
@@ -116,16 +142,17 @@ ownership and exact publishing action are approved. See `ugc-kit-social-drafts.m
   release records, expiry and absence of a visibility observer.
 - Test approval fixtures are not an owner release. No live Google collection,
   Etsy navigation, purchase, publishing or production verification is performed.
-- Local browser navigation was blocked by the container's browser policy. Report
-  local unit checks and remote CI browser checks separately. Do not claim a local
-  full-site build or browser pass without observed output.
+- Report local and remote browser evidence separately, and rerun both the focused
+  offer suite and retained site gates after any evidence or activation change. Do
+  not treat an earlier green run as proof for a changed revision.
 
 Review the exact diff and CI results independently before any merge. Verify the
 full UGC page in the intended release environment and the actual Etsy destination.
 Record the final release SHA, source record, observation dates and rollback owner.
-Keep `UGC_KIT_RELEASE` null until the missing product evidence and exact release
-are approved. Activating it is a later reviewed change with corresponding tests,
-not an environment flag, guessed hash or removal of the safeguards.
+Keep `UGC_KIT_RELEASE` null until the listing/workbook mismatch is resolved and
+the exact release is approved. Activating it is a later reviewed change with
+corresponding tests, not an environment flag, guessed hash or removal of the
+safeguards.
 
 Existing Dependabot work is separate. No package versions or lockfile changed.
 A draft PR may invoke existing CI/hosting integrations; source remains inactive.

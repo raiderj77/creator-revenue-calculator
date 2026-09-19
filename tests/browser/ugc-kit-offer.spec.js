@@ -60,7 +60,18 @@ async function offerEvents(page) {
 }
 async function preventExternalNavigation(page) {
   // Observe a genuine user activation without opening a store or initiating payment.
-  await page.locator('#ugcKitLink').evaluate(link => link.addEventListener('click', e => e.preventDefault()));
+  // This listener is registered after the product listener, so defaultPrevented
+  // records whether product code blocked the link before the harness safely does.
+  await page.locator('#ugcKitLink').evaluate(link => {
+    window.fixtureOfferLinkDefaultPrevented = [];
+    link.addEventListener('click', event => {
+      window.fixtureOfferLinkDefaultPrevented.push(event.defaultPrevented);
+      event.preventDefault();
+    });
+  });
+}
+async function linkPreventionStates(page) {
+  return page.evaluate(() => window.fixtureOfferLinkDefaultPrevented || []);
 }
 
 for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
@@ -133,6 +144,15 @@ test('undecided use is not tracked or replayed after a later consent grant', asy
   await expect.poll(() => offerEvents(page)).toEqual([['event', names[0]]]);
   expect((await offerEvents(page)).some(row => row[1] === names[1])).toBe(false);
 });
+test('denied analytics leaves a trusted store link activation unblocked', async ({ page, context }) => {
+  await setup(page, context, { active: true, choice: 'denied' });
+  await complete(page);
+  await preventExternalNavigation(page);
+  await page.locator('#ugcKitLink').click();
+  expect(await linkPreventionStates(page)).toEqual([false]);
+  expect(await offerEvents(page)).toEqual([]);
+  expect(page.url()).toContain('/tools/ugc-rate/');
+});
 test('withdrawal stops offer events but not the free tool or store link', async ({ page, context }) => {
   await setup(page, context, { active: true, choice: 'granted' });
   await complete(page);
@@ -142,6 +162,7 @@ test('withdrawal stops offer events but not the free tool or store link', async 
   await page.getByRole('button', { name: 'Continue without analytics', exact: true }).click();
   await preventExternalNavigation(page);
   await page.locator('#ugcKitLink').click();
+  expect(await linkPreventionStates(page)).toEqual([false]);
   expect(await offerEvents(page)).toEqual([['event', names[0]]]);
   await expect(page.locator('#copyQuote')).toBeEnabled();
 });
