@@ -49,18 +49,18 @@ cancellations and directs a buyer with an order problem to contact the seller. A
 Message seller control is present. This is not evidence of a response-time promise,
 warranty, or remedy beyond Etsy's displayed terms.
 
-One material content mismatch remains. The listing's visible quote formula ends
-with "+ other listed items," and the PDF includes an Other field, but the workbook's
-Quote Builder has no separate Other input or formula term. Before release, the
-owner must either correct the listing claim or update and fully retest the paid
-workbook and seller attachment. That account-side/product decision cannot be
-resolved by changing this website.
+The formula mismatch was corrected through authorized seller access on September
+18, 2026. The Etsy update succeeded, and the public listing was rechecked: its
+visible formula now ends with "+ rush = quote total." That wording matches the
+reviewed workbook, which has no separate Other input or formula term. The PDF's
+manual "Taxes / other listed item" field remains accurately described as part of
+the separate fillable PDF. No customer-download file was changed or replaced.
 
 The drafted offer deliberately omits a fixed price, file inventory, earnings
 promise and testimonial. It invites the visitor to inspect the current listing.
-Keep `UGC_KIT_RELEASE` null while the listing/workbook mismatch remains and until
-the exact bounded release receives owner approval. A syntactically valid evidence
-hash is not proof that either gate was satisfied.
+Keep `UGC_KIT_RELEASE` null until the exact bounded release receives owner
+approval. The corrected listing and a syntactically valid evidence hash do not by
+themselves authorize a merge, deployment or offer activation.
 
 ## Proposed display behavior
 
@@ -149,10 +149,9 @@ ownership and exact publishing action are approved. See `ugc-kit-social-drafts.m
 Review the exact diff and CI results independently before any merge. Verify the
 full UGC page in the intended release environment and the actual Etsy destination.
 Record the final release SHA, source record, observation dates and rollback owner.
-Keep `UGC_KIT_RELEASE` null until the listing/workbook mismatch is resolved and
-the exact release is approved. Activating it is a later reviewed change with
-corresponding tests, not an environment flag, guessed hash or removal of the
-safeguards.
+Keep `UGC_KIT_RELEASE` null until the exact release is approved. Activating it is
+a later reviewed change with corresponding tests, not an environment flag,
+guessed hash or removal of the safeguards.
 
 Existing Dependabot work is separate. No package versions or lockfile changed.
 A draft PR may invoke existing CI/hosting integrations; source remains inactive.
