@@ -1,48 +1,60 @@
 # Verified search opportunity snapshot
 
 Source: Google Search Console, Web search type
-Period: 2026-06-05 through 2026-09-04
-Captured: 2026-09-06
+Period: 2026-06-17 through 2026-09-16
+Captured: 2026-09-18
 
 These are historical aggregate observations, not traffic forecasts or ranking promises.
 
 ## Site totals
 
-- 82 clicks
-- approximately 11,400 impressions (Search Console rounded display)
-- 0.7% CTR
-- 28.5 average position
+- 106 clicks
+- approximately 11,800 impressions (Search Console rounded display)
+- 0.9% CTR
+- 26.7 average position
 
 ## Pages to improve first
 
 | Page | Clicks | Impressions | CTR | Average position |
 | --- | ---: | ---: | ---: | ---: |
-| Homepage | 44 | 1,636 | 2.7% | 17.1 |
-| Patreon | 13 | 3,177 | 0.4% | 20.0 |
-| Twitch | 9 | 1,292 | 0.7% | 32.6 |
-| Newsletter | 3 | 795 | 0.4% | 26.0 |
-| Sponsorship | 3 | 575 | 0.5% | 18.8 |
-| UGC | 3 | 510 | 0.6% | 50.6 |
-| TikTok | 2 | 379 | 0.5% | 46.7 |
-| Podcast | 1 | 223 | 0.4% | 46.0 |
+| Homepage | 50 | 1,841 | 2.7% | Not captured in this page-table review |
+| Patreon | 29 | 3,656 | 0.8% | Not captured in this page-table review |
+| Twitch | 10 | 1,445 | 0.7% | Not captured in this page-table review |
+| Newsletter | 3 | 813 | 0.4% | Not captured in this page-table review |
+| Sponsorship | 2 | 534 | 0.4% | Not captured in this page-table review |
+| UGC | 4 | 479 | 0.8% | 48.2 |
+| TikTok | 2 | 323 | 0.6% | Not captured in this page-table review |
+| Podcast | 1 | 226 | 0.4% | Not captured in this page-table review |
 
 ## Query examples worth investigating
 
 | Query | Clicks | Impressions | CTR | Average position |
 | --- | ---: | ---: | ---: | ---: |
-| tiktok revenue | 0 | 160 | 0% | 65.6 |
-| engagement rate calculator | 0 | 146 | 0% | 87.9 |
-| patreon income tracker | 1 | 112 | 0.9% | 28.9 |
-| twitch revenue calculator | 1 | 78 | 1.3% | 33.1 |
-| twitch ad revenue calculator | 0 | 62 | 0% | 17.6 |
-| instagram revenue calculator | 0 | 57 | 0% | 19.7 |
-| affiliate marketing calculator | 0 | 57 | 0% | 45.6 |
-| twitch earnings calculator | 0 | 49 | 0% | 25.9 |
+| patreon income tracker | 2 | 134 | Not captured | Not captured |
+| twitch revenue calculator | 1 | 102 | Not captured | Not captured |
+| creator calculator | 2 | 52 | Not captured | Not captured |
+| patreon revenue calculator | 4 | 40 | Not captured | Not captured |
+| patreon revenue checker | 2 | 39 | Not captured | Not captured |
+| patreon income calculator | 1 | 32 | Not captured | Not captured |
+| creator revenue | 2 | 28 | Not captured | Not captured |
 
-The Patreon family also included `patreon revenue calculator` at 2 clicks, 27 impressions, 7.4% CTR, and position 6.0, plus `patreon income calculator` at 1 click, 24 impressions, 4.2% CTR, and position 8.9. Preserve the calculator page’s intent while using the article for the distinct monthly-tracking workflow.
+## UGC page query evidence
 
-## Generative AI visibility
+The UGC calculator recorded 4 clicks, 479 impressions, 0.8% CTR, and 48.2 average position during this period. Its visible query table included the following zero-click demand:
 
-Search Console’s Generative AI features report showed 127 impressions in the same period. Patreon led with 43, followed by Twitch 34 and the homepage 27. Sponsorship had 6 and Newsletter 5. This is query/page visibility evidence, not proof of a citation, click, or ranking.
+| Query | Impressions |
+| --- | ---: |
+| how much do ugc creators make | 31 |
+| ugc rates | 29 |
+| ugc creator rates | 22 |
+| how much does a ugc creator make | 20 |
+| ugc rate calculator | 17 |
+| ugc pay | 17 |
+| ugc pricing | 13 |
+| ugc content creator rates | 12 |
+| how much to charge for a ugc reel | 8 |
+| how much do ugc creators charge | 7 |
+
+These observations support one maintained scope-to-quote guide, not separate pages for minor query variations and not a universal rate table.
 
 Refresh this file before choosing a later article. Do not reuse the snapshot as if it were current.

@@ -12,7 +12,7 @@ test.beforeEach(async ({ context }) => {
   ));
 });
 
-for (const route of ['/articles/', '/articles/patreon-income-tracker/']) {
+for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articles/ugc-rates-guide/']) {
   for (const theme of ['light', 'dark']) {
     test(`${route} is mobile-safe and accessible in ${theme} mode`, async ({ page }) => {
       await page.addInitScript(selectedTheme => localStorage.setItem('theme', selectedTheme), theme);
@@ -39,9 +39,10 @@ for (const route of ['/articles/', '/articles/patreon-income-tracker/']) {
   }
 }
 
-test('article hub exposes one reviewed guide and the maintained calculator directory', async ({ page }) => {
+test('article hub exposes two reviewed guides and the maintained calculator directory', async ({ page }) => {
   await page.goto('/articles/');
   await expect(page.getByRole('link', { name: 'Patreon Income Tracker: A Monthly Reconciliation Guide' })).toHaveAttribute('href', '/articles/patreon-income-tracker/');
+  await expect(page.getByRole('link', { name: 'UGC Rates: How to Scope and Price a Creator Project' })).toHaveAttribute('href', '/articles/ugc-rates-guide/');
   await expect(page.getByRole('link', { name: 'free calculator directory' })).toHaveAttribute('href', '/#tools');
   await expect(page.locator('main')).toContainText('They do not publish hidden benchmarks, fabricated earnings, or guarantees.');
 });
@@ -71,7 +72,47 @@ test('Patreon tracker guide keeps records, scenarios, sources, and privacy limit
   });
 });
 
+test('UGC rates guide turns scope into a source-backed quote without supplying a benchmark', async ({ page, request }) => {
+  await page.goto('/articles/ugc-rates-guide/');
+
+  await expect(page.locator('.article-answer')).toContainText('There is no single UGC rate');
+  await expect(page.locator('[data-synthetic-example="true"]')).toContainText('not a benchmark');
+  await expect(page.locator('#sources [data-source-id]')).toHaveCount(3);
+  await expect(page.getByRole('link', { name: 'Build a Free UGC Quote' })).toHaveAttribute('href', '/tools/ugc-rate/');
+  await expect(page.getByRole('link', { name: 'Download the Free Scope Checklist' })).toHaveAttribute('href', '/downloads/ugc-quote-scope-checklist.csv');
+  await expect(page.locator('.article-disclaimer')).toContainText('not financial or tax advice');
+  await expect(page.locator('.article-disclaimer')).toContainText('not legal advice');
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
+
+  const checklist = await request.get('/downloads/ugc-quote-scope-checklist.csv');
+  expect(checklist.ok()).toBe(true);
+  const checklistText = await checklist.text();
+  expect(checklistText).toContain('Deliverable');
+  expect(checklistText).toContain('Usage channels');
+  expect(checklistText).toContain('Exclusivity scope');
+
+  const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const nodes = jsonLd.map(value => JSON.parse(value));
+  const article = nodes.find(node => node['@type'] === 'Article');
+  expect(article).toMatchObject({
+    headline: 'UGC Rates: How to Scope and Price a Creator Project',
+    datePublished: '2026-09-18',
+    dateModified: '2026-09-18',
+    isAccessibleForFree: true,
+  });
+
+  await page.evaluate(() => {
+    window.__crcTestEvents = [];
+    window.crcTrackEvent = eventName => window.__crcTestEvents.push(eventName);
+  });
+  const calculatorCta = page.getByRole('link', { name: 'Build a Free UGC Quote' });
+  await calculatorCta.evaluate(link => link.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await calculatorCta.click();
+  expect(await page.evaluate(() => window.__crcTestEvents)).toEqual(['calculator_opened']);
+});
+
 test('article mobile navigation opens with keyboard-safe destinations', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('theme', 'light'));
   await page.setViewportSize({ width: 320, height: 844 });
   await page.goto('/articles/patreon-income-tracker/');
 

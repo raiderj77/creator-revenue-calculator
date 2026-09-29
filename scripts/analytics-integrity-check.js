@@ -366,6 +366,7 @@ function runRuntimeMatrix() {
   }
 
   equal(allowed.window.crcTrackEvent('calculator_completed'), true, 'one allowlisted generic event is accepted');
+  equal(allowed.window.crcTrackEvent('calculator_opened'), true, 'payload-free calculator CTA event is accepted');
   equal(allowed.window.crcTrackEvent('calculator_completed', { private: true }), false, 'an event with an extra argument is rejected');
   equal(allowed.window.crcTrackEvent('not_allowlisted'), false, 'an unallowlisted event is rejected');
   equal(allowed.window.crcTrackEvent('toString'), false, 'an inherited property name is not treated as allowlisted');

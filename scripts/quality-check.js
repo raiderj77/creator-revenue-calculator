@@ -238,7 +238,7 @@ pass(
 );
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
 pass(
-  ["calculator_completed", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
+  ["calculator_completed", "calculator_opened", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
     && themeScript.includes("arguments.length !== 1")
     && themeScript.includes("Object.prototype.hasOwnProperty.call(permittedEvents, eventName)")
     && themeScript.includes("window.gtag('event', eventName)")
@@ -373,8 +373,9 @@ const searchIntentRedirects = {
   "/blog/how-much-do-substack-writers-make-2026": "/tools/newsletter-revenue/",
   "/blog/how-much-do-tiktok-creators-make-2026": "/tools/tiktok-revenue/",
   "/blog/tiktok-revenue": "/tools/tiktok-revenue/",
-  "/blog/how-much-do-ugc-creators-make": "/tools/ugc-rate/",
-  "/blog/ugc-rates": "/tools/ugc-rate/",
+  "/blog/how-much-do-ugc-creators-make": "/articles/ugc-rates-guide/",
+  "/blog/how-much-do-ugc-creators-make-2026": "/articles/ugc-rates-guide/",
+  "/blog/ugc-rates": "/articles/ugc-rates-guide/",
   "/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier": "/tools/sponsorship-rate/",
 };
 for (const [source, destination] of Object.entries(searchIntentRedirects)) {
@@ -646,7 +647,7 @@ pass(
 pass(
   ugcPage.includes("Quote worksheet, not a market-rate recommendation, guarantee, or contract; it does not provide legal, tax, or financial advice.")
     && ugcPage.includes("What the Result Excludes")
-    && ugcPage.includes('datetime="2026-08-09"'),
+    && ugcPage.includes('datetime="2026-09-18"'),
   "UGC worksheet displays its review date, exclusions, and decision-use limitations",
 );
 pass(

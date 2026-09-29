@@ -11,6 +11,24 @@ body.article-page .mobile-menu-toggle {
     color: #1f2937;
 }
 
+html[data-theme="light"] body.article-page {
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --gray-dark: #374151;
+}
+
+html[data-theme="light"] body.article-page .navbar {
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+body.article-page .footer-bottom .footer-link {
+    display: inline;
+    margin-bottom: 0;
+}
+
 .article-hero {
     padding: 4.5rem 0 3rem;
     background: linear-gradient(145deg, #312e81 0%, #5b21b6 58%, #6d28d9 100%);
