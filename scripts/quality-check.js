@@ -1656,13 +1656,19 @@ pass(
 );
 pass(
   home.includes('"@type": "WebApplication"')
-    && home.includes('"dateModified": "2026-09-07"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-07</lastmod>')
+    && home.includes('"dateModified": "2026-09-28"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-28</lastmod>')
     && socialEstimatorPage.includes('"dateModified": "2026-09-06"')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-09-06</lastmod>')
     && patreonPage.includes('"dateModified": "2026-09-06"')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-09-06</lastmod>'),
   "homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
+);
+const homeMain = home.slice(home.indexOf("<main"), home.lastIndexOf("</main>"));
+pass(
+  homeMain.includes('<a href="/recommended-products/">compare creator equipment and software by workflow</a>')
+    && !homeMain.includes('<a href="/recommended-products/" rel="nofollow'),
+  "homepage main content provides a descriptive followed path to the recommended-products catalog",
 );
 pass(
   accessibilityStyles.includes(".growth-next-step-actions .btn:focus-visible")
