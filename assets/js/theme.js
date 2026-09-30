@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     script.addEventListener('load', function() {
       if (document.getElementById(scriptId) !== script) return;
       analyticsScriptLoaded = true;
+      notifyAnalyticsChange();
     });
     script.addEventListener('error', function() {
       if (document.getElementById(scriptId) !== script) return;
@@ -271,6 +272,34 @@ document.addEventListener('DOMContentLoaded', function() {
     return true;
   };
 
+  // UGC pilot only. No generic parameter forwarding or new visitor identifier.
+  var sentOfferEvents = Object.create(null);
+  window.crcOfferAnalyticsReady = function() {
+    try {
+      return analyticsEnabled && analyticsScriptLoaded && consentStorageAvailable
+        && !globalPrivacyControlIsActive()
+        && window.localStorage.getItem(storageKey) === 'granted'
+        && window['ga-disable-' + measurementId] === false
+        && typeof window.gtag === 'function'
+        && (window.location.pathname === '/tools/ugc-rate/' || window.location.pathname === '/tools/ugc-rate/index.html');
+    } catch (error) { return false; }
+  };
+  window.crcTrackOfferEvent = function(eventName) {
+    if (arguments.length !== 1 || (eventName !== 'ugc_kit_offer_viewed' && eventName !== 'ugc_kit_offer_clicked')) return false;
+    if (!window.crcOfferAnalyticsReady() || sentOfferEvents[eventName]) return false;
+    if (eventName === 'ugc_kit_offer_clicked' && !sentOfferEvents.ugc_kit_offer_viewed) return false;
+    try {
+      window.gtag('event', eventName);
+      sentOfferEvents[eventName] = true;
+      return true; // queued command, not proof of receipt by Google.
+    } catch (error) { return false; }
+  };
+  function notifyAnalyticsChange() {
+    if (typeof window.dispatchEvent === 'function' && typeof Event === 'function') {
+      window.dispatchEvent(new Event('crc:analytics-change'));
+    }
+  }
+
   function saveChoice(choice) {
     if (globalPrivacyControlIsActive() || !consentStorageAvailable) choice = 'denied';
     try {
@@ -281,6 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (choice === 'granted') initializeAnalytics();
     else disableAnalytics();
+    notifyAnalyticsChange();
     return choice;
   }
 
@@ -318,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
       ? 'Your browser sent a Global Privacy Control signal, so optional analytics remain off.'
       : !consentStorageAvailable
         ? 'Your browser could not save an analytics choice, so optional analytics remain off.'
-      : 'If allowed, Google Analytics receives a query-free page URL, limited referrer, page title, device and browser details, approximate location, standard engagement and enhanced-measurement interactions, plus generic calculate, copy, and print actions. We do not intentionally send calculator inputs, results, or URL queries.';
+      : 'If allowed, Google Analytics receives a query-free page URL, limited referrer, page title, device and browser details, approximate location, standard engagement and enhanced-measurement interactions, plus generic calculate, copy, print, and optional paid-kit offer view/click actions. We do not intentionally send calculator inputs, results, or URL queries.';
     var actions = document.createElement('div');
     actions.className = 'crc-analytics-actions';
     var deny = makeButton(grantingBlocked ? 'Close privacy choices' : 'Continue without analytics', 'crc-analytics-secondary');

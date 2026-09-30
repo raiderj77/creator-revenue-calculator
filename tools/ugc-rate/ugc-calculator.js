@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var copyStatus = document.getElementById('copyStatus');
     var resultsCard = document.querySelector('.results-card');
     var copyResetTimer;
+    var lastCalculationValid = false;
     var fieldRules = {
         baseFee: { label: 'Base creation fee', min: 0, max: 1000000, step: 0.01 },
         deliverables: { label: 'Number of deliverables', min: 1, max: 1000, step: 1, whole: true },
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function calculate(focusFirstInvalid) {
+        lastCalculationValid = false;
         var validation = validateAllInputs();
         if (!validation.valid) {
             clearInvalidResults();
@@ -191,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.crcTrackEvent('calculator_completed');
         }
         if (focusFirstInvalid) resultsCard.focus();
+        lastCalculationValid = true;
         return true;
     }
 
@@ -234,12 +237,171 @@ document.addEventListener('DOMContentLoaded', function () {
         if (copied) onSuccess();
     }
 
+    // UGC_KIT_RELEASE is deliberately null until product files, destination and
+    // the exact bounded release are verified. Change only through a reviewed PR.
+    // No URL/localStorage/remote-config switch enables this offer.
+    var UGC_KIT_RELEASE = null;
+
+    function validKitRelease(release, now) {
+        if (!release || typeof release !== 'object' || Array.isArray(release)) return false;
+        if (Object.keys(release).sort().join(',') !== 'expiresAt,productEvidenceSha256,releaseRef,startsAt') return false;
+        if (typeof release.releaseRef !== 'string' || !/^ugc-kit-[a-z0-9-]{1,60}$/.test(release.releaseRef)) return false;
+        if (typeof release.productEvidenceSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(release.productEvidenceSha256)) return false;
+        var dates = [release.startsAt, release.expiresAt];
+        if (dates.some(function (value) {
+            return typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.000Z$/.test(value)
+                || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString() !== value;
+        })) return false;
+        var start = Date.parse(release.startsAt);
+        var end = Date.parse(release.expiresAt);
+        return Number.isFinite(now) && end > start && end - start <= 30 * 86400000 && start <= now && now < end;
+    }
+
+    function createKitOffer() {
+        var inert = { changed: function () {}, completed: function () {} };
+        if (!validKitRelease(UGC_KIT_RELEASE, Date.now())) return inert;
+        if (window.location.pathname !== '/tools/ugc-rate/' && window.location.pathname !== '/tools/ugc-rate/index.html') return inert;
+        if (!resultsCard || !resultsCard.parentElement || document.getElementById('ugcKitOffer')) return inert;
+        var touched = false;
+        var qualified = false;
+        var visible = false;
+        var viewSent = false;
+        var clickSent = false;
+        var timer = null;
+        var observer = null;
+        var expiryTimer = null;
+        var retired = false;
+
+        function element(tag, className, text) {
+            var node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text) node.textContent = text;
+            return node;
+        }
+        var offer = element('aside', 'growth-next-step ugc-kit-offer');
+        offer.id = 'ugcKitOffer';
+        offer.hidden = true;
+        offer.style.display = 'none';
+        offer.setAttribute('aria-labelledby', 'ugcKitOfferHeading');
+        var description = element('div');
+        description.appendChild(element('p', 'growth-next-step-kicker', 'Optional paid download'));
+        var heading = element('h3', '', 'UGC Quote & Rate Card Kit');
+        heading.id = 'ugcKitOfferHeading';
+        description.appendChild(heading);
+        description.appendChild(element('p', '', 'View the kit contents, compatibility, and current price in our DevelopVault Etsy shop. This calculator, Copy Quote Summary, and Print Results remain free.'));
+        var actions = element('div', 'growth-next-step-actions');
+        var link = element('a', 'btn btn-primary', 'View the UGC kit on Etsy');
+        link.id = 'ugcKitLink';
+        link.href = 'https://www.etsy.com/listing/4549759149/';
+        link.rel = 'sponsored nofollow noopener noreferrer';
+        link.referrerPolicy = 'no-referrer';
+        actions.appendChild(link);
+        offer.appendChild(description);
+        offer.appendChild(actions);
+        resultsCard.insertAdjacentElement('afterend', offer);
+
+        function stopTimer() {
+            if (timer !== null) window.clearTimeout(timer);
+            timer = null;
+        }
+        function hide() {
+            qualified = false;
+            visible = false;
+            stopTimer();
+            offer.hidden = true;
+            offer.style.display = 'none';
+        }
+        function active() {
+            if (!retired && validKitRelease(UGC_KIT_RELEASE, Date.now())) return true;
+            retired = true;
+            hide();
+            link.removeAttribute('href');
+            if (observer) observer.disconnect();
+            if (expiryTimer !== null) window.clearTimeout(expiryTimer);
+            return false;
+        }
+        function analyticsReady() {
+            try {
+                return typeof window.crcOfferAnalyticsReady === 'function' && window.crcOfferAnalyticsReady() === true;
+            } catch (error) { return false; }
+        }
+        function record(name) {
+            // No inputs, result totals, IDs, free text or URL parameters are read.
+            try {
+                return typeof window.crcTrackOfferEvent === 'function' && window.crcTrackOfferEvent(name) === true;
+            } catch (error) { return false; }
+        }
+        function measureView() {
+            stopTimer();
+            if (!active() || !qualified || !visible || document.visibilityState !== 'visible' || viewSent || !analyticsReady()) return;
+            timer = window.setTimeout(function () {
+                timer = null;
+                if (active() && qualified && visible && document.visibilityState === 'visible' && analyticsReady()) {
+                    viewSent = record('ugc_kit_offer_viewed');
+                }
+            }, 1000);
+        }
+        if (typeof window.IntersectionObserver === 'function') {
+            observer = new window.IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.target !== offer) return;
+                    visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+                    measureView();
+                });
+            }, { threshold: [0, 0.5] });
+            observer.observe(offer);
+        }
+        link.addEventListener('click', function (event) {
+            if (!active() || !qualified || offer.hidden) {
+                event.preventDefault();
+                return;
+            }
+            // A direct user link activation itself establishes an observed view.
+            // Scripted clicks never qualify. Tracking failure never stops navigation.
+            if (event.isTrusted !== true || document.visibilityState !== 'visible' || !analyticsReady()) return;
+            if (!viewSent) viewSent = record('ugc_kit_offer_viewed');
+            if (viewSent && !clickSent) clickSent = record('ugc_kit_offer_clicked');
+        });
+        window.addEventListener('crc:analytics-change', measureView);
+        document.addEventListener('visibilitychange', measureView);
+        window.addEventListener('pageshow', measureView);
+        window.addEventListener('pagehide', stopTimer);
+        // A bounded source release also expires while the tab remains open.
+        function checkExpiry() {
+            if (!active()) return;
+            expiryTimer = window.setTimeout(checkExpiry, Math.min(60000, Date.parse(UGC_KIT_RELEASE.expiresAt) - Date.now()));
+        }
+        checkExpiry();
+        return {
+            changed: function (event) {
+                if (event && event.isTrusted === true) touched = true;
+                hide();
+            },
+            completed: function (event, valid) {
+                if (!active() || !valid || !touched || !event || event.isTrusted !== true) return;
+                qualified = true;
+                offer.hidden = false;
+                offer.style.removeProperty('display');
+                // Existing result focus stays put. No focus jump or pop-up.
+            }
+        };
+    }
+    var kitOffer;
+    try { kitOffer = createKitOffer(); }
+    catch (error) { kitOffer = { changed: function () {}, completed: function () {} }; }
+
     Object.keys(inputs).forEach(function (key) {
         inputs[key].addEventListener('input', function () { calculate(false); });
         inputs[key].addEventListener('change', function () { calculate(false); });
+        inputs[key].addEventListener('input', kitOffer.changed);
+        inputs[key].addEventListener('change', kitOffer.changed);
     });
 
+    // Keep the original calculation/focus handler independent of the optional offer.
     calculateButton.addEventListener('click', function () { calculate(true); });
+    calculateButton.addEventListener('click', function (event) {
+        kitOffer.completed(event, lastCalculationValid);
+    });
     copyButton.addEventListener('click', copySummary);
 
     var faqQuestions = document.querySelectorAll('.faq-question');
