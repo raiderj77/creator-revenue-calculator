@@ -1,10 +1,10 @@
-// Patreon Revenue Calculator - fee model reviewed against Patreon Help Center on 2026-08-09.
+// Patreon Revenue Calculator - fee model reviewed against Patreon Help Center on 2026-10-14.
 
 document.addEventListener('DOMContentLoaded', function() {
     var planData = {
         standard: { label: 'Standard', rate: 0.10, legacy: false },
         founders: { label: 'Legacy Founders (original USD processing)', rate: 0.05, legacy: true },
-        'founders-standard': { label: 'Legacy Founders (standard processing)', rate: 0.05, legacy: false },
+        'founders-standard': { label: 'Legacy Founders (standard processing)', rate: 0.05, legacy: true },
         pro: { label: 'Legacy Pro', rate: 0.08, legacy: true },
         merch: { label: 'Legacy Pro + Merch', rate: 0.11, legacy: true }
     };
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return { rate: processing.foundersRate, flat: processing.foundersFlat, kind: 'founders' };
         }
 
-        if ((planKey === 'pro' || planKey === 'merch') && price <= 3) {
+        if ((planKey === 'pro' || planKey === 'merch' || planKey === 'founders-standard') && price <= 3) {
             return { rate: processing.microRate, flat: processing.microFlat, kind: 'micro' };
         }
 
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (planKey === 'founders') {
             return processing.label + '; original Founders USD rate';
         }
-        if (planKey === 'pro' || planKey === 'merch') {
+        if (planKey === 'pro' || planKey === 'merch' || planKey === 'founders-standard') {
             return processing.label + '; tier-level legacy rates';
         }
         return processing.label + '; standard rate';

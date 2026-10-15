@@ -50,7 +50,7 @@
         "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2026-03-08",
-      "dateModified": "2026-09-06"
+      "dateModified": "2026-10-14"
     }
     </script>
 
@@ -136,27 +136,40 @@
 
 
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">    <link rel="stylesheet" href="/assets/css/accessibility-audit-fixes.css">
+<meta name="google-adsense-account" content="ca-pub-7171402107622932">
+<link rel="stylesheet" href="/assets/css/site-navigation.css">
 </head>
 <body class="calculator-page">
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary navigation">
         <div class="container">
-            <a href="/" class="logo"><i class="fas fa-calculator"></i> Creator Revenue Calculator</a>
-            <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" type="button">
+            <div class="nav-brand">
+                <a href="/" class="logo">
+                    <i class="fas fa-calculator"></i>
+                    <span>Creator Revenue Calculator</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#tools" class="nav-link">Tools</a>
+                <a href="/articles/" class="nav-link">Articles</a>
+                <a href="/recommended-products/" class="nav-link">Products</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="/contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>
+                <a href="/#creator-calculator" class="btn btn-primary">
+                    <i class="fas fa-calculator"></i> Use Revenue Calculator
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="nav-links" id="navLinks">
-                <a href="/tools/youtube-ad-revenue/">YouTube</a>
-                <a href="/tools/twitch-revenue/">Twitch</a>
-                <a href="/tools/tiktok-revenue/">TikTok</a>
-                <a href="/tools/instagram-revenue/">Instagram</a>
-                <a href="/tools/podcast-revenue/">Podcast</a>
-                <a href="/tools/sponsorship-rate/">Sponsorship</a>
-                <a href="/tools/engagement-rate/">Engagement</a>
-                <a href="/tools/patreon-revenue/" style="color: #f59e0b;">Patreon</a>
-            </div>
         </div>
     </nav>
 
@@ -178,7 +191,7 @@
           <p class="answer-block-text"><a href="#income-tracker">Download the blank CSV income tracker</a> and enter figures from Patreon records. Calculator inputs and tracker data are not stored by this page.</p>
         </div>
       </div>
-      <time datetime="2026-08-09" class="answer-block-updated">Fee model reviewed against Patreon Help Center: August 9, 2026</time>
+      <time datetime="2026-10-14" class="answer-block-updated">Fee model reviewed against Patreon Help Center: October 14, 2026</time>
     </section>
 
     <section class="hero">
@@ -450,7 +463,7 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-table"></i> Patreon Fees Used by This Calculator</h2>
-                <p class="subtitle">Reviewed August 9, 2026 against Patreon's creator-fee documentation, updated August 3, 2026</p>
+                <p class="subtitle">Reviewed October 14, 2026 against Patreon's creator-fee documentation, updated September 11, 2026</p>
             </div>
             <!-- [html-validate-disable-next prefer-native-element] -->
             <div class="benchmark-table-container" role="region" tabindex="0" aria-label="Patreon platform fee reference table">
@@ -545,7 +558,9 @@
 
     </div>
 
-    </main>
+
+<section class="education-section"><div class="container"><h2>Fees outside this USD web-payment model</h2><p><a href="https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview">Patreon’s creator fees overview</a> explains that eligible iOS in-app purchases incur Apple’s 30% fee instead of Patreon payment processing; Patreon’s platform fee still applies. US fans may have a mobile-web payment option. This calculator does not model the iOS purchase path, sales tax, or payout charges.</p><p>Currency conversion can add 2.5% of the full payment including tax. Processing also uses the tax-inclusive amount, while the platform fee excludes sales tax. A Founders creator who changes payout currency keeps the 5% platform fee but moves away from original Founders processing. This option uses the legacy standard schedule, including micropayment rates for USD payments of $3 or less. Confirm your account currency and processing schedule.</p><p>US direct-deposit payouts cost $0.25 each; PayPal payouts cost 1%, with a $0.25 minimum and $20 cap. These are payout charges, not per-patron charges. Reconcile them with the <a href="/articles/patreon-income-tracker/">Patreon income tracker guide</a>.</p><p><small>Platform rules checked October 14, 2026. Confirm account-specific terms before making a decision.</small></p></div></section>
+</main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -556,40 +571,53 @@
                         <i class="fas fa-calculator"></i>
                         <span>Creator Revenue Calculator</span>
                     </div>
-                    <p class="footer-description">Free tools for content creators to estimate earnings across platforms.</p>
+                    <p class="footer-description">Transparent scenario tools using creator-supplied inputs.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/raiderj77" class="social-link" aria-label="Creator Revenue Calculator on GitHub"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Calculator Tools</h3>
+                    <h3 class="footer-title">Tools</h3>
                     <a href="/tools/youtube-ad-revenue/" class="footer-link">YouTube Calculator</a>
-                    <a href="/tools/tiktok-revenue/" class="footer-link">TikTok Calculator</a>
                     <a href="/tools/twitch-revenue/" class="footer-link">Twitch Calculator</a>
+                    <a href="/tools/tiktok-revenue/" class="footer-link">TikTok Calculator</a>
                     <a href="/tools/instagram-revenue/" class="footer-link">Instagram Calculator</a>
                     <a href="/tools/podcast-revenue/" class="footer-link">Podcast Calculator</a>
-                    <a href="/tools/affiliate-calculator/" class="footer-link">Affiliate Calculator</a>
                     <a href="/tools/sponsorship-rate/" class="footer-link">Sponsorship Calculator</a>
+                    <a href="/tools/ugc-rate/" class="footer-link">UGC Rate Calculator</a>
                     <a href="/tools/engagement-rate/" class="footer-link">Engagement Calculator</a>
                     <a href="/tools/patreon-revenue/" class="footer-link">Patreon Calculator</a>
+                    <a href="/tools/newsletter-revenue/" class="footer-link">Newsletter Calculator</a>
+                    <a href="/tools/affiliate-calculator/" class="footer-link">Affiliate Calculator</a>
+                    <a href="/tools/social-media-earnings-estimator/" class="footer-link">Social Media Earnings Worksheet</a>
                 </div>
 
                 <div class="footer-section">
                     <h3 class="footer-title">Resources</h3>
-                    <a href="#income-tracker" class="footer-link">Patreon Income Tracker</a>
-                    <a href="#plans" class="footer-link">Patreon Fee Reference</a>
-                    <a href="#faq" class="footer-link">Patreon FAQ</a>
+                    <a href="/articles/" class="footer-link">Evidence-First Articles</a>
+                    <a href="/recommended-products/" class="footer-link">Recommended Products</a>
                     <a href="/about.html" class="footer-link">About</a>
                     <a href="/contact.html" class="footer-link">Contact</a>
-                </div>
-
-                <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
                     <a href="/privacy.html" class="footer-link">Privacy Policy</a>
                     <a href="/terms.html" class="footer-link">Terms of Service</a>
                     <a href="/cookies.html" class="footer-link">Cookie Policy</a>
                     <a href="/accessibility.html" class="footer-link">Accessibility</a>
                     <a href="/affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a>
+                    <a href="/llms.txt" class="footer-link">AI Assistant Info</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <p class="footer-contact">
+                        <i class="fas fa-envelope"></i> hello@creatorrevenuecalculator.com
+                    </p>
+                    <p class="footer-contact">
+                        <i class="fas fa-globe"></i> creatorrevenuecalculator.com
+                    </p>
                 </div>
             </div>
+
 
             <!-- Budget Callout -->
             <div class="footer-callout">
@@ -601,6 +629,7 @@
             </div>
             <div class="footer-bottom">
                 <p>© 2026 Creator Revenue Calculator. All rights reserved.</p>
+                <p>All tools are free to use today. Results are user-supplied scenarios.</p>
                 <p class="disclaimer">Calculator outputs are arithmetic from visible inputs and are provided for informational purposes only. Not financial advice. Verify material inputs against your own current records.</p>
             </div>
         </div>

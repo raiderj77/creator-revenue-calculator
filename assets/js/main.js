@@ -101,6 +101,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Record only a generic, payload-free calculator CTA action after analytics consent.
+    document.querySelectorAll('[data-crc-event="calculator_opened"]').forEach(link => {
+        link.addEventListener('click', function() {
+            if (typeof window.crcTrackEvent === 'function') {
+                window.crcTrackEvent('calculator_opened');
+            }
+        });
+    });
     
     // Update copyright year
     const copyrightElement = document.querySelector('.footer-bottom p');

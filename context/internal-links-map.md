@@ -1,15 +1,17 @@
 # Maintained internal-link map
 
-Last verified: 2026-09-07
+Last verified: 2026-09-18
 
 ## Primary discovery pages
 
 - `/` — homepage and all-tools directory
 - `/articles/` — evidence-first article library
 - `/articles/patreon-income-tracker/` — reviewed Patreon reconciliation guide
+- `/articles/ugc-rates-guide/` — reviewed UGC scope, rights, and quote guide
 - `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
+- `/downloads/ugc-quote-scope-checklist.csv` — blank UGC scope checklist download
 
 ## Calculators
 
@@ -43,3 +45,5 @@ Last verified: 2026-09-07
 - Link articles to their primary calculator or tracker; add reciprocal contextual discovery only where useful.
 - Do not link to the retired `/blog/` archive or unmaintained routes.
 - Treat all internal links normally. Use `nofollow sponsored` for paid or affiliate destinations; do not use `nofollow` on ordinary internal links.
+
+- `/articles/youtube-partner-program-2027/` — February 2027 YouTube rules and terms checklist

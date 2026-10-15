@@ -1,0 +1,25 @@
+/* Shared navigation must not inherit a calculator-specific palette. */
+body .navbar { background:#fff; color:#1f2937; }
+body .navbar > .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding-top:1rem; padding-bottom:1rem; }
+body .navbar .logo { display:flex; align-items:center; gap:.5rem; color:#4338ca; font-size:1.1rem; font-weight:700; }
+body .navbar .nav-menu { display:flex; gap:1rem; align-items:center; }
+body .navbar .nav-link { color:#374151; }
+body .navbar .nav-actions { display:flex; align-items:center; gap:.5rem; }
+body .navbar .mobile-menu-toggle { display:none; color:#1f2937; background:#fff; border:1px solid #64748b; padding:.6rem; }
+body .education-section > .container > p { max-width:78ch; margin:1rem 0; line-height:1.7; }
+body .education-section > .container > p a { color:#4338ca; text-decoration:underline; }
+html[data-theme="dark"] body .navbar { background:#111827; color:#f9fafb; }
+html[data-theme="dark"] body .navbar .logo, html[data-theme="dark"] body .navbar .nav-link { color:#e0e7ff; }
+html[data-theme="dark"] body .navbar .mobile-menu-toggle { background:#111827; color:#f9fafb; }
+html[data-theme="dark"] body .education-section > .container > p a { color:#c4b5fd; }
+@media(max-width:900px) {
+ body .navbar .nav-actions > a { display:none; }
+}
+@media(max-width:768px) {
+ body .navbar .nav-menu { display:none; order:4; width:100%; flex-direction:column; align-items:stretch; }
+ body .navbar .nav-menu.active { display:flex; }
+ body .navbar .nav-link { padding:.6rem; }
+ body .navbar .mobile-menu-toggle { display:block; }
+ body .navbar .nav-brand { flex:1; min-width:0; }
+ body .navbar .logo { font-size:1rem; }
+}

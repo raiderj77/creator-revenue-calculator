@@ -238,7 +238,7 @@ pass(
 );
 pass(!/input\.value|FormData|resultCards/.test(themeScript.slice(themeScript.indexOf("var measurementId"))), "analytics cannot read calculator inputs or results");
 pass(
-  ["calculator_completed", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
+  ["calculator_completed", "calculator_opened", "result_copied", "result_printed"].every((eventName) => themeScript.includes(`${eventName}: true`))
     && themeScript.includes("arguments.length !== 1")
     && themeScript.includes("Object.prototype.hasOwnProperty.call(permittedEvents, eventName)")
     && themeScript.includes("window.gtag('event', eventName)")
@@ -373,8 +373,9 @@ const searchIntentRedirects = {
   "/blog/how-much-do-substack-writers-make-2026": "/tools/newsletter-revenue/",
   "/blog/how-much-do-tiktok-creators-make-2026": "/tools/tiktok-revenue/",
   "/blog/tiktok-revenue": "/tools/tiktok-revenue/",
-  "/blog/how-much-do-ugc-creators-make": "/tools/ugc-rate/",
-  "/blog/ugc-rates": "/tools/ugc-rate/",
+  "/blog/how-much-do-ugc-creators-make": "/articles/ugc-rates-guide/",
+  "/blog/how-much-do-ugc-creators-make-2026": "/articles/ugc-rates-guide/",
+  "/blog/ugc-rates": "/articles/ugc-rates-guide/",
   "/blog/sponsorship-rates-what-audience-size-unlocks-which-deal-tier": "/tools/sponsorship-rate/",
 };
 for (const [source, destination] of Object.entries(searchIntentRedirects)) {
@@ -646,7 +647,7 @@ pass(
 pass(
   ugcPage.includes("Quote worksheet, not a market-rate recommendation, guarantee, or contract; it does not provide legal, tax, or financial advice.")
     && ugcPage.includes("What the Result Excludes")
-    && ugcPage.includes('datetime="2026-08-09"'),
+    && ugcPage.includes('datetime="2026-09-18"'),
   "UGC worksheet displays its review date, exclusions, and decision-use limitations",
 );
 pass(
@@ -679,8 +680,8 @@ pass(
   "UGC results, copy action, and keyboard-native FAQ controls expose accessible state",
 );
 pass(
-  !/(amazon\.com|tag=creatorcalc-20|googlesyndication|adsbygoogle|etsy\.com)/i.test(ugcPage),
-  "UGC worksheet makes no ad, affiliate, Amazon, or storefront request",
+  !/(amazon\.com|tag=creatorcalc-20|googlesyndication|adsbygoogle|etsy\.com)/i.test(ugcPage.slice(ugcPage.indexOf("<main"), ugcPage.indexOf("</main>"))) && !/<(?:script|img|iframe|link)\b[^>]*(?:amazon\.com|googlesyndication|etsy\.com)/i.test(ugcPage),
+  "UGC worksheet body has no commercial destinations and loads no commercial resources; shared footer links remain explicit",
 );
 pass(
   home.includes('href="/tools/ugc-rate/"')
@@ -1178,9 +1179,9 @@ pass(
   "affiliate sitemap freshness matches its visible and structured review date",
 );
 pass(
-  youtubePage.includes('datetime="2026-09-07"')
-    && youtubePage.includes('"dateModified": "2026-09-07"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/</loc><lastmod>2026-09-07</lastmod>'),
+  youtubePage.includes('datetime="2026-10-14"')
+    && youtubePage.includes('"dateModified": "2026-10-14"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/youtube-ad-revenue/</loc><lastmod>2026-10-14</lastmod>'),
   "YouTube sitemap freshness matches its visible and structured review date",
 );
 const resultCards = [...publicText.matchAll(/<div\b[^>]*class="[^"]*\bresults-card\b[^"]*"[^>]*>/g)].map((match) => match[0]);
@@ -1634,8 +1635,8 @@ pass(
   patreonPage.includes('id="patreonTrackerNextStep"')
     && patreonPage.includes('href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"')
     && patreonPage.includes('href="#income-tracker"')
-    && patreonPage.includes("updated August 3, 2026")
-    && patreonPage.includes('"dateModified": "2026-09-06"')
+    && patreonPage.includes("updated September 11, 2026")
+    && patreonPage.includes('"dateModified": "2026-10-14"')
     && patreonPage.includes("does not verify legacy-plan eligibility")
     && patreonPage.includes("Actual payouts may contain a mix of member payment methods and locations")
     && patreonPage.indexOf('id="patreonTrackerNextStep"') > patreonPage.indexOf('id="patreonResults"'),
@@ -1656,12 +1657,12 @@ pass(
 );
 pass(
   home.includes('"@type": "WebApplication"')
-    && home.includes('"dateModified": "2026-09-28"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-09-28</lastmod>')
+    && home.includes('"dateModified": "2026-10-14"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-10-14</lastmod>')
     && socialEstimatorPage.includes('"dateModified": "2026-09-06"')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-09-06</lastmod>')
-    && patreonPage.includes('"dateModified": "2026-09-06"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-09-06</lastmod>'),
+    && patreonPage.includes('"dateModified": "2026-10-14"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-10-14</lastmod>'),
   "homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
 );
 const homeMain = home.slice(home.indexOf("<main"), home.lastIndexOf("</main>"));

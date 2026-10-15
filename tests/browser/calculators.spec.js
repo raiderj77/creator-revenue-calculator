@@ -93,3 +93,28 @@ test('cross-platform results provide a privacy-safe blank tracker next step', as
   });
   expect(focusedResultClearsStickyNav).toBe(true);
 });
+
+
+test('Founders currency-change processing uses legacy boundary without changing Standard', async ({ page }) => {
+  await page.goto('/tools/patreon-revenue/');
+  await page.locator('#tierPatrons1').fill('100');
+  await page.locator('#tierPrice1').fill('3');
+  await page.locator('#plan').selectOption('founders-standard');
+  await page.locator('#processingProfile').selectOption('card');
+  await expect(page.locator('#processingFee')).toHaveText('-$25.00');
+  await page.locator('#tierPrice1').fill('3.01');
+  await expect(page.locator('#processingFee')).toHaveText('-$38.73');
+  await page.locator('#tierPrice1').fill('3');
+  await page.locator('#plan').selectOption('standard');
+  await expect(page.locator('#processingFee')).toHaveText('-$38.70');
+});
+
+test('Newsletter documented fee entry avoids counting percentage fees twice', async ({ page }) => {
+  await page.goto('/tools/newsletter-revenue/');
+  await page.locator('#paidSubscribers').fill('100');
+  await page.locator('#monthlyPrice').fill('5');
+  await page.locator('#platformFeePercent').fill('13.6');
+  await page.locator('#otherMonthlyCosts').fill('30');
+  await page.locator('#calculateBtn').click();
+  await expect(page.locator('#breakdownTotal')).toHaveText('$402.00');
+});

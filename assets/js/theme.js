@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var consentStorageAvailable = true;
   var permittedEvents = {
     calculator_completed: true,
+    calculator_opened: true,
     result_copied: true,
     result_printed: true
   };

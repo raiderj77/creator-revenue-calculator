@@ -22,6 +22,7 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 
 - Article library and publishing standard: https://creatorrevenuecalculator.com/articles/
 - Patreon income tracker reconciliation guide: https://creatorrevenuecalculator.com/articles/patreon-income-tracker/
+- UGC scope, rights, and quote guide: https://creatorrevenuecalculator.com/articles/ugc-rates-guide/
 
 ## Recommended creator products and software
 
@@ -39,3 +40,5 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - The former `/blog/` archive and its source drafts remain retired and excluded from deployable output. New `/articles/` pages are individually reviewed, source-ledgered, and explicitly allowlisted; no legacy page is republished automatically.
 - The former gaming and finance niche calculators redirect to the maintained YouTube scenario calculator.
 - The UGC quote worksheet uses only visible, user-supplied monetary inputs and does not provide a market rate.
+
+- [YouTube Partner Program Changes for February 2027](https://creatorrevenuecalculator.com/articles/youtube-partner-program-2027/): Dated official rules and synthetic examples.

@@ -144,7 +144,7 @@ pass(
   read("context/brand-voice.md").includes("static, browser-first")
     && read("context/seo-guidelines.md").includes("developers.google.com/search/docs/fundamentals/ai-optimization-guide")
     && read("context/internal-links-map.md").includes("/articles/")
-    && read("context/target-keywords.md").includes("Captured: 2026-09-06")
+    && read("context/target-keywords.md").includes("Captured: 2026-09-18")
     && read("context/style-guide.md").includes("synthetic example"),
   "site context describes the real stack, current evidence, maintained routes, and synthetic-example rules",
 );
