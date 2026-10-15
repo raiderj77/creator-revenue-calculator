@@ -112,6 +112,21 @@ test('the catalog is complete and readable without JavaScript', async ({ browser
   await context.close();
 });
 
+test('the homepage provides a contextual catalog path without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto('http://127.0.0.1:4312/');
+
+  const catalogLink = page.getByRole('main').getByRole('link', {
+    name: 'compare creator equipment and software by workflow',
+  });
+  await expect(catalogLink).toHaveAttribute('href', '/recommended-products/');
+  await catalogLink.click();
+  await expect(page).toHaveURL('http://127.0.0.1:4312/recommended-products/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Recommended Products and Tools for Creators');
+  await context.close();
+});
+
 test('catalog load is privacy-safe before any outbound link is chosen', async ({ browser }) => {
   const context = await browser.newContext();
   const externalRequests = [];
