@@ -3,7 +3,7 @@
   "hub": {
     "path": "articles/index.html",
     "canonical": "https://creatorrevenuecalculator.com/articles/",
-    "lastModified": "2026-09-18"
+    "lastModified": "2026-10-14"
   },
   "articles": [
     {
@@ -95,8 +95,8 @@
       "canonical": "https://creatorrevenuecalculator.com/articles/ugc-rates-guide/",
       "title": "UGC Rates: How to Scope and Price a Creator Project",
       "description": "Build a defensible UGC quote from your own costs, deliverables, usage terms, and add-ons, with transparent math and primary-source disclosure and copyright guidance.",
-      "datePublished": "2026-09-18",
-      "dateModified": "2026-09-18",
+      "datePublished": "2026-10-14",
+      "dateModified": "2026-10-14",
       "reviewedOn": "2026-09-18",
       "nextReviewOn": "2026-12-15",
       "primaryQuery": "ugc rates",
@@ -155,6 +155,91 @@
           "claims": [
             "Work-made-for-hire status depends on the employment relationship or specific conditions for certain commissioned works.",
             "The classification affects who is treated as the author and initial copyright owner."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "youtube-partner-program-2027",
+      "status": "published",
+      "path": "articles/youtube-partner-program-2027/index.html",
+      "canonical": "https://creatorrevenuecalculator.com/articles/youtube-partner-program-2027/",
+      "title": "YouTube Partner Program Changes for February 2027",
+      "description": "Compare YouTube’s announced 2027 entry thresholds, Shorts earning floor, and terms deadline, with synthetic examples and a post-share revenue worksheet.",
+      "datePublished": "2026-10-14",
+      "dateModified": "2026-10-14",
+      "reviewedOn": "2026-10-14",
+      "nextReviewOn": "2026-11-14",
+      "primaryQuery": "youtube monetization requirements and rpm 2026",
+      "opportunity": {
+        "type": "platform_change",
+        "capturedOn": "2026-10-14",
+        "primarySourceUrl": "https://support.google.com/youtube/answer/12843009?hl=en",
+        "changeSummary": "YouTube announced new February 2027 entry and Shorts earning requirements and a January terms deadline.",
+        "decision": "Search Console shows the monetization requirements and RPM query; this official change needs a dated comparison and deadline checklist beyond the calculator.",
+        "relatedQueryEvidence": {
+          "query": "youtube monetization requirements and rpm 2026",
+          "periodStart": "2026-07-13",
+          "periodEnd": "2026-10-12",
+          "clicks": 0,
+          "impressions": 20,
+          "capturedOn": "2026-10-14",
+          "scope": "exact query row; no 2027 query volume claimed"
+        }
+      },
+      "calculatorPath": "/tools/youtube-ad-revenue/",
+      "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+      "discoveryPages": [
+        "index.html",
+        "tools/youtube-ad-revenue/index.html"
+      ],
+      "sources": [
+        {
+          "id": "ypp-changes",
+          "kind": "primary",
+          "title": "Changes to the YouTube Partner Program",
+          "publisher": "YouTube",
+          "url": "https://support.google.com/youtube/answer/12843009?hl=en",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-10-14",
+          "claims": [
+            "Updated terms must be accepted by January 31, 2027; entry thresholds and ongoing Shorts eligibility change in February."
+          ]
+        },
+        {
+          "id": "ypp-blog",
+          "kind": "primary",
+          "title": "New opportunities to earn and changes to the YouTube Partner Program",
+          "publisher": "YouTube",
+          "url": "https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/",
+          "sourceUpdatedOn": "2026-08-10",
+          "checkedOn": "2026-10-14",
+          "claims": [
+            "Premium and Premium Lite use separate subscription pools and downstream format-specific revenue shares."
+          ]
+        },
+        {
+          "id": "expanded-ypp",
+          "kind": "primary",
+          "title": "Overview of the expanded YouTube Partner Program",
+          "publisher": "YouTube",
+          "url": "https://support.google.com/youtube/answer/13429240?hl=en",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-10-14",
+          "claims": [
+            "The early-access tier requires 500 subscribers, three valid uploads, and a qualifying watch-hours or Shorts-view threshold."
+          ]
+        },
+        {
+          "id": "youtube-analytics",
+          "kind": "primary",
+          "title": "Understand ad revenue analytics",
+          "publisher": "YouTube",
+          "url": "https://support.google.com/youtube/answer/9314357?hl=en",
+          "sourceUpdatedOn": null,
+          "checkedOn": "2026-10-14",
+          "claims": [
+            "RPM is post-share and can include income beyond ads; CPM is based on advertiser spending and ad impressions."
           ]
         }
       ]

@@ -17,9 +17,10 @@
     "build:dist": "node scripts/build-dist.js",
     "test:dist": "node scripts/build-dist.js --check",
     "test:quality": "node scripts/quality-check.js",
-    "build": "npm run lint:predeploy && npm run lint:content && npm run test:articles && npm run test:recommended-products && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run build:dist && npm run test:dist",
+    "build": "npm run test:navigation && npm run lint:predeploy && npm run lint:content && npm run test:articles && npm run test:recommended-products && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run build:dist && npm run test:dist",
     "test:browser": "playwright test",
-    "lint:unused": "knip"
+    "lint:unused": "knip",
+    "test:navigation": "node scripts/navigation-check.js"
   },
   "private": true,
   "devDependencies": {

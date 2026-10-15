@@ -45,3 +45,5 @@ Last verified: 2026-09-18
 - Link articles to their primary calculator or tracker; add reciprocal contextual discovery only where useful.
 - Do not link to the retired `/blog/` archive or unmaintained routes.
 - Treat all internal links normally. Use `nofollow sponsored` for paid or affiliate destinations; do not use `nofollow` on ordinary internal links.
+
+- `/articles/youtube-partner-program-2027/` — February 2027 YouTube rules and terms checklist

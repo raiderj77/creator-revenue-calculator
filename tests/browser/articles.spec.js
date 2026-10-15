@@ -12,7 +12,7 @@ test.beforeEach(async ({ context }) => {
   ));
 });
 
-for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articles/ugc-rates-guide/']) {
+for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articles/ugc-rates-guide/', '/articles/youtube-partner-program-2027/']) {
   for (const theme of ['light', 'dark']) {
     test(`${route} is mobile-safe and accessible in ${theme} mode`, async ({ page }) => {
       await page.addInitScript(selectedTheme => localStorage.setItem('theme', selectedTheme), theme);
@@ -39,7 +39,7 @@ for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articl
   }
 }
 
-test('article hub exposes two reviewed guides and the maintained calculator directory', async ({ page }) => {
+test('article hub exposes reviewed guides and the maintained calculator directory', async ({ page }) => {
   await page.goto('/articles/');
   await expect(page.getByRole('link', { name: 'Patreon Income Tracker: A Monthly Reconciliation Guide' })).toHaveAttribute('href', '/articles/patreon-income-tracker/');
   await expect(page.getByRole('link', { name: 'UGC Rates: How to Scope and Price a Creator Project' })).toHaveAttribute('href', '/articles/ugc-rates-guide/');
@@ -96,8 +96,8 @@ test('UGC rates guide turns scope into a source-backed quote without supplying a
   const article = nodes.find(node => node['@type'] === 'Article');
   expect(article).toMatchObject({
     headline: 'UGC Rates: How to Scope and Price a Creator Project',
-    datePublished: '2026-09-18',
-    dateModified: '2026-09-18',
+    datePublished: '2026-10-14',
+    dateModified: '2026-10-14',
     isAccessibleForFree: true,
   });
 

@@ -40,6 +40,7 @@ const CORE_PUBLIC_FILES = [
   "assets/css/print-results.css",
   "assets/css/recommended-products.css",
   "assets/css/style.css",
+  "assets/css/site-navigation.css",
   "assets/images/favicon.svg",
   "assets/images/logo.png",
   "assets/images/og-image.png",
