@@ -247,7 +247,17 @@ pass(
 );
 pass(/googletagmanager\.com/.test(vercel) && /google-analytics\.com/.test(vercel), "production policy allows only the approved analytics hosts");
 pass(!/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)/i.test(publicText), "calculator code and presentation assets are served from the site itself");
-pass(!/email-capture|Email me my revenue projection/i.test(publicText), "nonfunctional email collection UI is absent");
+const emailCaptureScript = read('assets/js/email-capture.js');
+const emailCaptureMarkup = read('index.html').match(/<section class="email-capture"[\s\S]*?<\/section>\s*<\/section>/)?.[0] || '';
+pass(
+  !/Email me my revenue projection/i.test(publicText)
+    && /data-email-capture hidden/.test(emailCaptureMarkup)
+    && !/<(?:form|input|iframe)\b/i.test(emailCaptureMarkup)
+    && /const BEEHIIV_EMBED_URL = "(?:|https:\/\/subscribe-forms\.beehiiv\.com\/v3\/forms\/[0-9a-f-]{36})";/.test(emailCaptureScript)
+    && emailCaptureScript.includes('block.remove()')
+    && !/\b(?:fetch|XMLHttpRequest|sendBeacon|localStorage|sessionStorage)\b/.test(emailCaptureScript),
+  "email capture markup is hidden with no local form or collection API; embed config is empty or an approved Beehiiv form URL",
+);
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
 pass(!fs.existsSync(path.join(root, "scripts/build-blog.mjs")) && !fs.existsSync(path.join(root, ".github/workflows/build-blog.yml")), "retired article archive cannot be republished automatically");
@@ -458,7 +468,7 @@ pass(
     && distBuilder.includes("verifyDist()"),
   "the production build creates and verifies the explicit public-file allowlist",
 );
-pass(vercel.includes("frame-src 'none'"), "production policy blocks third-party frames");
+pass(vercel.includes("frame-src 'self' https://subscribe-forms.beehiiv.com"), "production policy allows the approved Beehiiv subscribe form frame");
 const frameHeaders = (vercelConfig.headers || [])
   .flatMap((rule) => rule.headers || [])
   .filter((header) => String(header.key).toLowerCase() === "x-frame-options");
