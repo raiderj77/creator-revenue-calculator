@@ -14,10 +14,11 @@
     "test:recommended-products": "node scripts/recommended-products-integrity-check.js",
     "test:social-estimator": "node --test tests/social-estimator.test.js",
     "test:youtube-estimator": "node --test tests/youtube-estimator.test.js",
+    "test:patreon-articles": "node --test tests/patreon-article-arithmetic.test.js",
     "build:dist": "node scripts/build-dist.js",
     "test:dist": "node scripts/build-dist.js --check",
     "test:quality": "node scripts/quality-check.js",
-    "build": "npm run test:navigation && npm run lint:predeploy && npm run lint:content && npm run test:articles && npm run test:recommended-products && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run build:dist && npm run test:dist",
+    "build": "npm run test:navigation && npm run lint:predeploy && npm run lint:content && npm run test:articles && npm run test:recommended-products && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run test:patreon-articles && npm run build:dist && npm run test:dist",
     "test:browser": "playwright test",
     "lint:unused": "knip",
     "test:navigation": "node scripts/navigation-check.js"

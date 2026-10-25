@@ -12,7 +12,7 @@ test.beforeEach(async ({ context }) => {
   ));
 });
 
-for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articles/ugc-rates-guide/', '/articles/youtube-partner-program-2027/']) {
+for (const route of ['/articles/', '/articles/patreon-income-tracker/', '/articles/ugc-rates-guide/', '/articles/youtube-partner-program-2027/', '/articles/patreon-fees-worked-examples/', '/articles/patreon-patron-targets/', '/articles/patreon-membership-fee-comparison/', '/articles/patreon-payout-reconciliation/']) {
   for (const theme of ['light', 'dark']) {
     test(`${route} is mobile-safe and accessible in ${theme} mode`, async ({ page }) => {
       await page.addInitScript(selectedTheme => localStorage.setItem('theme', selectedTheme), theme);

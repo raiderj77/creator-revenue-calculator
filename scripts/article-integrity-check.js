@@ -187,6 +187,17 @@ const home = read("index.html");
 const hub = read(manifest.hub.path);
 const vercel = JSON.parse(read("vercel.json"));
 const redirectSources = new Set((vercel.redirects || []).map((redirect) => redirect.source));
+const patreonSprintSlugs = new Set([
+  "patreon-fees-worked-examples",
+  "patreon-patron-targets",
+  "patreon-membership-fee-comparison",
+  "patreon-payout-reconciliation",
+]);
+const sharedCaptureAssets = [
+  '<link rel="stylesheet" href="/assets/css/email-capture.css">',
+  '<script src="/assets/js/email-capture.js" defer></script>',
+];
+const sharedCaptureBlock = '<section class="email-capture" data-email-capture hidden aria-labelledby="email-capture-heading"><h2 id="email-capture-heading" class="email-capture-heading">Creator updates in your inbox</h2><p class="email-capture-copy">One email a week. Unsubscribe anytime.</p><section class="email-capture-embed" data-email-capture-embed aria-label="Newsletter signup"></section></section>';
 const sitemapRoutes = [...sitemap.matchAll(/<loc>(https:\/\/creatorrevenuecalculator\.com[^<]*)<\/loc>/g)]
   .map((match) => new URL(match[1]).pathname);
 const mappedPageRoutes = mappedRoutes.filter((route) => !route.startsWith("/downloads/"));
@@ -344,7 +355,15 @@ for (const article of manifest.articles) {
     !/keyword density|AI watermark|make (?:the )?content appear human|guaranteed (?:income|earnings|revenue)|rank(?:ing)?\s*(?:#|number\s*)?1|fictional (?:story|creator)|\b(?:Sarah|Marcus|Acme Corp)\b/i.test(html),
     `${prefix} contains no legacy manipulation, guarantee, or invented-story instructions`,
   );
-  pass(!/pagead2\.googlesyndication\.com|\badsbygoogle\b|email-capture|testimonial/i.test(html), `${prefix} adds no ad loader, capture form, or testimonial claim`);
+  const containsCapture = /email-capture/.test(html);
+  pass(
+    !/pagead2\.googlesyndication\.com|\badsbygoogle\b|testimonial/i.test(html)
+      && (!containsCapture || (patreonSprintSlugs.has(article.slug)
+        && sharedCaptureAssets.every((asset) => html.includes(asset))
+        && html.includes(sharedCaptureBlock)
+        && html.indexOf(sharedCaptureBlock) < html.indexOf("<footer"))),
+    `${prefix} adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block before the footer`,
+  );
   pass(html.includes('id="sources"') && html.includes("Examples are synthetic") && html.includes("not financial or tax advice"), `${prefix} exposes sources, synthetic-example limits, and the appropriate disclaimer`);
 }
 

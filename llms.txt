@@ -23,6 +23,10 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Article library and publishing standard: https://creatorrevenuecalculator.com/articles/
 - Patreon income tracker reconciliation guide: https://creatorrevenuecalculator.com/articles/patreon-income-tracker/
 - UGC scope, rights, and quote guide: https://creatorrevenuecalculator.com/articles/ugc-rates-guide/
+- Patreon fee examples: https://creatorrevenuecalculator.com/articles/patreon-fees-worked-examples/
+- Patreon target-count scenarios: https://creatorrevenuecalculator.com/articles/patreon-patron-targets/
+- Patreon membership-fee comparison limits: https://creatorrevenuecalculator.com/articles/patreon-membership-fee-comparison/
+- Patreon payout reconciliation: https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/
 
 ## Recommended creator products and software
 
