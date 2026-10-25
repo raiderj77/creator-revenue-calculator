@@ -42,6 +42,7 @@ const CORE_PUBLIC_FILES = [
   "assets/css/style.css",
   "assets/css/email-capture.css",
   "assets/css/site-navigation.css",
+  "assets/images/apple-touch-icon.png",
   "assets/images/favicon.svg",
   "assets/images/logo.png",
   "assets/images/og-image.png",
