@@ -35,6 +35,7 @@
   ],
   "scripts": [
     "assets/js/creator-mix-calculator.js",
+    "assets/js/email-capture.js",
     "assets/js/main.js",
     "assets/js/recommended-products.js",
     "assets/js/theme.js",
