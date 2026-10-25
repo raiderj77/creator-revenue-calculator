@@ -1,6 +1,6 @@
 # Maintained internal-link map
 
-Last verified: 2026-09-18
+Last verified: 2026-10-24
 
 ## Primary discovery pages
 
@@ -8,6 +8,10 @@ Last verified: 2026-09-18
 - `/articles/` — evidence-first article library
 - `/articles/patreon-income-tracker/` — reviewed Patreon reconciliation guide
 - `/articles/ugc-rates-guide/` — reviewed UGC scope, rights, and quote guide
+- `/articles/patreon-fees-worked-examples/` — Patreon Standard-plan fee arithmetic
+- `/articles/patreon-patron-targets/` — Patreon target-count scenarios
+- `/articles/patreon-membership-fee-comparison/` — bounded Patreon membership fee comparison
+- `/articles/patreon-payout-reconciliation/` — Patreon payout reconciliation guide
 - `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
