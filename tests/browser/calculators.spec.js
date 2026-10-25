@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 test.beforeEach(async ({ context }) => {
   await context.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
-for (const route of ['/tools/youtube-ad-revenue/', '/tools/patreon-revenue/', '/tools/newsletter-revenue/']) {
+for (const route of ['/tools/youtube-ad-revenue/', '/tools/patreon-revenue/', '/tools/newsletter-revenue/', '/tools/stan-store-calculator/']) {
   test(`delayed icon fonts preserve layout and the page stays small: ${route}`, async ({ page }) => {
     await page.setViewportSize({width:412,height:823});
     await page.route('http://127.0.0.1:4312/**/*.woff2', async route => {
@@ -68,6 +68,19 @@ test('Patreon visible USD fee assumptions reconcile gross, fees and annual amoun
   await page.locator('#tierPatrons1').fill('-1');
   await page.locator('#tierPatrons1').press('Tab');
   await expect(page.locator('#calculatorValidationStatus')).not.toHaveText('');
+});
+
+test('Stan visible fee assumptions reconcile the $47 x 20 oracle', async ({ page }) => {
+  await page.goto('/tools/stan-store-calculator/');
+  await page.locator('#productPrice').fill('47');
+  await page.locator('#monthlySales').fill('20');
+  await page.locator('#stanCalculatorForm button[type="submit"]').click();
+  await expect(page.locator('#stanCreatorGross')).toHaveText('$940.00');
+  await expect(page.locator('#stanCreatorSaleFees')).toHaveText('-$33.26');
+  await expect(page.locator('#stanCreatorNet')).toHaveText('$877.74');
+  await expect(page.locator('#stanCreatorKeep')).toHaveText('93.4%');
+  await expect(page.locator('#stanCreatorCover')).toHaveText('1');
+  await expect(page.locator('#stanResults')).toBeFocused();
 });
 
 test('cross-platform results provide a privacy-safe blank tracker next step', async ({ page }) => {

@@ -502,6 +502,7 @@ function runCalculatorEventCoverageChecks() {
     ['instagram', 'tools/instagram-revenue/instagram-calculator.js'],
     ['newsletter', 'tools/newsletter-revenue/newsletter-calculator.js'],
     ['patreon', 'tools/patreon-revenue/patreon-calculator.js'],
+    ['stan', 'tools/stan-store-calculator/stan-store-calculator.js'],
     ['podcast', 'tools/podcast-revenue/podcast-calculator.js'],
     ['social', 'tools/social-media-earnings-estimator/social-media-estimator.js'],
     ['sponsorship', 'tools/sponsorship-rate/sponsorship-calculator.js'],

@@ -18,6 +18,7 @@
     "tools/engagement-rate/index.html",
     "tools/newsletter-revenue/index.html",
     "tools/patreon-revenue/index.html",
+    "tools/stan-store-calculator/index.html",
     "tools/social-media-earnings-estimator/index.html",
     "articles/index.html",
     "articles/patreon-income-tracker/index.html",
@@ -53,6 +54,7 @@
     "tools/podcast-revenue/podcast-calculator.js",
     "tools/social-media-earnings-estimator/social-media-estimator.js",
     "tools/sponsorship-rate/sponsorship-calculator.js",
+    "tools/stan-store-calculator/stan-store-calculator.js",
     "tools/tiktok-revenue/tiktok-calculator.js",
     "tools/twitch-revenue/twitch-calculator.js",
     "tools/ugc-rate/ugc-calculator.js",
@@ -65,8 +67,8 @@
   },
   "styles": {
     "file": "assets/vendor/fontawesome/css/subset.css",
-    "bytes": 3372,
-    "sha256": "0038ef52e49880f154efa647c3d4f46392981488b5d001919a09338b6399d3af"
+    "bytes": 3471,
+    "sha256": "1fe7023b91b6b815d0d59d97e37ec7c1614711a03e112f0ecaed4711194885a2"
   },
   "families": {
     "solid": {
@@ -97,6 +99,7 @@
         "fa-envelope-open-text",
         "fa-exclamation-circle",
         "fa-eye",
+        "fa-file-alt",
         "fa-file-contract",
         "fa-file-csv",
         "fa-file-invoice-dollar",
@@ -127,8 +130,10 @@
         "fa-shield-halved",
         "fa-shopping-cart",
         "fa-sliders-h",
+        "fa-store",
         "fa-table",
         "fa-tachometer-alt",
+        "fa-tag",
         "fa-th-large",
         "fa-times",
         "fa-tools",
@@ -148,6 +153,7 @@
         "U+F01E",
         "U+F025",
         "U+F028",
+        "U+F02B",
         "U+F030",
         "U+F03A",
         "U+F03D",
@@ -174,6 +180,7 @@
         "U+F121",
         "U+F130",
         "U+F140",
+        "U+F15C",
         "U+F19D",
         "U+F1CD",
         "U+F1DE",
@@ -190,6 +197,7 @@
         "U+F521",
         "U+F529",
         "U+F543",
+        "U+F54E",
         "U+F56C",
         "U+F571",
         "U+F5FD",
@@ -202,8 +210,8 @@
         "U+F87C"
       ],
       "cssFamily": "CRC Creator Icons Solid",
-      "bytes": 7700,
-      "sha256": "4086fee9b3593c564e5596033e22209892ed746299dbdba40bfb411741dfc1db"
+      "bytes": 7920,
+      "sha256": "44d2768eacb2096d62ab27526674e8f70a97cdcf795f9d75ccf53980e2c86999"
     },
     "brands": {
       "file": "assets/vendor/fontawesome/webfonts/crc-icons-brands.woff2",
@@ -230,5 +238,5 @@
       "sha256": "4445887c0e2a9a7721af86f1ca78b15264e0a132c5e0b41973d8135ffc543fe7"
     }
   },
-  "totalFontBytes": 9856
+  "totalFontBytes": 10076
 }
