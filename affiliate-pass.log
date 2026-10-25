@@ -1,0 +1,953 @@
+[0m
+> build · gpt-5.6-terra-fast
+[0m
+I’ll read the repository instructions and the requested pass prompt, then execute only the specified workflow and write its report.
+[0m✗ [0mRead C:/Users/jason/empire/EMPIRE_BUILD_STANDARDS.md failed
+[91m[1mError: [0mThe user has specified a rule which prevents you from using this specific tool call. Here are some of the relevant rules [{"permission":"*","action":"allow","pattern":"*"},{"permission":"external_directory","pattern":"*","action":"ask"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\.local\\share\\opencode\\tool-output\\*","action":"allow"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\AppData\\Local\\Temp\\opencode\\*","action":"allow"},{"permission":"external_directory","action":"deny","pattern":"*"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\.local\\share\\opencode\\tool-output\\*","action":"allow"}]
+[0m→ [0mRead AFFILIATE-PASS-PROMPT.md
+[0m→ [0mRead CLAUDE.md
+[0m→ [0mRead docs/CLAUDE_FULL.md
+[0m
+[0m# [0mTodos
+[•] Inspect local standards, repository state, and affiliate link inventory
+[ ] Create approved branch and apply allowed affiliate fixes
+[ ] Run required verification and write final affiliate report
+[ ] Run required empire-wrapup session command
+[0m
+The owner-approved prompt satisfies the local plan gate. The empire-root standards file is inaccessible under the workspace sandbox; the prompt explicitly records this as non-blocking. I’ll now establish the required branch and inventory the actual link sources.
+[0m✱ [0mGlob "EMPIRE_BUILD_STANDARDS.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "package.json"[90m in . · 1 match[0m
+[0m✱ [0mGrep "creatorcalc-20"[90m in . · 67 matches[0m
+[0m
+[0m$ [0mgit status --short --branch
+## patreon-article-sprint...origin/patreon-article-sprint [gone]
+ M CLAUDE.md
+?? AFFILIATE-PASS-PROMPT.md
+?? ARTICLE-SPRINT-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR2-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR3-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR4-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5B-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR6-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR7-PROMPT.md
+?? ARTICLE-SPRINT-REPORT.md
+?? HANDOFF.md
+?? PHASES-3-4-REPORT.md
+?? RUN-PHASES-3-4.md
+?? affiliate-pass.log
+?? article-sprint-repair.log
+?? article-sprint-repair2.log
+?? article-sprint-repair3.log
+?? article-sprint-repair4.log
+?? article-sprint-repair5.log
+?? article-sprint-repair5b.log
+?? article-sprint-repair6.log
+?? article-sprint-repair7.log
+?? article-sprint-run.log
+?? pr-body-sprint.md
+?? run-affiliate-pass.cmd
+?? run-article-sprint-repair.cmd
+?? run-article-sprint-repair2.cmd
+?? run-article-sprint-repair3.cmd
+?? run-article-sprint-repair4.cmd
+?? run-article-sprint-repair5.cmd
+?? run-article-sprint-repair5b.cmd
+?? run-article-sprint-repair6.cmd
+?? run-article-sprint-repair7.cmd
+?? run-article-sprint.cmd
+[0m
+[0m✱ [0mGrep "https?://[^\s"'`<>]+"[90m in . · 100 matches[0m
+[0m
+[0m$ [0mgit fetch origin
+From https://github.com/raiderj77/creator-revenue-calculator
+ * [new branch]      dependabot/npm_and_yarn/fast-uri-3.1.9 -> origin/dependabot/npm_and_yarn/fast-uri-3.1.9
+ + 0e492ec...24b2ad2 dependabot/npm_and_yarn/npm-maintenance-a69769fefa -> origin/dependabot/npm_and_yarn/npm-maintenance-a69769fefa  (forced update)
+ * [new branch]      dependabot/pip/pip-4ee2c2337b -> origin/dependabot/pip/pip-4ee2c2337b
+   dfa7c89..31d304a  main       -> origin/main
+[0m
+[0m✱ [0mGlob "**/*recommended*product*"[90m in . · 5 matches[0m
+[0m→ [0mRead EMPIRE_BUILD_STANDARDS.md
+[0m
+[0m$ [0mgit show-ref --verify --quiet refs/heads/affiliate-tagging-pass && exit /b 0 || exit /b 1
+(no output)
+[0m
+[0m→ [0mRead package.json
+[0m✱ [0mGrep "destinationUrl|affiliate-disclosure|paid-link|no commission|non-affiliate|affiliate link"[90m in . · 100 matches[0m
+[0m
+[0m$ [0mgit switch -c affiliate-tagging-pass origin/main
+M	CLAUDE.md
+branch 'affiliate-tagging-pass' set up to track 'origin/main'.
+Switched to a new branch 'affiliate-tagging-pass'
+[0m
+[0m✱ [0mGrep "href="https?://[^\"]+"[^>]*(?:affiliate|paid|sponsor)|(?:affiliate|paid|sponsor)[^\n]{0,300}href="https?://"[90m in . · 94 matches[0m
+[0m→ [0mRead recommended-products/index.html
+[0m→ [0mRead content/recommended-products.json
+[0m→ [0mRead assets/js/recommended-products.js
+[0m✱ [0mGrep "https?://(?:www\.)?(?:amazon\.[^/"']+|etsy\.com|vidiq\.com|descript\.com|opus\.pro|streamyard\.com|riverside\.com|kit\.com|beehiiv\.com|circle\.so|skool\.com|teachable\.com|thinkific\.com|podia\.com)[^"'\s<]*"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "https?://[^\s"']*(?:ref=|referral|affiliate|tag=|aff=|via=|partner=|utm_)[^\s"']*"[90m in . · 100 matches[0m
+Inventory has identified an existing, recorded `creatorcalc-20` source of truth for Amazon. It also found legacy Kit URLs carrying `via=creatorrevenue` without page-level paid-link labels; those must be reported as unlabeled rather than altered because the prompt prohibits inventing/relabeling outside its fix classes. No missing Amazon tag or paid-link `rel` defect has been found so far.
+[0m✱ [0mGrep "https?://(?:www\.)?amazon\.[^\s"']+"[90m in . · 55 matches[0m
+[0m✱ [0mGrep "kit\.com/\?via=creatorrevenue"[90m in . · 13 matches[0m
+[0m✱ [0mGrep "(destinationUrl|href)="?https?://[^\s"']+(?:etsy\.com|tubebuddy\.com|vidiq\.com|kit\.com)[^\s"']*"[90m in . · 36 matches[0m
+[0m→ [0mRead tools/youtube-ad-revenue/index.html[90m [offset=410, limit=75][0m
+[0m→ [0mRead scripts/recommended-products-integrity-check.js
+[0m→ [0mRead tools/gaming-youtube-revenue/index.html[90m [offset=470, limit=45][0m
+[0m
+[0m$ [0mgit status --short --branch
+## affiliate-tagging-pass...origin/main
+ M CLAUDE.md
+?? AFFILIATE-PASS-PROMPT.md
+?? ARTICLE-SPRINT-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR2-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR3-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR4-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5B-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR6-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR7-PROMPT.md
+?? ARTICLE-SPRINT-REPORT.md
+?? HANDOFF.md
+?? PHASES-3-4-REPORT.md
+?? RUN-PHASES-3-4.md
+?? affiliate-pass.log
+?? article-sprint-repair.log
+?? article-sprint-repair2.log
+?? article-sprint-repair3.log
+?? article-sprint-repair4.log
+?? article-sprint-repair5.log
+?? article-sprint-repair5b.log
+?? article-sprint-repair6.log
+?? article-sprint-repair7.log
+?? article-sprint-run.log
+?? pr-body-sprint.md
+?? run-affiliate-pass.cmd
+?? run-article-sprint-repair.cmd
+?? run-article-sprint-repair2.cmd
+?? run-article-sprint-repair3.cmd
+?? run-article-sprint-repair4.cmd
+?? run-article-sprint-repair5.cmd
+?? run-article-sprint-repair5b.cmd
+?? run-article-sprint-repair6.cmd
+?? run-article-sprint-repair7.cmd
+?? run-article-sprint.cmd
+[0m
+[0m$ [0mrg -No 'href="https?://[^" ]+' -g "*.html" -g "!node_modules/**" | sort | find /v "creatorrevenuecalculator.com"
+'rg' is not recognized as an internal or external command,
+operable program or batch file.
+[0m
+[0m# [0mTodos
+[✓] Inspect local standards, repository state, and affiliate link inventory
+[✓] Create approved branch and apply allowed affiliate fixes
+[•] Run required verification and write final affiliate report
+[ ] Run required empire-wrapup session command
+[0m
+Phase 1 is verification-only: every rendered Amazon product URL found already has `tag=creatorcalc-20`, and each page-labeled paid link reviewed already contains `nofollow sponsored`. I will run the repository’s complete required suite before producing the no-commit report.
+[0m$ [0mnpm run build
+...output truncated...
+
+Full output saved to: C:\Users\jason\.local\share\opencode\tool-output\tool_17121fa28001THkpq0B2n18S6x
+
+PASS privacy.html local reference /assets/js/theme.js resolves
+PASS privacy.html local reference /assets/images/favicon.svg resolves
+PASS privacy.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS privacy.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS privacy.html local reference /assets/css/site-navigation.css resolves
+PASS privacy.html local reference /articles/ resolves
+PASS privacy.html local reference /recommended-products/ resolves
+PASS privacy.html local reference /about.html resolves
+PASS privacy.html local reference /contact.html resolves
+PASS privacy.html local reference /cookies.html resolves
+PASS privacy.html local reference /tools/youtube-ad-revenue/ resolves
+PASS privacy.html local reference /tools/twitch-revenue/ resolves
+PASS privacy.html local reference /tools/tiktok-revenue/ resolves
+PASS privacy.html local reference /tools/instagram-revenue/ resolves
+PASS privacy.html local reference /tools/podcast-revenue/ resolves
+PASS privacy.html local reference /tools/sponsorship-rate/ resolves
+PASS privacy.html local reference /tools/ugc-rate/ resolves
+PASS privacy.html local reference /tools/engagement-rate/ resolves
+PASS privacy.html local reference /tools/patreon-revenue/ resolves
+PASS privacy.html local reference /tools/newsletter-revenue/ resolves
+PASS privacy.html local reference /tools/affiliate-calculator/ resolves
+PASS privacy.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS privacy.html local reference /articles/ resolves
+PASS privacy.html local reference /recommended-products/ resolves
+PASS privacy.html local reference /about.html resolves
+PASS privacy.html local reference /contact.html resolves
+PASS privacy.html local reference /privacy.html resolves
+PASS privacy.html local reference /terms.html resolves
+PASS privacy.html local reference /cookies.html resolves
+PASS privacy.html local reference /accessibility.html resolves
+PASS privacy.html local reference /affiliate-disclosure.html resolves
+PASS privacy.html local reference /llms.txt resolves
+PASS privacy.html local reference /assets/js/main.js resolves
+PASS recommended-products\index.html keeps the site footer outside main content
+PASS recommended-products\index.html declares the local favicon
+PASS recommended-products\index.html local reference /assets/js/theme.js resolves
+PASS recommended-products\index.html local reference /assets/images/favicon.svg resolves
+PASS recommended-products\index.html local reference /assets/css/style.css resolves
+PASS recommended-products\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS recommended-products\index.html local reference /assets/css/articles.css resolves
+PASS recommended-products\index.html local reference /assets/css/recommended-products.css resolves
+PASS recommended-products\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS recommended-products\index.html local reference /assets/css/site-navigation.css resolves
+PASS recommended-products\index.html local reference /articles/ resolves
+PASS recommended-products\index.html local reference /recommended-products/ resolves
+PASS recommended-products\index.html local reference /about.html resolves
+PASS recommended-products\index.html local reference /contact.html resolves
+PASS recommended-products\index.html local reference /affiliate-disclosure.html resolves
+PASS recommended-products\index.html local reference /contact.html resolves
+PASS recommended-products\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/twitch-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/tiktok-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/instagram-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/podcast-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/sponsorship-rate/ resolves
+PASS recommended-products\index.html local reference /tools/ugc-rate/ resolves
+PASS recommended-products\index.html local reference /tools/engagement-rate/ resolves
+PASS recommended-products\index.html local reference /tools/patreon-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/newsletter-revenue/ resolves
+PASS recommended-products\index.html local reference /tools/affiliate-calculator/ resolves
+PASS recommended-products\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS recommended-products\index.html local reference /articles/ resolves
+PASS recommended-products\index.html local reference /recommended-products/ resolves
+PASS recommended-products\index.html local reference /about.html resolves
+PASS recommended-products\index.html local reference /contact.html resolves
+PASS recommended-products\index.html local reference /privacy.html resolves
+PASS recommended-products\index.html local reference /terms.html resolves
+PASS recommended-products\index.html local reference /cookies.html resolves
+PASS recommended-products\index.html local reference /accessibility.html resolves
+PASS recommended-products\index.html local reference /affiliate-disclosure.html resolves
+PASS recommended-products\index.html local reference /llms.txt resolves
+PASS recommended-products\index.html local reference /assets/js/main.js resolves
+PASS recommended-products\index.html local reference /assets/js/recommended-products.js resolves
+PASS recommended-products\index.html contains valid JSON-LD
+PASS terms.html keeps the site footer outside main content
+PASS terms.html declares the local favicon
+PASS terms.html local reference /assets/js/theme.js resolves
+PASS terms.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS terms.html local reference /assets/css/style.css resolves
+PASS terms.html local reference /assets/images/favicon.svg resolves
+PASS terms.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS terms.html local reference /assets/css/site-navigation.css resolves
+PASS terms.html local reference /articles/ resolves
+PASS terms.html local reference /recommended-products/ resolves
+PASS terms.html local reference /about.html resolves
+PASS terms.html local reference /contact.html resolves
+PASS terms.html local reference /tools/youtube-ad-revenue/ resolves
+PASS terms.html local reference /tools/twitch-revenue/ resolves
+PASS terms.html local reference /tools/tiktok-revenue/ resolves
+PASS terms.html local reference /tools/instagram-revenue/ resolves
+PASS terms.html local reference /tools/podcast-revenue/ resolves
+PASS terms.html local reference /tools/sponsorship-rate/ resolves
+PASS terms.html local reference /tools/ugc-rate/ resolves
+PASS terms.html local reference /tools/engagement-rate/ resolves
+PASS terms.html local reference /tools/patreon-revenue/ resolves
+PASS terms.html local reference /tools/newsletter-revenue/ resolves
+PASS terms.html local reference /tools/affiliate-calculator/ resolves
+PASS terms.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS terms.html local reference /articles/ resolves
+PASS terms.html local reference /recommended-products/ resolves
+PASS terms.html local reference /about.html resolves
+PASS terms.html local reference /contact.html resolves
+PASS terms.html local reference /privacy.html resolves
+PASS terms.html local reference /terms.html resolves
+PASS terms.html local reference /cookies.html resolves
+PASS terms.html local reference /accessibility.html resolves
+PASS terms.html local reference /affiliate-disclosure.html resolves
+PASS terms.html local reference /llms.txt resolves
+PASS terms.html local reference /assets/js/main.js resolves
+PASS terms.html contains valid JSON-LD
+PASS tools\affiliate-calculator\index.html keeps the site footer outside main content
+PASS tools\affiliate-calculator\index.html declares the local favicon
+PASS tools\affiliate-calculator\index.html local reference /assets/js/theme.js resolves
+PASS tools\affiliate-calculator\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\affiliate-calculator\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\affiliate-calculator\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\affiliate-calculator\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\affiliate-calculator\index.html local reference /articles/ resolves
+PASS tools\affiliate-calculator\index.html local reference /recommended-products/ resolves
+PASS tools\affiliate-calculator\index.html local reference /about.html resolves
+PASS tools\affiliate-calculator\index.html local reference /contact.html resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\affiliate-calculator\index.html local reference /recommended-products/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\affiliate-calculator\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\affiliate-calculator\index.html local reference /articles/ resolves
+PASS tools\affiliate-calculator\index.html local reference /recommended-products/ resolves
+PASS tools\affiliate-calculator\index.html local reference /about.html resolves
+PASS tools\affiliate-calculator\index.html local reference /contact.html resolves
+PASS tools\affiliate-calculator\index.html local reference /privacy.html resolves
+PASS tools\affiliate-calculator\index.html local reference /terms.html resolves
+PASS tools\affiliate-calculator\index.html local reference /cookies.html resolves
+PASS tools\affiliate-calculator\index.html local reference /accessibility.html resolves
+PASS tools\affiliate-calculator\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\affiliate-calculator\index.html local reference /llms.txt resolves
+PASS tools\affiliate-calculator\index.html local reference /assets/js/main.js resolves
+PASS tools\affiliate-calculator\index.html contains valid JSON-LD
+PASS tools\affiliate-calculator\index.html contains valid JSON-LD
+PASS tools\engagement-rate\index.html keeps the site footer outside main content
+PASS tools\engagement-rate\index.html declares the local favicon
+PASS tools\engagement-rate\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\engagement-rate\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\engagement-rate\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\engagement-rate\index.html local reference /assets/js/theme.js resolves
+PASS tools\engagement-rate\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\engagement-rate\index.html local reference /articles/ resolves
+PASS tools\engagement-rate\index.html local reference /recommended-products/ resolves
+PASS tools\engagement-rate\index.html local reference /about.html resolves
+PASS tools\engagement-rate\index.html local reference /contact.html resolves
+PASS tools\engagement-rate\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\engagement-rate\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\engagement-rate\index.html local reference /articles/ resolves
+PASS tools\engagement-rate\index.html local reference /recommended-products/ resolves
+PASS tools\engagement-rate\index.html local reference /about.html resolves
+PASS tools\engagement-rate\index.html local reference /contact.html resolves
+PASS tools\engagement-rate\index.html local reference /privacy.html resolves
+PASS tools\engagement-rate\index.html local reference /terms.html resolves
+PASS tools\engagement-rate\index.html local reference /cookies.html resolves
+PASS tools\engagement-rate\index.html local reference /accessibility.html resolves
+PASS tools\engagement-rate\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\engagement-rate\index.html local reference /llms.txt resolves
+PASS tools\engagement-rate\index.html local reference /assets/js/main.js resolves
+PASS tools\engagement-rate\index.html contains valid JSON-LD
+PASS tools\engagement-rate\index.html contains valid JSON-LD
+PASS tools\instagram-revenue\index.html keeps the site footer outside main content
+PASS tools\instagram-revenue\index.html declares the local favicon
+PASS tools\instagram-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\instagram-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\instagram-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\instagram-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\instagram-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\instagram-revenue\index.html local reference /articles/ resolves
+PASS tools\instagram-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\instagram-revenue\index.html local reference /about.html resolves
+PASS tools\instagram-revenue\index.html local reference /contact.html resolves
+PASS tools\instagram-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\instagram-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\instagram-revenue\index.html local reference /articles/ resolves
+PASS tools\instagram-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\instagram-revenue\index.html local reference /about.html resolves
+PASS tools\instagram-revenue\index.html local reference /contact.html resolves
+PASS tools\instagram-revenue\index.html local reference /privacy.html resolves
+PASS tools\instagram-revenue\index.html local reference /terms.html resolves
+PASS tools\instagram-revenue\index.html local reference /cookies.html resolves
+PASS tools\instagram-revenue\index.html local reference /accessibility.html resolves
+PASS tools\instagram-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\instagram-revenue\index.html local reference /llms.txt resolves
+PASS tools\instagram-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\instagram-revenue\index.html contains valid JSON-LD
+PASS tools\instagram-revenue\index.html contains valid JSON-LD
+PASS tools\newsletter-revenue\index.html keeps the site footer outside main content
+PASS tools\newsletter-revenue\index.html declares the local favicon
+PASS tools\newsletter-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\newsletter-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\newsletter-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\newsletter-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\newsletter-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\newsletter-revenue\index.html local reference /articles/ resolves
+PASS tools\newsletter-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\newsletter-revenue\index.html local reference /about.html resolves
+PASS tools\newsletter-revenue\index.html local reference /contact.html resolves
+PASS tools\newsletter-revenue\index.html local reference /downloads/creator-revenue-tracker.xlsx resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\newsletter-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\newsletter-revenue\index.html local reference /articles/ resolves
+PASS tools\newsletter-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\newsletter-revenue\index.html local reference /about.html resolves
+PASS tools\newsletter-revenue\index.html local reference /contact.html resolves
+PASS tools\newsletter-revenue\index.html local reference /privacy.html resolves
+PASS tools\newsletter-revenue\index.html local reference /terms.html resolves
+PASS tools\newsletter-revenue\index.html local reference /cookies.html resolves
+PASS tools\newsletter-revenue\index.html local reference /accessibility.html resolves
+PASS tools\newsletter-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\newsletter-revenue\index.html local reference /llms.txt resolves
+PASS tools\newsletter-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\newsletter-revenue\index.html contains valid JSON-LD
+PASS tools\newsletter-revenue\index.html contains valid JSON-LD
+PASS tools\newsletter-revenue\index.html contains valid JSON-LD
+PASS tools\patreon-revenue\index.html keeps the site footer outside main content
+PASS tools\patreon-revenue\index.html declares the local favicon
+PASS tools\patreon-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\patreon-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\patreon-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\patreon-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\patreon-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\patreon-revenue\index.html local reference /assets/css/email-capture.css resolves
+PASS tools\patreon-revenue\index.html local reference /assets/js/email-capture.js resolves
+PASS tools\patreon-revenue\index.html local reference /articles/ resolves
+PASS tools\patreon-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\patreon-revenue\index.html local reference /about.html resolves
+PASS tools\patreon-revenue\index.html local reference /contact.html resolves
+PASS tools\patreon-revenue\index.html local reference /downloads/patreon-income-tracker.csv resolves
+PASS tools\patreon-revenue\index.html local reference /downloads/patreon-income-tracker.csv resolves
+PASS tools\patreon-revenue\index.html local reference /articles/patreon-income-tracker/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /articles/patreon-income-tracker/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\patreon-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\patreon-revenue\index.html local reference /articles/ resolves
+PASS tools\patreon-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\patreon-revenue\index.html local reference /about.html resolves
+PASS tools\patreon-revenue\index.html local reference /contact.html resolves
+PASS tools\patreon-revenue\index.html local reference /privacy.html resolves
+PASS tools\patreon-revenue\index.html local reference /terms.html resolves
+PASS tools\patreon-revenue\index.html local reference /cookies.html resolves
+PASS tools\patreon-revenue\index.html local reference /accessibility.html resolves
+PASS tools\patreon-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\patreon-revenue\index.html local reference /llms.txt resolves
+PASS tools\patreon-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\patreon-revenue\index.html contains valid JSON-LD
+PASS tools\patreon-revenue\index.html contains valid JSON-LD
+PASS tools\patreon-revenue\index.html contains valid JSON-LD
+PASS tools\podcast-revenue\index.html keeps the site footer outside main content
+PASS tools\podcast-revenue\index.html declares the local favicon
+PASS tools\podcast-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\podcast-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\podcast-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\podcast-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\podcast-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\podcast-revenue\index.html local reference /articles/ resolves
+PASS tools\podcast-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\podcast-revenue\index.html local reference /about.html resolves
+PASS tools\podcast-revenue\index.html local reference /contact.html resolves
+PASS tools\podcast-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\podcast-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\podcast-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\podcast-revenue\index.html local reference /articles/ resolves
+PASS tools\podcast-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\podcast-revenue\index.html local reference /about.html resolves
+PASS tools\podcast-revenue\index.html local reference /contact.html resolves
+PASS tools\podcast-revenue\index.html local reference /privacy.html resolves
+PASS tools\podcast-revenue\index.html local reference /terms.html resolves
+PASS tools\podcast-revenue\index.html local reference /cookies.html resolves
+PASS tools\podcast-revenue\index.html local reference /accessibility.html resolves
+PASS tools\podcast-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\podcast-revenue\index.html local reference /llms.txt resolves
+PASS tools\podcast-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\podcast-revenue\index.html contains valid JSON-LD
+PASS tools\podcast-revenue\index.html contains valid JSON-LD
+PASS tools\social-media-earnings-estimator\index.html keeps the site footer outside main content
+PASS tools\social-media-earnings-estimator\index.html declares the local favicon
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/js/theme.js resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /articles/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /recommended-products/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /about.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /contact.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /downloads/creator-revenue-tracker.xlsx resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /articles/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /recommended-products/ resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /about.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /contact.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /privacy.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /terms.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /cookies.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /accessibility.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /llms.txt resolves
+PASS tools\social-media-earnings-estimator\index.html local reference /assets/js/main.js resolves
+PASS tools\social-media-earnings-estimator\index.html contains valid JSON-LD
+PASS tools\social-media-earnings-estimator\index.html contains valid JSON-LD
+PASS tools\sponsorship-rate\index.html keeps the site footer outside main content
+PASS tools\sponsorship-rate\index.html declares the local favicon
+PASS tools\sponsorship-rate\index.html local reference /assets/js/theme.js resolves
+PASS tools\sponsorship-rate\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\sponsorship-rate\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\sponsorship-rate\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\sponsorship-rate\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\sponsorship-rate\index.html local reference /articles/ resolves
+PASS tools\sponsorship-rate\index.html local reference /recommended-products/ resolves
+PASS tools\sponsorship-rate\index.html local reference /about.html resolves
+PASS tools\sponsorship-rate\index.html local reference /contact.html resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /articles/ugc-rates-guide/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\sponsorship-rate\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\sponsorship-rate\index.html local reference /articles/ resolves
+PASS tools\sponsorship-rate\index.html local reference /recommended-products/ resolves
+PASS tools\sponsorship-rate\index.html local reference /about.html resolves
+PASS tools\sponsorship-rate\index.html local reference /contact.html resolves
+PASS tools\sponsorship-rate\index.html local reference /privacy.html resolves
+PASS tools\sponsorship-rate\index.html local reference /terms.html resolves
+PASS tools\sponsorship-rate\index.html local reference /cookies.html resolves
+PASS tools\sponsorship-rate\index.html local reference /accessibility.html resolves
+PASS tools\sponsorship-rate\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\sponsorship-rate\index.html local reference /llms.txt resolves
+PASS tools\sponsorship-rate\index.html local reference /assets/js/main.js resolves
+PASS tools\sponsorship-rate\index.html contains valid JSON-LD
+PASS tools\sponsorship-rate\index.html contains valid JSON-LD
+PASS tools\sponsorship-rate\index.html contains valid JSON-LD
+PASS tools\tiktok-revenue\index.html keeps the site footer outside main content
+PASS tools\tiktok-revenue\index.html declares the local favicon
+PASS tools\tiktok-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\tiktok-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\tiktok-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\tiktok-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\tiktok-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\tiktok-revenue\index.html local reference /articles/ resolves
+PASS tools\tiktok-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\tiktok-revenue\index.html local reference /about.html resolves
+PASS tools\tiktok-revenue\index.html local reference /contact.html resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\tiktok-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\tiktok-revenue\index.html local reference /articles/ resolves
+PASS tools\tiktok-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\tiktok-revenue\index.html local reference /about.html resolves
+PASS tools\tiktok-revenue\index.html local reference /contact.html resolves
+PASS tools\tiktok-revenue\index.html local reference /privacy.html resolves
+PASS tools\tiktok-revenue\index.html local reference /terms.html resolves
+PASS tools\tiktok-revenue\index.html local reference /cookies.html resolves
+PASS tools\tiktok-revenue\index.html local reference /accessibility.html resolves
+PASS tools\tiktok-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\tiktok-revenue\index.html local reference /llms.txt resolves
+PASS tools\tiktok-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\tiktok-revenue\index.html contains valid JSON-LD
+PASS tools\tiktok-revenue\index.html contains valid JSON-LD
+PASS tools\tiktok-revenue\index.html contains valid JSON-LD
+PASS tools\twitch-revenue\index.html keeps the site footer outside main content
+PASS tools\twitch-revenue\index.html declares the local favicon
+PASS tools\twitch-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\twitch-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\twitch-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\twitch-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\twitch-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\twitch-revenue\index.html local reference /articles/ resolves
+PASS tools\twitch-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\twitch-revenue\index.html local reference /about.html resolves
+PASS tools\twitch-revenue\index.html local reference /contact.html resolves
+PASS tools\twitch-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\twitch-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\twitch-revenue\index.html local reference /articles/ resolves
+PASS tools\twitch-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\twitch-revenue\index.html local reference /about.html resolves
+PASS tools\twitch-revenue\index.html local reference /contact.html resolves
+PASS tools\twitch-revenue\index.html local reference /privacy.html resolves
+PASS tools\twitch-revenue\index.html local reference /terms.html resolves
+PASS tools\twitch-revenue\index.html local reference /cookies.html resolves
+PASS tools\twitch-revenue\index.html local reference /accessibility.html resolves
+PASS tools\twitch-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\twitch-revenue\index.html local reference /llms.txt resolves
+PASS tools\twitch-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\twitch-revenue\index.html contains valid JSON-LD
+PASS tools\twitch-revenue\index.html contains valid JSON-LD
+PASS tools\ugc-rate\index.html keeps the site footer outside main content
+PASS tools\ugc-rate\index.html declares the local favicon
+PASS tools\ugc-rate\index.html local reference /assets/js/theme.js resolves
+PASS tools\ugc-rate\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\ugc-rate\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\ugc-rate\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\ugc-rate\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\ugc-rate\index.html local reference /articles/ resolves
+PASS tools\ugc-rate\index.html local reference /recommended-products/ resolves
+PASS tools\ugc-rate\index.html local reference /about.html resolves
+PASS tools\ugc-rate\index.html local reference /contact.html resolves
+PASS tools\ugc-rate\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /articles/ugc-rates-guide/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\ugc-rate\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\ugc-rate\index.html local reference /articles/ resolves
+PASS tools\ugc-rate\index.html local reference /recommended-products/ resolves
+PASS tools\ugc-rate\index.html local reference /about.html resolves
+PASS tools\ugc-rate\index.html local reference /contact.html resolves
+PASS tools\ugc-rate\index.html local reference /privacy.html resolves
+PASS tools\ugc-rate\index.html local reference /terms.html resolves
+PASS tools\ugc-rate\index.html local reference /cookies.html resolves
+PASS tools\ugc-rate\index.html local reference /accessibility.html resolves
+PASS tools\ugc-rate\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\ugc-rate\index.html local reference /llms.txt resolves
+PASS tools\ugc-rate\index.html local reference /assets/js/main.js resolves
+PASS tools\ugc-rate\index.html contains valid JSON-LD
+PASS tools\ugc-rate\index.html contains valid JSON-LD
+PASS tools\ugc-rate\index.html contains valid JSON-LD
+PASS tools\youtube-ad-revenue\index.html keeps the site footer outside main content
+PASS tools\youtube-ad-revenue\index.html declares the local favicon
+PASS tools\youtube-ad-revenue\index.html local reference /assets/js/theme.js resolves
+PASS tools\youtube-ad-revenue\index.html local reference /assets/vendor/fontawesome/css/subset.css resolves
+PASS tools\youtube-ad-revenue\index.html local reference /assets/images/favicon.svg resolves
+PASS tools\youtube-ad-revenue\index.html local reference /assets/css/accessibility-audit-fixes.css resolves
+PASS tools\youtube-ad-revenue\index.html local reference /assets/css/site-navigation.css resolves
+PASS tools\youtube-ad-revenue\index.html local reference /articles/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /about.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /contact.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /articles/youtube-partner-program-2027/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/youtube-ad-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/twitch-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/tiktok-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/instagram-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/podcast-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/sponsorship-rate/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/ugc-rate/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/engagement-rate/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/patreon-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/newsletter-revenue/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/affiliate-calculator/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /tools/social-media-earnings-estimator/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /articles/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /recommended-products/ resolves
+PASS tools\youtube-ad-revenue\index.html local reference /about.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /contact.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /privacy.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /terms.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /cookies.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /accessibility.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /affiliate-disclosure.html resolves
+PASS tools\youtube-ad-revenue\index.html local reference /llms.txt resolves
+PASS tools\youtube-ad-revenue\index.html local reference /assets/js/main.js resolves
+PASS tools\youtube-ad-revenue\index.html contains valid JSON-LD
+PASS tools\youtube-ad-revenue\index.html contains valid JSON-LD
+
+All product quality checks passed.
+
+> creator-revenue-calculator@1.0.0 test:social-estimator
+> node --test tests/social-estimator.test.js
+
+✔ platform payout scenarios accept only platform labels (1.1155ms)
+✔ sponsorship scenarios accept platforms, Newsletter, and Sponsorship only (0.2049ms)
+✔ direct-revenue scenarios accept every approved label (0.1441ms)
+✔ missing or unknown selections are rejected without inventing a fallback (0.2415ms)
+✔ visible guidance describes each compatibility rule without a supplied rate (0.4553ms)
+✔ the single social scenario explains why removal is unavailable and clears that title when enabled (0.2262ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.8821
+
+> creator-revenue-calculator@1.0.0 test:youtube-estimator
+> node --test tests/youtube-estimator.test.js
+
+✔ all approval flags are required and production stays hard locked (4.1013ms)
+✔ disabled handler returns before reading input or calling a service (0.5327ms)
+✔ production handler stays unavailable even when every environment flag is present (0.4517ms)
+✔ handles, channel IDs, and supported URLs normalize without search (3.8651ms)
+✔ ambiguous, malicious, oversized, and non-channel inputs fail safely (1.0789ms)
+✔ the API client uses only three fixed resources and keeps the key in a header (3.0939ms)
+✔ only necessary public fields are requested (1.1389ms)
+✔ missing public statistics are never fabricated as zero (2.1541ms)
+✔ instant activity is a recent-upload proxy, not actual monthly channel views (0.8797ms)
+✔ revenue math uses visible views and RPM assumptions, never subscribers (0.8245ms)
+✔ blank or unselected monetization assumptions do not create revenue (0.2457ms)
+✔ Shorts, long-form, mixed, and unknown ranges stay separate (0.5546ms)
+✔ 30-day tracked results require 28 valid snapshots and a 30-day span (1.2623ms)
+✔ tracked mode derives 7, 30, and 90 day changes and flags gaps or negative anomalies (1.9736ms)
+✔ cache hits reduce API calls (28.6881ms)
+✔ rate limits stop repeated requests (1.5954ms)
+✔ quota ceiling rejects a miss before any upstream call (1.0047ms)
+✔ concurrent duplicate requests coalesce (34.4947ms)
+✔ expired cache is never shown as current after an API failure (2.6874ms)
+✔ handler requires origin, JSON, anti-bot marker, and privacy agreement (1.2101ms)
+✔ safe handler responses never expose a server credential (1.8628ms)
+✔ browser source has no secret, query-string, analytics-value, or scraping path (2.5326ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 248.5611
+
+> creator-revenue-calculator@1.0.0 test:patreon-articles
+> node --test tests/patreon-article-arithmetic.test.js
+
+✔ Patreon sprint worked dollar figures reproduce from the stated Standard US PayPal assumptions (1.4182ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.8176
+
+> creator-revenue-calculator@1.0.0 build:dist
+> node scripts/build-dist.js
+
+Verified fail-closed dist/: 94 files, 1,767,732 bytes.
+
+> creator-revenue-calculator@1.0.0 test:dist
+> node scripts/build-dist.js --check
+
+Verified fail-closed dist/: 94 files, 1,767,732 bytes.
+[0m
+[0m$ [0mnpm run assets:fontawesome:check
+> creator-revenue-calculator@1.0.0 assets:fontawesome:check
+> python scripts/subset-fontawesome.py --check
+
+Font Awesome subset is reproducible: 64 solid classes, 7 brand classes, 9,856 font bytes.
+[0m
+[0m$ [0mnpm run lint:unused
+> creator-revenue-calculator@1.0.0 lint:unused
+> knip
+[0m
+[0m$ [0mnpm run test:browser
+> creator-revenue-calculator@1.0.0 test:browser
+> playwright test
+
+
+Running 46 tests using 1 worker
+
+[1/46] tests\browser\articles.spec.js:17:5 › /articles/ is mobile-safe and accessible in light mode
+[2/46] tests\browser\articles.spec.js:17:5 › /articles/ is mobile-safe and accessible in dark mode
+[3/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-income-tracker/ is mobile-safe and accessible in light mode
+[4/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-income-tracker/ is mobile-safe and accessible in dark mode
+[5/46] tests\browser\articles.spec.js:17:5 › /articles/ugc-rates-guide/ is mobile-safe and accessible in light mode
+[6/46] tests\browser\articles.spec.js:17:5 › /articles/ugc-rates-guide/ is mobile-safe and accessible in dark mode
+[7/46] tests\browser\articles.spec.js:17:5 › /articles/youtube-partner-program-2027/ is mobile-safe and accessible in light mode
+[8/46] tests\browser\articles.spec.js:17:5 › /articles/youtube-partner-program-2027/ is mobile-safe and accessible in dark mode
+[9/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-fees-worked-examples/ is mobile-safe and accessible in light mode
+[10/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-fees-worked-examples/ is mobile-safe and accessible in dark mode
+[11/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-patron-targets/ is mobile-safe and accessible in light mode
+[12/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-patron-targets/ is mobile-safe and accessible in dark mode
+[13/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-membership-fee-comparison/ is mobile-safe and accessible in light mode
+[14/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-membership-fee-comparison/ is mobile-safe and accessible in dark mode
+[15/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-payout-reconciliation/ is mobile-safe and accessible in light mode
+[16/46] tests\browser\articles.spec.js:17:5 › /articles/patreon-payout-reconciliation/ is mobile-safe and accessible in dark mode
+[17/46] tests\browser\articles.spec.js:42:1 › article hub exposes reviewed guides and the maintained calculator directory
+[18/46] tests\browser\articles.spec.js:50:1 › Patreon tracker guide keeps records, scenarios, sources, and privacy limits distinct
+[19/46] tests\browser\articles.spec.js:75:1 › UGC rates guide turns scope into a source-backed quote without supplying a benchmark
+[20/46] tests\browser\articles.spec.js:114:1 › article mobile navigation opens with keyboard-safe destinations
+[21/46] tests\browser\calculators.spec.js:7:3 › delayed icon fonts preserve layout and the page stays small: /tools/youtube-ad-revenue/
+[22/46] tests\browser\calculators.spec.js:24:3 › mobile accessibility and readable disclosure: /tools/youtube-ad-revenue/
+[23/46] tests\browser\calculators.spec.js:7:3 › delayed icon fonts preserve layout and the page stays small: /tools/patreon-revenue/
+[24/46] tests\browser\calculators.spec.js:24:3 › mobile accessibility and readable disclosure: /tools/patreon-revenue/
+[25/46] tests\browser\calculators.spec.js:7:3 › delayed icon fonts preserve layout and the page stays small: /tools/newsletter-revenue/
+[26/46] tests\browser\calculators.spec.js:24:3 › mobile accessibility and readable disclosure: /tools/newsletter-revenue/
+[27/46] tests\browser\calculators.spec.js:35:1 › YouTube calculation, rounding, upper bounds, empty and negative input, keyboard and reset
+[28/46] tests\browser\calculators.spec.js:54:1 › Patreon visible USD fee assumptions reconcile gross, fees and annual amount
+[29/46] tests\browser\calculators.spec.js:73:1 › cross-platform results provide a privacy-safe blank tracker next step
+[30/46] tests\browser\calculators.spec.js:98:1 › Founders currency-change processing uses legacy boundary without changing Standard
+[31/46] tests\browser\calculators.spec.js:112:1 › Newsletter documented fee entry avoids counting percentage fees twice
+[32/46] tests\browser\email-capture.spec.js:12:5 › built homepage capture is inert at 320px
+[33/46] tests\browser\email-capture.spec.js:12:5 › built homepage capture is inert at 1280px
+[34/46] tests\browser\email-capture.spec.js:30:1 › built homepage capture stays hidden without JavaScript
+[35/46] tests\browser\email-capture.spec.js:40:5 › built / capture uses the configured Beehiiv form on desktop
+[36/46] tests\browser\email-capture.spec.js:40:5 › built /tools/patreon-revenue/ capture uses the configured Beehiiv form on desktop
+[37/46] tests\browser\readiness.spec.js:4:1 › all maintained routes keep navigation, verification and consent safe
+[38/46] tests\browser\recommended-products.spec.js:21:3 › recommended products is accessible in mobile light
+[39/46] tests\browser\recommended-products.spec.js:21:3 › recommended products is accessible in mobile dark
+[40/46] tests\browser\recommended-products.spec.js:21:3 › recommended products is accessible in desktop light
+[41/46] tests\browser\recommended-products.spec.js:21:3 › recommended products is accessible in desktop dark
+[42/46] tests\browser\recommended-products.spec.js:40:1 › filters all static options locally without truncating the catalog
+[43/46] tests\browser\recommended-products.spec.js:70:1 › paid and direct destinations remain visibly and technically distinct
+[44/46] tests\browser\recommended-products.spec.js:104:1 › the catalog is complete and readable without JavaScript
+[45/46] tests\browser\recommended-products.spec.js:115:1 › the homepage provides a contextual catalog path without JavaScript
+[46/46] tests\browser\recommended-products.spec.js:130:1 › catalog load is privacy-safe before any outbound link is chosen
+  46 passed (1.4m)
+[0m
+[0m✗ [0mGrep "https://www\.amazon\.com/dp/[^" ]+(?!tag=creatorcalc-20)" failed[90m in dist[0m
+[91m[1mError: [0mrg: regex parse error:
+    (?:https://www\.amazon\.com/dp/[^" ]+(?!tag=creatorcalc-20))
+                                         ^^^
+error: look-around, including look-ahead and look-behind, is not supported
+
+Consider enabling PCRE2 with the --pcre2 flag, which can handle backreferences
+and look-around.
+[0m✱ [0mGrep "https://www\.amazon\.com/dp/[^" ]+tag=creatorcalc-20|https://vidiq\.com/thelink|All other software links are not affiliate links today|rel="nofollow sponsored noopener noreferrer""[90m in dist/recommended-products · 23 matches[0m
+[0m
+[0m$ [0mgit diff --name-only origin/main
+warning: in the working copy of 'CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+CLAUDE.md
+[0m
+[0m$ [0mgit diff --check
+warning: in the working copy of 'CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+[0m
+The full build suite and supplemental checks passed: the built catalog retains 20 tagged Amazon buttons, visible paid/direct labels, and qualifying `rel` attributes. I’m writing the required verification-only report now; no production files were changed, so no commit is permitted.
+[0m% [0mPatch 1 file
+[0m
+[0m$ [0mgit diff --check -- AFFILIATE-PASS-REPORT.md
+(no output)
+[0m
+[0m$ [0mgit status --short --branch
+## affiliate-tagging-pass...origin/main
+ M CLAUDE.md
+?? AFFILIATE-PASS-PROMPT.md
+?? AFFILIATE-PASS-REPORT.md
+?? ARTICLE-SPRINT-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR2-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR3-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR4-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR5B-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR6-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR7-PROMPT.md
+?? ARTICLE-SPRINT-REPORT.md
+?? HANDOFF.md
+?? PHASES-3-4-REPORT.md
+?? RUN-PHASES-3-4.md
+?? affiliate-pass.log
+?? article-sprint-repair.log
+?? article-sprint-repair2.log
+?? article-sprint-repair3.log
+?? article-sprint-repair4.log
+?? article-sprint-repair5.log
+?? article-sprint-repair5b.log
+?? article-sprint-repair6.log
+?? article-sprint-repair7.log
+?? article-sprint-run.log
+?? pr-body-sprint.md
+?? run-affiliate-pass.cmd
+?? run-article-sprint-repair.cmd
+?? run-article-sprint-repair2.cmd
+?? run-article-sprint-repair3.cmd
+?? run-article-sprint-repair4.cmd
+?? run-article-sprint-repair5.cmd
+?? run-article-sprint-repair5b.cmd
+?? run-article-sprint-repair6.cmd
+?? run-article-sprint-repair7.cmd
+?? run-article-sprint.cmd
+[0m
+[0m$ [0mwhere empire-wrapup
+INFO: Could not find files for the given pattern(s).
+[0m
+[0m# [0mTodos
+[✓] Inspect local standards, repository state, and affiliate link inventory
+[✓] Create approved branch and apply allowed affiliate fixes
+[✓] Run required verification and write final affiliate report
+[•] Run required empire-wrapup session command (blocked: command not found)
+[0m
+PROVEN: wrote `AFFILIATE-PASS-REPORT.md` with the complete inventory, classifications, evidence, suite results, and verification-only verdict.
+
+PROVEN: all required checks passed, including build and 46 browser tests. No affiliate changes or commit were made.
+
+NOT VERIFIED: `empire-wrapup` could not run because `where empire-wrapup` returned no command on PATH.

@@ -1,0 +1,1833 @@
+[0m
+> build · gpt-5.6-terra-fast
+[0m
+I’ll read the repository rules and the repair prompt, then apply only the instructed repairs and append its required report.
+[0m✗ [0mRead C:/Users/jason/empire/EMPIRE_BUILD_STANDARDS.md failed
+[91m[1mError: [0mThe user has specified a rule which prevents you from using this specific tool call. Here are some of the relevant rules [{"permission":"*","action":"allow","pattern":"*"},{"permission":"external_directory","pattern":"*","action":"ask"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\.local\\share\\opencode\\tool-output\\*","action":"allow"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\AppData\\Local\\Temp\\opencode\\*","action":"allow"},{"permission":"external_directory","action":"deny","pattern":"*"},{"permission":"external_directory","pattern":"C:\\Users\\jason\\.local\\share\\opencode\\tool-output\\*","action":"allow"}]
+[0m→ [0mRead CLAUDE.md
+[0m→ [0mRead ARTICLE-SPRINT-REPAIR-PROMPT.md
+[0m→ [0mRead ARTICLE-SPRINT-REPORT.md
+[0m→ [0mRead docs/CLAUDE_FULL.md
+[0m
+[0m# [0mTodos
+[•] Inspect article contracts, registry, and current worktree state
+[ ] Repair four article HTML files using anchored temporary Node script
+[ ] Run required tests, build, and rendered-output checks
+[ ] Append repair report and commit only if all gates pass
+[ ] Run empire-wrapup session command
+[0m
+[0m→ [0mRead package.json
+[0m→ [0mRead scripts/article-integrity-check.js[90m [offset=190, limit=210][0m
+[0m→ [0mRead articles/patreon-income-tracker/index.html[90m [offset=1, limit=110][0m
+[0m→ [0mRead content/published-articles.json
+[0m→ [0mRead tests/browser/articles.spec.js
+[0m
+[0m$ [0mgit status --short --branch
+## patreon-article-sprint...origin/main
+ M CLAUDE.md
+ M articles/index.html
+ M content/published-articles.json
+ M context/internal-links-map.md
+ M llms.txt
+ M package.json
+ M scripts/article-integrity-check.js
+ M sitemap.xml
+ M tests/browser/articles.spec.js
+?? ARTICLE-SPRINT-PROMPT.md
+?? ARTICLE-SPRINT-REPAIR-PROMPT.md
+?? ARTICLE-SPRINT-REPORT.md
+?? HANDOFF.md
+?? PHASES-3-4-REPORT.md
+?? RUN-PHASES-3-4.md
+?? article-sprint-repair.log
+?? article-sprint-run.log
+?? articles/patreon-fees-worked-examples/
+?? articles/patreon-membership-fee-comparison/
+?? articles/patreon-patron-targets/
+?? articles/patreon-payout-reconciliation/
+?? run-article-sprint-repair.cmd
+?? run-article-sprint.cmd
+?? sprint-test-out.txt
+?? tests/patreon-article-arithmetic.test.js
+[0m
+[0m$ [0mgit diff --check
+warning: in the working copy of 'CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'articles/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'content/published-articles.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'context/internal-links-map.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'llms.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/article-integrity-check.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'sitemap.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/browser/articles.spec.js', LF will be replaced by CRLF the next time Git touches it
+[0m
+Recon PROVEN: the current branch is `patreon-article-sprint`; the 10 listed guard failures map exactly to `scripts/article-integrity-check.js:304,333-351`. The authorized pre-existing sprint changes are present, while `CLAUDE.md` remains separately modified and will be left untouched.
+[0m✱ [0mGrep "tracker|sources|application/ld\+json|<p|<li|<td|<dd"[90m in articles/patreon-fees-worked-examples · 9 matches[0m
+[0m✱ [0mGrep "tracker|sources|application/ld\+json|<p|<li|<td|<dd"[90m in articles/patreon-patron-targets · 5 matches[0m
+[0m✱ [0mGrep "tracker|sources|application/ld\+json|<p|<li|<td|<dd"[90m in articles/patreon-payout-reconciliation · 5 matches[0m
+[0m✱ [0mGrep "tracker|sources|application/ld\+json|<p|<li|<td|<dd"[90m in articles/patreon-membership-fee-comparison · 5 matches[0m
+[0m✱ [0mGrep "data-synthetic-example|data-source-id"[90m in articles/patreon-patron-targets · 3 matches[0m
+[0m✱ [0mGrep "data-synthetic-example|data-source-id"[90m in articles/patreon-fees-worked-examples · 4 matches[0m
+[0m✱ [0mGrep "data-synthetic-example|data-source-id"[90m in articles/patreon-membership-fee-comparison · 4 matches[0m
+[0m✱ [0mGrep "empire-wrapup"[90m in . · 6 matches[0m
+I’ll create the required temporary Node repair script. It will abort on any non-unique structural anchor, add one breadcrumb block per page, add the three exact CSV links, and annotate only checker-matched blocks using source attribution for stated Patreon rates and synthetic attribution for scenario figures.
+[0m% [0mPatch 1 file
+[0m% [0mPatch 1 file
+[0m
+[0m# [0mTodos
+[✓] Inspect article contracts, registry, and current worktree state
+[•] Repair four article HTML files using anchored temporary Node script
+[ ] Run required tests, build, and rendered-output checks
+[ ] Append repair report and commit only if all gates pass
+[ ] Run empire-wrapup session command
+[0m
+[0m$ [0mnode repair-articles.cjs patreon-fees-worked-examples
+C:\Users\jason\empire\creator-revenue-calculator-current\repair-articles.cjs:51
+    throw new Error(`${slug}: ${label} occurs ${occurrences} times (expected 1)`);
+    ^
+
+Error: patreon-fees-worked-examples: sources-boundary anchor occurs 0 times (expected 1)
+    at requireOnce (C:\Users\jason\empire\creator-revenue-calculator-current\repair-articles.cjs:51:11)
+    at Object.<anonymous> (C:\Users\jason\empire\creator-revenue-calculator-current\repair-articles.cjs:80:5)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+Node.js v24.11.1
+[0m
+The first repair-script execution aborted before writing because the sources-boundary anchor included formatting whitespace that differs in the minified files. The unique `<section class="article-sources" id="sources">` anchor is present; I’ll tighten the temporary script to that exact anchor and continue.
+[0m% [0mPatch 1 file
+[0m
+[0m$ [0mnode repair-articles.cjs patreon-fees-worked-examples
+patreon-fees-worked-examples: breadcrumb anchor=1; source=1; synthetic=17; tracker=inserted
+[0m
+[0m$ [0mnpm run test:articles
+> creator-revenue-calculator@1.0.0 test:articles
+> node scripts/article-integrity-check.js
+
+PASS the maintained editorial command and agent playbooks are present
+PASS every maintained editorial playbook defers to the evidence-led publishing standard
+PASS editorial playbooks contain no active manipulation, fabrication, quota, or auto-publication directives
+PASS site context describes the real stack, current evidence, maintained routes, and synthetic-example rules
+PASS article template matches the shared visual shell and publication contract
+PASS source update dates may be absent but cannot be invented or stored as ambiguous text
+PASS article registry uses the supported schema version
+PASS article registry contains at least one reviewed publication
+PASS article hub has one canonical path
+PASS article hub has a real modification date
+PASS maintained internal-link map exactly matches sitemap pages and real downloadable resources
+PASS homepage provides a static path to the article hub
+PASS sitemap includes the article hub with its real date
+PASS assistant discovery lists the article hub without special-ranking claims
+PASS article patreon-income-tracker is explicitly approved for the public registry
+PASS article patreon-income-tracker uses a stable lowercase slug
+PASS article patreon-income-tracker path is derived from its slug
+PASS article patreon-income-tracker canonical is derived from its path
+PASS article patreon-income-tracker has unique identity fields
+PASS article patreon-income-tracker title is descriptive and concise
+PASS article patreon-income-tracker description states the page's actual value
+PASS article patreon-income-tracker publication and review dates are valid
+PASS article patreon-income-tracker date order is coherent
+PASS article patreon-income-tracker has a permitted evidence trigger
+PASS article patreon-income-tracker records why a separate article is useful
+PASS article patreon-income-tracker stores aggregate Search Console evidence without visitor data
+PASS article patreon-income-tracker has relevant product and offline next steps
+PASS article patreon-income-tracker has at least one contextual discovery page
+PASS article patreon-income-tracker has a primary-source ledger
+PASS article patreon-income-tracker source patreon-payouts-dashboard has a unique stable id
+PASS article patreon-income-tracker source patreon-payouts-dashboard declares its evidence class
+PASS article patreon-income-tracker source patreon-payouts-dashboard uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-payouts-dashboard records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-payouts-dashboard names the claims it supports
+PASS article patreon-income-tracker source patreon-earnings-insights has a unique stable id
+PASS article patreon-income-tracker source patreon-earnings-insights declares its evidence class
+PASS article patreon-income-tracker source patreon-earnings-insights uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-earnings-insights records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-earnings-insights names the claims it supports
+PASS article patreon-income-tracker source patreon-creator-fees has a unique stable id
+PASS article patreon-income-tracker source patreon-creator-fees declares its evidence class
+PASS article patreon-income-tracker source patreon-creator-fees uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-creator-fees records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-creator-fees names the claims it supports
+PASS article patreon-income-tracker source patreon-relationship-manager has a unique stable id
+PASS article patreon-income-tracker source patreon-relationship-manager declares its evidence class
+PASS article patreon-income-tracker source patreon-relationship-manager uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-relationship-manager records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-relationship-manager names the claims it supports
+PASS article patreon-income-tracker HTML exists
+PASS article patreon-income-tracker title matches the registry
+PASS article patreon-income-tracker has one registry-matched H1
+PASS article patreon-income-tracker description matches the registry
+PASS article patreon-income-tracker permits normal indexing and snippets
+PASS article patreon-income-tracker uses truthful organization attribution
+PASS article patreon-income-tracker canonical and social URL agree
+PASS article patreon-income-tracker uses the shared consent and theme controller
+PASS article patreon-income-tracker uses shared accessible article styles
+PASS article patreon-income-tracker visibly exposes publication, review, and next-review dates
+PASS article patreon-income-tracker links the related calculator and blank tracker
+PASS article patreon-income-tracker is represented on the visible article hub
+PASS article patreon-income-tracker is present in the sitemap with its real modification date
+PASS article patreon-income-tracker is present in the assistant-facing site summary
+PASS article patreon-income-tracker does not collide with a redirect
+PASS article patreon-income-tracker has contextual static internal discovery
+PASS article patreon-income-tracker visibly cites source patreon-payouts-dashboard
+PASS article patreon-income-tracker visibly cites source patreon-earnings-insights
+PASS article patreon-income-tracker visibly cites source patreon-creator-fees
+PASS article patreon-income-tracker visibly cites source patreon-relationship-manager
+PASS article patreon-income-tracker Article schema matches visible registry facts
+PASS article patreon-income-tracker breadcrumb schema matches the visible destination
+PASS article patreon-income-tracker annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-income-tracker contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-income-tracker adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-income-tracker exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article ugc-rates-guide is explicitly approved for the public registry
+PASS article ugc-rates-guide uses a stable lowercase slug
+PASS article ugc-rates-guide path is derived from its slug
+PASS article ugc-rates-guide canonical is derived from its path
+PASS article ugc-rates-guide has unique identity fields
+PASS article ugc-rates-guide title is descriptive and concise
+PASS article ugc-rates-guide description states the page's actual value
+PASS article ugc-rates-guide publication and review dates are valid
+PASS article ugc-rates-guide date order is coherent
+PASS article ugc-rates-guide has a permitted evidence trigger
+PASS article ugc-rates-guide records why a separate article is useful
+PASS article ugc-rates-guide stores aggregate Search Console evidence without visitor data
+PASS article ugc-rates-guide has relevant product and offline next steps
+PASS article ugc-rates-guide has at least one contextual discovery page
+PASS article ugc-rates-guide has a primary-source ledger
+PASS article ugc-rates-guide source ftc-disclosures has a unique stable id
+PASS article ugc-rates-guide source ftc-disclosures declares its evidence class
+PASS article ugc-rates-guide source ftc-disclosures uses an external HTTPS URL
+PASS article ugc-rates-guide source ftc-disclosures records a checked date and any available update date
+PASS article ugc-rates-guide source ftc-disclosures names the claims it supports
+PASS article ugc-rates-guide source copyright-basics has a unique stable id
+PASS article ugc-rates-guide source copyright-basics declares its evidence class
+PASS article ugc-rates-guide source copyright-basics uses an external HTTPS URL
+PASS article ugc-rates-guide source copyright-basics records a checked date and any available update date
+PASS article ugc-rates-guide source copyright-basics names the claims it supports
+PASS article ugc-rates-guide source works-made-for-hire has a unique stable id
+PASS article ugc-rates-guide source works-made-for-hire declares its evidence class
+PASS article ugc-rates-guide source works-made-for-hire uses an external HTTPS URL
+PASS article ugc-rates-guide source works-made-for-hire records a checked date and any available update date
+PASS article ugc-rates-guide source works-made-for-hire names the claims it supports
+PASS article ugc-rates-guide HTML exists
+PASS article ugc-rates-guide title matches the registry
+PASS article ugc-rates-guide has one registry-matched H1
+PASS article ugc-rates-guide description matches the registry
+PASS article ugc-rates-guide permits normal indexing and snippets
+PASS article ugc-rates-guide uses truthful organization attribution
+PASS article ugc-rates-guide canonical and social URL agree
+PASS article ugc-rates-guide uses the shared consent and theme controller
+PASS article ugc-rates-guide uses shared accessible article styles
+PASS article ugc-rates-guide visibly exposes publication, review, and next-review dates
+PASS article ugc-rates-guide links the related calculator and blank tracker
+PASS article ugc-rates-guide is represented on the visible article hub
+PASS article ugc-rates-guide is present in the sitemap with its real modification date
+PASS article ugc-rates-guide is present in the assistant-facing site summary
+PASS article ugc-rates-guide does not collide with a redirect
+PASS article ugc-rates-guide has contextual static internal discovery
+PASS article ugc-rates-guide visibly cites source ftc-disclosures
+PASS article ugc-rates-guide visibly cites source copyright-basics
+PASS article ugc-rates-guide visibly cites source works-made-for-hire
+PASS article ugc-rates-guide Article schema matches visible registry facts
+PASS article ugc-rates-guide breadcrumb schema matches the visible destination
+PASS article ugc-rates-guide annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article ugc-rates-guide contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article ugc-rates-guide adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article ugc-rates-guide exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article youtube-partner-program-2027 is explicitly approved for the public registry
+PASS article youtube-partner-program-2027 uses a stable lowercase slug
+PASS article youtube-partner-program-2027 path is derived from its slug
+PASS article youtube-partner-program-2027 canonical is derived from its path
+PASS article youtube-partner-program-2027 has unique identity fields
+PASS article youtube-partner-program-2027 title is descriptive and concise
+PASS article youtube-partner-program-2027 description states the page's actual value
+PASS article youtube-partner-program-2027 publication and review dates are valid
+PASS article youtube-partner-program-2027 date order is coherent
+PASS article youtube-partner-program-2027 has a permitted evidence trigger
+PASS article youtube-partner-program-2027 records why a separate article is useful
+PASS article youtube-partner-program-2027 records a dated primary-source platform change
+PASS article youtube-partner-program-2027 has relevant product and offline next steps
+PASS article youtube-partner-program-2027 has at least one contextual discovery page
+PASS article youtube-partner-program-2027 has a primary-source ledger
+PASS article youtube-partner-program-2027 source ypp-changes has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-changes declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-changes uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-changes records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-changes names the claims it supports
+PASS article youtube-partner-program-2027 source ypp-blog has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-blog declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-blog uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-blog records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-blog names the claims it supports
+PASS article youtube-partner-program-2027 source expanded-ypp has a unique stable id
+PASS article youtube-partner-program-2027 source expanded-ypp declares its evidence class
+PASS article youtube-partner-program-2027 source expanded-ypp uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source expanded-ypp records a checked date and any available update date
+PASS article youtube-partner-program-2027 source expanded-ypp names the claims it supports
+PASS article youtube-partner-program-2027 source youtube-analytics has a unique stable id
+PASS article youtube-partner-program-2027 source youtube-analytics declares its evidence class
+PASS article youtube-partner-program-2027 source youtube-analytics uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source youtube-analytics records a checked date and any available update date
+PASS article youtube-partner-program-2027 source youtube-analytics names the claims it supports
+PASS article youtube-partner-program-2027 HTML exists
+PASS article youtube-partner-program-2027 title matches the registry
+PASS article youtube-partner-program-2027 has one registry-matched H1
+PASS article youtube-partner-program-2027 description matches the registry
+PASS article youtube-partner-program-2027 permits normal indexing and snippets
+PASS article youtube-partner-program-2027 uses truthful organization attribution
+PASS article youtube-partner-program-2027 canonical and social URL agree
+PASS article youtube-partner-program-2027 uses the shared consent and theme controller
+PASS article youtube-partner-program-2027 uses shared accessible article styles
+PASS article youtube-partner-program-2027 visibly exposes publication, review, and next-review dates
+PASS article youtube-partner-program-2027 links the related calculator and blank tracker
+PASS article youtube-partner-program-2027 is represented on the visible article hub
+PASS article youtube-partner-program-2027 is present in the sitemap with its real modification date
+PASS article youtube-partner-program-2027 is present in the assistant-facing site summary
+PASS article youtube-partner-program-2027 does not collide with a redirect
+PASS article youtube-partner-program-2027 has contextual static internal discovery
+PASS article youtube-partner-program-2027 visibly cites source ypp-changes
+PASS article youtube-partner-program-2027 visibly cites source ypp-blog
+PASS article youtube-partner-program-2027 visibly cites source expanded-ypp
+PASS article youtube-partner-program-2027 visibly cites source youtube-analytics
+PASS article youtube-partner-program-2027 Article schema matches visible registry facts
+PASS article youtube-partner-program-2027 breadcrumb schema matches the visible destination
+PASS article youtube-partner-program-2027 annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article youtube-partner-program-2027 contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article youtube-partner-program-2027 adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article youtube-partner-program-2027 exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-fees-worked-examples is explicitly approved for the public registry
+PASS article patreon-fees-worked-examples uses a stable lowercase slug
+PASS article patreon-fees-worked-examples path is derived from its slug
+PASS article patreon-fees-worked-examples canonical is derived from its path
+PASS article patreon-fees-worked-examples has unique identity fields
+PASS article patreon-fees-worked-examples title is descriptive and concise
+PASS article patreon-fees-worked-examples description states the page's actual value
+PASS article patreon-fees-worked-examples publication and review dates are valid
+PASS article patreon-fees-worked-examples date order is coherent
+PASS article patreon-fees-worked-examples has a permitted evidence trigger
+PASS article patreon-fees-worked-examples records why a separate article is useful
+PASS article patreon-fees-worked-examples records a dated primary-source platform change
+PASS article patreon-fees-worked-examples has relevant product and offline next steps
+PASS article patreon-fees-worked-examples has at least one contextual discovery page
+PASS article patreon-fees-worked-examples has a primary-source ledger
+PASS article patreon-fees-worked-examples source patreon-fees has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-fees declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-fees uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-fees records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-fees names the claims it supports
+PASS article patreon-fees-worked-examples source patreon-payouts has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-payouts declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-payouts uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-payouts records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-payouts names the claims it supports
+PASS article patreon-fees-worked-examples HTML exists
+PASS article patreon-fees-worked-examples title matches the registry
+PASS article patreon-fees-worked-examples has one registry-matched H1
+PASS article patreon-fees-worked-examples description matches the registry
+PASS article patreon-fees-worked-examples permits normal indexing and snippets
+PASS article patreon-fees-worked-examples uses truthful organization attribution
+PASS article patreon-fees-worked-examples canonical and social URL agree
+PASS article patreon-fees-worked-examples uses the shared consent and theme controller
+PASS article patreon-fees-worked-examples uses shared accessible article styles
+PASS article patreon-fees-worked-examples visibly exposes publication, review, and next-review dates
+PASS article patreon-fees-worked-examples links the related calculator and blank tracker
+PASS article patreon-fees-worked-examples is represented on the visible article hub
+PASS article patreon-fees-worked-examples is present in the sitemap with its real modification date
+PASS article patreon-fees-worked-examples is present in the assistant-facing site summary
+PASS article patreon-fees-worked-examples does not collide with a redirect
+PASS article patreon-fees-worked-examples has contextual static internal discovery
+PASS article patreon-fees-worked-examples visibly cites source patreon-fees
+PASS article patreon-fees-worked-examples visibly cites source patreon-payouts
+PASS article patreon-fees-worked-examples Article schema matches visible registry facts
+PASS article patreon-fees-worked-examples breadcrumb schema matches the visible destination
+PASS article patreon-fees-worked-examples annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-fees-worked-examples contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-fees-worked-examples adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-fees-worked-examples exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-patron-targets is explicitly approved for the public registry
+PASS article patreon-patron-targets uses a stable lowercase slug
+PASS article patreon-patron-targets path is derived from its slug
+PASS article patreon-patron-targets canonical is derived from its path
+PASS article patreon-patron-targets has unique identity fields
+PASS article patreon-patron-targets title is descriptive and concise
+PASS article patreon-patron-targets description states the page's actual value
+PASS article patreon-patron-targets publication and review dates are valid
+PASS article patreon-patron-targets date order is coherent
+PASS article patreon-patron-targets has a permitted evidence trigger
+PASS article patreon-patron-targets records why a separate article is useful
+PASS article patreon-patron-targets records a dated primary-source platform change
+PASS article patreon-patron-targets has relevant product and offline next steps
+PASS article patreon-patron-targets has at least one contextual discovery page
+PASS article patreon-patron-targets has a primary-source ledger
+PASS article patreon-patron-targets source patreon-fees-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-fees-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-fees-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-fees-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-fees-targets names the claims it supports
+PASS article patreon-patron-targets source patreon-payouts-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-payouts-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-payouts-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-payouts-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-payouts-targets names the claims it supports
+PASS article patreon-patron-targets HTML exists
+PASS article patreon-patron-targets title matches the registry
+PASS article patreon-patron-targets has one registry-matched H1
+PASS article patreon-patron-targets description matches the registry
+PASS article patreon-patron-targets permits normal indexing and snippets
+PASS article patreon-patron-targets uses truthful organization attribution
+PASS article patreon-patron-targets canonical and social URL agree
+PASS article patreon-patron-targets uses the shared consent and theme controller
+PASS article patreon-patron-targets uses shared accessible article styles
+PASS article patreon-patron-targets visibly exposes publication, review, and next-review dates
+FAIL article patreon-patron-targets links the related calculator and blank tracker
+PASS article patreon-patron-targets is represented on the visible article hub
+PASS article patreon-patron-targets is present in the sitemap with its real modification date
+PASS article patreon-patron-targets is present in the assistant-facing site summary
+PASS article patreon-patron-targets does not collide with a redirect
+PASS article patreon-patron-targets has contextual static internal discovery
+PASS article patreon-patron-targets visibly cites source patreon-fees-targets
+PASS article patreon-patron-targets visibly cites source patreon-payouts-targets
+PASS article patreon-patron-targets Article schema matches visible registry facts
+FAIL article patreon-patron-targets breadcrumb schema matches the visible destination
+FAIL article patreon-patron-targets annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-patron-targets contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-patron-targets adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-patron-targets exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-membership-fee-comparison is explicitly approved for the public registry
+PASS article patreon-membership-fee-comparison uses a stable lowercase slug
+PASS article patreon-membership-fee-comparison path is derived from its slug
+PASS article patreon-membership-fee-comparison canonical is derived from its path
+PASS article patreon-membership-fee-comparison has unique identity fields
+PASS article patreon-membership-fee-comparison title is descriptive and concise
+PASS article patreon-membership-fee-comparison description states the page's actual value
+PASS article patreon-membership-fee-comparison publication and review dates are valid
+PASS article patreon-membership-fee-comparison date order is coherent
+PASS article patreon-membership-fee-comparison has a permitted evidence trigger
+PASS article patreon-membership-fee-comparison records why a separate article is useful
+PASS article patreon-membership-fee-comparison records a dated primary-source platform change
+PASS article patreon-membership-fee-comparison has relevant product and offline next steps
+PASS article patreon-membership-fee-comparison has at least one contextual discovery page
+PASS article patreon-membership-fee-comparison has a primary-source ledger
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison HTML exists
+PASS article patreon-membership-fee-comparison title matches the registry
+PASS article patreon-membership-fee-comparison has one registry-matched H1
+PASS article patreon-membership-fee-comparison description matches the registry
+PASS article patreon-membership-fee-comparison permits normal indexing and snippets
+PASS article patreon-membership-fee-comparison uses truthful organization attribution
+PASS article patreon-membership-fee-comparison canonical and social URL agree
+PASS article patreon-membership-fee-comparison uses the shared consent and theme controller
+PASS article patreon-membership-fee-comparison uses shared accessible article styles
+PASS article patreon-membership-fee-comparison visibly exposes publication, review, and next-review dates
+FAIL article patreon-membership-fee-comparison links the related calculator and blank tracker
+PASS article patreon-membership-fee-comparison is represented on the visible article hub
+PASS article patreon-membership-fee-comparison is present in the sitemap with its real modification date
+PASS article patreon-membership-fee-comparison is present in the assistant-facing site summary
+PASS article patreon-membership-fee-comparison does not collide with a redirect
+PASS article patreon-membership-fee-comparison has contextual static internal discovery
+PASS article patreon-membership-fee-comparison visibly cites source patreon-fees-comparison
+PASS article patreon-membership-fee-comparison visibly cites source patreon-payouts-comparison
+PASS article patreon-membership-fee-comparison Article schema matches visible registry facts
+FAIL article patreon-membership-fee-comparison breadcrumb schema matches the visible destination
+FAIL article patreon-membership-fee-comparison annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-membership-fee-comparison contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-membership-fee-comparison adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-membership-fee-comparison exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-payout-reconciliation is explicitly approved for the public registry
+PASS article patreon-payout-reconciliation uses a stable lowercase slug
+PASS article patreon-payout-reconciliation path is derived from its slug
+PASS article patreon-payout-reconciliation canonical is derived from its path
+PASS article patreon-payout-reconciliation has unique identity fields
+PASS article patreon-payout-reconciliation title is descriptive and concise
+PASS article patreon-payout-reconciliation description states the page's actual value
+PASS article patreon-payout-reconciliation publication and review dates are valid
+PASS article patreon-payout-reconciliation date order is coherent
+PASS article patreon-payout-reconciliation has a permitted evidence trigger
+PASS article patreon-payout-reconciliation records why a separate article is useful
+PASS article patreon-payout-reconciliation records a dated primary-source platform change
+PASS article patreon-payout-reconciliation has relevant product and offline next steps
+PASS article patreon-payout-reconciliation has at least one contextual discovery page
+PASS article patreon-payout-reconciliation has a primary-source ledger
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation HTML exists
+PASS article patreon-payout-reconciliation title matches the registry
+PASS article patreon-payout-reconciliation has one registry-matched H1
+PASS article patreon-payout-reconciliation description matches the registry
+PASS article patreon-payout-reconciliation permits normal indexing and snippets
+PASS article patreon-payout-reconciliation uses truthful organization attribution
+PASS article patreon-payout-reconciliation canonical and social URL agree
+PASS article patreon-payout-reconciliation uses the shared consent and theme controller
+PASS article patreon-payout-reconciliation uses shared accessible article styles
+PASS article patreon-payout-reconciliation visibly exposes publication, review, and next-review dates
+PASS article patreon-payout-reconciliation links the related calculator and blank tracker
+PASS article patreon-payout-reconciliation is represented on the visible article hub
+PASS article patreon-payout-reconciliation is present in the sitemap with its real modification date
+PASS article patreon-payout-reconciliation is present in the assistant-facing site summary
+PASS article patreon-payout-reconciliation does not collide with a redirect
+PASS article patreon-payout-reconciliation has contextual static internal discovery
+PASS article patreon-payout-reconciliation visibly cites source patreon-payouts-reconciliation
+PASS article patreon-payout-reconciliation visibly cites source patreon-fees-reconciliation
+PASS article patreon-payout-reconciliation Article schema matches visible registry facts
+FAIL article patreon-payout-reconciliation breadcrumb schema matches the visible destination
+PASS article patreon-payout-reconciliation annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-payout-reconciliation contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-payout-reconciliation adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-payout-reconciliation exposes sources, synthetic-example limits, and the appropriate disclaimer
+
+Article integrity checks failed: 7
+[0m
+[0m$ [0mnode repair-articles.cjs patreon-patron-targets
+patreon-patron-targets: breadcrumb anchor=1; source=0; synthetic=4; tracker=inserted
+[0m
+[0m$ [0mnpm run test:articles
+> creator-revenue-calculator@1.0.0 test:articles
+> node scripts/article-integrity-check.js
+
+PASS the maintained editorial command and agent playbooks are present
+PASS every maintained editorial playbook defers to the evidence-led publishing standard
+PASS editorial playbooks contain no active manipulation, fabrication, quota, or auto-publication directives
+PASS site context describes the real stack, current evidence, maintained routes, and synthetic-example rules
+PASS article template matches the shared visual shell and publication contract
+PASS source update dates may be absent but cannot be invented or stored as ambiguous text
+PASS article registry uses the supported schema version
+PASS article registry contains at least one reviewed publication
+PASS article hub has one canonical path
+PASS article hub has a real modification date
+PASS maintained internal-link map exactly matches sitemap pages and real downloadable resources
+PASS homepage provides a static path to the article hub
+PASS sitemap includes the article hub with its real date
+PASS assistant discovery lists the article hub without special-ranking claims
+PASS article patreon-income-tracker is explicitly approved for the public registry
+PASS article patreon-income-tracker uses a stable lowercase slug
+PASS article patreon-income-tracker path is derived from its slug
+PASS article patreon-income-tracker canonical is derived from its path
+PASS article patreon-income-tracker has unique identity fields
+PASS article patreon-income-tracker title is descriptive and concise
+PASS article patreon-income-tracker description states the page's actual value
+PASS article patreon-income-tracker publication and review dates are valid
+PASS article patreon-income-tracker date order is coherent
+PASS article patreon-income-tracker has a permitted evidence trigger
+PASS article patreon-income-tracker records why a separate article is useful
+PASS article patreon-income-tracker stores aggregate Search Console evidence without visitor data
+PASS article patreon-income-tracker has relevant product and offline next steps
+PASS article patreon-income-tracker has at least one contextual discovery page
+PASS article patreon-income-tracker has a primary-source ledger
+PASS article patreon-income-tracker source patreon-payouts-dashboard has a unique stable id
+PASS article patreon-income-tracker source patreon-payouts-dashboard declares its evidence class
+PASS article patreon-income-tracker source patreon-payouts-dashboard uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-payouts-dashboard records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-payouts-dashboard names the claims it supports
+PASS article patreon-income-tracker source patreon-earnings-insights has a unique stable id
+PASS article patreon-income-tracker source patreon-earnings-insights declares its evidence class
+PASS article patreon-income-tracker source patreon-earnings-insights uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-earnings-insights records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-earnings-insights names the claims it supports
+PASS article patreon-income-tracker source patreon-creator-fees has a unique stable id
+PASS article patreon-income-tracker source patreon-creator-fees declares its evidence class
+PASS article patreon-income-tracker source patreon-creator-fees uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-creator-fees records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-creator-fees names the claims it supports
+PASS article patreon-income-tracker source patreon-relationship-manager has a unique stable id
+PASS article patreon-income-tracker source patreon-relationship-manager declares its evidence class
+PASS article patreon-income-tracker source patreon-relationship-manager uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-relationship-manager records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-relationship-manager names the claims it supports
+PASS article patreon-income-tracker HTML exists
+PASS article patreon-income-tracker title matches the registry
+PASS article patreon-income-tracker has one registry-matched H1
+PASS article patreon-income-tracker description matches the registry
+PASS article patreon-income-tracker permits normal indexing and snippets
+PASS article patreon-income-tracker uses truthful organization attribution
+PASS article patreon-income-tracker canonical and social URL agree
+PASS article patreon-income-tracker uses the shared consent and theme controller
+PASS article patreon-income-tracker uses shared accessible article styles
+PASS article patreon-income-tracker visibly exposes publication, review, and next-review dates
+PASS article patreon-income-tracker links the related calculator and blank tracker
+PASS article patreon-income-tracker is represented on the visible article hub
+PASS article patreon-income-tracker is present in the sitemap with its real modification date
+PASS article patreon-income-tracker is present in the assistant-facing site summary
+PASS article patreon-income-tracker does not collide with a redirect
+PASS article patreon-income-tracker has contextual static internal discovery
+PASS article patreon-income-tracker visibly cites source patreon-payouts-dashboard
+PASS article patreon-income-tracker visibly cites source patreon-earnings-insights
+PASS article patreon-income-tracker visibly cites source patreon-creator-fees
+PASS article patreon-income-tracker visibly cites source patreon-relationship-manager
+PASS article patreon-income-tracker Article schema matches visible registry facts
+PASS article patreon-income-tracker breadcrumb schema matches the visible destination
+PASS article patreon-income-tracker annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-income-tracker contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-income-tracker adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-income-tracker exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article ugc-rates-guide is explicitly approved for the public registry
+PASS article ugc-rates-guide uses a stable lowercase slug
+PASS article ugc-rates-guide path is derived from its slug
+PASS article ugc-rates-guide canonical is derived from its path
+PASS article ugc-rates-guide has unique identity fields
+PASS article ugc-rates-guide title is descriptive and concise
+PASS article ugc-rates-guide description states the page's actual value
+PASS article ugc-rates-guide publication and review dates are valid
+PASS article ugc-rates-guide date order is coherent
+PASS article ugc-rates-guide has a permitted evidence trigger
+PASS article ugc-rates-guide records why a separate article is useful
+PASS article ugc-rates-guide stores aggregate Search Console evidence without visitor data
+PASS article ugc-rates-guide has relevant product and offline next steps
+PASS article ugc-rates-guide has at least one contextual discovery page
+PASS article ugc-rates-guide has a primary-source ledger
+PASS article ugc-rates-guide source ftc-disclosures has a unique stable id
+PASS article ugc-rates-guide source ftc-disclosures declares its evidence class
+PASS article ugc-rates-guide source ftc-disclosures uses an external HTTPS URL
+PASS article ugc-rates-guide source ftc-disclosures records a checked date and any available update date
+PASS article ugc-rates-guide source ftc-disclosures names the claims it supports
+PASS article ugc-rates-guide source copyright-basics has a unique stable id
+PASS article ugc-rates-guide source copyright-basics declares its evidence class
+PASS article ugc-rates-guide source copyright-basics uses an external HTTPS URL
+PASS article ugc-rates-guide source copyright-basics records a checked date and any available update date
+PASS article ugc-rates-guide source copyright-basics names the claims it supports
+PASS article ugc-rates-guide source works-made-for-hire has a unique stable id
+PASS article ugc-rates-guide source works-made-for-hire declares its evidence class
+PASS article ugc-rates-guide source works-made-for-hire uses an external HTTPS URL
+PASS article ugc-rates-guide source works-made-for-hire records a checked date and any available update date
+PASS article ugc-rates-guide source works-made-for-hire names the claims it supports
+PASS article ugc-rates-guide HTML exists
+PASS article ugc-rates-guide title matches the registry
+PASS article ugc-rates-guide has one registry-matched H1
+PASS article ugc-rates-guide description matches the registry
+PASS article ugc-rates-guide permits normal indexing and snippets
+PASS article ugc-rates-guide uses truthful organization attribution
+PASS article ugc-rates-guide canonical and social URL agree
+PASS article ugc-rates-guide uses the shared consent and theme controller
+PASS article ugc-rates-guide uses shared accessible article styles
+PASS article ugc-rates-guide visibly exposes publication, review, and next-review dates
+PASS article ugc-rates-guide links the related calculator and blank tracker
+PASS article ugc-rates-guide is represented on the visible article hub
+PASS article ugc-rates-guide is present in the sitemap with its real modification date
+PASS article ugc-rates-guide is present in the assistant-facing site summary
+PASS article ugc-rates-guide does not collide with a redirect
+PASS article ugc-rates-guide has contextual static internal discovery
+PASS article ugc-rates-guide visibly cites source ftc-disclosures
+PASS article ugc-rates-guide visibly cites source copyright-basics
+PASS article ugc-rates-guide visibly cites source works-made-for-hire
+PASS article ugc-rates-guide Article schema matches visible registry facts
+PASS article ugc-rates-guide breadcrumb schema matches the visible destination
+PASS article ugc-rates-guide annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article ugc-rates-guide contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article ugc-rates-guide adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article ugc-rates-guide exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article youtube-partner-program-2027 is explicitly approved for the public registry
+PASS article youtube-partner-program-2027 uses a stable lowercase slug
+PASS article youtube-partner-program-2027 path is derived from its slug
+PASS article youtube-partner-program-2027 canonical is derived from its path
+PASS article youtube-partner-program-2027 has unique identity fields
+PASS article youtube-partner-program-2027 title is descriptive and concise
+PASS article youtube-partner-program-2027 description states the page's actual value
+PASS article youtube-partner-program-2027 publication and review dates are valid
+PASS article youtube-partner-program-2027 date order is coherent
+PASS article youtube-partner-program-2027 has a permitted evidence trigger
+PASS article youtube-partner-program-2027 records why a separate article is useful
+PASS article youtube-partner-program-2027 records a dated primary-source platform change
+PASS article youtube-partner-program-2027 has relevant product and offline next steps
+PASS article youtube-partner-program-2027 has at least one contextual discovery page
+PASS article youtube-partner-program-2027 has a primary-source ledger
+PASS article youtube-partner-program-2027 source ypp-changes has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-changes declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-changes uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-changes records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-changes names the claims it supports
+PASS article youtube-partner-program-2027 source ypp-blog has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-blog declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-blog uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-blog records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-blog names the claims it supports
+PASS article youtube-partner-program-2027 source expanded-ypp has a unique stable id
+PASS article youtube-partner-program-2027 source expanded-ypp declares its evidence class
+PASS article youtube-partner-program-2027 source expanded-ypp uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source expanded-ypp records a checked date and any available update date
+PASS article youtube-partner-program-2027 source expanded-ypp names the claims it supports
+PASS article youtube-partner-program-2027 source youtube-analytics has a unique stable id
+PASS article youtube-partner-program-2027 source youtube-analytics declares its evidence class
+PASS article youtube-partner-program-2027 source youtube-analytics uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source youtube-analytics records a checked date and any available update date
+PASS article youtube-partner-program-2027 source youtube-analytics names the claims it supports
+PASS article youtube-partner-program-2027 HTML exists
+PASS article youtube-partner-program-2027 title matches the registry
+PASS article youtube-partner-program-2027 has one registry-matched H1
+PASS article youtube-partner-program-2027 description matches the registry
+PASS article youtube-partner-program-2027 permits normal indexing and snippets
+PASS article youtube-partner-program-2027 uses truthful organization attribution
+PASS article youtube-partner-program-2027 canonical and social URL agree
+PASS article youtube-partner-program-2027 uses the shared consent and theme controller
+PASS article youtube-partner-program-2027 uses shared accessible article styles
+PASS article youtube-partner-program-2027 visibly exposes publication, review, and next-review dates
+PASS article youtube-partner-program-2027 links the related calculator and blank tracker
+PASS article youtube-partner-program-2027 is represented on the visible article hub
+PASS article youtube-partner-program-2027 is present in the sitemap with its real modification date
+PASS article youtube-partner-program-2027 is present in the assistant-facing site summary
+PASS article youtube-partner-program-2027 does not collide with a redirect
+PASS article youtube-partner-program-2027 has contextual static internal discovery
+PASS article youtube-partner-program-2027 visibly cites source ypp-changes
+PASS article youtube-partner-program-2027 visibly cites source ypp-blog
+PASS article youtube-partner-program-2027 visibly cites source expanded-ypp
+PASS article youtube-partner-program-2027 visibly cites source youtube-analytics
+PASS article youtube-partner-program-2027 Article schema matches visible registry facts
+PASS article youtube-partner-program-2027 breadcrumb schema matches the visible destination
+PASS article youtube-partner-program-2027 annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article youtube-partner-program-2027 contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article youtube-partner-program-2027 adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article youtube-partner-program-2027 exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-fees-worked-examples is explicitly approved for the public registry
+PASS article patreon-fees-worked-examples uses a stable lowercase slug
+PASS article patreon-fees-worked-examples path is derived from its slug
+PASS article patreon-fees-worked-examples canonical is derived from its path
+PASS article patreon-fees-worked-examples has unique identity fields
+PASS article patreon-fees-worked-examples title is descriptive and concise
+PASS article patreon-fees-worked-examples description states the page's actual value
+PASS article patreon-fees-worked-examples publication and review dates are valid
+PASS article patreon-fees-worked-examples date order is coherent
+PASS article patreon-fees-worked-examples has a permitted evidence trigger
+PASS article patreon-fees-worked-examples records why a separate article is useful
+PASS article patreon-fees-worked-examples records a dated primary-source platform change
+PASS article patreon-fees-worked-examples has relevant product and offline next steps
+PASS article patreon-fees-worked-examples has at least one contextual discovery page
+PASS article patreon-fees-worked-examples has a primary-source ledger
+PASS article patreon-fees-worked-examples source patreon-fees has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-fees declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-fees uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-fees records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-fees names the claims it supports
+PASS article patreon-fees-worked-examples source patreon-payouts has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-payouts declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-payouts uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-payouts records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-payouts names the claims it supports
+PASS article patreon-fees-worked-examples HTML exists
+PASS article patreon-fees-worked-examples title matches the registry
+PASS article patreon-fees-worked-examples has one registry-matched H1
+PASS article patreon-fees-worked-examples description matches the registry
+PASS article patreon-fees-worked-examples permits normal indexing and snippets
+PASS article patreon-fees-worked-examples uses truthful organization attribution
+PASS article patreon-fees-worked-examples canonical and social URL agree
+PASS article patreon-fees-worked-examples uses the shared consent and theme controller
+PASS article patreon-fees-worked-examples uses shared accessible article styles
+PASS article patreon-fees-worked-examples visibly exposes publication, review, and next-review dates
+PASS article patreon-fees-worked-examples links the related calculator and blank tracker
+PASS article patreon-fees-worked-examples is represented on the visible article hub
+PASS article patreon-fees-worked-examples is present in the sitemap with its real modification date
+PASS article patreon-fees-worked-examples is present in the assistant-facing site summary
+PASS article patreon-fees-worked-examples does not collide with a redirect
+PASS article patreon-fees-worked-examples has contextual static internal discovery
+PASS article patreon-fees-worked-examples visibly cites source patreon-fees
+PASS article patreon-fees-worked-examples visibly cites source patreon-payouts
+PASS article patreon-fees-worked-examples Article schema matches visible registry facts
+PASS article patreon-fees-worked-examples breadcrumb schema matches the visible destination
+PASS article patreon-fees-worked-examples annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-fees-worked-examples contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-fees-worked-examples adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-fees-worked-examples exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-patron-targets is explicitly approved for the public registry
+PASS article patreon-patron-targets uses a stable lowercase slug
+PASS article patreon-patron-targets path is derived from its slug
+PASS article patreon-patron-targets canonical is derived from its path
+PASS article patreon-patron-targets has unique identity fields
+PASS article patreon-patron-targets title is descriptive and concise
+PASS article patreon-patron-targets description states the page's actual value
+PASS article patreon-patron-targets publication and review dates are valid
+PASS article patreon-patron-targets date order is coherent
+PASS article patreon-patron-targets has a permitted evidence trigger
+PASS article patreon-patron-targets records why a separate article is useful
+PASS article patreon-patron-targets records a dated primary-source platform change
+PASS article patreon-patron-targets has relevant product and offline next steps
+PASS article patreon-patron-targets has at least one contextual discovery page
+PASS article patreon-patron-targets has a primary-source ledger
+PASS article patreon-patron-targets source patreon-fees-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-fees-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-fees-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-fees-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-fees-targets names the claims it supports
+PASS article patreon-patron-targets source patreon-payouts-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-payouts-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-payouts-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-payouts-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-payouts-targets names the claims it supports
+PASS article patreon-patron-targets HTML exists
+PASS article patreon-patron-targets title matches the registry
+PASS article patreon-patron-targets has one registry-matched H1
+PASS article patreon-patron-targets description matches the registry
+PASS article patreon-patron-targets permits normal indexing and snippets
+PASS article patreon-patron-targets uses truthful organization attribution
+PASS article patreon-patron-targets canonical and social URL agree
+PASS article patreon-patron-targets uses the shared consent and theme controller
+PASS article patreon-patron-targets uses shared accessible article styles
+PASS article patreon-patron-targets visibly exposes publication, review, and next-review dates
+PASS article patreon-patron-targets links the related calculator and blank tracker
+PASS article patreon-patron-targets is represented on the visible article hub
+PASS article patreon-patron-targets is present in the sitemap with its real modification date
+PASS article patreon-patron-targets is present in the assistant-facing site summary
+PASS article patreon-patron-targets does not collide with a redirect
+PASS article patreon-patron-targets has contextual static internal discovery
+PASS article patreon-patron-targets visibly cites source patreon-fees-targets
+PASS article patreon-patron-targets visibly cites source patreon-payouts-targets
+PASS article patreon-patron-targets Article schema matches visible registry facts
+PASS article patreon-patron-targets breadcrumb schema matches the visible destination
+PASS article patreon-patron-targets annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-patron-targets contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-patron-targets adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-patron-targets exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-membership-fee-comparison is explicitly approved for the public registry
+PASS article patreon-membership-fee-comparison uses a stable lowercase slug
+PASS article patreon-membership-fee-comparison path is derived from its slug
+PASS article patreon-membership-fee-comparison canonical is derived from its path
+PASS article patreon-membership-fee-comparison has unique identity fields
+PASS article patreon-membership-fee-comparison title is descriptive and concise
+PASS article patreon-membership-fee-comparison description states the page's actual value
+PASS article patreon-membership-fee-comparison publication and review dates are valid
+PASS article patreon-membership-fee-comparison date order is coherent
+PASS article patreon-membership-fee-comparison has a permitted evidence trigger
+PASS article patreon-membership-fee-comparison records why a separate article is useful
+PASS article patreon-membership-fee-comparison records a dated primary-source platform change
+PASS article patreon-membership-fee-comparison has relevant product and offline next steps
+PASS article patreon-membership-fee-comparison has at least one contextual discovery page
+PASS article patreon-membership-fee-comparison has a primary-source ledger
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison HTML exists
+PASS article patreon-membership-fee-comparison title matches the registry
+PASS article patreon-membership-fee-comparison has one registry-matched H1
+PASS article patreon-membership-fee-comparison description matches the registry
+PASS article patreon-membership-fee-comparison permits normal indexing and snippets
+PASS article patreon-membership-fee-comparison uses truthful organization attribution
+PASS article patreon-membership-fee-comparison canonical and social URL agree
+PASS article patreon-membership-fee-comparison uses the shared consent and theme controller
+PASS article patreon-membership-fee-comparison uses shared accessible article styles
+PASS article patreon-membership-fee-comparison visibly exposes publication, review, and next-review dates
+FAIL article patreon-membership-fee-comparison links the related calculator and blank tracker
+PASS article patreon-membership-fee-comparison is represented on the visible article hub
+PASS article patreon-membership-fee-comparison is present in the sitemap with its real modification date
+PASS article patreon-membership-fee-comparison is present in the assistant-facing site summary
+PASS article patreon-membership-fee-comparison does not collide with a redirect
+PASS article patreon-membership-fee-comparison has contextual static internal discovery
+PASS article patreon-membership-fee-comparison visibly cites source patreon-fees-comparison
+PASS article patreon-membership-fee-comparison visibly cites source patreon-payouts-comparison
+PASS article patreon-membership-fee-comparison Article schema matches visible registry facts
+FAIL article patreon-membership-fee-comparison breadcrumb schema matches the visible destination
+FAIL article patreon-membership-fee-comparison annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-membership-fee-comparison contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-membership-fee-comparison adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-membership-fee-comparison exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-payout-reconciliation is explicitly approved for the public registry
+PASS article patreon-payout-reconciliation uses a stable lowercase slug
+PASS article patreon-payout-reconciliation path is derived from its slug
+PASS article patreon-payout-reconciliation canonical is derived from its path
+PASS article patreon-payout-reconciliation has unique identity fields
+PASS article patreon-payout-reconciliation title is descriptive and concise
+PASS article patreon-payout-reconciliation description states the page's actual value
+PASS article patreon-payout-reconciliation publication and review dates are valid
+PASS article patreon-payout-reconciliation date order is coherent
+PASS article patreon-payout-reconciliation has a permitted evidence trigger
+PASS article patreon-payout-reconciliation records why a separate article is useful
+PASS article patreon-payout-reconciliation records a dated primary-source platform change
+PASS article patreon-payout-reconciliation has relevant product and offline next steps
+PASS article patreon-payout-reconciliation has at least one contextual discovery page
+PASS article patreon-payout-reconciliation has a primary-source ledger
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation HTML exists
+PASS article patreon-payout-reconciliation title matches the registry
+PASS article patreon-payout-reconciliation has one registry-matched H1
+PASS article patreon-payout-reconciliation description matches the registry
+PASS article patreon-payout-reconciliation permits normal indexing and snippets
+PASS article patreon-payout-reconciliation uses truthful organization attribution
+PASS article patreon-payout-reconciliation canonical and social URL agree
+PASS article patreon-payout-reconciliation uses the shared consent and theme controller
+PASS article patreon-payout-reconciliation uses shared accessible article styles
+PASS article patreon-payout-reconciliation visibly exposes publication, review, and next-review dates
+PASS article patreon-payout-reconciliation links the related calculator and blank tracker
+PASS article patreon-payout-reconciliation is represented on the visible article hub
+PASS article patreon-payout-reconciliation is present in the sitemap with its real modification date
+PASS article patreon-payout-reconciliation is present in the assistant-facing site summary
+PASS article patreon-payout-reconciliation does not collide with a redirect
+PASS article patreon-payout-reconciliation has contextual static internal discovery
+PASS article patreon-payout-reconciliation visibly cites source patreon-payouts-reconciliation
+PASS article patreon-payout-reconciliation visibly cites source patreon-fees-reconciliation
+PASS article patreon-payout-reconciliation Article schema matches visible registry facts
+FAIL article patreon-payout-reconciliation breadcrumb schema matches the visible destination
+
+Article integrity checks failed: 4
+PASS article patreon-payout-reconciliation annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-payout-reconciliation contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-payout-reconciliation adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-payout-reconciliation exposes sources, synthetic-example limits, and the appropriate disclaimer
+[0m
+[0m$ [0mnode repair-articles.cjs patreon-membership-fee-comparison
+patreon-membership-fee-comparison: breadcrumb anchor=1; source=0; synthetic=13; tracker=inserted
+[0m
+[0m$ [0mnpm run test:articles
+> creator-revenue-calculator@1.0.0 test:articles
+> node scripts/article-integrity-check.js
+
+PASS the maintained editorial command and agent playbooks are present
+PASS every maintained editorial playbook defers to the evidence-led publishing standard
+PASS editorial playbooks contain no active manipulation, fabrication, quota, or auto-publication directives
+PASS site context describes the real stack, current evidence, maintained routes, and synthetic-example rules
+PASS article template matches the shared visual shell and publication contract
+PASS source update dates may be absent but cannot be invented or stored as ambiguous text
+PASS article registry uses the supported schema version
+PASS article registry contains at least one reviewed publication
+PASS article hub has one canonical path
+PASS article hub has a real modification date
+PASS maintained internal-link map exactly matches sitemap pages and real downloadable resources
+PASS homepage provides a static path to the article hub
+PASS sitemap includes the article hub with its real date
+PASS assistant discovery lists the article hub without special-ranking claims
+PASS article patreon-income-tracker is explicitly approved for the public registry
+PASS article patreon-income-tracker uses a stable lowercase slug
+PASS article patreon-income-tracker path is derived from its slug
+PASS article patreon-income-tracker canonical is derived from its path
+PASS article patreon-income-tracker has unique identity fields
+PASS article patreon-income-tracker title is descriptive and concise
+PASS article patreon-income-tracker description states the page's actual value
+PASS article patreon-income-tracker publication and review dates are valid
+PASS article patreon-income-tracker date order is coherent
+PASS article patreon-income-tracker has a permitted evidence trigger
+PASS article patreon-income-tracker records why a separate article is useful
+PASS article patreon-income-tracker stores aggregate Search Console evidence without visitor data
+PASS article patreon-income-tracker has relevant product and offline next steps
+PASS article patreon-income-tracker has at least one contextual discovery page
+PASS article patreon-income-tracker has a primary-source ledger
+PASS article patreon-income-tracker source patreon-payouts-dashboard has a unique stable id
+PASS article patreon-income-tracker source patreon-payouts-dashboard declares its evidence class
+PASS article patreon-income-tracker source patreon-payouts-dashboard uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-payouts-dashboard records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-payouts-dashboard names the claims it supports
+PASS article patreon-income-tracker source patreon-earnings-insights has a unique stable id
+PASS article patreon-income-tracker source patreon-earnings-insights declares its evidence class
+PASS article patreon-income-tracker source patreon-earnings-insights uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-earnings-insights records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-earnings-insights names the claims it supports
+PASS article patreon-income-tracker source patreon-creator-fees has a unique stable id
+PASS article patreon-income-tracker source patreon-creator-fees declares its evidence class
+PASS article patreon-income-tracker source patreon-creator-fees uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-creator-fees records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-creator-fees names the claims it supports
+PASS article patreon-income-tracker source patreon-relationship-manager has a unique stable id
+PASS article patreon-income-tracker source patreon-relationship-manager declares its evidence class
+PASS article patreon-income-tracker source patreon-relationship-manager uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-relationship-manager records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-relationship-manager names the claims it supports
+PASS article patreon-income-tracker HTML exists
+PASS article patreon-income-tracker title matches the registry
+PASS article patreon-income-tracker has one registry-matched H1
+PASS article patreon-income-tracker description matches the registry
+PASS article patreon-income-tracker permits normal indexing and snippets
+PASS article patreon-income-tracker uses truthful organization attribution
+PASS article patreon-income-tracker canonical and social URL agree
+PASS article patreon-income-tracker uses the shared consent and theme controller
+PASS article patreon-income-tracker uses shared accessible article styles
+PASS article patreon-income-tracker visibly exposes publication, review, and next-review dates
+PASS article patreon-income-tracker links the related calculator and blank tracker
+PASS article patreon-income-tracker is represented on the visible article hub
+PASS article patreon-income-tracker is present in the sitemap with its real modification date
+PASS article patreon-income-tracker is present in the assistant-facing site summary
+PASS article patreon-income-tracker does not collide with a redirect
+PASS article patreon-income-tracker has contextual static internal discovery
+PASS article patreon-income-tracker visibly cites source patreon-payouts-dashboard
+PASS article patreon-income-tracker visibly cites source patreon-earnings-insights
+PASS article patreon-income-tracker visibly cites source patreon-creator-fees
+PASS article patreon-income-tracker visibly cites source patreon-relationship-manager
+PASS article patreon-income-tracker Article schema matches visible registry facts
+PASS article patreon-income-tracker breadcrumb schema matches the visible destination
+PASS article patreon-income-tracker annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-income-tracker contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-income-tracker adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-income-tracker exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article ugc-rates-guide is explicitly approved for the public registry
+PASS article ugc-rates-guide uses a stable lowercase slug
+PASS article ugc-rates-guide path is derived from its slug
+PASS article ugc-rates-guide canonical is derived from its path
+PASS article ugc-rates-guide has unique identity fields
+PASS article ugc-rates-guide title is descriptive and concise
+PASS article ugc-rates-guide description states the page's actual value
+PASS article ugc-rates-guide publication and review dates are valid
+PASS article ugc-rates-guide date order is coherent
+PASS article ugc-rates-guide has a permitted evidence trigger
+PASS article ugc-rates-guide records why a separate article is useful
+PASS article ugc-rates-guide stores aggregate Search Console evidence without visitor data
+PASS article ugc-rates-guide has relevant product and offline next steps
+PASS article ugc-rates-guide has at least one contextual discovery page
+PASS article ugc-rates-guide has a primary-source ledger
+PASS article ugc-rates-guide source ftc-disclosures has a unique stable id
+PASS article ugc-rates-guide source ftc-disclosures declares its evidence class
+PASS article ugc-rates-guide source ftc-disclosures uses an external HTTPS URL
+PASS article ugc-rates-guide source ftc-disclosures records a checked date and any available update date
+PASS article ugc-rates-guide source ftc-disclosures names the claims it supports
+PASS article ugc-rates-guide source copyright-basics has a unique stable id
+PASS article ugc-rates-guide source copyright-basics declares its evidence class
+PASS article ugc-rates-guide source copyright-basics uses an external HTTPS URL
+PASS article ugc-rates-guide source copyright-basics records a checked date and any available update date
+PASS article ugc-rates-guide source copyright-basics names the claims it supports
+PASS article ugc-rates-guide source works-made-for-hire has a unique stable id
+PASS article ugc-rates-guide source works-made-for-hire declares its evidence class
+PASS article ugc-rates-guide source works-made-for-hire uses an external HTTPS URL
+PASS article ugc-rates-guide source works-made-for-hire records a checked date and any available update date
+PASS article ugc-rates-guide source works-made-for-hire names the claims it supports
+PASS article ugc-rates-guide HTML exists
+PASS article ugc-rates-guide title matches the registry
+PASS article ugc-rates-guide has one registry-matched H1
+PASS article ugc-rates-guide description matches the registry
+PASS article ugc-rates-guide permits normal indexing and snippets
+PASS article ugc-rates-guide uses truthful organization attribution
+PASS article ugc-rates-guide canonical and social URL agree
+PASS article ugc-rates-guide uses the shared consent and theme controller
+PASS article ugc-rates-guide uses shared accessible article styles
+PASS article ugc-rates-guide visibly exposes publication, review, and next-review dates
+PASS article ugc-rates-guide links the related calculator and blank tracker
+PASS article ugc-rates-guide is represented on the visible article hub
+PASS article ugc-rates-guide is present in the sitemap with its real modification date
+PASS article ugc-rates-guide is present in the assistant-facing site summary
+PASS article ugc-rates-guide does not collide with a redirect
+PASS article ugc-rates-guide has contextual static internal discovery
+PASS article ugc-rates-guide visibly cites source ftc-disclosures
+PASS article ugc-rates-guide visibly cites source copyright-basics
+PASS article ugc-rates-guide visibly cites source works-made-for-hire
+PASS article ugc-rates-guide Article schema matches visible registry facts
+PASS article ugc-rates-guide breadcrumb schema matches the visible destination
+PASS article ugc-rates-guide annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article ugc-rates-guide contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article ugc-rates-guide adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article ugc-rates-guide exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article youtube-partner-program-2027 is explicitly approved for the public registry
+PASS article youtube-partner-program-2027 uses a stable lowercase slug
+PASS article youtube-partner-program-2027 path is derived from its slug
+PASS article youtube-partner-program-2027 canonical is derived from its path
+PASS article youtube-partner-program-2027 has unique identity fields
+PASS article youtube-partner-program-2027 title is descriptive and concise
+PASS article youtube-partner-program-2027 description states the page's actual value
+PASS article youtube-partner-program-2027 publication and review dates are valid
+PASS article youtube-partner-program-2027 date order is coherent
+PASS article youtube-partner-program-2027 has a permitted evidence trigger
+PASS article youtube-partner-program-2027 records why a separate article is useful
+PASS article youtube-partner-program-2027 records a dated primary-source platform change
+PASS article youtube-partner-program-2027 has relevant product and offline next steps
+PASS article youtube-partner-program-2027 has at least one contextual discovery page
+PASS article youtube-partner-program-2027 has a primary-source ledger
+PASS article youtube-partner-program-2027 source ypp-changes has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-changes declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-changes uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-changes records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-changes names the claims it supports
+PASS article youtube-partner-program-2027 source ypp-blog has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-blog declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-blog uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-blog records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-blog names the claims it supports
+PASS article youtube-partner-program-2027 source expanded-ypp has a unique stable id
+PASS article youtube-partner-program-2027 source expanded-ypp declares its evidence class
+PASS article youtube-partner-program-2027 source expanded-ypp uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source expanded-ypp records a checked date and any available update date
+PASS article youtube-partner-program-2027 source expanded-ypp names the claims it supports
+PASS article youtube-partner-program-2027 source youtube-analytics has a unique stable id
+PASS article youtube-partner-program-2027 source youtube-analytics declares its evidence class
+PASS article youtube-partner-program-2027 source youtube-analytics uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source youtube-analytics records a checked date and any available update date
+PASS article youtube-partner-program-2027 source youtube-analytics names the claims it supports
+PASS article youtube-partner-program-2027 HTML exists
+PASS article youtube-partner-program-2027 title matches the registry
+PASS article youtube-partner-program-2027 has one registry-matched H1
+PASS article youtube-partner-program-2027 description matches the registry
+PASS article youtube-partner-program-2027 permits normal indexing and snippets
+PASS article youtube-partner-program-2027 uses truthful organization attribution
+PASS article youtube-partner-program-2027 canonical and social URL agree
+PASS article youtube-partner-program-2027 uses the shared consent and theme controller
+PASS article youtube-partner-program-2027 uses shared accessible article styles
+PASS article youtube-partner-program-2027 visibly exposes publication, review, and next-review dates
+PASS article youtube-partner-program-2027 links the related calculator and blank tracker
+PASS article youtube-partner-program-2027 is represented on the visible article hub
+PASS article youtube-partner-program-2027 is present in the sitemap with its real modification date
+PASS article youtube-partner-program-2027 is present in the assistant-facing site summary
+PASS article youtube-partner-program-2027 does not collide with a redirect
+PASS article youtube-partner-program-2027 has contextual static internal discovery
+PASS article youtube-partner-program-2027 visibly cites source ypp-changes
+PASS article youtube-partner-program-2027 visibly cites source ypp-blog
+PASS article youtube-partner-program-2027 visibly cites source expanded-ypp
+PASS article youtube-partner-program-2027 visibly cites source youtube-analytics
+PASS article youtube-partner-program-2027 Article schema matches visible registry facts
+PASS article youtube-partner-program-2027 breadcrumb schema matches the visible destination
+PASS article youtube-partner-program-2027 annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article youtube-partner-program-2027 contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article youtube-partner-program-2027 adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article youtube-partner-program-2027 exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-fees-worked-examples is explicitly approved for the public registry
+PASS article patreon-fees-worked-examples uses a stable lowercase slug
+PASS article patreon-fees-worked-examples path is derived from its slug
+PASS article patreon-fees-worked-examples canonical is derived from its path
+PASS article patreon-fees-worked-examples has unique identity fields
+PASS article patreon-fees-worked-examples title is descriptive and concise
+PASS article patreon-fees-worked-examples description states the page's actual value
+PASS article patreon-fees-worked-examples publication and review dates are valid
+PASS article patreon-fees-worked-examples date order is coherent
+PASS article patreon-fees-worked-examples has a permitted evidence trigger
+PASS article patreon-fees-worked-examples records why a separate article is useful
+PASS article patreon-fees-worked-examples records a dated primary-source platform change
+PASS article patreon-fees-worked-examples has relevant product and offline next steps
+PASS article patreon-fees-worked-examples has at least one contextual discovery page
+PASS article patreon-fees-worked-examples has a primary-source ledger
+PASS article patreon-fees-worked-examples source patreon-fees has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-fees declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-fees uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-fees records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-fees names the claims it supports
+PASS article patreon-fees-worked-examples source patreon-payouts has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-payouts declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-payouts uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-payouts records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-payouts names the claims it supports
+PASS article patreon-fees-worked-examples HTML exists
+PASS article patreon-fees-worked-examples title matches the registry
+PASS article patreon-fees-worked-examples has one registry-matched H1
+PASS article patreon-fees-worked-examples description matches the registry
+PASS article patreon-fees-worked-examples permits normal indexing and snippets
+PASS article patreon-fees-worked-examples uses truthful organization attribution
+PASS article patreon-fees-worked-examples canonical and social URL agree
+PASS article patreon-fees-worked-examples uses the shared consent and theme controller
+PASS article patreon-fees-worked-examples uses shared accessible article styles
+PASS article patreon-fees-worked-examples visibly exposes publication, review, and next-review dates
+PASS article patreon-fees-worked-examples links the related calculator and blank tracker
+PASS article patreon-fees-worked-examples is represented on the visible article hub
+PASS article patreon-fees-worked-examples is present in the sitemap with its real modification date
+PASS article patreon-fees-worked-examples is present in the assistant-facing site summary
+PASS article patreon-fees-worked-examples does not collide with a redirect
+PASS article patreon-fees-worked-examples has contextual static internal discovery
+PASS article patreon-fees-worked-examples visibly cites source patreon-fees
+PASS article patreon-fees-worked-examples visibly cites source patreon-payouts
+PASS article patreon-fees-worked-examples Article schema matches visible registry facts
+PASS article patreon-fees-worked-examples breadcrumb schema matches the visible destination
+PASS article patreon-fees-worked-examples annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-fees-worked-examples contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-fees-worked-examples adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-fees-worked-examples exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-patron-targets is explicitly approved for the public registry
+PASS article patreon-patron-targets uses a stable lowercase slug
+PASS article patreon-patron-targets path is derived from its slug
+PASS article patreon-patron-targets canonical is derived from its path
+PASS article patreon-patron-targets has unique identity fields
+PASS article patreon-patron-targets title is descriptive and concise
+PASS article patreon-patron-targets description states the page's actual value
+PASS article patreon-patron-targets publication and review dates are valid
+PASS article patreon-patron-targets date order is coherent
+PASS article patreon-patron-targets has a permitted evidence trigger
+PASS article patreon-patron-targets records why a separate article is useful
+PASS article patreon-patron-targets records a dated primary-source platform change
+PASS article patreon-patron-targets has relevant product and offline next steps
+PASS article patreon-patron-targets has at least one contextual discovery page
+PASS article patreon-patron-targets has a primary-source ledger
+PASS article patreon-patron-targets source patreon-fees-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-fees-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-fees-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-fees-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-fees-targets names the claims it supports
+PASS article patreon-patron-targets source patreon-payouts-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-payouts-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-payouts-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-payouts-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-payouts-targets names the claims it supports
+PASS article patreon-patron-targets HTML exists
+PASS article patreon-patron-targets title matches the registry
+PASS article patreon-patron-targets has one registry-matched H1
+PASS article patreon-patron-targets description matches the registry
+PASS article patreon-patron-targets permits normal indexing and snippets
+PASS article patreon-patron-targets uses truthful organization attribution
+PASS article patreon-patron-targets canonical and social URL agree
+PASS article patreon-patron-targets uses the shared consent and theme controller
+PASS article patreon-patron-targets uses shared accessible article styles
+PASS article patreon-patron-targets visibly exposes publication, review, and next-review dates
+PASS article patreon-patron-targets links the related calculator and blank tracker
+PASS article patreon-patron-targets is represented on the visible article hub
+PASS article patreon-patron-targets is present in the sitemap with its real modification date
+PASS article patreon-patron-targets is present in the assistant-facing site summary
+PASS article patreon-patron-targets does not collide with a redirect
+PASS article patreon-patron-targets has contextual static internal discovery
+PASS article patreon-patron-targets visibly cites source patreon-fees-targets
+PASS article patreon-patron-targets visibly cites source patreon-payouts-targets
+PASS article patreon-patron-targets Article schema matches visible registry facts
+PASS article patreon-patron-targets breadcrumb schema matches the visible destination
+PASS article patreon-patron-targets annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-patron-targets contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-patron-targets adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-patron-targets exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-membership-fee-comparison is explicitly approved for the public registry
+PASS article patreon-membership-fee-comparison uses a stable lowercase slug
+PASS article patreon-membership-fee-comparison path is derived from its slug
+PASS article patreon-membership-fee-comparison canonical is derived from its path
+PASS article patreon-membership-fee-comparison has unique identity fields
+PASS article patreon-membership-fee-comparison title is descriptive and concise
+PASS article patreon-membership-fee-comparison description states the page's actual value
+PASS article patreon-membership-fee-comparison publication and review dates are valid
+PASS article patreon-membership-fee-comparison date order is coherent
+PASS article patreon-membership-fee-comparison has a permitted evidence trigger
+PASS article patreon-membership-fee-comparison records why a separate article is useful
+PASS article patreon-membership-fee-comparison records a dated primary-source platform change
+PASS article patreon-membership-fee-comparison has relevant product and offline next steps
+PASS article patreon-membership-fee-comparison has at least one contextual discovery page
+PASS article patreon-membership-fee-comparison has a primary-source ledger
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison names the claims it supports
+
+Article integrity checks failed: 1
+PASS article patreon-membership-fee-comparison HTML exists
+PASS article patreon-membership-fee-comparison title matches the registry
+PASS article patreon-membership-fee-comparison has one registry-matched H1
+PASS article patreon-membership-fee-comparison description matches the registry
+PASS article patreon-membership-fee-comparison permits normal indexing and snippets
+PASS article patreon-membership-fee-comparison uses truthful organization attribution
+PASS article patreon-membership-fee-comparison canonical and social URL agree
+PASS article patreon-membership-fee-comparison uses the shared consent and theme controller
+PASS article patreon-membership-fee-comparison uses shared accessible article styles
+PASS article patreon-membership-fee-comparison visibly exposes publication, review, and next-review dates
+PASS article patreon-membership-fee-comparison links the related calculator and blank tracker
+PASS article patreon-membership-fee-comparison is represented on the visible article hub
+PASS article patreon-membership-fee-comparison is present in the sitemap with its real modification date
+PASS article patreon-membership-fee-comparison is present in the assistant-facing site summary
+PASS article patreon-membership-fee-comparison does not collide with a redirect
+PASS article patreon-membership-fee-comparison has contextual static internal discovery
+PASS article patreon-membership-fee-comparison visibly cites source patreon-fees-comparison
+PASS article patreon-membership-fee-comparison visibly cites source patreon-payouts-comparison
+PASS article patreon-membership-fee-comparison Article schema matches visible registry facts
+PASS article patreon-membership-fee-comparison breadcrumb schema matches the visible destination
+PASS article patreon-membership-fee-comparison annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-membership-fee-comparison contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-membership-fee-comparison adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-membership-fee-comparison exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-payout-reconciliation is explicitly approved for the public registry
+PASS article patreon-payout-reconciliation uses a stable lowercase slug
+PASS article patreon-payout-reconciliation path is derived from its slug
+PASS article patreon-payout-reconciliation canonical is derived from its path
+PASS article patreon-payout-reconciliation has unique identity fields
+PASS article patreon-payout-reconciliation title is descriptive and concise
+PASS article patreon-payout-reconciliation description states the page's actual value
+PASS article patreon-payout-reconciliation publication and review dates are valid
+PASS article patreon-payout-reconciliation date order is coherent
+PASS article patreon-payout-reconciliation has a permitted evidence trigger
+PASS article patreon-payout-reconciliation records why a separate article is useful
+PASS article patreon-payout-reconciliation records a dated primary-source platform change
+PASS article patreon-payout-reconciliation has relevant product and offline next steps
+PASS article patreon-payout-reconciliation has at least one contextual discovery page
+PASS article patreon-payout-reconciliation has a primary-source ledger
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation HTML exists
+PASS article patreon-payout-reconciliation title matches the registry
+PASS article patreon-payout-reconciliation has one registry-matched H1
+PASS article patreon-payout-reconciliation description matches the registry
+PASS article patreon-payout-reconciliation permits normal indexing and snippets
+PASS article patreon-payout-reconciliation uses truthful organization attribution
+PASS article patreon-payout-reconciliation canonical and social URL agree
+PASS article patreon-payout-reconciliation uses the shared consent and theme controller
+PASS article patreon-payout-reconciliation uses shared accessible article styles
+PASS article patreon-payout-reconciliation visibly exposes publication, review, and next-review dates
+PASS article patreon-payout-reconciliation links the related calculator and blank tracker
+PASS article patreon-payout-reconciliation is represented on the visible article hub
+PASS article patreon-payout-reconciliation is present in the sitemap with its real modification date
+PASS article patreon-payout-reconciliation is present in the assistant-facing site summary
+PASS article patreon-payout-reconciliation does not collide with a redirect
+PASS article patreon-payout-reconciliation has contextual static internal discovery
+PASS article patreon-payout-reconciliation visibly cites source patreon-payouts-reconciliation
+PASS article patreon-payout-reconciliation visibly cites source patreon-fees-reconciliation
+PASS article patreon-payout-reconciliation Article schema matches visible registry facts
+FAIL article patreon-payout-reconciliation breadcrumb schema matches the visible destination
+PASS article patreon-payout-reconciliation annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-payout-reconciliation contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-payout-reconciliation adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-payout-reconciliation exposes sources, synthetic-example limits, and the appropriate disclaimer
+[0m
+[0m$ [0mnode repair-articles.cjs patreon-payout-reconciliation
+patreon-payout-reconciliation: breadcrumb anchor=1; source=0; synthetic=0; tracker=not required
+[0m
+[0m$ [0mnpm run test:articles
+> creator-revenue-calculator@1.0.0 test:articles
+> node scripts/article-integrity-check.js
+
+PASS the maintained editorial command and agent playbooks are present
+PASS every maintained editorial playbook defers to the evidence-led publishing standard
+PASS editorial playbooks contain no active manipulation, fabrication, quota, or auto-publication directives
+PASS site context describes the real stack, current evidence, maintained routes, and synthetic-example rules
+PASS article template matches the shared visual shell and publication contract
+PASS source update dates may be absent but cannot be invented or stored as ambiguous text
+PASS article registry uses the supported schema version
+PASS article registry contains at least one reviewed publication
+PASS article hub has one canonical path
+PASS article hub has a real modification date
+PASS maintained internal-link map exactly matches sitemap pages and real downloadable resources
+PASS homepage provides a static path to the article hub
+PASS sitemap includes the article hub with its real date
+PASS assistant discovery lists the article hub without special-ranking claims
+PASS article patreon-income-tracker is explicitly approved for the public registry
+PASS article patreon-income-tracker uses a stable lowercase slug
+PASS article patreon-income-tracker path is derived from its slug
+PASS article patreon-income-tracker canonical is derived from its path
+PASS article patreon-income-tracker has unique identity fields
+PASS article patreon-income-tracker title is descriptive and concise
+PASS article patreon-income-tracker description states the page's actual value
+PASS article patreon-income-tracker publication and review dates are valid
+PASS article patreon-income-tracker date order is coherent
+PASS article patreon-income-tracker has a permitted evidence trigger
+PASS article patreon-income-tracker records why a separate article is useful
+PASS article patreon-income-tracker stores aggregate Search Console evidence without visitor data
+PASS article patreon-income-tracker has relevant product and offline next steps
+PASS article patreon-income-tracker has at least one contextual discovery page
+PASS article patreon-income-tracker has a primary-source ledger
+PASS article patreon-income-tracker source patreon-payouts-dashboard has a unique stable id
+PASS article patreon-income-tracker source patreon-payouts-dashboard declares its evidence class
+PASS article patreon-income-tracker source patreon-payouts-dashboard uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-payouts-dashboard records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-payouts-dashboard names the claims it supports
+PASS article patreon-income-tracker source patreon-earnings-insights has a unique stable id
+PASS article patreon-income-tracker source patreon-earnings-insights declares its evidence class
+PASS article patreon-income-tracker source patreon-earnings-insights uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-earnings-insights records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-earnings-insights names the claims it supports
+PASS article patreon-income-tracker source patreon-creator-fees has a unique stable id
+PASS article patreon-income-tracker source patreon-creator-fees declares its evidence class
+PASS article patreon-income-tracker source patreon-creator-fees uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-creator-fees records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-creator-fees names the claims it supports
+PASS article patreon-income-tracker source patreon-relationship-manager has a unique stable id
+PASS article patreon-income-tracker source patreon-relationship-manager declares its evidence class
+PASS article patreon-income-tracker source patreon-relationship-manager uses an external HTTPS URL
+PASS article patreon-income-tracker source patreon-relationship-manager records a checked date and any available update date
+PASS article patreon-income-tracker source patreon-relationship-manager names the claims it supports
+PASS article patreon-income-tracker HTML exists
+PASS article patreon-income-tracker title matches the registry
+PASS article patreon-income-tracker has one registry-matched H1
+PASS article patreon-income-tracker description matches the registry
+PASS article patreon-income-tracker permits normal indexing and snippets
+PASS article patreon-income-tracker uses truthful organization attribution
+PASS article patreon-income-tracker canonical and social URL agree
+PASS article patreon-income-tracker uses the shared consent and theme controller
+PASS article patreon-income-tracker uses shared accessible article styles
+PASS article patreon-income-tracker visibly exposes publication, review, and next-review dates
+PASS article patreon-income-tracker links the related calculator and blank tracker
+PASS article patreon-income-tracker is represented on the visible article hub
+PASS article patreon-income-tracker is present in the sitemap with its real modification date
+PASS article patreon-income-tracker is present in the assistant-facing site summary
+PASS article patreon-income-tracker does not collide with a redirect
+PASS article patreon-income-tracker has contextual static internal discovery
+PASS article patreon-income-tracker visibly cites source patreon-payouts-dashboard
+PASS article patreon-income-tracker visibly cites source patreon-earnings-insights
+PASS article patreon-income-tracker visibly cites source patreon-creator-fees
+PASS article patreon-income-tracker visibly cites source patreon-relationship-manager
+PASS article patreon-income-tracker Article schema matches visible registry facts
+PASS article patreon-income-tracker breadcrumb schema matches the visible destination
+PASS article patreon-income-tracker annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-income-tracker contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-income-tracker adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-income-tracker exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article ugc-rates-guide is explicitly approved for the public registry
+PASS article ugc-rates-guide uses a stable lowercase slug
+PASS article ugc-rates-guide path is derived from its slug
+PASS article ugc-rates-guide canonical is derived from its path
+PASS article ugc-rates-guide has unique identity fields
+PASS article ugc-rates-guide title is descriptive and concise
+PASS article ugc-rates-guide description states the page's actual value
+PASS article ugc-rates-guide publication and review dates are valid
+PASS article ugc-rates-guide date order is coherent
+PASS article ugc-rates-guide has a permitted evidence trigger
+PASS article ugc-rates-guide records why a separate article is useful
+PASS article ugc-rates-guide stores aggregate Search Console evidence without visitor data
+PASS article ugc-rates-guide has relevant product and offline next steps
+PASS article ugc-rates-guide has at least one contextual discovery page
+PASS article ugc-rates-guide has a primary-source ledger
+PASS article ugc-rates-guide source ftc-disclosures has a unique stable id
+PASS article ugc-rates-guide source ftc-disclosures declares its evidence class
+PASS article ugc-rates-guide source ftc-disclosures uses an external HTTPS URL
+PASS article ugc-rates-guide source ftc-disclosures records a checked date and any available update date
+PASS article ugc-rates-guide source ftc-disclosures names the claims it supports
+PASS article ugc-rates-guide source copyright-basics has a unique stable id
+PASS article ugc-rates-guide source copyright-basics declares its evidence class
+PASS article ugc-rates-guide source copyright-basics uses an external HTTPS URL
+PASS article ugc-rates-guide source copyright-basics records a checked date and any available update date
+PASS article ugc-rates-guide source copyright-basics names the claims it supports
+PASS article ugc-rates-guide source works-made-for-hire has a unique stable id
+PASS article ugc-rates-guide source works-made-for-hire declares its evidence class
+PASS article ugc-rates-guide source works-made-for-hire uses an external HTTPS URL
+PASS article ugc-rates-guide source works-made-for-hire records a checked date and any available update date
+PASS article ugc-rates-guide source works-made-for-hire names the claims it supports
+PASS article ugc-rates-guide HTML exists
+PASS article ugc-rates-guide title matches the registry
+PASS article ugc-rates-guide has one registry-matched H1
+PASS article ugc-rates-guide description matches the registry
+PASS article ugc-rates-guide permits normal indexing and snippets
+PASS article ugc-rates-guide uses truthful organization attribution
+PASS article ugc-rates-guide canonical and social URL agree
+PASS article ugc-rates-guide uses the shared consent and theme controller
+PASS article ugc-rates-guide uses shared accessible article styles
+PASS article ugc-rates-guide visibly exposes publication, review, and next-review dates
+PASS article ugc-rates-guide links the related calculator and blank tracker
+PASS article ugc-rates-guide is represented on the visible article hub
+PASS article ugc-rates-guide is present in the sitemap with its real modification date
+PASS article ugc-rates-guide is present in the assistant-facing site summary
+PASS article ugc-rates-guide does not collide with a redirect
+PASS article ugc-rates-guide has contextual static internal discovery
+PASS article ugc-rates-guide visibly cites source ftc-disclosures
+PASS article ugc-rates-guide visibly cites source copyright-basics
+PASS article ugc-rates-guide visibly cites source works-made-for-hire
+PASS article ugc-rates-guide Article schema matches visible registry facts
+PASS article ugc-rates-guide breadcrumb schema matches the visible destination
+PASS article ugc-rates-guide annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article ugc-rates-guide contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article ugc-rates-guide adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article ugc-rates-guide exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article youtube-partner-program-2027 is explicitly approved for the public registry
+PASS article youtube-partner-program-2027 uses a stable lowercase slug
+PASS article youtube-partner-program-2027 path is derived from its slug
+PASS article youtube-partner-program-2027 canonical is derived from its path
+PASS article youtube-partner-program-2027 has unique identity fields
+PASS article youtube-partner-program-2027 title is descriptive and concise
+PASS article youtube-partner-program-2027 description states the page's actual value
+PASS article youtube-partner-program-2027 publication and review dates are valid
+PASS article youtube-partner-program-2027 date order is coherent
+PASS article youtube-partner-program-2027 has a permitted evidence trigger
+PASS article youtube-partner-program-2027 records why a separate article is useful
+PASS article youtube-partner-program-2027 records a dated primary-source platform change
+PASS article youtube-partner-program-2027 has relevant product and offline next steps
+PASS article youtube-partner-program-2027 has at least one contextual discovery page
+PASS article youtube-partner-program-2027 has a primary-source ledger
+PASS article youtube-partner-program-2027 source ypp-changes has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-changes declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-changes uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-changes records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-changes names the claims it supports
+PASS article youtube-partner-program-2027 source ypp-blog has a unique stable id
+PASS article youtube-partner-program-2027 source ypp-blog declares its evidence class
+PASS article youtube-partner-program-2027 source ypp-blog uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source ypp-blog records a checked date and any available update date
+PASS article youtube-partner-program-2027 source ypp-blog names the claims it supports
+PASS article youtube-partner-program-2027 source expanded-ypp has a unique stable id
+PASS article youtube-partner-program-2027 source expanded-ypp declares its evidence class
+PASS article youtube-partner-program-2027 source expanded-ypp uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source expanded-ypp records a checked date and any available update date
+PASS article youtube-partner-program-2027 source expanded-ypp names the claims it supports
+PASS article youtube-partner-program-2027 source youtube-analytics has a unique stable id
+PASS article youtube-partner-program-2027 source youtube-analytics declares its evidence class
+PASS article youtube-partner-program-2027 source youtube-analytics uses an external HTTPS URL
+PASS article youtube-partner-program-2027 source youtube-analytics records a checked date and any available update date
+PASS article youtube-partner-program-2027 source youtube-analytics names the claims it supports
+PASS article youtube-partner-program-2027 HTML exists
+PASS article youtube-partner-program-2027 title matches the registry
+PASS article youtube-partner-program-2027 has one registry-matched H1
+PASS article youtube-partner-program-2027 description matches the registry
+PASS article youtube-partner-program-2027 permits normal indexing and snippets
+PASS article youtube-partner-program-2027 uses truthful organization attribution
+PASS article youtube-partner-program-2027 canonical and social URL agree
+PASS article youtube-partner-program-2027 uses the shared consent and theme controller
+PASS article youtube-partner-program-2027 uses shared accessible article styles
+PASS article youtube-partner-program-2027 visibly exposes publication, review, and next-review dates
+PASS article youtube-partner-program-2027 links the related calculator and blank tracker
+PASS article youtube-partner-program-2027 is represented on the visible article hub
+PASS article youtube-partner-program-2027 is present in the sitemap with its real modification date
+PASS article youtube-partner-program-2027 is present in the assistant-facing site summary
+PASS article youtube-partner-program-2027 does not collide with a redirect
+PASS article youtube-partner-program-2027 has contextual static internal discovery
+PASS article youtube-partner-program-2027 visibly cites source ypp-changes
+PASS article youtube-partner-program-2027 visibly cites source ypp-blog
+PASS article youtube-partner-program-2027 visibly cites source expanded-ypp
+PASS article youtube-partner-program-2027 visibly cites source youtube-analytics
+PASS article youtube-partner-program-2027 Article schema matches visible registry facts
+PASS article youtube-partner-program-2027 breadcrumb schema matches the visible destination
+PASS article youtube-partner-program-2027 annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article youtube-partner-program-2027 contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article youtube-partner-program-2027 adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article youtube-partner-program-2027 exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-fees-worked-examples is explicitly approved for the public registry
+PASS article patreon-fees-worked-examples uses a stable lowercase slug
+PASS article patreon-fees-worked-examples path is derived from its slug
+PASS article patreon-fees-worked-examples canonical is derived from its path
+PASS article patreon-fees-worked-examples has unique identity fields
+PASS article patreon-fees-worked-examples title is descriptive and concise
+PASS article patreon-fees-worked-examples description states the page's actual value
+PASS article patreon-fees-worked-examples publication and review dates are valid
+PASS article patreon-fees-worked-examples date order is coherent
+PASS article patreon-fees-worked-examples has a permitted evidence trigger
+PASS article patreon-fees-worked-examples records why a separate article is useful
+PASS article patreon-fees-worked-examples records a dated primary-source platform change
+PASS article patreon-fees-worked-examples has relevant product and offline next steps
+PASS article patreon-fees-worked-examples has at least one contextual discovery page
+PASS article patreon-fees-worked-examples has a primary-source ledger
+PASS article patreon-fees-worked-examples source patreon-fees has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-fees declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-fees uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-fees records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-fees names the claims it supports
+PASS article patreon-fees-worked-examples source patreon-payouts has a unique stable id
+PASS article patreon-fees-worked-examples source patreon-payouts declares its evidence class
+PASS article patreon-fees-worked-examples source patreon-payouts uses an external HTTPS URL
+PASS article patreon-fees-worked-examples source patreon-payouts records a checked date and any available update date
+PASS article patreon-fees-worked-examples source patreon-payouts names the claims it supports
+PASS article patreon-fees-worked-examples HTML exists
+PASS article patreon-fees-worked-examples title matches the registry
+PASS article patreon-fees-worked-examples has one registry-matched H1
+PASS article patreon-fees-worked-examples description matches the registry
+PASS article patreon-fees-worked-examples permits normal indexing and snippets
+PASS article patreon-fees-worked-examples uses truthful organization attribution
+PASS article patreon-fees-worked-examples canonical and social URL agree
+PASS article patreon-fees-worked-examples uses the shared consent and theme controller
+PASS article patreon-fees-worked-examples uses shared accessible article styles
+PASS article patreon-fees-worked-examples visibly exposes publication, review, and next-review dates
+PASS article patreon-fees-worked-examples links the related calculator and blank tracker
+PASS article patreon-fees-worked-examples is represented on the visible article hub
+PASS article patreon-fees-worked-examples is present in the sitemap with its real modification date
+PASS article patreon-fees-worked-examples is present in the assistant-facing site summary
+PASS article patreon-fees-worked-examples does not collide with a redirect
+PASS article patreon-fees-worked-examples has contextual static internal discovery
+PASS article patreon-fees-worked-examples visibly cites source patreon-fees
+PASS article patreon-fees-worked-examples visibly cites source patreon-payouts
+PASS article patreon-fees-worked-examples Article schema matches visible registry facts
+PASS article patreon-fees-worked-examples breadcrumb schema matches the visible destination
+PASS article patreon-fees-worked-examples annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-fees-worked-examples contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-fees-worked-examples adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-fees-worked-examples exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-patron-targets is explicitly approved for the public registry
+PASS article patreon-patron-targets uses a stable lowercase slug
+PASS article patreon-patron-targets path is derived from its slug
+PASS article patreon-patron-targets canonical is derived from its path
+PASS article patreon-patron-targets has unique identity fields
+PASS article patreon-patron-targets title is descriptive and concise
+PASS article patreon-patron-targets description states the page's actual value
+PASS article patreon-patron-targets publication and review dates are valid
+PASS article patreon-patron-targets date order is coherent
+PASS article patreon-patron-targets has a permitted evidence trigger
+PASS article patreon-patron-targets records why a separate article is useful
+PASS article patreon-patron-targets records a dated primary-source platform change
+PASS article patreon-patron-targets has relevant product and offline next steps
+PASS article patreon-patron-targets has at least one contextual discovery page
+PASS article patreon-patron-targets has a primary-source ledger
+PASS article patreon-patron-targets source patreon-fees-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-fees-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-fees-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-fees-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-fees-targets names the claims it supports
+PASS article patreon-patron-targets source patreon-payouts-targets has a unique stable id
+PASS article patreon-patron-targets source patreon-payouts-targets declares its evidence class
+PASS article patreon-patron-targets source patreon-payouts-targets uses an external HTTPS URL
+PASS article patreon-patron-targets source patreon-payouts-targets records a checked date and any available update date
+PASS article patreon-patron-targets source patreon-payouts-targets names the claims it supports
+PASS article patreon-patron-targets HTML exists
+PASS article patreon-patron-targets title matches the registry
+PASS article patreon-patron-targets has one registry-matched H1
+PASS article patreon-patron-targets description matches the registry
+PASS article patreon-patron-targets permits normal indexing and snippets
+PASS article patreon-patron-targets uses truthful organization attribution
+PASS article patreon-patron-targets canonical and social URL agree
+PASS article patreon-patron-targets uses the shared consent and theme controller
+PASS article patreon-patron-targets uses shared accessible article styles
+PASS article patreon-patron-targets visibly exposes publication, review, and next-review dates
+PASS article patreon-patron-targets links the related calculator and blank tracker
+PASS article patreon-patron-targets is represented on the visible article hub
+PASS article patreon-patron-targets is present in the sitemap with its real modification date
+PASS article patreon-patron-targets is present in the assistant-facing site summary
+PASS article patreon-patron-targets does not collide with a redirect
+PASS article patreon-patron-targets has contextual static internal discovery
+PASS article patreon-patron-targets visibly cites source patreon-fees-targets
+PASS article patreon-patron-targets visibly cites source patreon-payouts-targets
+PASS article patreon-patron-targets Article schema matches visible registry facts
+PASS article patreon-patron-targets breadcrumb schema matches the visible destination
+PASS article patreon-patron-targets annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-patron-targets contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-patron-targets adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-patron-targets exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-membership-fee-comparison is explicitly approved for the public registry
+PASS article patreon-membership-fee-comparison uses a stable lowercase slug
+PASS article patreon-membership-fee-comparison path is derived from its slug
+PASS article patreon-membership-fee-comparison canonical is derived from its path
+PASS article patreon-membership-fee-comparison has unique identity fields
+PASS article patreon-membership-fee-comparison title is descriptive and concise
+PASS article patreon-membership-fee-comparison description states the page's actual value
+PASS article patreon-membership-fee-comparison publication and review dates are valid
+PASS article patreon-membership-fee-comparison date order is coherent
+PASS article patreon-membership-fee-comparison has a permitted evidence trigger
+PASS article patreon-membership-fee-comparison records why a separate article is useful
+PASS article patreon-membership-fee-comparison records a dated primary-source platform change
+PASS article patreon-membership-fee-comparison has relevant product and offline next steps
+PASS article patreon-membership-fee-comparison has at least one contextual discovery page
+PASS article patreon-membership-fee-comparison has a primary-source ledger
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-fees-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison has a unique stable id
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison declares its evidence class
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison uses an external HTTPS URL
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison records a checked date and any available update date
+PASS article patreon-membership-fee-comparison source patreon-payouts-comparison names the claims it supports
+PASS article patreon-membership-fee-comparison HTML exists
+PASS article patreon-membership-fee-comparison title matches the registry
+PASS article patreon-membership-fee-comparison has one registry-matched H1
+PASS article patreon-membership-fee-comparison description matches the registry
+PASS article patreon-membership-fee-comparison permits normal indexing and snippets
+PASS article patreon-membership-fee-comparison uses truthful organization attribution
+PASS article patreon-membership-fee-comparison canonical and social URL agree
+PASS article patreon-membership-fee-comparison uses the shared consent and theme controller
+PASS article patreon-membership-fee-comparison uses shared accessible article styles
+PASS article patreon-membership-fee-comparison visibly exposes publication, review, and next-review dates
+PASS article patreon-membership-fee-comparison links the related calculator and blank tracker
+PASS article patreon-membership-fee-comparison is represented on the visible article hub
+PASS article patreon-membership-fee-comparison is present in the sitemap with its real modification date
+PASS article patreon-membership-fee-comparison is present in the assistant-facing site summary
+PASS article patreon-membership-fee-comparison does not collide with a redirect
+PASS article patreon-membership-fee-comparison has contextual static internal discovery
+PASS article patreon-membership-fee-comparison visibly cites source patreon-fees-comparison
+PASS article patreon-membership-fee-comparison visibly cites source patreon-payouts-comparison
+PASS article patreon-membership-fee-comparison Article schema matches visible registry facts
+PASS article patreon-membership-fee-comparison breadcrumb schema matches the visible destination
+PASS article patreon-membership-fee-comparison annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-membership-fee-comparison contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-membership-fee-comparison adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-membership-fee-comparison exposes sources, synthetic-example limits, and the appropriate disclaimer
+PASS article patreon-payout-reconciliation is explicitly approved for the public registry
+PASS article patreon-payout-reconciliation uses a stable lowercase slug
+PASS article patreon-payout-reconciliation path is derived from its slug
+PASS article patreon-payout-reconciliation canonical is derived from its path
+PASS article patreon-payout-reconciliation has unique identity fields
+PASS article patreon-payout-reconciliation title is descriptive and concise
+PASS article patreon-payout-reconciliation description states the page's actual value
+PASS article patreon-payout-reconciliation publication and review dates are valid
+PASS article patreon-payout-reconciliation date order is coherent
+PASS article patreon-payout-reconciliation has a permitted evidence trigger
+PASS article patreon-payout-reconciliation records why a separate article is useful
+PASS article patreon-payout-reconciliation records a dated primary-source platform change
+PASS article patreon-payout-reconciliation has relevant product and offline next steps
+PASS article patreon-payout-reconciliation has at least one contextual discovery page
+PASS article patreon-payout-reconciliation has a primary-source ledger
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-payouts-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation has a unique stable id
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation declares its evidence class
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation uses an external HTTPS URL
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation records a checked date and any available update date
+PASS article patreon-payout-reconciliation source patreon-fees-reconciliation names the claims it supports
+PASS article patreon-payout-reconciliation HTML exists
+PASS article patreon-payout-reconciliation title matches the registry
+PASS article patreon-payout-reconciliation has one registry-matched H1
+PASS article patreon-payout-reconciliation description matches the registry
+PASS article patreon-payout-reconciliation permits normal indexing and snippets
+PASS article patreon-payout-reconciliation uses truthful organization attribution
+PASS article patreon-payout-reconciliation canonical and social URL agree
+PASS article patreon-payout-reconciliation uses the shared consent and theme controller
+PASS article patreon-payout-reconciliation uses shared accessible article styles
+PASS article patreon-payout-reconciliation visibly exposes publication, review, and next-review dates
+PASS article patreon-payout-reconciliation links the related calculator and blank tracker
+PASS article patreon-payout-reconciliation is represented on the visible article hub
+PASS article patreon-payout-reconciliation is present in the sitemap with its real modification date
+PASS article patreon-payout-reconciliation is present in the assistant-facing site summary
+PASS article patreon-payout-reconciliation does not collide with a redirect
+PASS article patreon-payout-reconciliation has contextual static internal discovery
+PASS article patreon-payout-reconciliation visibly cites source patreon-payouts-reconciliation
+PASS article patreon-payout-reconciliation visibly cites source patreon-fees-reconciliation
+PASS article patreon-payout-reconciliation Article schema matches visible registry facts
+PASS article patreon-payout-reconciliation breadcrumb schema matches the visible destination
+PASS article patreon-payout-reconciliation annotates every exact monetary, percentage, or time-range claim as sourced or synthetic
+PASS article patreon-payout-reconciliation contains no legacy manipulation, guarantee, or invented-story instructions
+PASS article patreon-payout-reconciliation adds no ad loader or testimonial, and allows capture only for the exact shared Patreon-sprint block in the footer
+PASS article patreon-payout-reconciliation exposes sources, synthetic-example limits, and the appropriate disclaimer
+
+Article integrity checks passed (7 published articles).
+[0m
+All 10 original article-contract failures are now PROVEN resolved: after the fourth per-file repair, `npm run test:articles` reports `Article integrity checks passed (7 published articles)`. I’ll run the arithmetic test, then every named full-suite command in the prescribed order.
+[0m# [0mTodos
+[✓] Inspect article contracts, registry, and current worktree state
+[✓] Repair four article HTML files using anchored temporary Node script
+[•] Run required tests, build, and rendered-output checks
+[ ] Append repair report and commit only if all gates pass
+[ ] Run empire-wrapup session command
+[0m
+[0m$ [0mnode --test tests/patreon-article-arithmetic.test.js
+✔ Patreon sprint worked dollar figures reproduce from the stated Standard US PayPal assumptions (1.2345ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115.4843
+[0m
+[0m$ [0mnpm run build
+> creator-revenue-calculator@1.0.0 build
+> npm run test:navigation && npm run lint:predeploy && npm run lint:content && npm run test:articles && npm run test:recommended-products && npm run lint:html && npm run test:analytics && npm run test:quality && npm run test:social-estimator && npm run test:youtube-estimator && npm run test:patreon-articles && npm run build:dist && npm run test:dist
+
+
+> creator-revenue-calculator@1.0.0 test:navigation
+> node scripts/navigation-check.js
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: /articles/patreon-fees-worked-examples/: shared nav
++ actual - expected
+
++ '<nav class="navbar" aria-label="Primary navigation"><div class="container"><a href="/" class="logo">Creator Revenue Calculator</a><div class="nav-menu"><a href="/">Home</a><a href="/#tools">Tools</a><a href="/articles/">Articles</a><a href="/about.html">About</a></div><button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button></div></nav>'
+- '<nav class="navbar" aria-label="Primary navigation">\n' +
+-   '        <div class="container">\n' +
+-   '            <div class="nav-brand">\n' +
+-   '                <a href="/" class="logo">\n' +
+-   '                    <i class="fas fa-calculator"></i>\n' +
+-   '                    <span>Creator Revenue Calculator</span>\n' +
+-   '                </a>\n' +
+-   '            </div>\n' +
+-   '\n' +
+-   '            <div class="nav-menu">\n' +
+-   '                <a href="/" class="nav-link">Home</a>\n' +
+-   '                <a href="/#tools" class="nav-link">Tools</a>\n' +
+-   '                <a href="/articles/" class="nav-link">Articles</a>\n' +
+-   '                <a href="/recommended-products/" class="nav-link">Products</a>\n' +
+-   '                <a href="/about.html" class="nav-link">About</a>\n' +
+-   '                <a href="/contact.html" class="nav-link">Contact</a>\n' +
+-   '            </div>\n' +
+-   '\n' +
+-   '            <div class="nav-actions">\n' +
+-   '                <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>\n' +
+-   '                <a href="/#creator-calculator" class="btn btn-primary">\n' +
+-   '                    <i class="fas fa-calculator"></i> Use Revenue Calculator\n' +
+-   '                </a>\n' +
+-   '            </div>\n' +
+-   '\n' +
+-   '            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">\n' +
+-   '                <i class="fas fa-bars"></i>\n' +
+-   '            </button>\n' +
+-   '        </div>\n' +
+-   '    </nav>'
+
+    at file:///C:/Users/jason/empire/creator-revenue-calculator-current/scripts/navigation-check.js:16:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '<nav class="navbar" aria-label="Primary navigation"><div class="container"><a href="/" class="logo">Creator Revenue Calculator</a><div class="nav-menu"><a href="/">Home</a><a href="/#tools">Tools</a><a href="/articles/">Articles</a><a href="/about.html">About</a></div><button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button></div></nav>',
+  expected: '<nav class="navbar" aria-label="Primary navigation">\n' +
+    '        <div class="container">\n' +
+    '            <div class="nav-brand">\n' +
+    '                <a href="/" class="logo">\n' +
+    '                    <i class="fas fa-calculator"></i>\n' +
+    '                    <span>Creator Revenue Calculator</span>\n' +
+    '                </a>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="nav-menu">\n' +
+    '                <a href="/" class="nav-link">Home</a>\n' +
+    '                <a href="/#tools" class="nav-link">Tools</a>\n' +
+    '                <a href="/articles/" class="nav-link">Articles</a>\n' +
+    '                <a href="/recommended-products/" class="nav-link">Products</a>\n' +
+    '                <a href="/about.html" class="nav-link">About</a>\n' +
+    '                <a href="/contact.html" class="nav-link">Contact</a>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="nav-actions">\n' +
+    '                <button id="theme-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:0.25rem 0.5rem;" type="button">🌙</button>\n' +
+    '                <a href="/#creator-calculator" class="btn btn-primary">\n' +
+    '                    <i class="fas fa-calculator"></i> Use Revenue Calculator\n' +
+    '                </a>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">\n' +
+    '                <i class="fas fa-bars"></i>\n' +
+    '            </button>\n' +
+    '        </div>\n' +
+    '    </nav>',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.11.1
+[0m
+The required full suite hit a HARD STOP at `npm run build` before compilation: `test:navigation` rejects the pre-existing minified navigation in `articles/patreon-fees-worked-examples/index.html` against the shared formatted navigation template. This is outside the 10 authorized repair failures, so I will not broaden the HTML changes, run remaining suite commands, render checks, or commit.
+[0m% [0mPatch 2 files
+[0m
+[0m# [0mTodos
+[✓] Inspect article contracts, registry, and current worktree state
+[✓] Repair four article HTML files using anchored temporary Node script
+[✓] Run required tests, build, and rendered-output checks
+[✓] Append repair report and commit only if all gates pass
+[•] Run empire-wrapup session command
+[0m
+[0m$ [0mempire-wrapup
+'empire-wrapup' is not recognized as an internal or external command,
+operable program or batch file.
+[0m
+[0m% [0mPatch 1 file
+[0m
+[0m# [0mTodos
+[✓] Inspect article contracts, registry, and current worktree state
+[✓] Repair four article HTML files using anchored temporary Node script
+[✓] Run required tests, build, and rendered-output checks
+[✓] Append repair report and commit only if all gates pass
+[✓] Run empire-wrapup session command
+[0m
+Repair report appended to `ARTICLE-SPRINT-REPORT.md`.
+
+- PROVEN: All 10 article-integrity failures fixed; `npm run test:articles` passes.
+- PROVEN: Patreon arithmetic test passes: 1/1.
+- HARD STOP: `npm run build` fails at `test:navigation` because `patreon-fees-worked-examples` has a pre-existing non-shared minified navigation block.
+- NOT RUN: remaining full suite, built-dist checks, and commit.
+- PROVEN: No commit, push, merge, or deploy occurred.
+- PROVEN: `empire-wrapup` is unavailable on PATH.
