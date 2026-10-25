@@ -22,6 +22,7 @@
     { "source": "/tools/engagement-rate", "destination": "/tools/engagement-rate/", "permanent": true },
     { "source": "/tools/newsletter-revenue", "destination": "/tools/newsletter-revenue/", "permanent": true },
     { "source": "/tools/patreon-revenue", "destination": "/tools/patreon-revenue/", "permanent": true },
+    { "source": "/tools/stan-store-calculator", "destination": "/tools/stan-store-calculator/", "permanent": true },
     { "source": "/tools/social-media-earnings-estimator", "destination": "/tools/social-media-earnings-estimator/", "permanent": true },
     { "source": "/about", "destination": "/about.html", "permanent": true },
     { "source": "/contact", "destination": "/contact.html", "permanent": true },

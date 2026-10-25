@@ -13,9 +13,9 @@ const ARTICLE_PUBLIC_FILES = [
     .filter((article) => article.status === "published")
     .map((article) => article.path),
 ];
-const BASE_SITEMAP_URL_COUNT = 21;
+const BASE_SITEMAP_URL_COUNT = 22;
 const BASE_REDIRECT_COUNT = 58;
-const CANONICAL_REDIRECT_COUNT = 16;
+const CANONICAL_REDIRECT_COUNT = 17;
 
 const CORE_PUBLIC_FILES = [
   "404.html",
@@ -79,6 +79,8 @@ const CORE_PUBLIC_FILES = [
   "tools/patreon-revenue/patreon-calculator.css",
   "tools/patreon-revenue/patreon-calculator.js",
   "tools/patreon-revenue/slider-sync.js",
+  "tools/stan-store-calculator/index.html",
+  "tools/stan-store-calculator/stan-store-calculator.js",
   "tools/podcast-revenue/index.html",
   "tools/podcast-revenue/podcast-calculator.css",
   "tools/podcast-revenue/podcast-calculator.js",

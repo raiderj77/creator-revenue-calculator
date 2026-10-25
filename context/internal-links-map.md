@@ -25,6 +25,7 @@ Last verified: 2026-10-24
 - `/tools/twitch-revenue/`
 - `/tools/podcast-revenue/`
 - `/tools/patreon-revenue/`
+- `/tools/stan-store-calculator/`
 - `/tools/newsletter-revenue/`
 - `/tools/sponsorship-rate/`
 - `/tools/affiliate-calculator/`

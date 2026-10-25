@@ -36,7 +36,7 @@ test('built homepage capture stays hidden without JavaScript', async ({ browser 
     await context.close();
 });
 
-for (const route of ['/', '/tools/patreon-revenue/']) {
+for (const route of ['/', '/tools/patreon-revenue/', '/tools/stan-store-calculator/']) {
     test(`built ${route} capture uses the configured Beehiiv form on desktop`, async ({ page }) => {
         await page.setViewportSize({ width: 1280, height: 900 });
         await page.goto(route, { waitUntil: 'domcontentloaded' });

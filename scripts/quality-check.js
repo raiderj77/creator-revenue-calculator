@@ -99,6 +99,8 @@ const podcastScript = read("tools/podcast-revenue/podcast-calculator.js");
 const podcastStyles = read("tools/podcast-revenue/podcast-calculator.css");
 const patreonPage = read("tools/patreon-revenue/index.html");
 const patreonScript = read("tools/patreon-revenue/patreon-calculator.js");
+const stanPage = read("tools/stan-store-calculator/index.html");
+const stanScript = read("tools/stan-store-calculator/stan-store-calculator.js");
 const patreonTracker = read("downloads/patreon-income-tracker.csv");
 const creatorTracker = fs.readFileSync(path.join(root, "downloads/creator-revenue-tracker.xlsx"));
 const sponsorshipPage = read("tools/sponsorship-rate/index.html");
@@ -144,6 +146,7 @@ const maintainedToolPages = new Map([
   ["tools/instagram-revenue/index.html", instagramPage],
   ["tools/newsletter-revenue/index.html", newsletterPage],
   ["tools/patreon-revenue/index.html", patreonPage],
+  ["tools/stan-store-calculator/index.html", stanPage],
   ["tools/podcast-revenue/index.html", podcastPage],
   ["tools/sponsorship-rate/index.html", sponsorshipPage],
   ["tools/social-media-earnings-estimator/index.html", socialEstimatorPage],
@@ -307,9 +310,9 @@ pass(
   "Font Awesome CSS and manifest cover every icon class in maintained pages, linked scripts, and the 404",
 );
 pass(
-  fontSubsetManifest.families.solid.classes.length === 64
+  fontSubsetManifest.families.solid.classes.length === 67
     && fontSubsetManifest.families.brands.classes.length === 7
-    && fontSubsetManifest.families.solid.unicodes.length === 62
+    && fontSubsetManifest.families.solid.unicodes.length === 65
     && fontSubsetManifest.families.brands.unicodes.length === 7
     && fontSubsetStyles.includes('.fa-check{--fa:"\\f00c"}'),
   "Font Awesome subset includes the linked-script check icon and exact reviewed glyph sets",
