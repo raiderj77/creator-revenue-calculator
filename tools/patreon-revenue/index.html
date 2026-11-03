@@ -4,13 +4,13 @@
     <meta name="robots" content="index, follow, max-snippet:-1">
     <script src="/assets/js/theme.js" defer></script>
 
-    <title>Patreon Revenue Calculator &amp; Income Tracker (2026)</title>
-    <meta name="description" content="Calculate a Patreon take-home scenario with current platform and USD processing fees, then download a blank CSV income tracker for actual payouts.">
+    <title>Patreon Revenue Calculator: Net Payout Estimator (2026)</title>
+    <meta name="description" content="Patreon revenue calculator with current platform and processing fees. See your real net payout per tier, then download the free CSV income tracker.">
     <meta name="author" content="Creator Revenue Calculator">
     <meta name="keywords" content="patreon revenue calculator, patreon income tracker, patreon payout tracker, patreon earnings calculator, how much does patreon take, patreon fee calculator, patreon take home pay">
 
     <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="Patreon Revenue Calculator &amp; Income Tracker (2026)">
+    <meta property="og:title" content="Patreon Revenue Calculator: Net Payout Estimator (2026)">
     <meta property="og:description" content="Model Patreon fees from visible inputs and download a blank CSV tracker for actual payouts.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://creatorrevenuecalculator.com/tools/patreon-revenue/">
@@ -18,7 +18,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Patreon Revenue Calculator &amp; Income Tracker (2026)">
+    <meta name="twitter:title" content="Patreon Revenue Calculator: Net Payout Estimator (2026)">
     <meta name="twitter:description" content="Model Patreon fees from visible inputs and download a blank CSV tracker for actual payouts.">
     <meta name="twitter:image" content="https://creatorrevenuecalculator.com/assets/images/og-image.png">
 
@@ -33,7 +33,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Patreon Revenue Calculator & Income Tracker",
+      "name": "Patreon Revenue Calculator",
       "description": "A browser-based Patreon fee scenario calculator with a target take-home solver and a blank CSV template for tracking actual payouts.",
       "url": "https://creatorrevenuecalculator.com/tools/patreon-revenue/",
       "applicationCategory": "FinanceApplication",
@@ -99,6 +99,14 @@
             "@type": "Answer",
             "text": "It divides the gap between your entered target and current modeled net revenue by the current weighted net revenue per patron, then rounds up to a whole patron. It assumes the same entered tier mix, plan, and payment profile; it does not supply a growth, conversion, or churn forecast."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a Patreon revenue calculator the same as a revenue estimator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, on this page they are the same tool. Enter your patron count and tier price and it estimates your net payout after the Patreon platform fee and USD processing fees. For actual payouts you have already received, use the income tracker instead."
+          }
         }
       ]
     }
@@ -119,7 +127,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Patreon Revenue Calculator & Income Tracker",
+          "name": "Patreon Revenue Calculator",
           "item": "https://creatorrevenuecalculator.com/tools/patreon-revenue/"
         }
       ]
@@ -198,8 +206,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Patreon Revenue Calculator &amp; Income Tracker</h1>
-            <p class="subtitle">Model Patreon platform and USD processing fees from visible inputs, solve for a user-entered monthly target using the current tier mix, and download a blank tracker for actual payouts.</p>
+            <h1>Patreon Revenue Calculator</h1>
+            <p class="subtitle">This Patreon revenue estimator uses the current platform fee and USD processing rates, not a flat 10% guess. Model Patreon platform and USD processing fees from visible inputs, solve for a user-entered monthly target using the current tier mix, and download a blank tracker for actual payouts.</p>
 
 
 
@@ -454,14 +462,14 @@
     <section id="income-tracker" class="benchmark-section" aria-labelledby="trackerHeading">
         <div class="container">
             <div class="section-header">
-                <h2 id="trackerHeading"><i class="fas fa-file-csv" aria-hidden="true"></i> Patreon Income Tracker (CSV)</h2>
+                <h2 id="trackerHeading"><i class="fas fa-file-csv" aria-hidden="true"></i> After the estimate: track the actual payout</h2>
                 <p class="subtitle">Keep modeled scenarios separate from the actual payouts in your Patreon records.</p>
             </div>
             <div class="education-content">
                 <p>The download is a header-only CSV template for recording each reporting period, gross membership revenue, itemized fees and adjustments, patron changes, and the actual net payout shown by Patreon. This page does not upload, import, store, or verify tracker data.</p>
                 <p><a class="btn btn-primary" href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"><i class="fas fa-download" aria-hidden="true"></i> Download Blank Patreon Income Tracker</a></p>
                 <p class="input-hint">Open the file in your preferred spreadsheet app and add one row per reporting period. Check each row against Patreon's payout and earnings records.</p>
-                <p><a href="/articles/patreon-income-tracker/">Follow the evidence-first monthly Patreon reconciliation guide</a> for a field-by-field workflow, privacy limits, and a synthetic arithmetic example.</p>
+                <p><a href="/articles/patreon-income-tracker/">Patreon income tracker</a>: follow the evidence-first monthly reconciliation guide for a field-by-field workflow, privacy limits, and a synthetic arithmetic example.</p>
             </div>
         </div>
     </section>
@@ -524,6 +532,10 @@
                 <div class="faq-item">
                     <button class="faq-question" type="button" aria-controls="faq-answer-5"><span>How does the target take-home solver work?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
                     <div class="faq-answer" id="faq-answer-5"><p>It divides the gap between your entered target and current modeled net revenue by the current weighted net revenue per patron, then rounds up to a whole patron. It assumes the same entered tier mix, plan, and payment profile; it does not supply a growth, conversion, or churn forecast.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-controls="faq-answer-6"><span>Is a Patreon revenue calculator the same as a revenue estimator?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-6"><p>Yes, on this page they are the same tool. Enter your patron count and tier price and it estimates your net payout after the Patreon platform fee and USD processing fees. For actual payouts you have already received, use the income tracker instead.</p></div>
                 </div>
             </div>
         </div>
