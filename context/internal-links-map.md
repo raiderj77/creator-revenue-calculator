@@ -12,6 +12,7 @@ Last verified: 2026-10-24
 - `/articles/patreon-patron-targets/` — Patreon target-count scenarios
 - `/articles/patreon-membership-fee-comparison/` — bounded Patreon membership fee comparison
 - `/articles/patreon-payout-reconciliation/` — Patreon payout reconciliation guide
+- `/articles/patreon-fees-explained/` — Patreon fee types and published rates explained
 - `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
