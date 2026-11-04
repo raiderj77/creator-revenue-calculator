@@ -192,6 +192,7 @@ const patreonSprintSlugs = new Set([
   "patreon-patron-targets",
   "patreon-membership-fee-comparison",
   "patreon-payout-reconciliation",
+  "patreon-fees-explained",
 ]);
 const sharedCaptureAssets = [
   '<link rel="stylesheet" href="/assets/css/email-capture.css">',
