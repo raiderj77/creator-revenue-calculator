@@ -50,7 +50,7 @@
         "url": "https://creatorrevenuecalculator.com/"
       },
       "datePublished": "2026-03-08",
-      "dateModified": "2026-10-14"
+      "dateModified": "2026-11-04"
     }
     </script>
 
@@ -106,6 +106,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes, on this page they are the same tool. Enter your patron count and tier price and it estimates your net payout after the Patreon platform fee and USD processing fees. For actual payouts you have already received, use the income tracker instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much do Patreon creators keep from $1,000 in memberships?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On the standard plan with US card processing, $1,000 in $10 memberships leaves $841.00 after the 10% platform fee and $0.59 per-payment processing, and $840.75 after one US direct deposit payout fee. Legacy plans, other payment methods, and member locations change the result."
           }
         }
       ]
@@ -201,13 +209,14 @@
           <p class="answer-block-text"><a href="#income-tracker">Download the blank CSV income tracker</a> and enter figures from Patreon records. Calculator inputs and tracker data are not stored by this page.</p>
         </div>
       </div>
-      <time datetime="2026-10-14" class="answer-block-updated">Fee model reviewed against Patreon Help Center: October 14, 2026</time>
+      <time datetime="2026-11-04" class="answer-block-updated">Fee model reviewed against Patreon Help Center: November 4, 2026</time>
     </section>
 
     <section class="hero">
         <div class="container">
             <h1>Patreon Revenue Calculator</h1>
             <p class="subtitle">This Patreon revenue estimator uses the current platform fee and USD processing rates, not a flat 10% guess. Model Patreon platform and USD processing fees from visible inputs, solve for a user-entered monthly target using the current tier mix, and download a blank tracker for actual payouts.</p>
+            <p class="byline">By Jason Ramirez, publisher</p>
 
 
 
@@ -479,7 +488,7 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-table"></i> Patreon Fees Used by This Calculator</h2>
-                <p class="subtitle">Reviewed October 14, 2026 against Patreon's creator-fee documentation, updated September 11, 2026</p>
+                <p class="subtitle">Reviewed November 4, 2026 against Patreon's creator-fee documentation, updated September 11, 2026</p>
             </div>
             <!-- [html-validate-disable-next prefer-native-element] -->
             <div class="benchmark-table-container" role="region" tabindex="0" aria-label="Patreon platform fee reference table">
@@ -538,6 +547,49 @@
                     <button class="faq-question" type="button" aria-controls="faq-answer-6"><span>Is a Patreon revenue calculator the same as a revenue estimator?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
                     <div class="faq-answer" id="faq-answer-6"><p>Yes, on this page they are the same tool. Enter your patron count and tier price and it estimates your net payout after the Patreon platform fee and USD processing fees. For actual payouts you have already received, use the income tracker instead.</p></div>
                 </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-controls="faq-answer-7"><span>How much do Patreon creators keep from $1,000 in memberships?</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                    <div class="faq-answer" id="faq-answer-7"><p>On the standard plan with US card processing, $1,000 in $10 memberships leaves $841.00 after the 10% platform fee and $0.59 per-payment processing, and $840.75 after one US direct deposit payout fee. Legacy plans, other payment methods, and member locations change the result.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Worked examples: how much creators keep -->
+    <section id="keep-examples" class="benchmark-section" aria-labelledby="keepHeading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="keepHeading"><i class="fas fa-table" aria-hidden="true"></i> How Much Do Patreon Creators Keep?</h2>
+                <p class="subtitle">Worked examples on the standard plan, checked against Patreon on November 4, 2026</p>
+            </div>
+            <div class="education-content">
+                <p><strong>The short answer:</strong> on the standard plan, one $10 membership paid by US card leaves $8.41 after the 10% platform fee and per-payment processing, before the payout charge. Patreon does not take one flat percentage: the platform fee, processing on every payment, and the payout charge each apply at a different step. Our <a href="/articles/patreon-fees-explained/">Patreon fees guide</a> is the authority for every rate on this page: it defines each fee, its base, and the order it is applied in, from Patreon's own published pages.</p>
+                <p><strong>What this page is:</strong> a scenario calculator. You enter a plan, a payment profile, tier prices, and patron counts, and it shows the arithmetic from those visible inputs. <strong>What it is not:</strong> a record of your actual payouts, and it is not affiliated with Patreon. For money that has already been paid, use the <a href="/articles/patreon-income-tracker/">Patreon income tracker</a> instead of an estimate.</p>
+                <h3>Net payout at 100, 500, and 1,000 patrons</h3>
+                <p>The table applies the standard plan and US card processing to a single $10 tier, then subtracts one US direct deposit payout charge for the month. It is a synthetic arithmetic example, not a benchmark and not a typical result.</p>
+            </div>
+            <!-- [html-validate-disable-next prefer-native-element] -->
+            <div class="benchmark-table-container" role="region" tabindex="0" aria-label="Worked net payout examples at three patron counts">
+                <table class="benchmark-table">
+                    <thead><tr><th>Patrons at $10</th><th>Gross</th><th>Platform fee (10%)</th><th>Processing ($0.59 per payment)</th><th>Payout fee</th><th>Net paid out</th></tr></thead>
+                    <tbody>
+                        <tr><td>100</td><td>$1,000.00</td><td>$100.00</td><td>$59.00</td><td>$0.25</td><td><strong>$840.75</strong></td></tr>
+                        <tr><td>500</td><td>$5,000.00</td><td>$500.00</td><td>$295.00</td><td>$0.25</td><td><strong>$4,204.75</strong></td></tr>
+                        <tr><td>1,000</td><td>$10,000.00</td><td>$1,000.00</td><td>$590.00</td><td>$0.25</td><td><strong>$8,409.75</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="education-content">
+                <p><strong>Method:</strong> gross is the patron count multiplied by the $10 tier price. The platform fee is 10% of gross. Processing is $0.59 per payment (2.9% of $10, plus the $0.30 fixed part), multiplied by the number of payments. The payout fee is the published $0.25 US direct deposit charge, applied once. Change any input, in the calculator above or on your own page, and the result changes.</p>
+                <h3>Which numbers deserve your attention</h3>
+                <ul>
+                    <li><strong>New pages:</strong> the standard plan is the only platform option, so tier pricing is the lever you control. At a $10 tier, this example keeps about 84 cents of each dollar before the payout charge.</li>
+                    <li><strong>Legacy pages:</strong> an eligible Founders or Pro page keeps a lower platform rate, so this table overstates your fees. Select your actual plan in the calculator instead of using this example.</li>
+                    <li><strong>Small tiers:</strong> the fixed $0.30 inside processing takes a larger share of a $5 payment than of a $25 payment, so pages built on small tiers keep less of each dollar than this $10 example shows.</li>
+                </ul>
+                <h3>Is Patreon not just 10%?</h3>
+                <p>The 10% figure is only the platform fee. Processing is charged on top of it for every payment, conversion is added when a member pays in a different currency, and the payout charge arrives when the balance is transferred. The <a href="/articles/patreon-fees-explained/">Patreon fees guide</a> works one $10 membership through every step.</p>
+                <p>Run your own plan, tier mix, and payment profile in the <a href="#calculator">calculator above</a>, then record what Patreon actually pays with the <a href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv">blank tracker CSV</a>.</p>
             </div>
         </div>
     </section>
@@ -586,7 +638,7 @@
     </div>
 
 
-<section class="education-section"><div class="container"><h2>Fees outside this USD web-payment model</h2><p><a href="https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview">Patreon’s creator fees overview</a> explains that eligible iOS in-app purchases incur Apple’s 30% fee instead of Patreon payment processing; Patreon’s platform fee still applies. US fans may have a mobile-web payment option. This calculator does not model the iOS purchase path, sales tax, or payout charges.</p><p>Currency conversion can add 2.5% of the full payment including tax. Processing also uses the tax-inclusive amount, while the platform fee excludes sales tax. A Founders creator who changes payout currency keeps the 5% platform fee but moves away from original Founders processing. This option uses the legacy standard schedule, including micropayment rates for USD payments of $3 or less. Confirm your account currency and processing schedule.</p><p>US direct-deposit payouts cost $0.25 each; PayPal payouts cost 1%, with a $0.25 minimum and $20 cap. These are payout charges, not per-patron charges. Reconcile them with the <a href="/articles/patreon-income-tracker/">Patreon income tracker guide</a>.</p><p><small>Platform rules checked October 14, 2026. Confirm account-specific terms before making a decision.</small></p></div></section>
+<section class="education-section"><div class="container"><h2>Fees outside this USD web-payment model</h2><p><a href="https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview">Patreon’s creator fees overview</a> explains that eligible iOS in-app purchases incur Apple’s 30% fee instead of Patreon payment processing; Patreon’s platform fee still applies. US fans may have a mobile-web payment option. This calculator does not model the iOS purchase path, sales tax, or payout charges.</p><p>Currency conversion can add 2.5% of the full payment including tax. Processing also uses the tax-inclusive amount, while the platform fee excludes sales tax. A Founders creator who changes payout currency keeps the 5% platform fee but moves away from original Founders processing. This option uses the legacy standard schedule, including micropayment rates for USD payments of $3 or less. Confirm your account currency and processing schedule.</p><p>US direct-deposit payouts cost $0.25 each; PayPal payouts cost 1%, with a $0.25 minimum and $20 cap. These are payout charges, not per-patron charges. Reconcile them with the <a href="/articles/patreon-income-tracker/">Patreon income tracker guide</a>.</p><p><small>Platform rules checked November 4, 2026. Confirm account-specific terms before making a decision.</small></p></div></section>
 </main>
 
     <!-- Footer -->
