@@ -1650,7 +1650,7 @@ pass(
     && patreonPage.includes('href="/downloads/patreon-income-tracker.csv" download="patreon-income-tracker.csv"')
     && patreonPage.includes('href="#income-tracker"')
     && patreonPage.includes("updated September 11, 2026")
-    && patreonPage.includes('"dateModified": "2026-10-14"')
+    && patreonPage.includes('"dateModified": "2026-11-04"')
     && patreonPage.includes("does not verify legacy-plan eligibility")
     && patreonPage.includes("Actual payouts may contain a mix of member payment methods and locations")
     && patreonPage.indexOf('id="patreonTrackerNextStep"') > patreonPage.indexOf('id="patreonResults"'),
@@ -1675,8 +1675,8 @@ pass(
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/</loc><lastmod>2026-10-14</lastmod>')
     && socialEstimatorPage.includes('"dateModified": "2026-09-06"')
     && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/social-media-earnings-estimator/</loc><lastmod>2026-09-06</lastmod>')
-    && patreonPage.includes('"dateModified": "2026-10-14"')
-    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-10-14</lastmod>'),
+    && patreonPage.includes('"dateModified": "2026-11-04"')
+    && sitemap.includes('<loc>https://creatorrevenuecalculator.com/tools/patreon-revenue/</loc><lastmod>2026-11-04</lastmod>'),
   "homepage, cross-platform, and Patreon resource changes have matching structured and sitemap freshness",
 );
 const homeMain = home.slice(home.indexOf("<main"), home.lastIndexOf("</main>"));
