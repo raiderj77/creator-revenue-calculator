@@ -1324,9 +1324,10 @@ pass(
 );
 pass(
   aboutPage.includes("About Jason Ramirez")
-    && aboutPage.includes("CADC-II counselor")
+    && aboutPage.includes("Built by Jason Ramirez, a self-taught developer.")
+    && !aboutPage.includes("CADC")
     && aboutPage.includes("Creator Revenue Calculator"),
-  "owner-approved public name, credentials, and site organization remain on the About page",
+  "owner-approved public name and site organization remain on the About page, with no CADC credential (CADC-II appears only on MindCheckTools)",
 );
 pass(
   !/Prunedale|addressLocality|addressRegion|Your Friendly Developer|\bLLC\b/i.test(aboutPage),
