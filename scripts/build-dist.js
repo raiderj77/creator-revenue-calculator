@@ -130,6 +130,45 @@ const REPOSITORY_ONLY_PREFIXES = [
   "tools/youtube-channel-earnings-estimator/",
 ];
 const REPOSITORY_ONLY_EXTENSIONS = new Set([".md", ".py", ".sh", ".yaml", ".yml"]);
+const BEEHIIV_EMBED_TOKEN = "__NEXT_PUBLIC_BEEHIIV_EMBED_URL__";
+
+function loadEnvFile() {
+  const envFile = path.join(ROOT, ".env");
+  if (!fs.existsSync(envFile)) return;
+
+  for (const rawLine of fs.readFileSync(envFile, "utf8").split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const separator = line.indexOf("=");
+    if (separator === -1) continue;
+
+    const key = line.slice(0, separator).trim();
+    let value = line.slice(separator + 1).trim();
+    if (!key || Object.hasOwn(process.env, key)) continue;
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+}
+
+loadEnvFile();
+
+function beehiivEmbedUrl() {
+  const value = process.env.NEXT_PUBLIC_BEEHIIV_EMBED_URL || "";
+  if (!value) return "";
+  const url = new URL(value);
+  if (url.protocol !== "https:" || url.hostname !== "subscribe-forms.beehiiv.com") {
+    fail("NEXT_PUBLIC_BEEHIIV_EMBED_URL must be an HTTPS Beehiiv subscribe-form URL");
+  }
+  return url.href;
+}
+
+function publicFileContents(relativePath) {
+  const source = path.join(ROOT, ...relativePath.split("/"));
+  if (relativePath !== "assets/js/email-capture.js") return fs.readFileSync(source);
+  return fs.readFileSync(source, "utf8").replace(BEEHIIV_EMBED_TOKEN, beehiivEmbedUrl());
+}
 
 function fail(message) {
   throw new Error(message);
@@ -342,9 +381,10 @@ function verifyDist() {
   }
 
   for (const relativePath of PUBLIC_FILES) {
-    const source = path.join(ROOT, ...relativePath.split("/"));
     const output = path.join(DIST, ...relativePath.split("/"));
-    if (sha256(source) !== sha256(output)) fail(`Public output differs from source: ${relativePath}`);
+    if (crypto.createHash("sha256").update(publicFileContents(relativePath)).digest("hex") !== sha256(output)) {
+      fail(`Public output differs from source: ${relativePath}`);
+    }
   }
 
   const vercelConfig = JSON.parse(fs.readFileSync(path.join(ROOT, "vercel.json"), "utf8"));
@@ -403,10 +443,9 @@ function buildDist() {
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
   for (const relativePath of PUBLIC_FILES) {
-    const source = path.join(ROOT, ...relativePath.split("/"));
     const output = path.join(DIST, ...relativePath.split("/"));
     fs.mkdirSync(path.dirname(output), { recursive: true });
-    fs.copyFileSync(source, output);
+    fs.writeFileSync(output, publicFileContents(relativePath));
   }
   verifyDist();
 }

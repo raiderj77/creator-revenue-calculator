@@ -1,5 +1,5 @@
-// Owner: paste your Beehiiv embed URL between the quotes to switch email capture ON. Leave empty = capture block renders nothing.
-const BEEHIIV_EMBED_URL = "https://subscribe-forms.beehiiv.com/v3/forms/93dec953-d143-4aec-bd65-eb8e9570c42e";
+// Replaced during the static build from NEXT_PUBLIC_BEEHIIV_EMBED_URL.
+const BEEHIIV_EMBED_URL = "__NEXT_PUBLIC_BEEHIIV_EMBED_URL__";
 
 (() => {
     const blocks = document.querySelectorAll('[data-email-capture]');
