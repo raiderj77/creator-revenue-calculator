@@ -256,10 +256,10 @@ pass(
   !/Email me my revenue projection/i.test(publicText)
     && /data-email-capture hidden/.test(emailCaptureMarkup)
     && !/<(?:form|input|iframe)\b/i.test(emailCaptureMarkup)
-    && /const BEEHIIV_EMBED_URL = "(?:|https:\/\/subscribe-forms\.beehiiv\.com\/v3\/forms\/[0-9a-f-]{36})";/.test(emailCaptureScript)
+    && emailCaptureScript.includes('const BEEHIIV_EMBED_URL = "__NEXT_PUBLIC_BEEHIIV_EMBED_URL__";')
     && emailCaptureScript.includes('block.remove()')
     && !/\b(?:fetch|XMLHttpRequest|sendBeacon|localStorage|sessionStorage)\b/.test(emailCaptureScript),
-  "email capture markup is hidden with no local form or collection API; embed config is empty or an approved Beehiiv form URL",
+  "email capture markup is hidden with no local form or collection API; embed URL is build-injected from the feature flag",
 );
 pass(!/AIza[0-9A-Za-z_-]{30,}/.test(publicText), "no browser API credential is published");
 pass(!fs.existsSync(path.join(root, "tools/youtube-ad-revenue/channel-lookup.js")), "unmetered public YouTube API integration is removed");
