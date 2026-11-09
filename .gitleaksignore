@@ -5,3 +5,5 @@
 22be2ecb20850556d9c12a67ee7d3feb3271d09c:tools/youtube-ad-revenue/channel-lookup.js:gcp-api-key:7
 # Identical reviewed synthetic fixture on retained historical branch; exact fingerprint only.
 f3308a1445f249fdee5fc67b216e5f9f9f58b755:tests/youtube-estimator.test.js:generic-api-key:23
+# Empty variable-name placeholder in .env.example (names-only file, no value present); reviewed 2026-11-08.
+664a7560ff4fb5c6c76ac99ea7b29b91ae7e6089:.env.example:generic-api-key:12
