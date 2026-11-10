@@ -252,6 +252,86 @@
       "slug":"patreon-membership-fee-comparison","status":"published","path":"articles/patreon-membership-fee-comparison/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-membership-fee-comparison/","title":"Patreon vs Ko-fi vs Buy Me a Coffee Fees","description":"Compare what is verifiable about Patreon membership fees and learn why Ko-fi and Buy Me a Coffee are excluded from exact keep-amount arithmetic.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"patreon vs ko-fi buy me a coffee fees","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Patreon’s current terms allow a limited, reproducible membership calculation while other exact transaction terms were not verified.","decision":"A comparison guide is useful only when it identifies the scope and excludes platforms whose official material does not support exact like-for-like arithmetic."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-fees-comparison","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["Patreon publishes the Standard-plan and USD processing terms used in the stated scenario."]},{"id":"patreon-payouts-comparison","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Payout records distinguish actual account results from illustrative scenarios."]}]},
     {
       "slug":"patreon-payout-reconciliation","status":"published","path":"articles/patreon-payout-reconciliation/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/","title":"Why Patreon Payouts Are Less Than Earnings","description":"Reconcile Patreon earnings and payouts using the tracker-guide formula, documented conditional fees, timing checks, and current Patreon primary sources.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"patreon payout reconciliation","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Patreon distinguishes payment fees, conditional charges, and payout transaction fees in its current creator-fee guidance.","decision":"The tracker guide has a reconciliation formula; this guide explains why matching periods and documented categories matter before comparing earnings and payouts."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-payouts-reconciliation","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Patreon provides downloadable earnings, payout, transaction, refund, and tax records."]},{"id":"patreon-fees-reconciliation","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["Patreon distinguishes platform, processing, conditional, and payout transaction fees."]}]},
-    {"slug": "patreon-fees-explained", "status": "published", "path": "articles/patreon-fees-explained/index.html", "canonical": "https://creatorrevenuecalculator.com/articles/patreon-fees-explained/", "title": "Patreon Fees Explained: Platform, Processing, and Payout", "description": "Patreon fees explained with Patreon's own published rates: the standard platform fee, legacy plans, USD processing, currency conversion, and payout fees.", "datePublished": "2026-11-02", "dateModified": "2026-11-04", "reviewedOn": "2026-11-04", "nextReviewOn": "2027-02-02", "primaryQuery": "patreon fees", "opportunity": {"type": "platform_change", "capturedOn": "2026-11-02", "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "changeSummary": "Patreon's creator fees overview publishes the standard plan, legacy plan rates, USD processing schedules, currency conversion, iOS, and payout fees in one primary source.", "decision": "The Patreon calculator exposes these rates as inputs and the worked-examples article shows one scenario, but no page defines each fee type, its base, and its conditions in one place. This guide is the cluster fee reference and links the calculator and the tracker in both directions."}, "calculatorPath": "/tools/patreon-revenue/", "downloadPath": "/downloads/patreon-income-tracker.csv", "discoveryPages": ["tools/patreon-revenue/index.html", "articles/patreon-income-tracker/index.html"], "sources": [{"id": "patreon-fees-overview", "kind": "primary", "title": "Creator fees overview", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "sourceUpdatedOn": "2026-09-11", "checkedOn": "2026-11-04", "claims": ["Patreon lists a standard 10% platform fee for pages published after August 4, 2025, with legacy Founders 5%, Pro 8%, and Pro + Merch 11% plans.", "Patreon lists USD processing at 2.9% plus $0.30 for cards, Apple Pay, and US PayPal or Venmo on the standard plan, a 2.5% currency conversion fee, and per-method payout fees."]}, {"id": "patreon-standard-plan", "kind": "primary", "title": "A standard platform fee for new creators — effective after August 4, 2025", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/36426991446797-A-standard-platform-fee-for-new-creators-effective-after-August-4-2025", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Creators who publish after August 4, 2025 are on the standard 10% plan, and unpublishing a legacy page moves it to the standard plan when it is republished."]}, {"id": "patreon-payout-less", "kind": "primary", "title": "Why is my payout less than I expected?", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/204606105-Why-is-my-payout-less-than-I-expected", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Patreon explains that fees are deducted before earnings are added to the creator balance, and points creators to Earnings Insights and payout records."]}]}
+    {"slug": "patreon-fees-explained", "status": "published", "path": "articles/patreon-fees-explained/index.html", "canonical": "https://creatorrevenuecalculator.com/articles/patreon-fees-explained/", "title": "Patreon Fees Explained: Platform, Processing, and Payout", "description": "Patreon fees explained with Patreon's own published rates: the standard platform fee, legacy plans, USD processing, currency conversion, and payout fees.", "datePublished": "2026-11-02", "dateModified": "2026-11-04", "reviewedOn": "2026-11-04", "nextReviewOn": "2027-02-02", "primaryQuery": "patreon fees", "opportunity": {"type": "platform_change", "capturedOn": "2026-11-02", "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "changeSummary": "Patreon's creator fees overview publishes the standard plan, legacy plan rates, USD processing schedules, currency conversion, iOS, and payout fees in one primary source.", "decision": "The Patreon calculator exposes these rates as inputs and the worked-examples article shows one scenario, but no page defines each fee type, its base, and its conditions in one place. This guide is the cluster fee reference and links the calculator and the tracker in both directions."}, "calculatorPath": "/tools/patreon-revenue/", "downloadPath": "/downloads/patreon-income-tracker.csv", "discoveryPages": ["tools/patreon-revenue/index.html", "articles/patreon-income-tracker/index.html"], "sources": [{"id": "patreon-fees-overview", "kind": "primary", "title": "Creator fees overview", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "sourceUpdatedOn": "2026-09-11", "checkedOn": "2026-11-04", "claims": ["Patreon lists a standard 10% platform fee for pages published after August 4, 2025, with legacy Founders 5%, Pro 8%, and Pro + Merch 11% plans.", "Patreon lists USD processing at 2.9% plus $0.30 for cards, Apple Pay, and US PayPal or Venmo on the standard plan, a 2.5% currency conversion fee, and per-method payout fees."]}, {"id": "patreon-standard-plan", "kind": "primary", "title": "A standard platform fee for new creators — effective after August 4, 2025", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/36426991446797-A-standard-platform-fee-for-new-creators-effective-after-August-4-2025", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Creators who publish after August 4, 2025 are on the standard 10% plan, and unpublishing a legacy page moves it to the standard plan when it is republished."]}, {"id": "patreon-payout-less", "kind": "primary", "title": "Why is my payout less than I expected?", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/204606105-Why-is-my-payout-less-than-I-expected", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Patreon explains that fees are deducted before earnings are added to the creator balance, and points creators to Earnings Insights and payout records."]}]},
+  {
+    "slug": "why-does-youtube-rpm-increase-in-q4",
+    "status": "published",
+    "path": "articles/why-does-youtube-rpm-increase-in-q4/index.html",
+    "canonical": "https://creatorrevenuecalculator.com/articles/why-does-youtube-rpm-increase-in-q4/",
+    "title": "Why Does YouTube RPM Increase in Q4?",
+    "description": "Why YouTube RPM rises in Q4: holiday advertiser demand lifts CPM, and RPM follows. The CPM-to-RPM math, synthetic worked examples, and planning for the January reset.",
+    "datePublished": "2026-11-10",
+    "dateModified": "2026-11-10",
+    "reviewedOn": "2026-11-10",
+    "nextReviewOn": "2027-02-10",
+    "primaryQuery": "why does youtube rpm increase in q4",
+    "opportunity": {
+      "type": "direct_evidence",
+      "evidenceKind": "funnel_observation",
+      "capturedOn": "2026-11-10",
+      "observationCount": 30,
+      "decision": "The YouTube calculator explains inputs, but the seasonal why behind RPM movement needs a dated, sourced guide beside it; readers arrive with this exact question every Q4 and the calculator page cannot carry the advertiser-calendar evidence.",
+      "evidenceSummary": "The site's creator revenue content drew 30 clicks in 28 days in the October 31, 2026 Search Console and Bing money map; the Q4 RPM question is the seasonal query behind that audience. Site-level aggregate only; no query-level volume is claimed for this page."
+    },
+    "calculatorPath": "/tools/youtube-ad-revenue/",
+    "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+    "discoveryPages": [
+      "index.html",
+      "tools/youtube-ad-revenue/index.html"
+    ],
+    "sources": [
+      {
+        "id": "youtube-ad-revenue-analytics",
+        "kind": "primary",
+        "title": "Understand ad revenue analytics",
+        "publisher": "YouTube",
+        "url": "https://support.google.com/youtube/answer/9314357?hl=en",
+        "sourceUpdatedOn": null,
+        "checkedOn": "2026-11-10",
+        "claims": [
+          "RPM is a creator's total revenue after YouTube's revenue share per 1,000 views, including ads, YouTube Premium, channel memberships, and Supers.",
+          "CPM is the cost advertisers pay per 1,000 ad impressions, counted only on monetized playbacks, before YouTube's revenue share.",
+          "CPM changes with the time of year because advertisers bid higher or lower seasonally, and advertisers tend to bid more just before the holidays."
+        ]
+      },
+      {
+        "id": "youtube-partner-earnings",
+        "kind": "primary",
+        "title": "YouTube partner earnings overview",
+        "publisher": "YouTube",
+        "url": "https://support.google.com/youtube/answer/72902?hl=en",
+        "sourceUpdatedOn": null,
+        "checkedOn": "2026-11-10",
+        "claims": [
+          "Under the Watch Page Monetization Module, YouTube pays creators 55% of net revenue from ads displayed or streamed on their public videos."
+        ]
+      },
+      {
+        "id": "milx-q4-youtube-earnings",
+        "kind": "secondary",
+        "title": "Q4 YouTube earnings explained: how much more creators actually make",
+        "publisher": "MilX",
+        "url": "https://milx.app/en/guidelines/q4-youtube-earnings-explained-how-much-more-creators-make",
+        "sourceUpdatedOn": null,
+        "checkedOn": "2026-11-10",
+        "claims": [
+          "MilX reports research with AIR Media-Tech across 300 monetized channels found average CPM lifts of about 20 to 50 percent above baseline through October and November, rising higher in some categories by mid-December.",
+          "The same research reports a median RPM of $2.35 in November against $1.56 in January across the channels studied."
+        ]
+      },
+      {
+        "id": "developvault-etsy-shop",
+        "kind": "secondary",
+        "title": "DevelopVault Etsy shop",
+        "publisher": "Etsy",
+        "url": "https://www.etsy.com/shop/DevelopVault",
+        "sourceUpdatedOn": null,
+        "checkedOn": "2026-11-10",
+        "claims": [
+          "The DevelopVault Etsy shop lists the Creator Money Worksheets at $15; the worksheets log each platform's payouts month by month for year-end records."
+        ]
+      }
+    ]
+  }
   ]
 }
