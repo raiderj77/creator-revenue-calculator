@@ -53,3 +53,4 @@ Last verified: 2026-10-24
 - Treat all internal links normally. Use `nofollow sponsored` for paid or affiliate destinations; do not use `nofollow` on ordinary internal links.
 
 - `/articles/youtube-partner-program-2027/` — February 2027 YouTube rules and terms checklist
+- `/articles/why-does-youtube-rpm-increase-in-q4/` — Q4 RPM seasonality and January reset planning

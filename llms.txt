@@ -48,3 +48,4 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - The UGC quote worksheet uses only visible, user-supplied monetary inputs and does not provide a market rate.
 
 - [YouTube Partner Program Changes for February 2027](https://creatorrevenuecalculator.com/articles/youtube-partner-program-2027/): Dated official rules and synthetic examples.
+- [Why Does YouTube RPM Increase in Q4?](https://creatorrevenuecalculator.com/articles/why-does-youtube-rpm-increase-in-q4/): Seasonal advertiser demand, CPM-to-RPM math, and synthetic examples.
