@@ -1700,6 +1700,8 @@ pass(
   "growth resources do not expand analytics before end-to-end delivery is proven",
 );
 
+const rootBrandAssets = new Set(["favicon.ico", "favicon.svg", "favicon-180.png", "favicon-512.png", "logo-mark.svg"]);
+
 for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
   const html = fs.readFileSync(file, "utf8");
   const mainEnd = html.lastIndexOf("</main>");
@@ -1713,7 +1715,8 @@ for (const file of publicFiles.filter((file) => file.endsWith(".html"))) {
       : requestPath.endsWith("/")
         ? `${requestPath.slice(1)}index.html`
         : requestPath.slice(1);
-    pass(fs.existsSync(path.join(root, localPath)), `${path.relative(root, file)} local reference ${requestPath} resolves`);
+    const sourcePath = path.join(root, rootBrandAssets.has(localPath) ? "public" : "", localPath);
+    pass(fs.existsSync(sourcePath), `${path.relative(root, file)} local reference ${requestPath} resolves`);
   }
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
     let valid = true;
