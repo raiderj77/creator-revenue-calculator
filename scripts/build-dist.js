@@ -17,7 +17,16 @@ const BASE_SITEMAP_URL_COUNT = 22;
 const BASE_REDIRECT_COUNT = 58;
 const CANONICAL_REDIRECT_COUNT = 17;
 
+const BRAND_FILES = new Set([
+  "favicon.ico",
+  "favicon.svg",
+  "favicon-180.png",
+  "favicon-512.png",
+  "logo-mark.svg",
+]);
+
 const CORE_PUBLIC_FILES = [
+  ...BRAND_FILES,
   "404.html",
   "index.html",
   "about.html",
@@ -164,8 +173,12 @@ function beehiivEmbedUrl() {
   return url.href;
 }
 
+function publicFileSource(relativePath) {
+  return path.join(ROOT, BRAND_FILES.has(relativePath) ? "public" : "", relativePath);
+}
+
 function publicFileContents(relativePath) {
-  const source = path.join(ROOT, ...relativePath.split("/"));
+  const source = publicFileSource(relativePath);
   if (relativePath !== "assets/js/email-capture.js") return fs.readFileSync(source);
   return fs.readFileSync(source, "utf8").replace(BEEHIIV_EMBED_TOKEN, beehiivEmbedUrl());
 }
@@ -212,7 +225,7 @@ function assertSafeLayout() {
       fail(`Repository-only path cannot enter the public-file allowlist: ${relativePath}`);
     }
 
-    const source = path.resolve(ROOT, ...relativePath.split("/"));
+    const source = publicFileSource(relativePath);
     if (!source.startsWith(`${ROOT}${path.sep}`)) fail(`Public file escapes repository root: ${relativePath}`);
     if (!fs.existsSync(source)) fail(`Allowlisted public file is missing: ${relativePath}`);
     if (!fs.realpathSync(source).startsWith(`${fs.realpathSync(ROOT)}${path.sep}`)) {
