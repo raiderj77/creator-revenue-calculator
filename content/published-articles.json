@@ -644,6 +644,60 @@
      ]
     }
    ]
+  },
+  {
+   "slug": "how-much-does-youtube-pay-per-1000-views",
+   "status": "published",
+   "path": "articles/how-much-does-youtube-pay-per-1000-views/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/how-much-does-youtube-pay-per-1000-views/",
+   "title": "How Much Does YouTube Pay per 1,000 Views?",
+   "description": "Estimate YouTube ad revenue per 1,000 views using ad-only RPM, with niche scenarios and a worked example.",
+   "datePublished": "2026-11-22",
+   "dateModified": "2026-11-22",
+   "reviewedOn": "2026-11-22",
+   "nextReviewOn": "2027-02-22",
+   "primaryQuery": "how much does youtube pay per 1000 views",
+   "opportunity": {
+    "type": "direct_evidence",
+    "evidenceKind": "user_report",
+    "capturedOn": "2026-11-22",
+    "observationCount": 1,
+    "decision": "The YouTube calculator takes a post-share ad-only rate as an input, but no registered page explains how to derive that rate, why CPM is the wrong denominator, or how to bound a low and high scenario. This guide is that explanation and links the calculator in both directions.",
+    "evidenceSummary": "Site owner directive on November 22, 2026 to publish the per-1,000-views guide in the registered article library. No Search Console query volume is claimed for this page."
+   },
+   "calculatorPath": "/tools/youtube-ad-revenue/",
+   "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+   "discoveryPages": [
+    "articles/index.html",
+    "tools/youtube-ad-revenue/index.html"
+   ],
+   "sources": [
+    {
+     "id": "youtube-ad-revenue-analytics",
+     "kind": "primary",
+     "title": "Understand ad revenue analytics",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/9314357?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-22",
+     "claims": [
+      "RPM is creator revenue after YouTube's revenue share per 1,000 views and can include Premium, channel memberships, and Supers as well as ads.",
+      "CPM is the cost advertisers pay per 1,000 ad impressions, before YouTube's revenue share."
+     ]
+    },
+    {
+     "id": "youtube-partner-earnings",
+     "kind": "primary",
+     "title": "YouTube partner earnings overview",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/72902?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-22",
+     "claims": [
+      "Under the Watch Page Monetization Module, YouTube pays creators a share of net revenue from ads on their public videos, so the calculator's input is a post-share rate."
+     ]
+    }
+   ]
   }
  ]
 }
