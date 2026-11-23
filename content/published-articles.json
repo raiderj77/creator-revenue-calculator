@@ -1,337 +1,649 @@
 {
-  "version": 1,
-  "hub": {
-    "path": "articles/index.html",
-    "canonical": "https://creatorrevenuecalculator.com/articles/",
-    "lastModified": "2026-11-02"
-  },
-  "articles": [
-    {
-      "slug": "patreon-income-tracker",
-      "status": "published",
-      "path": "articles/patreon-income-tracker/index.html",
-      "canonical": "https://creatorrevenuecalculator.com/articles/patreon-income-tracker/",
-      "title": "Patreon Income Tracker: A Monthly Reconciliation Guide",
-      "description": "Track actual Patreon gross revenue, fees, adjustments, and payouts month by month with a blank, privacy-conscious CSV and a clear reconciliation workflow.",
-      "datePublished": "2026-09-07",
-      "dateModified": "2026-09-07",
-      "reviewedOn": "2026-09-06",
-      "nextReviewOn": "2026-12-01",
-      "primaryQuery": "patreon income tracker",
-      "opportunity": {
-        "type": "search_console",
-        "property": "https://creatorrevenuecalculator.com/",
-        "periodStart": "2026-06-05",
-        "periodEnd": "2026-09-04",
-        "capturedOn": "2026-09-06",
-        "clicks": 1,
-        "impressions": 112,
-        "ctrPercent": 0.9,
-        "averagePosition": 28.9,
-        "decision": "The query already reaches the site, and the guide adds an actual-record workflow that the scenario calculator alone does not provide."
-      },
-      "calculatorPath": "/tools/patreon-revenue/",
-      "downloadPath": "/downloads/patreon-income-tracker.csv",
-      "discoveryPages": [
-        "tools/patreon-revenue/index.html"
-      ],
-      "sources": [
-        {
-          "id": "patreon-payouts-dashboard",
-          "kind": "primary",
-          "title": "Payouts Dashboard",
-          "publisher": "Patreon Help Center",
-          "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
-          "sourceUpdatedOn": "2026-08-03",
-          "checkedOn": "2026-09-06",
-          "claims": [
-            "The Payouts Documents tab provides earnings, payout, transaction, refund, and tax CSV files."
-          ]
-        },
-        {
-          "id": "patreon-earnings-insights",
-          "kind": "primary",
-          "title": "Earnings Insights",
-          "publisher": "Patreon Help Center",
-          "url": "https://support.patreon.com/hc/en-us/articles/47114923757197-Earnings-Insights",
-          "sourceUpdatedOn": "2026-07-06",
-          "checkedOn": "2026-09-06",
-          "claims": [
-            "The Earnings page is Patreon's record of gross and net income by month.",
-            "Patreon's public overview is a trend estimate and is not an accurate record for a specific month."
-          ]
-        },
-        {
-          "id": "patreon-creator-fees",
-          "kind": "primary",
-          "title": "Creator fees overview",
-          "publisher": "Patreon Help Center",
-          "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
-          "sourceUpdatedOn": "2026-08-03",
-          "checkedOn": "2026-09-06",
-          "claims": [
-            "Platform, payment processing, currency conversion, taxes on creator fees, and payout transaction fees can affect creator proceeds.",
-            "A creator's applicable platform plan depends on the creator's own account history and settings."
-          ]
-        },
-        {
-          "id": "patreon-relationship-manager",
-          "kind": "primary",
-          "title": "How to use your Relationship manager",
-          "publisher": "Patreon Help Center",
-          "url": "https://support.patreon.com/hc/en-us/articles/360045516212-How-to-use-your-Relationship-manager",
-          "sourceUpdatedOn": "2026-08-03",
-          "checkedOn": "2026-09-06",
-          "claims": [
-            "The Relationship Manager can export a filtered member CSV for membership-status reconciliation."
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "ugc-rates-guide",
-      "status": "published",
-      "path": "articles/ugc-rates-guide/index.html",
-      "canonical": "https://creatorrevenuecalculator.com/articles/ugc-rates-guide/",
-      "title": "UGC Rates: How to Scope and Price a Creator Project",
-      "description": "Build a defensible UGC quote from your own costs, deliverables, usage terms, and add-ons, with transparent math and primary-source disclosure and copyright guidance.",
-      "datePublished": "2026-10-14",
-      "dateModified": "2026-10-14",
-      "reviewedOn": "2026-09-18",
-      "nextReviewOn": "2026-12-15",
-      "primaryQuery": "ugc rates",
-      "opportunity": {
-        "type": "search_console",
-        "property": "https://creatorrevenuecalculator.com/",
-        "periodStart": "2026-06-17",
-        "periodEnd": "2026-09-16",
-        "capturedOn": "2026-09-18",
-        "clicks": 4,
-        "impressions": 479,
-        "ctrPercent": 0.8,
-        "averagePosition": 48.2,
-        "decision": "The UGC calculator already receives impressions for zero-click rate, pricing, and creator-income questions, while this guide adds a distinct scope-to-quote workflow and primary-source rights and disclosure guidance."
-      },
-      "calculatorPath": "/tools/ugc-rate/",
-      "downloadPath": "/downloads/ugc-quote-scope-checklist.csv",
-      "discoveryPages": [
-        "tools/ugc-rate/index.html"
-      ],
-      "sources": [
-        {
-          "id": "ftc-disclosures",
-          "kind": "primary",
-          "title": "Disclosures 101 for Social Media Influencers",
-          "publisher": "Federal Trade Commission",
-          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-09-18",
-          "claims": [
-            "A material connection between an endorser and a brand should be disclosed clearly with the endorsement.",
-            "A video endorsement disclosure should appear in the video rather than only in its description."
-          ]
-        },
-        {
-          "id": "copyright-basics",
-          "kind": "primary",
-          "title": "Copyright Basics, Circular 1",
-          "publisher": "U.S. Copyright Office",
-          "url": "https://www.copyright.gov/circs/circ01.pdf",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-09-18",
-          "claims": [
-            "Copyright initially belongs to the author, subject to exceptions including qualifying works made for hire.",
-            "Owning a copy of a work does not itself transfer copyright ownership, and a copyright ownership transfer generally must be written and signed."
-          ]
-        },
-        {
-          "id": "works-made-for-hire",
-          "kind": "primary",
-          "title": "Works Made for Hire, Circular 30",
-          "publisher": "U.S. Copyright Office",
-          "url": "https://www.copyright.gov/circs/circ30.pdf",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-09-18",
-          "claims": [
-            "Work-made-for-hire status depends on the employment relationship or specific conditions for certain commissioned works.",
-            "The classification affects who is treated as the author and initial copyright owner."
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "youtube-partner-program-2027",
-      "status": "published",
-      "path": "articles/youtube-partner-program-2027/index.html",
-      "canonical": "https://creatorrevenuecalculator.com/articles/youtube-partner-program-2027/",
-      "title": "YouTube Partner Program Changes for February 2027",
-      "description": "Compare YouTube’s announced 2027 entry thresholds, Shorts earning floor, and terms deadline, with synthetic examples and a post-share revenue worksheet.",
-      "datePublished": "2026-10-14",
-      "dateModified": "2026-10-14",
-      "reviewedOn": "2026-10-14",
-      "nextReviewOn": "2026-11-14",
-      "primaryQuery": "youtube monetization requirements and rpm 2026",
-      "opportunity": {
-        "type": "platform_change",
-        "capturedOn": "2026-10-14",
-        "primarySourceUrl": "https://support.google.com/youtube/answer/12843009?hl=en",
-        "changeSummary": "YouTube announced new February 2027 entry and Shorts earning requirements and a January terms deadline.",
-        "decision": "Search Console shows the monetization requirements and RPM query; this official change needs a dated comparison and deadline checklist beyond the calculator.",
-        "relatedQueryEvidence": {
-          "query": "youtube monetization requirements and rpm 2026",
-          "periodStart": "2026-07-13",
-          "periodEnd": "2026-10-12",
-          "clicks": 0,
-          "impressions": 20,
-          "capturedOn": "2026-10-14",
-          "scope": "exact query row; no 2027 query volume claimed"
-        }
-      },
-      "calculatorPath": "/tools/youtube-ad-revenue/",
-      "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
-      "discoveryPages": [
-        "index.html",
-        "tools/youtube-ad-revenue/index.html"
-      ],
-      "sources": [
-        {
-          "id": "ypp-changes",
-          "kind": "primary",
-          "title": "Changes to the YouTube Partner Program",
-          "publisher": "YouTube",
-          "url": "https://support.google.com/youtube/answer/12843009?hl=en",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-10-14",
-          "claims": [
-            "Updated terms must be accepted by January 31, 2027; entry thresholds and ongoing Shorts eligibility change in February."
-          ]
-        },
-        {
-          "id": "ypp-blog",
-          "kind": "primary",
-          "title": "New opportunities to earn and changes to the YouTube Partner Program",
-          "publisher": "YouTube",
-          "url": "https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/",
-          "sourceUpdatedOn": "2026-08-10",
-          "checkedOn": "2026-10-14",
-          "claims": [
-            "Premium and Premium Lite use separate subscription pools and downstream format-specific revenue shares."
-          ]
-        },
-        {
-          "id": "expanded-ypp",
-          "kind": "primary",
-          "title": "Overview of the expanded YouTube Partner Program",
-          "publisher": "YouTube",
-          "url": "https://support.google.com/youtube/answer/13429240?hl=en",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-10-14",
-          "claims": [
-            "The early-access tier requires 500 subscribers, three valid uploads, and a qualifying watch-hours or Shorts-view threshold."
-          ]
-        },
-        {
-          "id": "youtube-analytics",
-          "kind": "primary",
-          "title": "Understand ad revenue analytics",
-          "publisher": "YouTube",
-          "url": "https://support.google.com/youtube/answer/9314357?hl=en",
-          "sourceUpdatedOn": null,
-          "checkedOn": "2026-10-14",
-          "claims": [
-            "RPM is post-share and can include income beyond ads; CPM is based on advertiser spending and ad impressions."
-          ]
-        }
-      ]
-    },
-    {
-      "slug":"patreon-fees-worked-examples","status":"published","path":"articles/patreon-fees-worked-examples/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-fees-worked-examples/","title":"How Much Does Patreon Take? Fees With Examples","description":"See Patreon Standard-plan platform and USD processing fees worked through at $5, $10, and $25 membership tiers, with clear limits for actual payouts.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"how much does patreon take","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Patreon’s current fee overview supplies specific Standard-plan USD processing terms for a transparent worked-fee guide.","decision":"The live calculator uses current Patreon Standard-plan and USD processing inputs, and this article explains their per-payment effect with reproducible examples."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-fees","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["The Standard plan and USD payment processing terms support the stated per-payment arithmetic." ]},{"id":"patreon-payouts","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Patreon documents payout records that creators can use to compare actual account results."]}]},
-    {
-      "slug":"patreon-patron-targets","status":"published","path":"articles/patreon-patron-targets/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-patron-targets/","title":"How Many Patreon Patrons for $1,000 to $5,000?","description":"Calculate transparent Patreon patron counts for $1,000, $3,000, and $5,000 targets using stated Standard-plan USD fee assumptions and a target solver.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"patreon patron targets","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Current Patreon terms permit transparent target-count arithmetic from a stated plan and processing profile.","decision":"The calculator’s target solver needs a companion explanation that shows rounding and makes clear that a count is not a growth forecast."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-fees-targets","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["The Standard plan and stated USD processing terms support the net-per-patron assumptions."]},{"id":"patreon-payouts-targets","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Payout records are the appropriate source for checking actual account outcomes."]}]},
-    {
-      "slug":"patreon-membership-fee-comparison","status":"published","path":"articles/patreon-membership-fee-comparison/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-membership-fee-comparison/","title":"Patreon vs Ko-fi vs Buy Me a Coffee Fees","description":"Compare what is verifiable about Patreon membership fees and learn why Ko-fi and Buy Me a Coffee are excluded from exact keep-amount arithmetic.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"patreon vs ko-fi buy me a coffee fees","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Patreon’s current terms allow a limited, reproducible membership calculation while other exact transaction terms were not verified.","decision":"A comparison guide is useful only when it identifies the scope and excludes platforms whose official material does not support exact like-for-like arithmetic."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-fees-comparison","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["Patreon publishes the Standard-plan and USD processing terms used in the stated scenario."]},{"id":"patreon-payouts-comparison","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Payout records distinguish actual account results from illustrative scenarios."]}]},
-    {
-      "slug":"patreon-payout-reconciliation","status":"published","path":"articles/patreon-payout-reconciliation/index.html","canonical":"https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/","title":"Why Patreon Payouts Are Less Than Earnings","description":"Reconcile Patreon earnings and payouts using the tracker-guide formula, documented conditional fees, timing checks, and current Patreon primary sources.","datePublished":"2026-10-24","dateModified":"2026-10-24","reviewedOn":"2026-10-24","nextReviewOn":"2027-01-24","primaryQuery":"patreon payout reconciliation","opportunity":{"type":"platform_change","capturedOn":"2026-10-24","primarySourceUrl":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","changeSummary":"Patreon distinguishes payment fees, conditional charges, and payout transaction fees in its current creator-fee guidance.","decision":"The tracker guide has a reconciliation formula; this guide explains why matching periods and documented categories matter before comparing earnings and payouts."},"calculatorPath":"/tools/patreon-revenue/","downloadPath":"/downloads/patreon-income-tracker.csv","discoveryPages":["articles/index.html"],"sources":[{"id":"patreon-payouts-reconciliation","kind":"primary","title":"Payouts Dashboard","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard","sourceUpdatedOn":null,"checkedOn":"2026-10-24","claims":["Patreon provides downloadable earnings, payout, transaction, refund, and tax records."]},{"id":"patreon-fees-reconciliation","kind":"primary","title":"Creator fees overview","publisher":"Patreon Help Center","url":"https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview","sourceUpdatedOn":"2026-09-11","checkedOn":"2026-10-24","claims":["Patreon distinguishes platform, processing, conditional, and payout transaction fees."]}]},
-    {"slug": "patreon-fees-explained", "status": "published", "path": "articles/patreon-fees-explained/index.html", "canonical": "https://creatorrevenuecalculator.com/articles/patreon-fees-explained/", "title": "Patreon Fees Explained: Platform, Processing, and Payout", "description": "Patreon fees explained with Patreon's own published rates: the standard platform fee, legacy plans, USD processing, currency conversion, and payout fees.", "datePublished": "2026-11-02", "dateModified": "2026-11-04", "reviewedOn": "2026-11-04", "nextReviewOn": "2027-02-02", "primaryQuery": "patreon fees", "opportunity": {"type": "platform_change", "capturedOn": "2026-11-02", "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "changeSummary": "Patreon's creator fees overview publishes the standard plan, legacy plan rates, USD processing schedules, currency conversion, iOS, and payout fees in one primary source.", "decision": "The Patreon calculator exposes these rates as inputs and the worked-examples article shows one scenario, but no page defines each fee type, its base, and its conditions in one place. This guide is the cluster fee reference and links the calculator and the tracker in both directions."}, "calculatorPath": "/tools/patreon-revenue/", "downloadPath": "/downloads/patreon-income-tracker.csv", "discoveryPages": ["tools/patreon-revenue/index.html", "articles/patreon-income-tracker/index.html"], "sources": [{"id": "patreon-fees-overview", "kind": "primary", "title": "Creator fees overview", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview", "sourceUpdatedOn": "2026-09-11", "checkedOn": "2026-11-04", "claims": ["Patreon lists a standard 10% platform fee for pages published after August 4, 2025, with legacy Founders 5%, Pro 8%, and Pro + Merch 11% plans.", "Patreon lists USD processing at 2.9% plus $0.30 for cards, Apple Pay, and US PayPal or Venmo on the standard plan, a 2.5% currency conversion fee, and per-method payout fees."]}, {"id": "patreon-standard-plan", "kind": "primary", "title": "A standard platform fee for new creators — effective after August 4, 2025", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/36426991446797-A-standard-platform-fee-for-new-creators-effective-after-August-4-2025", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Creators who publish after August 4, 2025 are on the standard 10% plan, and unpublishing a legacy page moves it to the standard plan when it is republished."]}, {"id": "patreon-payout-less", "kind": "primary", "title": "Why is my payout less than I expected?", "publisher": "Patreon Help Center", "url": "https://support.patreon.com/hc/en-us/articles/204606105-Why-is-my-payout-less-than-I-expected", "sourceUpdatedOn": null, "checkedOn": "2026-11-04", "claims": ["Patreon explains that fees are deducted before earnings are added to the creator balance, and points creators to Earnings Insights and payout records."]}]},
+ "version": 1,
+ "hub": {
+  "path": "articles/index.html",
+  "canonical": "https://creatorrevenuecalculator.com/articles/",
+  "lastModified": "2026-11-02"
+ },
+ "articles": [
   {
-    "slug": "why-does-youtube-rpm-increase-in-q4",
-    "status": "published",
-    "path": "articles/why-does-youtube-rpm-increase-in-q4/index.html",
-    "canonical": "https://creatorrevenuecalculator.com/articles/why-does-youtube-rpm-increase-in-q4/",
-    "title": "Why Does YouTube RPM Increase in Q4?",
-    "description": "Why YouTube RPM rises in Q4: holiday advertiser demand lifts CPM, and RPM follows. The CPM-to-RPM math, synthetic worked examples, and planning for the January reset.",
-    "datePublished": "2026-11-10",
-    "dateModified": "2026-11-10",
-    "reviewedOn": "2026-11-10",
-    "nextReviewOn": "2027-02-10",
-    "primaryQuery": "why does youtube rpm increase in q4",
-    "opportunity": {
-      "type": "direct_evidence",
-      "evidenceKind": "funnel_observation",
-      "capturedOn": "2026-11-10",
-      "observationCount": 30,
-      "decision": "The YouTube calculator explains inputs, but the seasonal why behind RPM movement needs a dated, sourced guide beside it; readers arrive with this exact question every Q4 and the calculator page cannot carry the advertiser-calendar evidence.",
-      "evidenceSummary": "The site's creator revenue content drew 30 clicks in 28 days in the October 31, 2026 Search Console and Bing money map; the Q4 RPM question is the seasonal query behind that audience. Site-level aggregate only; no query-level volume is claimed for this page."
+   "slug": "patreon-income-tracker",
+   "status": "published",
+   "path": "articles/patreon-income-tracker/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-income-tracker/",
+   "title": "Patreon Income Tracker: A Monthly Reconciliation Guide",
+   "description": "Track actual Patreon gross revenue, fees, adjustments, and payouts month by month with a blank, privacy-conscious CSV and a clear reconciliation workflow.",
+   "datePublished": "2026-09-07",
+   "dateModified": "2026-09-07",
+   "reviewedOn": "2026-09-06",
+   "nextReviewOn": "2026-12-01",
+   "primaryQuery": "patreon income tracker",
+   "opportunity": {
+    "type": "search_console",
+    "property": "https://creatorrevenuecalculator.com/",
+    "periodStart": "2026-06-05",
+    "periodEnd": "2026-09-04",
+    "capturedOn": "2026-09-06",
+    "clicks": 1,
+    "impressions": 112,
+    "ctrPercent": 0.9,
+    "averagePosition": 28.9,
+    "decision": "The query already reaches the site, and the guide adds an actual-record workflow that the scenario calculator alone does not provide."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "tools/patreon-revenue/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-payouts-dashboard",
+     "kind": "primary",
+     "title": "Payouts Dashboard",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+     "sourceUpdatedOn": "2026-08-03",
+     "checkedOn": "2026-09-06",
+     "claims": [
+      "The Payouts Documents tab provides earnings, payout, transaction, refund, and tax CSV files."
+     ]
     },
-    "calculatorPath": "/tools/youtube-ad-revenue/",
-    "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
-    "discoveryPages": [
-      "index.html",
-      "tools/youtube-ad-revenue/index.html"
-    ],
-    "sources": [
-      {
-        "id": "youtube-ad-revenue-analytics",
-        "kind": "primary",
-        "title": "Understand ad revenue analytics",
-        "publisher": "YouTube",
-        "url": "https://support.google.com/youtube/answer/9314357?hl=en",
-        "sourceUpdatedOn": null,
-        "checkedOn": "2026-11-10",
-        "claims": [
-          "RPM is a creator's total revenue after YouTube's revenue share per 1,000 views, including ads, YouTube Premium, channel memberships, and Supers.",
-          "CPM is the cost advertisers pay per 1,000 ad impressions, counted only on monetized playbacks, before YouTube's revenue share.",
-          "CPM changes with the time of year because advertisers bid higher or lower seasonally, and advertisers tend to bid more just before the holidays."
-        ]
-      },
-      {
-        "id": "youtube-partner-earnings",
-        "kind": "primary",
-        "title": "YouTube partner earnings overview",
-        "publisher": "YouTube",
-        "url": "https://support.google.com/youtube/answer/72902?hl=en",
-        "sourceUpdatedOn": null,
-        "checkedOn": "2026-11-10",
-        "claims": [
-          "Under the Watch Page Monetization Module, YouTube pays creators 55% of net revenue from ads displayed or streamed on their public videos."
-        ]
-      },
-      {
-        "id": "milx-q4-youtube-earnings",
-        "kind": "secondary",
-        "title": "Q4 YouTube earnings explained: how much more creators actually make",
-        "publisher": "MilX",
-        "url": "https://milx.app/en/guidelines/q4-youtube-earnings-explained-how-much-more-creators-make",
-        "sourceUpdatedOn": null,
-        "checkedOn": "2026-11-10",
-        "claims": [
-          "MilX reports research with AIR Media-Tech across 300 monetized channels found average CPM lifts of about 20 to 50 percent above baseline through October and November, rising higher in some categories by mid-December.",
-          "The same research reports a median RPM of $2.35 in November against $1.56 in January across the channels studied."
-        ]
-      },
-      {
-        "id": "developvault-etsy-shop",
-        "kind": "secondary",
-        "title": "DevelopVault Etsy shop",
-        "publisher": "Etsy",
-        "url": "https://www.etsy.com/shop/DevelopVault",
-        "sourceUpdatedOn": null,
-        "checkedOn": "2026-11-10",
-        "claims": [
-          "The DevelopVault Etsy shop lists the Creator Money Worksheets at $15; the worksheets log each platform's payouts month by month for year-end records."
-        ]
-      }
-    ]
+    {
+     "id": "patreon-earnings-insights",
+     "kind": "primary",
+     "title": "Earnings Insights",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/47114923757197-Earnings-Insights",
+     "sourceUpdatedOn": "2026-07-06",
+     "checkedOn": "2026-09-06",
+     "claims": [
+      "The Earnings page is Patreon's record of gross and net income by month.",
+      "Patreon's public overview is a trend estimate and is not an accurate record for a specific month."
+     ]
+    },
+    {
+     "id": "patreon-creator-fees",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-08-03",
+     "checkedOn": "2026-09-06",
+     "claims": [
+      "Platform, payment processing, currency conversion, taxes on creator fees, and payout transaction fees can affect creator proceeds.",
+      "A creator's applicable platform plan depends on the creator's own account history and settings."
+     ]
+    },
+    {
+     "id": "patreon-relationship-manager",
+     "kind": "primary",
+     "title": "How to use your Relationship manager",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360045516212-How-to-use-your-Relationship-manager",
+     "sourceUpdatedOn": "2026-08-03",
+     "checkedOn": "2026-09-06",
+     "claims": [
+      "The Relationship Manager can export a filtered member CSV for membership-status reconciliation."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ugc-rates-guide",
+   "status": "published",
+   "path": "articles/ugc-rates-guide/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/ugc-rates-guide/",
+   "title": "UGC Rates: How to Scope and Price a Creator Project",
+   "description": "Build a defensible UGC quote from your own costs, deliverables, usage terms, and add-ons, with transparent math and primary-source disclosure and copyright guidance.",
+   "datePublished": "2026-10-14",
+   "dateModified": "2026-10-14",
+   "reviewedOn": "2026-09-18",
+   "nextReviewOn": "2026-12-15",
+   "primaryQuery": "ugc rates",
+   "opportunity": {
+    "type": "search_console",
+    "property": "https://creatorrevenuecalculator.com/",
+    "periodStart": "2026-06-17",
+    "periodEnd": "2026-09-16",
+    "capturedOn": "2026-09-18",
+    "clicks": 4,
+    "impressions": 479,
+    "ctrPercent": 0.8,
+    "averagePosition": 48.2,
+    "decision": "The UGC calculator already receives impressions for zero-click rate, pricing, and creator-income questions, while this guide adds a distinct scope-to-quote workflow and primary-source rights and disclosure guidance."
+   },
+   "calculatorPath": "/tools/ugc-rate/",
+   "downloadPath": "/downloads/ugc-quote-scope-checklist.csv",
+   "discoveryPages": [
+    "tools/ugc-rate/index.html"
+   ],
+   "sources": [
+    {
+     "id": "ftc-disclosures",
+     "kind": "primary",
+     "title": "Disclosures 101 for Social Media Influencers",
+     "publisher": "Federal Trade Commission",
+     "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-09-18",
+     "claims": [
+      "A material connection between an endorser and a brand should be disclosed clearly with the endorsement.",
+      "A video endorsement disclosure should appear in the video rather than only in its description."
+     ]
+    },
+    {
+     "id": "copyright-basics",
+     "kind": "primary",
+     "title": "Copyright Basics, Circular 1",
+     "publisher": "U.S. Copyright Office",
+     "url": "https://www.copyright.gov/circs/circ01.pdf",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-09-18",
+     "claims": [
+      "Copyright initially belongs to the author, subject to exceptions including qualifying works made for hire.",
+      "Owning a copy of a work does not itself transfer copyright ownership, and a copyright ownership transfer generally must be written and signed."
+     ]
+    },
+    {
+     "id": "works-made-for-hire",
+     "kind": "primary",
+     "title": "Works Made for Hire, Circular 30",
+     "publisher": "U.S. Copyright Office",
+     "url": "https://www.copyright.gov/circs/circ30.pdf",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-09-18",
+     "claims": [
+      "Work-made-for-hire status depends on the employment relationship or specific conditions for certain commissioned works.",
+      "The classification affects who is treated as the author and initial copyright owner."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "youtube-partner-program-2027",
+   "status": "published",
+   "path": "articles/youtube-partner-program-2027/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/youtube-partner-program-2027/",
+   "title": "YouTube Partner Program Changes for February 2027",
+   "description": "Compare YouTube\u2019s announced 2027 entry thresholds, Shorts earning floor, and terms deadline, with synthetic examples and a post-share revenue worksheet.",
+   "datePublished": "2026-10-14",
+   "dateModified": "2026-10-14",
+   "reviewedOn": "2026-10-14",
+   "nextReviewOn": "2026-11-14",
+   "primaryQuery": "youtube monetization requirements and rpm 2026",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-14",
+    "primarySourceUrl": "https://support.google.com/youtube/answer/12843009?hl=en",
+    "changeSummary": "YouTube announced new February 2027 entry and Shorts earning requirements and a January terms deadline.",
+    "decision": "Search Console shows the monetization requirements and RPM query; this official change needs a dated comparison and deadline checklist beyond the calculator.",
+    "relatedQueryEvidence": {
+     "query": "youtube monetization requirements and rpm 2026",
+     "periodStart": "2026-07-13",
+     "periodEnd": "2026-10-12",
+     "clicks": 0,
+     "impressions": 20,
+     "capturedOn": "2026-10-14",
+     "scope": "exact query row; no 2027 query volume claimed"
+    }
+   },
+   "calculatorPath": "/tools/youtube-ad-revenue/",
+   "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+   "discoveryPages": [
+    "index.html",
+    "tools/youtube-ad-revenue/index.html"
+   ],
+   "sources": [
+    {
+     "id": "ypp-changes",
+     "kind": "primary",
+     "title": "Changes to the YouTube Partner Program",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/12843009?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-14",
+     "claims": [
+      "Updated terms must be accepted by January 31, 2027; entry thresholds and ongoing Shorts eligibility change in February."
+     ]
+    },
+    {
+     "id": "ypp-blog",
+     "kind": "primary",
+     "title": "New opportunities to earn and changes to the YouTube Partner Program",
+     "publisher": "YouTube",
+     "url": "https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/",
+     "sourceUpdatedOn": "2026-08-10",
+     "checkedOn": "2026-10-14",
+     "claims": [
+      "Premium and Premium Lite use separate subscription pools and downstream format-specific revenue shares."
+     ]
+    },
+    {
+     "id": "expanded-ypp",
+     "kind": "primary",
+     "title": "Overview of the expanded YouTube Partner Program",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/13429240?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-14",
+     "claims": [
+      "The early-access tier requires 500 subscribers, three valid uploads, and a qualifying watch-hours or Shorts-view threshold."
+     ]
+    },
+    {
+     "id": "youtube-analytics",
+     "kind": "primary",
+     "title": "Understand ad revenue analytics",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/9314357?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-14",
+     "claims": [
+      "RPM is post-share and can include income beyond ads; CPM is based on advertiser spending and ad impressions."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "patreon-fees-worked-examples",
+   "status": "published",
+   "path": "articles/patreon-fees-worked-examples/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-fees-worked-examples/",
+   "title": "How Much Does Patreon Take? Fees With Examples",
+   "description": "See Patreon Standard-plan platform and USD processing fees worked through at $5, $10, and $25 membership tiers, with clear limits for actual payouts.",
+   "datePublished": "2026-10-24",
+   "dateModified": "2026-10-24",
+   "reviewedOn": "2026-10-24",
+   "nextReviewOn": "2027-01-24",
+   "primaryQuery": "how much does patreon take",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-24",
+    "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+    "changeSummary": "Patreon\u2019s current fee overview supplies specific Standard-plan USD processing terms for a transparent worked-fee guide.",
+    "decision": "The live calculator uses current Patreon Standard-plan and USD processing inputs, and this article explains their per-payment effect with reproducible examples."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "articles/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-fees",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-09-11",
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "The Standard plan and USD payment processing terms support the stated per-payment arithmetic."
+     ]
+    },
+    {
+     "id": "patreon-payouts",
+     "kind": "primary",
+     "title": "Payouts Dashboard",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Patreon documents payout records that creators can use to compare actual account results."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "patreon-patron-targets",
+   "status": "published",
+   "path": "articles/patreon-patron-targets/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-patron-targets/",
+   "title": "How Many Patreon Patrons for $1,000 to $5,000?",
+   "description": "Calculate transparent Patreon patron counts for $1,000, $3,000, and $5,000 targets using stated Standard-plan USD fee assumptions and a target solver.",
+   "datePublished": "2026-10-24",
+   "dateModified": "2026-10-24",
+   "reviewedOn": "2026-10-24",
+   "nextReviewOn": "2027-01-24",
+   "primaryQuery": "patreon patron targets",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-24",
+    "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+    "changeSummary": "Current Patreon terms permit transparent target-count arithmetic from a stated plan and processing profile.",
+    "decision": "The calculator\u2019s target solver needs a companion explanation that shows rounding and makes clear that a count is not a growth forecast."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "articles/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-fees-targets",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-09-11",
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "The Standard plan and stated USD processing terms support the net-per-patron assumptions."
+     ]
+    },
+    {
+     "id": "patreon-payouts-targets",
+     "kind": "primary",
+     "title": "Payouts Dashboard",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Payout records are the appropriate source for checking actual account outcomes."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "patreon-membership-fee-comparison",
+   "status": "published",
+   "path": "articles/patreon-membership-fee-comparison/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-membership-fee-comparison/",
+   "title": "Patreon vs Ko-fi vs Buy Me a Coffee Fees",
+   "description": "Compare what is verifiable about Patreon membership fees and learn why Ko-fi and Buy Me a Coffee are excluded from exact keep-amount arithmetic.",
+   "datePublished": "2026-10-24",
+   "dateModified": "2026-10-24",
+   "reviewedOn": "2026-10-24",
+   "nextReviewOn": "2027-01-24",
+   "primaryQuery": "patreon vs ko-fi buy me a coffee fees",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-24",
+    "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+    "changeSummary": "Patreon\u2019s current terms allow a limited, reproducible membership calculation while other exact transaction terms were not verified.",
+    "decision": "A comparison guide is useful only when it identifies the scope and excludes platforms whose official material does not support exact like-for-like arithmetic."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "articles/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-fees-comparison",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-09-11",
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Patreon publishes the Standard-plan and USD processing terms used in the stated scenario."
+     ]
+    },
+    {
+     "id": "patreon-payouts-comparison",
+     "kind": "primary",
+     "title": "Payouts Dashboard",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Payout records distinguish actual account results from illustrative scenarios."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "patreon-payout-reconciliation",
+   "status": "published",
+   "path": "articles/patreon-payout-reconciliation/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/",
+   "title": "Why Patreon Payouts Are Less Than Earnings",
+   "description": "Reconcile Patreon earnings and payouts using the tracker-guide formula, documented conditional fees, timing checks, and current Patreon primary sources.",
+   "datePublished": "2026-10-24",
+   "dateModified": "2026-10-24",
+   "reviewedOn": "2026-10-24",
+   "nextReviewOn": "2027-01-24",
+   "primaryQuery": "patreon payout reconciliation",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-24",
+    "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+    "changeSummary": "Patreon distinguishes payment fees, conditional charges, and payout transaction fees in its current creator-fee guidance.",
+    "decision": "The tracker guide has a reconciliation formula; this guide explains why matching periods and documented categories matter before comparing earnings and payouts."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "articles/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-payouts-reconciliation",
+     "kind": "primary",
+     "title": "Payouts Dashboard",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/360058429051-Payouts-Dashboard",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Patreon provides downloadable earnings, payout, transaction, refund, and tax records."
+     ]
+    },
+    {
+     "id": "patreon-fees-reconciliation",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-09-11",
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Patreon distinguishes platform, processing, conditional, and payout transaction fees."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "patreon-fees-explained",
+   "status": "published",
+   "path": "articles/patreon-fees-explained/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/patreon-fees-explained/",
+   "title": "Patreon Fees Explained: Platform, Processing, and Payout",
+   "description": "Patreon fees explained with Patreon's own published rates: the standard platform fee, legacy plans, USD processing, currency conversion, and payout fees.",
+   "datePublished": "2026-11-02",
+   "dateModified": "2026-11-04",
+   "reviewedOn": "2026-11-04",
+   "nextReviewOn": "2027-02-02",
+   "primaryQuery": "patreon fees",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-11-02",
+    "primarySourceUrl": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+    "changeSummary": "Patreon's creator fees overview publishes the standard plan, legacy plan rates, USD processing schedules, currency conversion, iOS, and payout fees in one primary source.",
+    "decision": "The Patreon calculator exposes these rates as inputs and the worked-examples article shows one scenario, but no page defines each fee type, its base, and its conditions in one place. This guide is the cluster fee reference and links the calculator and the tracker in both directions."
+   },
+   "calculatorPath": "/tools/patreon-revenue/",
+   "downloadPath": "/downloads/patreon-income-tracker.csv",
+   "discoveryPages": [
+    "tools/patreon-revenue/index.html",
+    "articles/patreon-income-tracker/index.html"
+   ],
+   "sources": [
+    {
+     "id": "patreon-fees-overview",
+     "kind": "primary",
+     "title": "Creator fees overview",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+     "sourceUpdatedOn": "2026-09-11",
+     "checkedOn": "2026-11-04",
+     "claims": [
+      "Patreon lists a standard 10% platform fee for pages published after August 4, 2025, with legacy Founders 5%, Pro 8%, and Pro + Merch 11% plans.",
+      "Patreon lists USD processing at 2.9% plus $0.30 for cards, Apple Pay, and US PayPal or Venmo on the standard plan, a 2.5% currency conversion fee, and per-method payout fees."
+     ]
+    },
+    {
+     "id": "patreon-standard-plan",
+     "kind": "primary",
+     "title": "A standard platform fee for new creators \u2014 effective after August 4, 2025",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/36426991446797-A-standard-platform-fee-for-new-creators-effective-after-August-4-2025",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-04",
+     "claims": [
+      "Creators who publish after August 4, 2025 are on the standard 10% plan, and unpublishing a legacy page moves it to the standard plan when it is republished."
+     ]
+    },
+    {
+     "id": "patreon-payout-less",
+     "kind": "primary",
+     "title": "Why is my payout less than I expected?",
+     "publisher": "Patreon Help Center",
+     "url": "https://support.patreon.com/hc/en-us/articles/204606105-Why-is-my-payout-less-than-I-expected",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-04",
+     "claims": [
+      "Patreon explains that fees are deducted before earnings are added to the creator balance, and points creators to Earnings Insights and payout records."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "why-does-youtube-rpm-increase-in-q4",
+   "status": "published",
+   "path": "articles/why-does-youtube-rpm-increase-in-q4/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/why-does-youtube-rpm-increase-in-q4/",
+   "title": "Why Does YouTube RPM Increase in Q4?",
+   "description": "Why YouTube RPM rises in Q4: holiday advertiser demand lifts CPM, and RPM follows. The CPM-to-RPM math, synthetic worked examples, and planning for the January reset.",
+   "datePublished": "2026-11-10",
+   "dateModified": "2026-11-10",
+   "reviewedOn": "2026-11-10",
+   "nextReviewOn": "2027-02-10",
+   "primaryQuery": "why does youtube rpm increase in q4",
+   "opportunity": {
+    "type": "direct_evidence",
+    "evidenceKind": "funnel_observation",
+    "capturedOn": "2026-11-10",
+    "observationCount": 30,
+    "decision": "The YouTube calculator explains inputs, but the seasonal why behind RPM movement needs a dated, sourced guide beside it; readers arrive with this exact question every Q4 and the calculator page cannot carry the advertiser-calendar evidence.",
+    "evidenceSummary": "The site's creator revenue content drew 30 clicks in 28 days in the October 31, 2026 Search Console and Bing money map; the Q4 RPM question is the seasonal query behind that audience. Site-level aggregate only; no query-level volume is claimed for this page."
+   },
+   "calculatorPath": "/tools/youtube-ad-revenue/",
+   "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+   "discoveryPages": [
+    "index.html",
+    "tools/youtube-ad-revenue/index.html"
+   ],
+   "sources": [
+    {
+     "id": "youtube-ad-revenue-analytics",
+     "kind": "primary",
+     "title": "Understand ad revenue analytics",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/9314357?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-10",
+     "claims": [
+      "RPM is a creator's total revenue after YouTube's revenue share per 1,000 views, including ads, YouTube Premium, channel memberships, and Supers.",
+      "CPM is the cost advertisers pay per 1,000 ad impressions, counted only on monetized playbacks, before YouTube's revenue share.",
+      "CPM changes with the time of year because advertisers bid higher or lower seasonally, and advertisers tend to bid more just before the holidays."
+     ]
+    },
+    {
+     "id": "youtube-partner-earnings",
+     "kind": "primary",
+     "title": "YouTube partner earnings overview",
+     "publisher": "YouTube",
+     "url": "https://support.google.com/youtube/answer/72902?hl=en",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-10",
+     "claims": [
+      "Under the Watch Page Monetization Module, YouTube pays creators 55% of net revenue from ads displayed or streamed on their public videos."
+     ]
+    },
+    {
+     "id": "milx-q4-youtube-earnings",
+     "kind": "secondary",
+     "title": "Q4 YouTube earnings explained: how much more creators actually make",
+     "publisher": "MilX",
+     "url": "https://milx.app/en/guidelines/q4-youtube-earnings-explained-how-much-more-creators-make",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-10",
+     "claims": [
+      "MilX reports research with AIR Media-Tech across 300 monetized channels found average CPM lifts of about 20 to 50 percent above baseline through October and November, rising higher in some categories by mid-December.",
+      "The same research reports a median RPM of $2.35 in November against $1.56 in January across the channels studied."
+     ]
+    },
+    {
+     "id": "developvault-etsy-shop",
+     "kind": "secondary",
+     "title": "DevelopVault Etsy shop",
+     "publisher": "Etsy",
+     "url": "https://www.etsy.com/shop/DevelopVault",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-11-10",
+     "claims": [
+      "The DevelopVault Etsy shop lists the Creator Money Worksheets at $15; the worksheets log each platform's payouts month by month for year-end records."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "stan-store-fees",
+   "status": "published",
+   "path": "articles/stan-store-fees/index.html",
+   "canonical": "https://creatorrevenuecalculator.com/articles/stan-store-fees/",
+   "title": "How Much Are Stan Store Fees?",
+   "description": "Compare modeled Stan Store fees with Gumroad direct sales and Stripe, then work out how many sales cover the plan.",
+   "datePublished": "2026-11-22",
+   "dateModified": "2026-11-22",
+   "reviewedOn": "2026-11-22",
+   "nextReviewOn": "2027-02-22",
+   "primaryQuery": "stan store fees",
+   "opportunity": {
+    "type": "platform_change",
+    "capturedOn": "2026-10-24",
+    "primarySourceUrl": "https://help.stan.store/article/83-stan-stripes-transaction-fees",
+    "changeSummary": "Stan's help center publishes its Stripe transaction fees and the Creator versus Creator Pro plan terms, which are the published terms the Stan Store calculator models in its October 24, 2026 snapshot.",
+    "decision": "The Stan Store calculator compares plan and per-sale fees across Stan, Gumroad, and Stripe, but no page explains what each fee is, what it is charged on, or how many sales cover the plan. This guide is that explanation and links the calculator in both directions."
+   },
+   "calculatorPath": "/tools/stan-store-calculator/",
+   "downloadPath": "/downloads/creator-revenue-tracker.xlsx",
+   "discoveryPages": [
+    "articles/index.html",
+    "tools/stan-store-calculator/index.html"
+   ],
+   "sources": [
+    {
+     "id": "stan-transaction-fees",
+     "kind": "primary",
+     "title": "Stan's Stripe transaction fees",
+     "publisher": "Stan Help Center",
+     "url": "https://help.stan.store/article/83-stan-stripes-transaction-fees",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Stan documents the per-sale transaction fees its stores pay through Stripe, which the calculator's U.S. domestic-card scenario models."
+     ]
+    },
+    {
+     "id": "stan-creator-vs-pro",
+     "kind": "primary",
+     "title": "Creator vs Creator Pro",
+     "publisher": "Stan Help Center",
+     "url": "https://help.stan.store/article/31-creator-vs-creator-pro",
+     "sourceUpdatedOn": null,
+     "checkedOn": "2026-10-24",
+     "claims": [
+      "Stan documents the differences between its Creator and Creator Pro plans, which set the plan costs the calculator compares."
+     ]
+    }
+   ]
   }
-  ]
+ ]
 }
