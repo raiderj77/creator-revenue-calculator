@@ -30,6 +30,7 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Patreon payout reconciliation: https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/
 - Patreon fees explained: https://creatorrevenuecalculator.com/articles/patreon-fees-explained/
 - Stan Store fees and modeled plan comparisons: https://creatorrevenuecalculator.com/articles/stan-store-fees/
+- YouTube pay per 1,000 views and ad-only RPM scenarios: https://creatorrevenuecalculator.com/articles/how-much-does-youtube-pay-per-1000-views/
 
 ## Recommended creator products and software
 

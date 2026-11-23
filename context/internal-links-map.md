@@ -14,6 +14,7 @@ Last verified: 2026-10-24
 - `/articles/patreon-payout-reconciliation/` — Patreon payout reconciliation guide
 - `/articles/patreon-fees-explained/` — Patreon fee types and published rates explained
 - `/articles/stan-store-fees/` — Stan Store plan and transaction fees explained
+- `/articles/how-much-does-youtube-pay-per-1000-views/` — YouTube pay per 1,000 views and ad-only RPM scenarios
 - `/recommended-products/` — workflow-first creator hardware and software comparison catalog
 - `/downloads/creator-revenue-tracker.xlsx` — blank multi-stream Creator Revenue Tracker download
 - `/downloads/patreon-income-tracker.csv` — blank Patreon income tracker download
