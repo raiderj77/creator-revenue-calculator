@@ -29,6 +29,7 @@ Creator Revenue Calculator provides a free multi-stream monthly revenue workshee
 - Patreon membership-fee comparison limits: https://creatorrevenuecalculator.com/articles/patreon-membership-fee-comparison/
 - Patreon payout reconciliation: https://creatorrevenuecalculator.com/articles/patreon-payout-reconciliation/
 - Patreon fees explained: https://creatorrevenuecalculator.com/articles/patreon-fees-explained/
+- Stan Store fees and modeled plan comparisons: https://creatorrevenuecalculator.com/articles/stan-store-fees/
 
 ## Recommended creator products and software
 
