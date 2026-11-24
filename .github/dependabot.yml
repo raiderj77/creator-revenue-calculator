@@ -1,3 +1,6 @@
+# Version updates PAUSED 2026-11-23 (Jason's call): Renovate owns dependency
+# version updates fleet-wide now. Dependabot security alerts stay enabled in
+# repo settings; this file's limits are 0 so it opens no version-update PRs.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -7,7 +10,7 @@ updates:
       day: monday
       time: "07:00"
       timezone: America/Los_Angeles
-    open-pull-requests-limit: 2
+    open-pull-requests-limit: 0
     groups:
       npm-maintenance:
         patterns:
@@ -27,7 +30,7 @@ updates:
       day: monday
       time: "07:20"
       timezone: America/Los_Angeles
-    open-pull-requests-limit: 1
+    open-pull-requests-limit: 0
     groups:
       actions-maintenance:
         patterns:
