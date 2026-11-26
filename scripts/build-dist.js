@@ -40,6 +40,7 @@ const CORE_PUBLIC_FILES = [
   "4839d80770efc0e2a0d1233e321b2c43.txt",
   "ae01c4e060cc5f379845f7cdd6fe8d32.txt",
   "d84d23abe820200fa734d1d5e1108593.txt",
+  "45d87009429200682e904422fe9c739e.txt",
   "ads.txt",
   "llms.txt",
   "manifest.json",
